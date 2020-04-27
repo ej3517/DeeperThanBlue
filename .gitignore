@@ -1,0 +1,4 @@
+twitterToneAnalyser/.vs/
+*.pyproj
+*.sln
+.env
