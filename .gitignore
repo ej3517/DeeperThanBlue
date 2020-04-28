@@ -1,0 +1,5 @@
+watson/.vs/
+*.pyproj
+*.sln
+.env
+.gitattributes
