@@ -4,6 +4,8 @@ watson/.vs/
 .env
 .gitattributes
 
+UnityGame2D/Logs/
+
 
 ###
 # Unity folders and files
