@@ -1,88 +1,246 @@
 fileFormatVersion: 2
 guid: 8d7578a70196d2443a0cd726123525fe
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: rpl_grass_63
-    21300002: rpl_grass_64
-    21300004: rpl_grass_65
-    21300006: rpl_grass_66
-    21300008: rpl_grass_67
-    21300010: rpl_grass_68
-    21300012: rpl_grass_69
-    21300014: rpl_grass_70
-    21300016: rpl_grass_72
-    21300018: rpl_grass_73
-    21300020: rpl_grass_74
-    21300022: rpl_grass_75
-    21300024: rpl_grass_76
-    21300026: rpl_grass_77
-    21300028: rpl_grass_78
-    21300030: rpl_grass_79
-    21300032: rpl_grass_81
-    21300034: rpl_grass_82
-    21300036: rpl_grass_83
-    21300038: rpl_grass_84
-    21300040: rpl_grass_85
-    21300042: rpl_grass_86
-    21300044: rpl_grass_87
-    21300046: rpl_grass_88
-    21300048: rpl_grass_90
-    21300050: rpl_grass_91
-    21300052: rpl_grass_92
-    21300054: rpl_grass_93
-    21300056: rpl_grass_94
-    21300058: rpl_grass_95
-    21300060: rpl_grass_96
-    21300062: rpl_grass_97
-    21300064: rpl_grass_99
-    21300066: rpl_grass_100
-    21300068: rpl_grass_101
-    21300070: rpl_grass_102
-    21300072: rpl_grass_103
-    21300074: rpl_grass_104
-    21300076: rpl_grass_105
-    21300078: rpl_grass_106
-    21300080: rpl_grass_108
-    21300082: rpl_grass_109
-    21300084: rpl_grass_110
-    21300086: rpl_grass_111
-    21300088: rpl_grass_112
-    21300090: rpl_grass_113
-    21300092: rpl_grass_114
-    21300094: rpl_grass_115
-    21300096: rpl_grass_117
-    21300098: rpl_grass_118
-    21300100: rpl_grass_119
-    21300102: rpl_grass_120
-    21300104: rpl_grass_121
-    21300106: rpl_grass_122
-    21300108: rpl_grass_123
-    21300110: rpl_grass_124
-    21300112: rpl_grass_126
-    21300114: rpl_grass_127
-    21300116: rpl_grass_128
-    21300118: rpl_grass_129
-    21300120: rpl_grass_130
-    21300122: rpl_grass_131
-    21300124: rpl_grass_132
-    21300126: rpl_grass_133
-    21300128: rpl_sand_deco_0
-    21300130: rpl_sand_deco_1
-    21300132: rpl_sand_deco_2
-    21300134: rpl_sand_deco_3
-    21300136: rpl_sand_deco_4
-    21300138: rpl_sand_deco_5
-    21300140: rpl_sand_deco_6
-    21300142: rpl_sand_deco_7
-    21300144: rpl_sand_deco_8
-    21300146: rpl_sand_deco_9
-    21300148: rpl_sand_deco_10
-    21300150: rpl_sand_deco_11
-    21300152: rpl_sand_deco_12
-    21300154: rpl_sand_deco_13
-    21300156: rpl_sand_deco_14
+  internalIDToNameTable:
+  - first:
+      213: 21300000
+    second: rpl_grass_63
+  - first:
+      213: 21300002
+    second: rpl_grass_64
+  - first:
+      213: 21300004
+    second: rpl_grass_65
+  - first:
+      213: 21300006
+    second: rpl_grass_66
+  - first:
+      213: 21300008
+    second: rpl_grass_67
+  - first:
+      213: 21300010
+    second: rpl_grass_68
+  - first:
+      213: 21300012
+    second: rpl_grass_69
+  - first:
+      213: 21300014
+    second: rpl_grass_70
+  - first:
+      213: 21300016
+    second: rpl_grass_72
+  - first:
+      213: 21300018
+    second: rpl_grass_73
+  - first:
+      213: 21300020
+    second: rpl_grass_74
+  - first:
+      213: 21300022
+    second: rpl_grass_75
+  - first:
+      213: 21300024
+    second: rpl_grass_76
+  - first:
+      213: 21300026
+    second: rpl_grass_77
+  - first:
+      213: 21300028
+    second: rpl_grass_78
+  - first:
+      213: 21300030
+    second: rpl_grass_79
+  - first:
+      213: 21300032
+    second: rpl_grass_81
+  - first:
+      213: 21300034
+    second: rpl_grass_82
+  - first:
+      213: 21300036
+    second: rpl_grass_83
+  - first:
+      213: 21300038
+    second: rpl_grass_84
+  - first:
+      213: 21300040
+    second: rpl_grass_85
+  - first:
+      213: 21300042
+    second: rpl_grass_86
+  - first:
+      213: 21300044
+    second: rpl_grass_87
+  - first:
+      213: 21300046
+    second: rpl_grass_88
+  - first:
+      213: 21300048
+    second: rpl_grass_90
+  - first:
+      213: 21300050
+    second: rpl_grass_91
+  - first:
+      213: 21300052
+    second: rpl_grass_92
+  - first:
+      213: 21300054
+    second: rpl_grass_93
+  - first:
+      213: 21300056
+    second: rpl_grass_94
+  - first:
+      213: 21300058
+    second: rpl_grass_95
+  - first:
+      213: 21300060
+    second: rpl_grass_96
+  - first:
+      213: 21300062
+    second: rpl_grass_97
+  - first:
+      213: 21300064
+    second: rpl_grass_99
+  - first:
+      213: 21300066
+    second: rpl_grass_100
+  - first:
+      213: 21300068
+    second: rpl_grass_101
+  - first:
+      213: 21300070
+    second: rpl_grass_102
+  - first:
+      213: 21300072
+    second: rpl_grass_103
+  - first:
+      213: 21300074
+    second: rpl_grass_104
+  - first:
+      213: 21300076
+    second: rpl_grass_105
+  - first:
+      213: 21300078
+    second: rpl_grass_106
+  - first:
+      213: 21300080
+    second: rpl_grass_108
+  - first:
+      213: 21300082
+    second: rpl_grass_109
+  - first:
+      213: 21300084
+    second: rpl_grass_110
+  - first:
+      213: 21300086
+    second: rpl_grass_111
+  - first:
+      213: 21300088
+    second: rpl_grass_112
+  - first:
+      213: 21300090
+    second: rpl_grass_113
+  - first:
+      213: 21300092
+    second: rpl_grass_114
+  - first:
+      213: 21300094
+    second: rpl_grass_115
+  - first:
+      213: 21300096
+    second: rpl_grass_117
+  - first:
+      213: 21300098
+    second: rpl_grass_118
+  - first:
+      213: 21300100
+    second: rpl_grass_119
+  - first:
+      213: 21300102
+    second: rpl_grass_120
+  - first:
+      213: 21300104
+    second: rpl_grass_121
+  - first:
+      213: 21300106
+    second: rpl_grass_122
+  - first:
+      213: 21300108
+    second: rpl_grass_123
+  - first:
+      213: 21300110
+    second: rpl_grass_124
+  - first:
+      213: 21300112
+    second: rpl_grass_126
+  - first:
+      213: 21300114
+    second: rpl_grass_127
+  - first:
+      213: 21300116
+    second: rpl_grass_128
+  - first:
+      213: 21300118
+    second: rpl_grass_129
+  - first:
+      213: 21300120
+    second: rpl_grass_130
+  - first:
+      213: 21300122
+    second: rpl_grass_131
+  - first:
+      213: 21300124
+    second: rpl_grass_132
+  - first:
+      213: 21300126
+    second: rpl_grass_133
+  - first:
+      213: 21300128
+    second: rpl_sand_deco_0
+  - first:
+      213: 21300130
+    second: rpl_sand_deco_1
+  - first:
+      213: 21300132
+    second: rpl_sand_deco_2
+  - first:
+      213: 21300134
+    second: rpl_sand_deco_3
+  - first:
+      213: 21300136
+    second: rpl_sand_deco_4
+  - first:
+      213: 21300138
+    second: rpl_sand_deco_5
+  - first:
+      213: 21300140
+    second: rpl_sand_deco_6
+  - first:
+      213: 21300142
+    second: rpl_sand_deco_7
+  - first:
+      213: 21300144
+    second: rpl_sand_deco_8
+  - first:
+      213: 21300146
+    second: rpl_sand_deco_9
+  - first:
+      213: 21300148
+    second: rpl_sand_deco_10
+  - first:
+      213: 21300150
+    second: rpl_sand_deco_11
+  - first:
+      213: 21300152
+    second: rpl_sand_deco_12
+  - first:
+      213: 21300154
+    second: rpl_sand_deco_13
+  - first:
+      213: 21300156
+    second: rpl_sand_deco_14
   externalObjects: {}
-  serializedVersion: 9
+  serializedVersion: 11
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -136,8 +294,9 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  applyGammaDecoding: 1
   platformSettings:
-  - serializedVersion: 2
+  - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -148,7 +307,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: Standalone
     maxTextureSize: 256
     resizeAlgorithm: 0
@@ -159,7 +319,8 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 1
     androidETC2FallbackOverride: 0
-  - serializedVersion: 2
+    forceMaximumCompressionQuality_BC6H_BC7: 1
+  - serializedVersion: 3
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -170,6 +331,7 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 1
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -193,6 +355,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: ebab8a1887ae45f499b30a23ee159b00
+      internalID: 21300128
       vertices: []
       indices: 
       edges: []
@@ -217,6 +380,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 591daae53fd62dd4785107899b4c5205
+      internalID: 21300130
       vertices: []
       indices: 
       edges: []
@@ -241,6 +405,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: a35750a0561087d4fafabfdf33254f27
+      internalID: 21300132
       vertices: []
       indices: 
       edges: []
@@ -265,6 +430,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 8ba28998354d7a340aacb2a93ec884dd
+      internalID: 21300134
       vertices: []
       indices: 
       edges: []
@@ -289,6 +455,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: eabc69fb957ab0447bce7bfa46bc60df
+      internalID: 21300136
       vertices: []
       indices: 
       edges: []
@@ -313,6 +480,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: a121b0001be960b419e01b1b79dd506c
+      internalID: 21300138
       vertices: []
       indices: 
       edges: []
@@ -337,6 +505,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 60663e94e1a6bcf4f8216271228d709c
+      internalID: 21300140
       vertices: []
       indices: 
       edges: []
@@ -361,6 +530,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: c146612ef3b939144a536f0a0e4b514b
+      internalID: 21300142
       vertices: []
       indices: 
       edges: []
@@ -385,6 +555,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: d58e939e505fc3642b21cafc2d4d0935
+      internalID: 21300144
       vertices: []
       indices: 
       edges: []
@@ -409,6 +580,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 83a0f8e3caceb464aa03190cc36dcdf4
+      internalID: 21300146
       vertices: []
       indices: 
       edges: []
@@ -433,6 +605,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 43627428223bcc249a160e76a95c53b8
+      internalID: 21300148
       vertices: []
       indices: 
       edges: []
@@ -453,6 +626,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 425bf8b8e7bb30f48ac5291d4f652b5d
+      internalID: 21300150
       vertices: []
       indices: 
       edges: []
@@ -473,6 +647,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 8834a0bcf6e3a6f4a9a13d7c3825f399
+      internalID: 21300152
       vertices: []
       indices: 
       edges: []
@@ -493,6 +668,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 98a6e30963485464ba2fcc59659225ae
+      internalID: 21300154
       vertices: []
       indices: 
       edges: []
@@ -513,6 +689,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: c8dd36a9535b6854fac0e7b15b15a176
+      internalID: 21300156
       vertices: []
       indices: 
       edges: []
@@ -521,10 +698,12 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: e092df0af96701047a06ec4761df66b0
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
+    secondaryTextures: []
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
