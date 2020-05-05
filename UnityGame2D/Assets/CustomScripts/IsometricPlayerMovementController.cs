@@ -15,7 +15,16 @@ public class IsometricPlayerMovementController : MonoBehaviour
         rbody = GetComponent<Rigidbody2D>();
         //isoRenderer = GetComponentInChildren<IsometricCharacterRenderer>();
     }
+    
+    enum direction
+    {
+        north,
+        east,
+        south,
+        west,
+    };
 
+    private float angle = 0;
 
     // Update is called once per frame
     void FixedUpdate()
@@ -28,9 +37,20 @@ public class IsometricPlayerMovementController : MonoBehaviour
         inputVector = Vector2.ClampMagnitude(inputVector, 1);
         Vector2 movement = inputVector * movementSpeed;
         Vector2 newPos = currentPos + movement * Time.fixedDeltaTime;
-        float newAng = Vector2.Angle(newPos, currentPos);
         //isoRenderer.SetDirection(movement);
-        //rbody.MoveRotation(currentAng+1);
+        if (horizontalInput > 0 && verticalInput > 0) angle = -45;
+        else if (horizontalInput < 0 && verticalInput > 0) angle = 45;
+        else if (horizontalInput > 0 && verticalInput < 0) angle = -135;
+        else if (horizontalInput < 0 && verticalInput < 0) angle = 135;
+        else if (horizontalInput > 0) angle = -90;
+        else if (horizontalInput < 0) angle = 90;
+        else if (verticalInput > 0) angle = 0;
+        else if (verticalInput < 0) angle = 180;
+
+
+
+
+        rbody.SetRotation(angle);
         rbody.MovePosition(newPos);
     }
 }
