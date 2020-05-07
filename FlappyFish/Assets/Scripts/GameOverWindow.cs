@@ -34,11 +34,11 @@ public class GameOverWindow : MonoBehaviour
 
     private void Hide()
     {
-        gameObject.SetActive(true);
+        gameObject.transform.localScale = new Vector3(0,0,0);
     }
     private void Show()
     {
-        gameObject.SetActive(true);
+        gameObject.transform.localScale = new Vector3(1,1,1);
     }
 
 }
