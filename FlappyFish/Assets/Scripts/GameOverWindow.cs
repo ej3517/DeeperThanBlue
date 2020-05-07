@@ -13,10 +13,6 @@ public class GameOverWindow : MonoBehaviour
     private void Awake()
     {
         scoreText = transform.Find("scoreText").GetComponent<Text>();
-        transform.Find("retryBtn").GetComponent<Button_UI>().ClickFunc = () =>
-            {
-                UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
-            };
         Hide();
     }
 

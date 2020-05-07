@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RestartButton : MonoBehaviour
 {
-    private void restartGame()
+    public void restartButton()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
     }
