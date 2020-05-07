@@ -1,10 +1,11 @@
 watson/.vs/
 *.pyproj
-*.sln
 .env
 .gitattributes
 
 UnityGame2D/Logs/
+UnityGameServer/bin/
+
 
 
 ###
