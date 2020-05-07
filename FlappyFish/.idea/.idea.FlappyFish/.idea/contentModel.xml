@@ -36,6 +36,7 @@
           <e p="GameHandler.cs" t="Include" />
           <e p="GameOverWindow.cs" t="Include" />
           <e p="Level.cs" t="Include" />
+          <e p="Loader.cs" t="Include" />
           <e p="RestartButton.cs" t="Include" />
           <e p="ScoreWindow.cs" t="Include" />
         </e>

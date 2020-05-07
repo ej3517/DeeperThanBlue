@@ -6,6 +6,6 @@ public class RestartButton : MonoBehaviour
 {
     public void restartButton()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
+        Loader.Load(Loader.Scene.GameScene);
     }
 }
