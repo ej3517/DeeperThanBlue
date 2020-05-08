@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class ButtonHandler : MonoBehaviour
 {
-    public class RestartButton : MonoBehaviour
+    public void playButton()
     {
-        public void restartButton()
-        {
-            Loader.Load(Loader.Scene.GameScene);
-        }
+        Loader.Load(Loader.Scene.GameScene);
+    }
+    
+    public void mainMenuButton()
+    {
+        Loader.Load(Loader.Scene.MainMenu);
     }
 }

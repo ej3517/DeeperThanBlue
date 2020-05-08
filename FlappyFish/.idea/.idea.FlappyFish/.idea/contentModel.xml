@@ -39,8 +39,8 @@
           <e p="Level.cs" t="Include" />
           <e p="Loader.cs" t="Include" />
           <e p="LoaderUpdate.cs" t="Include" />
-          <e p="RestartButton.cs" t="Include" />
           <e p="ScoreWindow.cs" t="Include" />
+          <e p="SoundManager.cs" t="Include" />
         </e>
       </e>
       <e p="FlappyFish.sln" t="IncludeFlat" />

@@ -5,6 +5,9 @@ TextureImporter:
   - first:
       213: -6955608724718897282
     second: PipeBody_0
+  - first:
+      213: -4718977445990016059
+    second: PipeBody
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -118,6 +121,27 @@ TextureImporter:
       bones: []
       spriteID: e77b58e97b6b87f90800000000000000
       internalID: -6955608724718897282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PipeBody
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 19
+        width: 502
+        height: 576
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cb5facd303d28eb0800000000000000
+      internalID: -4718977445990016059
       vertices: []
       indices: 
       edges: []

@@ -210,7 +210,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 469984779}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64359ff12de9f4d8297be9ce4894339b, type: 3}
+  m_Script: {fileID: 11500000, guid: e8a96f464bc004c8aaadfc2413a77ae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &469984782
@@ -257,7 +257,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 469984781}
-        m_MethodName: restartButton
+        m_MethodName: mainMenuButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -501,7 +501,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1274710651}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64359ff12de9f4d8297be9ce4894339b, type: 3}
+  m_Script: {fileID: 11500000, guid: e8a96f464bc004c8aaadfc2413a77ae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1274710654
@@ -548,7 +548,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1274710653}
-        m_MethodName: restartButton
+        m_MethodName: playButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

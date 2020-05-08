@@ -64,6 +64,7 @@ public class Bird : MonoBehaviour
     private void Jump()
     {
         birdrigidbody2D.velocity = Vector2.up * JUMP_AMOUNT;
+        SoundManager.PlaySound(SoundManager.Sound.FishSwim);
     }
 
     private void OnTriggerEnter2D(Collider2D collider)

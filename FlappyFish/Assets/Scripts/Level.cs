@@ -6,7 +6,7 @@ using CodeMonkey.Utils;
 
 public class Level : MonoBehaviour
 {
-    private const float CAMERA_ORTHO_SIZE = 50;
+    private const float CAMERA_ORTHO_SIZE = 50f;
     private const float PIPE_WIDTH = 7.8f;
     private const float PIPE_HEAD_HEIGHT = 3.75f;
     private const float PIPE_MOVE_SPEED = 30f;
@@ -67,9 +67,6 @@ public class Level : MonoBehaviour
     private void Bird_OnDied(object sender, System.EventArgs e)
     {
         state = State.BirdDead;
-
-        /*FunctionTimer.Create(() => {UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
-        },1f);*/
     }
 
     private void Update()
