@@ -9,7 +9,7 @@ public class Startup
     [RuntimeInitializeOnLoadMethod]
     static void OnRuntimeMethodLoad()
     {
-        string startScene = "MainMenu";
+        string startScene = "Main";
         SceneManager.LoadScene(startScene);
         int c = SceneManager.sceneCount;
         for (int i = 0; i < c; i++)

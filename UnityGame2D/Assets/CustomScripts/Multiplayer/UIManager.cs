@@ -3,17 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-using UnityEngine.SceneManagement;
-
 public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
 
     public GameObject startMenu;
     public InputField usernameField;
-    public string gameScene = "OilLandscape";
 
-        private void Awake()
+
+    private void Awake()
     {
         if (instance == null)
         {
@@ -26,9 +24,8 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void ConnectedToServer()
+    public void ConnectToServer()
     {
-        SceneManager.LoadScene(gameScene);
         startMenu.SetActive(false);
         usernameField.interactable = false;
         Client.instance.ConnectToServer();
