@@ -32,6 +32,7 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="Bird.cs" t="Include" />
+          <e p="ButtonHandler.cs" t="Include" />
           <e p="GameAssets.cs" t="Include" />
           <e p="GameHandler.cs" t="Include" />
           <e p="GameOverWindow.cs" t="Include" />
