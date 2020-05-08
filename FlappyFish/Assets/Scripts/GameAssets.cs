@@ -25,7 +25,7 @@ public class GameAssets : MonoBehaviour
     [Serializable]
     public class SoundAudioClip
     {
-        public SoundManager.Sound Sound;
+        public SoundManager.Sound sound;
         public AudioClip audioClip;
     }
 }

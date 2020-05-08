@@ -9,7 +9,6 @@ public static class SoundManager
         FishSwim,
         Score,
         Lose,
-        ButtonOver,
         ButtonClick,
     }
 
@@ -17,6 +16,19 @@ public static class SoundManager
     {
         GameObject gameObject = new GameObject("Sound", typeof(AudioSource));
         AudioSource audioSource = gameObject.GetComponent<AudioSource>();
-        // audioSource.PlayOneShot(GameAssets.GetInstance().so);
+        audioSource.PlayOneShot(GetAudioClip(sound));
+    }
+
+    public static AudioClip GetAudioClip(Sound sound)
+    {
+        foreach (GameAssets.SoundAudioClip soundAudioClip in GameAssets.GetInstance().soundAudioClipArray)
+        {
+            if (soundAudioClip.sound == sound)
+            {
+                return soundAudioClip.audioClip;
+            }
+        }
+        Debug.Log("Sound" + sound + "not found");
+        return null;
     }
 }
