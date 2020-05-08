@@ -8,10 +8,20 @@ public static class Loader
     public enum Scene
     {
         GameScene,
+        Loading,
     }
+
+    private static Scene targetScene;
 
     public static void Load(Scene scene)
     {
-        SceneManager.LoadScene(scene.ToString());
+        SceneManager.LoadScene(Scene.Loading.ToString());
+
+        targetScene = scene;
+    }
+
+    public static void LoadTargetScene()
+    {
+        SceneManager.LoadScene(targetScene.ToString());
     }
 }
