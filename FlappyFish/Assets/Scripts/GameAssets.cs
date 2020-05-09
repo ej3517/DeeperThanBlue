@@ -19,7 +19,8 @@ public class GameAssets : MonoBehaviour
     
     public Transform pfPipeHead;
     public Transform pfPipeBody;
-    
+    public Transform pfSpeedRing; 
+
     public SoundAudioClip[] soundAudioClipArray;
     
     [Serializable]
