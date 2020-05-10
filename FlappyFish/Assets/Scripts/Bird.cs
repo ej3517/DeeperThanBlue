@@ -69,9 +69,22 @@ public class Bird : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        birdrigidbody2D.bodyType = RigidbodyType2D.Static;
-        SoundManager.PlaySound(SoundManager.Sound.Lose);
-        if (OnDied != null) OnDied(this, EventArgs.Empty);
+        if (collider.gameObject.name == "pfSpeedRing(Clone)")
+        {
+            //collider.gameObject.isCaught = true; 
+            //Level.SpeedRing instance = new Level.SpeedRing(collider.gameObject.transform, false);
+            //GameObject sr = GetComponent<Level.SpeedRing>(); 
+            //instance = collider.gameObject; 
+            //Destroy(collider.gameObject); 
+            //instance.destroySelf(); 
+            //Destroy(collider.gameObject); 
+        }
+        else {
+            birdrigidbody2D.bodyType = RigidbodyType2D.Static;
+            SoundManager.PlaySound(SoundManager.Sound.Lose);
+            if (OnDied != null) OnDied(this, EventArgs.Empty);
+        }
+
     }
 
 

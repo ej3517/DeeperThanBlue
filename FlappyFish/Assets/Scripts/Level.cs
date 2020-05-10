@@ -145,22 +145,26 @@ public class Level : MonoBehaviour
         for (int i = 0; i < speedRingList.Count; i++)
         {
             SpeedRing sr = speedRingList[i]; 
-            bool isRightToTheBird = sr.getXPosition() > BIRD_X_POSITION; 
+            Debug.Log(sr); 
+            if (sr != null)
+            {
+                bool isRightToTheBird = sr.getXPosition() > BIRD_X_POSITION; 
 
-            // bool to check whether fish touched rigid body in ring 
-            bool passedRing = true; 
-            sr.Move(); 
-            if (isRightToTheBird && sr.getXPosition() <= BIRD_X_POSITION && passedRing)
-            {
-                // Fish passed inside ring 
-                Debug.Log("Passed in ring"); 
-            }
-            if (sr.getXPosition() < PIPE_DESTROY_X_POSITION)
-            {
-                // Destroy ring 
-                sr.destroySelf(); 
-                speedRingList.Remove(sr); 
-                i--; 
+                // bool to check whether fish touched rigid body in ring 
+                bool passedRing = true; 
+                sr.Move(); 
+                if (isRightToTheBird && sr.getXPosition() <= BIRD_X_POSITION && passedRing)
+                {
+                    // Fish passed inside ring 
+                    Debug.Log("Passed in ring"); 
+                }
+                if (sr.getXPosition() < PIPE_DESTROY_X_POSITION)
+                {
+                    // Destroy ring 
+                    sr.destroySelf(); 
+                    speedRingList.Remove(sr); 
+                    i--; 
+                }
             }
         }
     }
@@ -171,8 +175,8 @@ public class Level : MonoBehaviour
         if (speedRingSpawnTimer < 0)
         {
             // Randomly time to generate another ring 
-            speedRingSpawnTimer = speedRingSpawnTimerMax + UnityEngine.Random.Range(0,5); 
-            //speedRingSpawnTimer = speedRingSpawnTimerMax; 
+            speedRingSpawnTimer = speedRingSpawnTimerMax + UnityEngine.Random.Range(-2,2); 
+            
             CreateSpeedRing(PIPE_SPAWN_X_POSITION); 
         }
     }
@@ -277,7 +281,7 @@ public class Level : MonoBehaviour
         srBoxCollider.size = new Vector2(RING_WIDTH, RING_HEIGHT); 
         srBoxCollider.offset = new Vector2(0f, RING_HEIGHT * 0.5f);
 
-        SpeedRing ring = new SpeedRing(sr); 
+        SpeedRing ring = new SpeedRing(sr, false); 
         speedRingList.Add(ring); 
     }
 
@@ -335,13 +339,14 @@ public class Level : MonoBehaviour
      * represents speed rings 
     */ 
 
-    private class SpeedRing
+    public class SpeedRing
     {
         private Transform speedRingTransform; 
-
-        public SpeedRing(Transform speedRingTransform)
+        public bool isCaught; 
+        public SpeedRing(Transform speedRingTransform, bool isCaught)
         {
             this.speedRingTransform = speedRingTransform; 
+            this.isCaught = isCaught; 
         }
 
         public void Move()
