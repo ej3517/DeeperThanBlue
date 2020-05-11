@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Net;
 using System.Net.Sockets;
+using System.Numerics;
 
 namespace GameServer
 {
@@ -118,9 +119,10 @@ namespace GameServer
             packetHandlers = new Dictionary<int, PacketHandler>()
             {
                 { (int)ClientPackets.welcomeReceived, ServerHandle.WelcomeReceived },
-                { (int)ClientPackets.udpTestReceive, ServerHandle.UDPTestReceived }
+                { (int)ClientPackets.playerMovement, ServerHandle.PlayerMovement }
             };
             Console.WriteLine("Initialised packets.");
         }
     }
+
 }

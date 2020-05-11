@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/OilLandscape.unity
-    guid: 32f350071134b2d4ba8121d9bde16852
-  - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: 9bce0a50b4f4d6d408a66069198fcea2
+    path: Assets/Scenes/Main.unity
+    guid: df1b584a1801bb74a863186234b910bd
   m_configObjects: {}
