@@ -19,6 +19,7 @@ public class GameAssets : MonoBehaviour
     
     public Transform pfPipeHead;
     public Transform pfPipeBody;
+    public Transform pfQuestionBlob;
     
     public SoundAudioClip[] soundAudioClipArray;
     

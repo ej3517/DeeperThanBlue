@@ -21,10 +21,12 @@ public class Level : MonoBehaviour
         return instance;
     }
 
+    private List<QuestionBlob> questionBlobList;
     private List<Pipe> pipeList;
     private int pipesPassedCount;
     private int pipesSpawned;
     private float pipeSpawnTimer;
+    private float questionSpawnTimer;
     private float pipeSpawnTimerMax;
     private float gapSize;
     private State state;
@@ -49,6 +51,7 @@ public class Level : MonoBehaviour
     {
         instance = this;
         pipeList = new List<Pipe>();
+        questionBlobList = new List<QuestionBlob>();
         SetDifficulty(Difficulty.Easy);
         state = State.WaitingToStart;
     }
@@ -74,10 +77,32 @@ public class Level : MonoBehaviour
         if (state == State.Playing)
         {
             HandlePipeMovement();
+            HandleQuestionMovement();
             HandlePipeSpawning();
+            //HandleQuestionSpawning();
         }
     }
 
+    private float questionSpawnTimerMax = 5f;
+    private void HandleQuestionSpawning()
+    {
+        questionSpawnTimer -= Time.deltaTime;
+        if (questionSpawnTimer < 0)
+        {
+            questionSpawnTimer = questionSpawnTimerMax;
+
+            float heightEdgeLimit = 10f;
+            float minHeight = gapSize * .5f + heightEdgeLimit;
+            float totalHeight = CAMERA_ORTHO_SIZE * 2f;
+            float maxHeight = totalHeight - gapSize * .5f - heightEdgeLimit;
+
+            float height = (minHeight + maxHeight) / 4;
+            SpawnQuestion(height, PIPE_SPAWN_X_POSITION) ;
+        }
+
+    }
+
+    private int questionGap = 5;
     private void HandlePipeSpawning()
     {
         pipeSpawnTimer -= Time.deltaTime;
@@ -93,6 +118,15 @@ public class Level : MonoBehaviour
 
             float height = UnityEngine.Random.Range(minHeight, maxHeight);
             CreateGapPipes(height, gapSize, PIPE_SPAWN_X_POSITION);
+
+            questionGap -= 1;
+            if (questionGap == 0)
+            {
+                questionGap = UnityEngine.Random.Range(2, 5);         // TODO: Move constants
+                //SpawnQuestion(height/2- gapSize/2, PIPE_SPAWN_X_POSITION);
+                SpawnQuestion(height/2 - gapSize/2 , PIPE_SPAWN_X_POSITION);
+               
+            }
         }
     }
 
@@ -115,6 +149,25 @@ public class Level : MonoBehaviour
                 pipe.destroySelf();
                 pipeList.Remove(pipe);
                 i--;
+            }
+        }
+    }
+
+    private void HandleQuestionMovement()
+    {
+        for (int i = 0; i < questionBlobList.Count; i++)
+        {
+            QuestionBlob question = questionBlobList[i];
+            bool isRightToTheBird = question.getXPosition() > BIRD_X_POSITION;
+            question.Move();
+            
+            if(!isRightToTheBird)
+            {
+                //SoundManager.PlaySound(SoundManager.Sound.Question); //TODO: Add sound
+                question.destroySelf();
+                questionBlobList.Remove(question);
+                i--;
+                //PopupQuestion();
             }
         }
     }
@@ -149,6 +202,16 @@ public class Level : MonoBehaviour
         if (pipesSpawned >= 10) return Difficulty.Medium;
         return Difficulty.Easy;
     }
+
+
+    private void SpawnQuestion(float _height, float _position)
+    {
+        Transform _questionBlob = Instantiate(GameAssets.GetInstance().pfQuestionBlob);
+        _questionBlob.position = new Vector3(_position, _height);
+        QuestionBlob qb = new QuestionBlob(_questionBlob); 
+        questionBlobList.Add(qb);
+    }
+
 
     private void CreateGapPipes(float gapY, float gapSize, float xPosition)
     {
@@ -248,5 +311,36 @@ public class Level : MonoBehaviour
             Destroy(pipeBodyTransform.gameObject);
         }
     }
+    
+    private class QuestionBlob
+    {
+        private Transform questionTransform;
+        public QuestionBlob(Transform _questionTransform)
+        {
+            questionTransform = _questionTransform;
+        }
 
+        public void Move()
+        {
+            questionTransform.position += new Vector3(-1, 0, 0) * PIPE_MOVE_SPEED * Time.deltaTime;        //RENAME MOVESPEED
+        }
+
+        public float getXPosition()
+        {
+            return questionTransform.position.x;
+        }
+
+        //private void OnTriggerEnter()
+        //{
+        //    Debug.LogWarning("This worked");
+        //}
+
+        public void destroySelf()
+        {
+            Destroy(questionTransform.gameObject);
+        }
+
+    }
+    
 }
+
