@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 924513060111448761}
   - component: {fileID: 924513060111448760}
   - component: {fileID: 924513060111448763}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pfPipeBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}

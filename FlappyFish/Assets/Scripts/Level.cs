@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI; 
 using CodeMonkey;
 using CodeMonkey.Utils;
 
@@ -23,8 +24,9 @@ public class Level : MonoBehaviour
     private const float SPEED_RING_MOVE_SPEED = 30f;
     private const float SPEED_RING_DESTROY_X_POSITION = -100f;
     private const float SPEED_RING_SPAWN_X_POSITION = 100f;
-    private const float RING_HEIGHT = 4f; 
+    private const float RING_HEIGHT = 2f; 
     private const float RING_WIDTH = 2f; 
+    //public Collider2D colliders; 
 
     private static Level instance;
 
@@ -46,6 +48,7 @@ public class Level : MonoBehaviour
     private float speedRingSpawnTimer; 
     private float speedRingSpawnTimerMax; 
     private State state;
+    public LayerMask m_LayerMask;
 
     public enum Difficulty
     {
@@ -144,8 +147,7 @@ public class Level : MonoBehaviour
     {
         for (int i = 0; i < speedRingList.Count; i++)
         {
-            SpeedRing sr = speedRingList[i]; 
-            Debug.Log(sr); 
+            SpeedRing sr = speedRingList[i];  
             if (sr != null)
             {
                 bool isRightToTheBird = sr.getXPosition() > BIRD_X_POSITION; 
@@ -169,16 +171,20 @@ public class Level : MonoBehaviour
         }
     }
 
+
+
     private void HandleSpeedRingSpawning()
     {
+        bool canSpawnHere = false; 
         speedRingSpawnTimer -= Time.deltaTime; 
         if (speedRingSpawnTimer < 0)
         {
+        
             // Randomly time to generate another ring 
             speedRingSpawnTimer = speedRingSpawnTimerMax + UnityEngine.Random.Range(-2,2); 
-            
             CreateSpeedRing(PIPE_SPAWN_X_POSITION); 
         }
+
     }
     private void SetDifficulty(Difficulty difficulty)
     {
@@ -266,23 +272,65 @@ public class Level : MonoBehaviour
 
     private void CreateSpeedRing (float xPosition)
     {
-        Debug.Log("Create Ring");  
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z)); 
-        Transform sr = Instantiate(GameAssets.GetInstance().pfSpeedRing); 
-        float ringCenterPosition; 
+        bool canSpawnHere = false; 
 
-        ringCenterPosition = UnityEngine.Random.Range(-screenBounds.y, screenBounds.y); 
-        sr.position = new Vector3(xPosition, ringCenterPosition); 
+        while (!canSpawnHere)
+        {
+            Debug.Log("Create Ring"); 
 
-        SpriteRenderer srSpriteRenderer = sr.GetComponent<SpriteRenderer>(); 
-        srSpriteRenderer.size = new Vector2(RING_WIDTH, RING_HEIGHT);
+            screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z)); 
+            float yPosition; 
+            yPosition = UnityEngine.Random.Range(-screenBounds.y, screenBounds.y); 
 
-        BoxCollider2D srBoxCollider = sr.GetComponent<BoxCollider2D>(); 
-        srBoxCollider.size = new Vector2(RING_WIDTH, RING_HEIGHT); 
-        srBoxCollider.offset = new Vector2(0f, RING_HEIGHT * 0.5f);
+            Transform sr = Instantiate(GameAssets.GetInstance().pfSpeedRing);
+            sr.position = new Vector3(xPosition - 2, yPosition); 
+            SpeedRing ring = new SpeedRing(sr); 
 
-        SpeedRing ring = new SpeedRing(sr, false); 
-        speedRingList.Add(ring); 
+            // sr.localScale = new Vector3(1,1,1); 
+            /*SpriteRenderer srSpriteRenderer = sr.GetComponent<SpriteRenderer>(); 
+            srSpriteRenderer.size = new Vector2(RING_WIDTH, RING_HEIGHT);
+
+            BoxCollider2D srBoxCollider = sr.GetComponent<BoxCollider2D>(); 
+            srBoxCollider.size = new Vector2(RING_WIDTH, RING_HEIGHT); 
+            srBoxCollider.offset = new Vector2(0f, RING_HEIGHT * 0.5f);*/
+
+            canSpawnHere = PreventSpawnOverlap(ring.speedRingTransform);
+            if (canSpawnHere)
+            {
+                Debug.Log("Created Ring");
+                
+                speedRingList.Add(ring); 
+                break;
+            } 
+            else {
+                Debug.Log("Destroyed Ring"); 
+                //sr.localScale.x = 1.5; 
+                //sr.gameObject = false; 
+                //ring.size(2); 
+                //Destroy(sr.gameObject); 
+
+                ring.destroySelf(); 
+                
+                 
+            }
+
+        }
+ 
+    }
+
+    private bool PreventSpawnOverlap(Transform tmpTransform)
+    { 
+        Collider2D colliders;  
+        colliders = Physics2D.OverlapBox(tmpTransform.position, tmpTransform.localScale * 2, 0f, m_LayerMask); 
+
+        if (colliders == null)
+        {
+            return true; 
+        }
+        else
+        {
+            return false; 
+        }
     }
 
     public int GetPipesScore()
@@ -341,12 +389,12 @@ public class Level : MonoBehaviour
 
     public class SpeedRing
     {
-        private Transform speedRingTransform; 
-        public bool isCaught; 
-        public SpeedRing(Transform speedRingTransform, bool isCaught)
+        public Transform speedRingTransform; 
+    
+        
+        public SpeedRing(Transform speedRingTransform)
         {
             this.speedRingTransform = speedRingTransform; 
-            this.isCaught = isCaught; 
         }
 
         public void Move()
@@ -362,6 +410,12 @@ public class Level : MonoBehaviour
         public void destroySelf()
         {
             Destroy(speedRingTransform.gameObject); 
+        }
+
+        public void size(float x)
+        {
+            Vector3 vec = new Vector3(x, 1, 0); 
+            speedRingTransform.localScale = vec; 
         }
     }
 
