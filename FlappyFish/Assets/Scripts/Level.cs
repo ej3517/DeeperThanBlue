@@ -26,10 +26,12 @@ public class Level : MonoBehaviour
     private int pipesPassedCount;
     private int pipesSpawned;
     private float pipeSpawnTimer;
-    private float questionSpawnTimer;
     private float pipeSpawnTimerMax;
     private float gapSize;
     private State state;
+
+    private static QuestionWindow questionWindow;
+    public float displaytime;
 
     public enum Difficulty
     {
@@ -52,6 +54,7 @@ public class Level : MonoBehaviour
         instance = this;
         pipeList = new List<Pipe>();
         questionBlobList = new List<QuestionBlob>();
+        questionWindow = QuestionWindow.getInstance();
         SetDifficulty(Difficulty.Easy);
         state = State.WaitingToStart;
     }
@@ -70,6 +73,8 @@ public class Level : MonoBehaviour
     private void Bird_OnDied(object sender, System.EventArgs e)
     {
         state = State.BirdDead;
+        questionWindow.Hide();
+        //TODO: Delete question tokens?
     }
 
     private void Update()
@@ -79,30 +84,12 @@ public class Level : MonoBehaviour
             HandlePipeMovement();
             HandleQuestionMovement();
             HandlePipeSpawning();
+            HandlePopupQuestion();
             //HandleQuestionSpawning();
         }
     }
 
-    private float questionSpawnTimerMax = 5f;
-    private void HandleQuestionSpawning()
-    {
-        questionSpawnTimer -= Time.deltaTime;
-        if (questionSpawnTimer < 0)
-        {
-            questionSpawnTimer = questionSpawnTimerMax;
-
-            float heightEdgeLimit = 10f;
-            float minHeight = gapSize * .5f + heightEdgeLimit;
-            float totalHeight = CAMERA_ORTHO_SIZE * 2f;
-            float maxHeight = totalHeight - gapSize * .5f - heightEdgeLimit;
-
-            float height = (minHeight + maxHeight) / 4;
-            SpawnQuestion(height, PIPE_SPAWN_X_POSITION) ;
-        }
-
-    }
-
-    private int questionGap = 5;
+    private int questionGap = 1;
     private void HandlePipeSpawning()
     {
         pipeSpawnTimer -= Time.deltaTime;
@@ -161,13 +148,21 @@ public class Level : MonoBehaviour
             bool isRightToTheBird = question.getXPosition() > BIRD_X_POSITION;
             question.Move();
             
-            if(!isRightToTheBird)
+            if(question.getDistance(Bird.GetInstance().getPosition()) < 9)
             {
-                //SoundManager.PlaySound(SoundManager.Sound.Question); //TODO: Add sound
+                SoundManager.PlaySound(SoundManager.Sound.Question); //TODO: Add sound
                 question.destroySelf();
                 questionBlobList.Remove(question);
                 i--;
-                //PopupQuestion();
+                PopoupQuestion();
+            }
+            
+            //Out of range
+            if (question.getXPosition() < PIPE_DESTROY_X_POSITION)
+            {
+                question.destroySelf();
+                questionBlobList.Remove(question);
+                i--;
             }
         }
     }
@@ -329,11 +324,10 @@ public class Level : MonoBehaviour
         {
             return questionTransform.position.x;
         }
-
-        //private void OnTriggerEnter()
-        //{
-        //    Debug.LogWarning("This worked");
-        //}
+        public float getDistance(Vector3 _from)
+        {
+            return Vector3.Distance(_from, questionTransform.position);
+        }
 
         public void destroySelf()
         {
@@ -342,5 +336,30 @@ public class Level : MonoBehaviour
 
     }
     
+    public static bool GetQuestion;
+
+    private void PopoupQuestion()
+    {
+        // TODO: Get question with answer from server
+
+        // Create a textbox
+        questionWindow.displayQuestion();
+        displaytime = 1f;
+    }
+
+    private void HandlePopupQuestion()
+    {
+        if (displaytime > 0)
+        {
+            displaytime -= Time.deltaTime;
+            if (displaytime <= 0)
+            {
+               questionWindow.Hide();
+            }
+        }
+    }
+
+
+
 }
 

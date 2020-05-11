@@ -74,5 +74,8 @@ public class Bird : MonoBehaviour
         if (OnDied != null) OnDied(this, EventArgs.Empty);
     }
 
-
+    public Vector3 getPosition()
+    {
+        return birdrigidbody2D.position;
+    }
 }

@@ -10,6 +10,7 @@ public static class SoundManager
         Score,
         Lose,
         ButtonClick,
+        Question,
     }
 
     public static void PlaySound(Sound sound)
@@ -28,7 +29,7 @@ public static class SoundManager
                 return soundAudioClip.audioClip;
             }
         }
-        Debug.Log("Sound" + sound + "not found");
+        Debug.LogWarning("Sound" + sound + "not found");
         return null;
     }
 }
