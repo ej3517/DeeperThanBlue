@@ -3,8 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using CodeMonkey.Utils;
-using UnityEditor.U2D;
+
 
 public class QuestionWindow : MonoBehaviour
 {

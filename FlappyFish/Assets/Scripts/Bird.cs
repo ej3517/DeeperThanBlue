@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using CodeMonkey;
-using UnityEditorInternal;
+
 
 public class Bird : MonoBehaviour
 {
@@ -58,6 +55,11 @@ public class Bird : MonoBehaviour
                 break;
             case State.Dead:
                 break;
+        }
+
+        if (birdrigidbody2D.position.y < -50 || birdrigidbody2D.position.y > 50)
+        {
+            if (OnDied != null) OnDied(this, EventArgs.Empty);
         }
     }
 
