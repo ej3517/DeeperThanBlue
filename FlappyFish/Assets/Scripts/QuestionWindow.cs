@@ -1,19 +1,40 @@
 ﻿using System;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.UIElements;
 
 public class QuestionWindow : MonoBehaviour
 {
     private static Text questionText;
     private static QuestionWindow instance;
 
+    private static List<string> questionList;
+
    private void Awake()
    {
        Hide();
        questionText = transform.Find("QuestionText").GetComponent<Text>();
+
+        questionList = new List<string>();
+        //Import questions
+        try
+        {
+            using (StreamReader sr = new StreamReader("Questions.txt"))
+            {
+                string line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    questionList.Add(line);
+                }
+            }
+        }
+        catch (IOException e)
+        {
+            Debug.LogWarning("Could not read Questions.txt: " + e.Message);
+        }
     }
 
     public QuestionWindow()
@@ -29,7 +50,8 @@ public class QuestionWindow : MonoBehaviour
 
     public void displayQuestion()
     {
-        questionText.text = "Test";         // TODO: change this to the actual question
+        int questionNumber = UnityEngine.Random.Range(0, questionList.Count);
+        questionText.text = questionList[questionNumber];
         Show();
     }
 
