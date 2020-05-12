@@ -30,6 +30,11 @@
             <e p="World_Sprite.cs" t="Include" />
           </e>
         </e>
+        <e p="Retro Pixel Landscapes" t="Include">
+          <e p="Scripts" t="Include">
+            <e p="TileAutoSortLayer.cs" t="Include" />
+          </e>
+        </e>
         <e p="Scripts" t="Include">
           <e p="Bird.cs" t="Include" />
           <e p="ButtonHandler.cs" t="Include" />

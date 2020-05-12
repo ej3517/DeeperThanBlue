@@ -107,7 +107,7 @@ public class Level : MonoBehaviour
             Pipe pipe = pipeList[i];
             bool isRightToTheBird = pipe.GetXPosition() > BIRD_X_POSITION;
             pipe.Move();
-            if (isRightToTheBird && pipe.GetXPosition() <= BIRD_X_POSITION && pipe.IsBottom())
+            if (isRightToTheBird && pipe.GetXPosition() <= BIRD_X_POSITION)
             {
                 // Pipe passed Bird
                 SoundManager.PlaySound(SoundManager.Sound.Score);
@@ -205,40 +205,25 @@ public class Level : MonoBehaviour
     
     private void CreateGapPipes(float gapY, float gapSize, float xPosition)
     {
-        CreatePipe(gapY - gapSize * .5f, xPosition, true);
-        CreatePipe(CAMERA_ORTHO_SIZE*2f - gapY - gapSize * .5f, xPosition, false);
+        CreatePipe(gapY - gapSize * .5f, xPosition);
         pipesSpawned++;
         SetDifficulty(GetDifficulty());
     }
     
-    private void CreatePipe(float height, float xPosition, bool createBottom)
+    private void CreatePipe(float height, float xPosition)
     {
         // set up pipe head
         Transform pipeHead = Instantiate(GameAssets.GetInstance().pfPipeHead);
         float pipeHeadYPosition;
-        if (createBottom)
-        {
-            pipeHeadYPosition = -CAMERA_ORTHO_SIZE + height - PIPE_HEAD_HEIGHT * .5f;
-        }
-        else
-        {
-            pipeHeadYPosition = +CAMERA_ORTHO_SIZE - height + PIPE_HEAD_HEIGHT * .5f;
-        }
+        pipeHeadYPosition = -CAMERA_ORTHO_SIZE + height - PIPE_HEAD_HEIGHT * .5f;
         pipeHead.position = new Vector3(xPosition, pipeHeadYPosition);
 
         // set up pipe body
         Transform pipeBody = Instantiate(GameAssets.GetInstance().pfPipeBody);
 
         float PipeBodyYPosition;
-        if (createBottom)
-        {
-            PipeBodyYPosition = -CAMERA_ORTHO_SIZE;
-        }
-        else
-        {
-            PipeBodyYPosition = +CAMERA_ORTHO_SIZE;
-            pipeBody.localScale = new Vector3(1, -1, 1);
-        }
+        PipeBodyYPosition = -CAMERA_ORTHO_SIZE;
+     
         pipeBody.position = new Vector3(xPosition, PipeBodyYPosition);
 
         SpriteRenderer pipeBodySpriteRenderer = pipeBody.GetComponent<SpriteRenderer>();
@@ -248,7 +233,7 @@ public class Level : MonoBehaviour
         pipeBodyBoxCollider.size = new Vector2(PIPE_WIDTH, height);
         pipeBodyBoxCollider.offset = new Vector2(0f, height * .5f);
 
-        Pipe pipe = new Pipe(pipeHead, pipeBody, createBottom);
+        Pipe pipe = new Pipe(pipeHead, pipeBody);
         pipeList.Add(pipe);
     }
 
@@ -338,11 +323,10 @@ public class Level : MonoBehaviour
         private Transform pipeBodyTransform;
         private bool isBottom;
 
-        public Pipe(Transform pipeHeadTransform, Transform pipeBodyTransform, bool isBottom)
+        public Pipe(Transform pipeHeadTransform, Transform pipeBodyTransform)
         {
             this.pipeHeadTransform = pipeHeadTransform;
             this.pipeBodyTransform = pipeBodyTransform;
-            this.isBottom = isBottom;
         }
 
         public void Move()
@@ -355,11 +339,6 @@ public class Level : MonoBehaviour
         public float GetXPosition()
         {
             return pipeHeadTransform.position.x;
-        }
-
-        public bool IsBottom()
-        {
-            return isBottom;
         }
 
         public void DestroySelf()
