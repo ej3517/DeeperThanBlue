@@ -2,9 +2,39 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="60884b82-83d6-468b-a134-8eabc3e9fcf8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/pfWaterSurface.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/pfWaterSurface.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Textures/FlappyBird.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Textures/FlappyBird/Background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Textures/FlappyBird/Background.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Textures/FlappyBird/Bird 1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Textures/FlappyBird/Bird 1.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Textures/FlappyBird/Ground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Textures/FlappyBird/Ground.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Textures/FlappyBird/PipeBody.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Textures/FlappyBird/PipeBody.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Textures/FlappyBird/PipeHead.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Textures/FlappyBird/PipeHead.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Textures/FlappyBird/White_1x1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Textures/FlappyBird/White_1x1.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Textures/WaterSurface.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Textures/WaterSurface.png.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Ground.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Ground.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameAssets.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameAssets.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/Background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/Background.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/Bird 1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/Bird 1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/Ground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/Ground.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/PipeBody.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/PipeBody.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/PipeHead.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/PipeHead.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/White_1x1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/White_1x1.png.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +70,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/LoaderUpdate.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MainMenuWindow.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Loader.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameAssets.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SoundManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ButtonHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameHandler.cs" />
@@ -48,6 +77,7 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/ScoreWindow.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameOverWindow.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Bird.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameAssets.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Level.cs" />
       </list>
     </option>
@@ -108,6 +138,7 @@
       <workItem from="1588869288340" duration="2926000" />
       <workItem from="1588872692460" duration="3058000" />
       <workItem from="1588924426570" duration="4825000" />
+      <workItem from="1589182817209" duration="16466000" />
     </task>
     <servers />
   </component>
@@ -137,9 +168,9 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="221" y="89" key="SettingsEditor/0.0.1440.900@0.0.1440.900" timestamp="1588874488254" />
-    <state x="383" y="194" width="672" height="678" key="search.everywhere.popup" timestamp="1588793672037">
+    <state x="383" y="194" width="672" height="678" key="search.everywhere.popup" timestamp="1589270620861">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="383" y="194" width="672" height="678" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1588793672037" />
+    <state x="383" y="194" width="672" height="678" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1589270620861" />
   </component>
 </project>
