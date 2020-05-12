@@ -21,6 +21,13 @@ public class Bird : MonoBehaviour
     
     private Rigidbody2D birdrigidbody2D;
     private State state;
+
+
+    // Variables for application of speed boost 
+    public Vector2 diamondForce; 
+    private Vector2 m_startForce; 
+
+ 
     
     private enum State
     {
@@ -35,6 +42,8 @@ public class Bird : MonoBehaviour
         birdrigidbody2D = GetComponent<Rigidbody2D>();
         birdrigidbody2D.bodyType = RigidbodyType2D.Static;
         state = State.WaitingToStart;
+
+        //diamondForce = new Vector2(100.0f, 0.0f);
     }
 
     private void Update()
@@ -71,13 +80,8 @@ public class Bird : MonoBehaviour
     {
         if (collider.gameObject.name == "pfSpeedRing(Clone)")
         {
-            //collider.gameObject.isCaught = true; 
-            //Level.SpeedRing instance = new Level.SpeedRing(collider.gameObject.transform, false);
-            //GameObject sr = GetComponent<Level.SpeedRing>(); 
-            //instance = collider.gameObject; 
-            //Destroy(collider.gameObject); 
-            //instance.destroySelf(); 
-            //Destroy(collider.gameObject); 
+            m_startForce = birdrigidbody2D.transform.position; 
+            birdrigidbody2D.AddForce(diamondForce, ForceMode2D.Impulse); 
         }
         else {
             birdrigidbody2D.bodyType = RigidbodyType2D.Static;
@@ -86,6 +90,7 @@ public class Bird : MonoBehaviour
         }
 
     }
+
 
 
 }
