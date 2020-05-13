@@ -84,7 +84,7 @@ public class Level : MonoBehaviour
         pipeList = new List<HandlePipe.Pipe>();
         // waterSurface
         waterSurfaceList = new List<HandleWaterSurface.WaterSurface>();
-        CreateInitialWaterSurface(CAMERA_ORTHO_SIZE);
+        HandleWaterSurface.CreateInitialWaterSurface(CAMERA_ORTHO_SIZE, waterSurfaceList);
         // speed diamond
         speedRingList = new List<SpeedRing>();
         // coral reef
@@ -259,7 +259,7 @@ public class Level : MonoBehaviour
         float lastWaterSurfaceXPosition = waterSurfaceList[waterSurfaceList.Count - 1].GetXPosition();
         if (lastWaterSurfaceXPosition < WATERSURFACE_SPAWN_X_POSITION - WATERSURFACE_WIDTH + 1)
         {
-            CreateWaterSurface(WATERSURFACE_SPAWN_X_POSITION, CAMERA_ORTHO_SIZE);
+            HandleWaterSurface.CreateWaterSurface(WATERSURFACE_SPAWN_X_POSITION, CAMERA_ORTHO_SIZE, waterSurfaceList);
         }
     }
     
@@ -326,49 +326,6 @@ public class Level : MonoBehaviour
         return Difficulty.Easy;
     }
 
-    /************************************ CREATION OF WATERSURFACE ************************************/
-
-    private void CreateInitialWaterSurface(float yPosition)
-    {
-        float leftMostWaterSurfacePosition = WATERSURFACE_SPAWN_X_POSITION;
-        
-        // Creation of the Initial Water Line
-        while (leftMostWaterSurfacePosition > WATERSURFACE_DESTROY_X_POSITION)
-        {
-            Transform waterSurfaceTransform = Instantiate(GameAssets.GetInstance().pfWaterSurface);
-            waterSurfaceTransform.position = new Vector3(leftMostWaterSurfacePosition, yPosition);
-        
-            SpriteRenderer WaterSurfaceSpriteRenderer = waterSurfaceTransform.GetComponent<SpriteRenderer>();
-            WaterSurfaceSpriteRenderer.size = new Vector2(WATERSURFACE_WIDTH, WATERSURFACE_HEIGHT);
-
-            BoxCollider2D waterSurfaceBoxCollider = waterSurfaceTransform.GetComponent<BoxCollider2D>();
-            waterSurfaceBoxCollider.size = new Vector2(WATERSURFACE_WIDTH, WATERSURFACE_HEIGHT * .5f);
-            waterSurfaceBoxCollider.offset = new Vector2(0f, - WATERSURFACE_HEIGHT * .5f);
-
-            HandleWaterSurface.WaterSurface waterSurface = new HandleWaterSurface.WaterSurface(waterSurfaceTransform);
-            waterSurfaceList.Add(waterSurface);
-
-            leftMostWaterSurfacePosition -= WATERSURFACE_WIDTH;
-        }
-    }
-
-    private void CreateWaterSurface(float xPosition, float yPosition)
-    {
-        // Set up a Water Surface tiled
-        Transform waterSurfaceTransform = Instantiate(GameAssets.GetInstance().pfWaterSurface);
-        waterSurfaceTransform.position = new Vector3(xPosition, yPosition);
-        
-        SpriteRenderer waterSurfaceSpriteRenderer = waterSurfaceTransform.GetComponent<SpriteRenderer>();
-        waterSurfaceSpriteRenderer.size = new Vector2(WATERSURFACE_WIDTH, WATERSURFACE_HEIGHT);
-
-        BoxCollider2D waterSurfaceBoxCollider = waterSurfaceTransform.GetComponent<BoxCollider2D>();
-        waterSurfaceBoxCollider.size = new Vector2(WATERSURFACE_WIDTH, WATERSURFACE_HEIGHT* .5f);
-        waterSurfaceBoxCollider.offset = new Vector2(0f, - WATERSURFACE_HEIGHT * .5f);
-
-        HandleWaterSurface.WaterSurface waterSurface = new HandleWaterSurface.WaterSurface(waterSurfaceTransform);
-        waterSurfaceList.Add(waterSurface);
-    }
-    
     /********************************************************************** Creation of Speed Diamond *********************************************************/
     private void CreateSpeedRing (float xPosition)
     {
