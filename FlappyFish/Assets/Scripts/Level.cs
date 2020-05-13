@@ -51,7 +51,7 @@ public class Level : MonoBehaviour
     // WaterSurface
     private List<WaterSurface> waterSurfaceList;
     // CoralReef
-    private List<Reef> reefList;
+    private List<HandleReef.Reef> reefList;
     // Structures and data for speed ring 
     private List<SpeedRing> speedRingList; 
     private float speedRingSpawnTimer; 
@@ -89,7 +89,7 @@ public class Level : MonoBehaviour
         // speed diamond
         speedRingList = new List<SpeedRing>();
         // coral reef
-        reefList = new List<Reef>();
+        reefList = new List<HandleReef.Reef>();
         CreateInitialReef(-CAMERA_ORTHO_SIZE);
         //difficulty
         SetDifficulty(Difficulty.Easy);
@@ -270,8 +270,8 @@ public class Level : MonoBehaviour
     {
         for (int i = 0; i < reefList.Count; i++)
         {
-            Reef reef = reefList[i];
-            reef.Move();
+            HandleReef.Reef reef = reefList[i];
+            reef.Move(speed_ring_move_speed);
             if (reef.GetXPosition() < REEF_DESTROY_X_POSITION)
             {
                 reef.DestroySelf();
@@ -391,7 +391,7 @@ public class Level : MonoBehaviour
             CircleCollider2D reefCircleCollider = reefTransform.GetComponent<CircleCollider2D>();
             reefCircleCollider.radius = REEF_DIMENSION * .5f;
 
-            Reef reef = new Reef(reefTransform);
+            HandleReef.Reef reef = new HandleReef.Reef(reefTransform);
             reefList.Add(reef);
 
             leftMostReef -= REEF_DIMENSION;
@@ -413,7 +413,7 @@ public class Level : MonoBehaviour
         CircleCollider2D reefCircleCollider = reefTransform.GetComponent<CircleCollider2D>();
         reefCircleCollider.radius = REEF_DIMENSION * .5f;
 
-        Reef reef = new Reef(reefTransform);
+        HandleReef.Reef reef = new HandleReef.Reef(reefTransform);
         reefList.Add(reef);
     }
 
@@ -494,36 +494,6 @@ public class Level : MonoBehaviour
             Destroy(waterSurfaceTransform.gameObject);
         }
     }
-    
-    /****************************************************************************************************
-    ************************************** Represent the Coral Reef *************************************
-    *****************************************************************************************************/
-
-    private class Reef
-    {
-        private Transform reefTransform;
-
-        public Reef(Transform reefTransform)
-        {
-            this.reefTransform = reefTransform;
-        }
-
-        public void Move()
-        {
-            reefTransform.position += new Vector3(-1, 0, 0) * REEF_MOVE_SPEED * Time.deltaTime;
-        }
-
-        public float GetXPosition()
-        {
-            return reefTransform.position.x;
-        }
-
-        public void DestroySelf()
-        {
-            Destroy(reefTransform.gameObject);
-        }
-    }
-    
     
     /*****************************************************************************************************************************************************
      ************************************************************ Representation of Diamond Ring **********************************************************
