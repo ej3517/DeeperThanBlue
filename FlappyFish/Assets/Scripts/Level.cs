@@ -20,7 +20,10 @@ public class Level : MonoBehaviour
     private const float WATERSURFACE_DESTROY_X_POSITION = -120f;
     private const float WATERSURFACE_SPAWN_X_POSITION = 120f;
     // REEF
-    private const float REEF_DIMENTION = 14f;
+    private const float REEF_MOVE_SPEED = 30f;
+    private const float REEF_DIMENSION = 14f;
+    private const float REEF_DESTROY_X_POSITION = -120f;
+    private const float REEF_SPAWN_X_POSITION = 120f;
     // BIRD
     private const float BIRD_X_POSITION = 0;
 
@@ -41,7 +44,7 @@ public class Level : MonoBehaviour
     // WaterSurface
     private List<WaterSurface> waterSurfaceList;
     // CoralReef
-    private List<Transform> reefList;
+    private List<Reef> reefList;
     // State
     private State state;
 
@@ -69,8 +72,8 @@ public class Level : MonoBehaviour
         waterSurfaceList = new List<WaterSurface>();
         CreateInitialWaterSurface(CAMERA_ORTHO_SIZE);
         // coral reef
-        reefList = new List<Transform>();
-        CreateReef(20f, 0f);
+        reefList = new List<Reef>();
+        CreateInitialReef(-CAMERA_ORTHO_SIZE);
         //difficulty
         SetDifficulty(Difficulty.Easy);
         state = State.WaitingToStart;
@@ -104,6 +107,7 @@ public class Level : MonoBehaviour
             HandleWaterSurfaceSpawning();
             // REEF
             HandleReefMovement();
+            HandleReefSpawning();
         }
     }
 
@@ -177,14 +181,29 @@ public class Level : MonoBehaviour
         }
     }
     
-    /******************************************* WATER SURFACE MOVEMENT *******************************************/
+    /******************************************* CORAL REEF MOVEMENT *******************************************/
 
     private void HandleReefMovement()
     {
         for (int i = 0; i < reefList.Count; i++)
         {
-            Transform reef = reefList[i];
-            reef.position += new Vector3(-1, 0, 0) * WATERSURFACE_MOVE_SPEED * Time.deltaTime;
+            Reef reef = reefList[i];
+            reef.Move();
+            if (reef.GetXPosition() < REEF_DESTROY_X_POSITION)
+            {
+                reef.DestroySelf();
+                reefList.Remove(reef);
+                i--;
+            }
+        }
+    }
+
+    private void HandleReefSpawning()
+    {
+        float lastReefXPosition = reefList[reefList.Count - 1].GetXPosition();
+        if (lastReefXPosition < REEF_SPAWN_X_POSITION - REEF_DIMENSION + 1)
+        {
+            CreateReef(REEF_SPAWN_X_POSITION, -CAMERA_ORTHO_SIZE);
         }
     }
 
@@ -305,21 +324,48 @@ public class Level : MonoBehaviour
         waterSurfaceList.Add(waterSurface);
     }
     
-    /************************************ CREATION OF CORALREEF ************************************/
+    /************************************ CREATION OF CORAL REEF ************************************/
+
+    private void CreateInitialReef(float yPosition)
+    {
+        float leftMostReef = REEF_SPAWN_X_POSITION;
+        //Creation of the initial reef line
+        while (leftMostReef > REEF_DESTROY_X_POSITION)
+        {
+            Transform[] reefTransformsArray = GameAssets.GetInstance().pfReefArray;
+            Transform reefTransform = Instantiate(reefTransformsArray[Random.Range(0, reefTransformsArray.Length)]);
+            
+            reefTransform.position = new Vector3(leftMostReef, yPosition);
+            
+            SpriteRenderer reefSpriteRenderer = reefTransform.GetComponent<SpriteRenderer>();
+            reefSpriteRenderer.size = new Vector2(REEF_DIMENSION, REEF_DIMENSION);
+        
+            CircleCollider2D reefCircleCollider = reefTransform.GetComponent<CircleCollider2D>();
+            reefCircleCollider.radius = REEF_DIMENSION * .5f;
+
+            Reef reef = new Reef(reefTransform);
+            reefList.Add(reef);
+
+            leftMostReef -= REEF_DIMENSION;
+        }
+    }
+    
 
     private void CreateReef(float xPosition, float yPosition)
     {
         Transform[] reefTransformsArray = GameAssets.GetInstance().pfReefArray;
         Transform reefTransform = Instantiate(reefTransformsArray[Random.Range(0, reefTransformsArray.Length)]);
+        
         reefTransform.position = new Vector3(xPosition, yPosition);
 
         SpriteRenderer reefSpriteRenderer = reefTransform.GetComponent<SpriteRenderer>();
-        reefSpriteRenderer.size = new Vector2(REEF_DIMENTION, REEF_DIMENTION);
+        reefSpriteRenderer.size = new Vector2(REEF_DIMENSION, REEF_DIMENSION);
         
         CircleCollider2D reefCircleCollider = reefTransform.GetComponent<CircleCollider2D>();
-        reefCircleCollider.radius = REEF_DIMENTION * .5f;
+        reefCircleCollider.radius = REEF_DIMENSION * .5f;
 
-        reefList.Add(reefTransform);
+        Reef reef = new Reef(reefTransform);
+        reefList.Add(reef);
     }
 
     /****************************************************************************************************
@@ -350,11 +396,36 @@ public class Level : MonoBehaviour
             Destroy(waterSurfaceTransform.gameObject);
         }
     }
+    
     /****************************************************************************************************
     ************************************** Represent the Coral Reef *************************************
     *****************************************************************************************************/
-    
-    
+
+    private class Reef
+    {
+        private Transform reefTransform;
+
+        public Reef(Transform reefTransform)
+        {
+            this.reefTransform = reefTransform;
+        }
+
+        public void Move()
+        {
+            reefTransform.position += new Vector3(-1, 0, 0) * REEF_MOVE_SPEED * Time.deltaTime;
+        }
+
+        public float GetXPosition()
+        {
+            return reefTransform.position.x;
+        }
+
+        public void DestroySelf()
+        {
+            Destroy(reefTransform.gameObject);
+        }
+    }
+
     /****************************************************************************************************
     ************************************ Represent a single pipe ****************************************
     *****************************************************************************************************/

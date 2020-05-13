@@ -4,12 +4,7 @@
     <list default="true" id="60884b82-83d6-468b-a134-8eabc3e9fcf8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Background.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Background.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Bird 1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Bird 1.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Ground.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Ground.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/PipeBody.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/PipeBody.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/PipeHead.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/PipeHead.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/White_1x1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/White_1x1.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/CoralReef.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/CoralReef.png.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
