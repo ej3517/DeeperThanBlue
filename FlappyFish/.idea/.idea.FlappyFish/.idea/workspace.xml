@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="60884b82-83d6-468b-a134-8eabc3e9fcf8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Textures/WaterBackground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Textures/WaterBackground.png.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/pfWaterSurface.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/pfWaterSurface.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Textures/Background.png" beforeDir="false" />
@@ -17,6 +16,7 @@
       <change beforePath="$PROJECT_DIR$/Assets/Textures/PipeBody.png.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Textures/PipeHead.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Textures/PipeHead.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/WaterSurface.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/WaterSurface.png.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Textures/White_1x1.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Textures/White_1x1.png.meta" beforeDir="false" />
     </list>
