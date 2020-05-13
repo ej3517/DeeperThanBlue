@@ -20,7 +20,6 @@ public class Level : MonoBehaviour
     private const float WATERSURFACE_DESTROY_X_POSITION = -120f;
     private const float WATERSURFACE_SPAWN_X_POSITION = 120f;
     // REEF
-    private const float REEF_MOVE_SPEED = 30f;
     private const float REEF_DIMENSION = 14f;
     private const float REEF_DESTROY_X_POSITION = -120f;
     private const float REEF_SPAWN_X_POSITION = 120f;
@@ -90,7 +89,7 @@ public class Level : MonoBehaviour
         speedRingList = new List<SpeedRing>();
         // coral reef
         reefList = new List<HandleReef.Reef>();
-        CreateInitialReef(-CAMERA_ORTHO_SIZE);
+        HandleReef.CreateInitialReef(-CAMERA_ORTHO_SIZE, reefList);
         //difficulty
         SetDifficulty(Difficulty.Easy);
         state = State.WaitingToStart;
@@ -192,9 +191,9 @@ public class Level : MonoBehaviour
         return pipesPassedCount;
     }
 
-    /******************************************************************************************************************************************
-    **********************************************   Speed Diamonds ***************************************************************************
-    *******************************************************************************************************************************************/
+    /***************************************************************************************************************
+    **********************************************   Speed Diamonds ************************************************
+    ***************************************************************************************************************/
     private void HandleSpeedRingMovement()
     {
         for (int i = 0; i < speedRingList.Count; i++)
@@ -286,7 +285,7 @@ public class Level : MonoBehaviour
         float lastReefXPosition = reefList[reefList.Count - 1].GetXPosition();
         if (lastReefXPosition < REEF_SPAWN_X_POSITION - REEF_DIMENSION + 1)
         {
-            CreateReef(REEF_SPAWN_X_POSITION, -CAMERA_ORTHO_SIZE);
+            HandleReef.CreateReef(REEF_SPAWN_X_POSITION, -CAMERA_ORTHO_SIZE, reefList);
         }
     }
 
@@ -326,9 +325,7 @@ public class Level : MonoBehaviour
         if (pipesSpawned >= 10) return Difficulty.Medium;
         return Difficulty.Easy;
     }
-    
-    
-    
+
     /************************************ CREATION OF WATERSURFACE ************************************/
 
     private void CreateInitialWaterSurface(float yPosition)
@@ -372,52 +369,6 @@ public class Level : MonoBehaviour
         waterSurfaceList.Add(waterSurface);
     }
     
-    /************************************ CREATION OF CORAL REEF ************************************/
-
-    private void CreateInitialReef(float yPosition)
-    {
-        float leftMostReef = REEF_SPAWN_X_POSITION;
-        //Creation of the initial reef line
-        while (leftMostReef > REEF_DESTROY_X_POSITION)
-        {
-            Transform[] reefTransformsArray = GameAssets.GetInstance().pfReefArray;
-            Transform reefTransform = Instantiate(reefTransformsArray[Random.Range(0, reefTransformsArray.Length)]);
-            
-            reefTransform.position = new Vector3(leftMostReef, yPosition);
-            
-            SpriteRenderer reefSpriteRenderer = reefTransform.GetComponent<SpriteRenderer>();
-            reefSpriteRenderer.size = new Vector2(REEF_DIMENSION, REEF_DIMENSION);
-        
-            CircleCollider2D reefCircleCollider = reefTransform.GetComponent<CircleCollider2D>();
-            reefCircleCollider.radius = REEF_DIMENSION * .5f;
-
-            HandleReef.Reef reef = new HandleReef.Reef(reefTransform);
-            reefList.Add(reef);
-
-            leftMostReef -= REEF_DIMENSION;
-        }
-    }
-    
-
-
-    private void CreateReef(float xPosition, float yPosition)
-    {
-        Transform[] reefTransformsArray = GameAssets.GetInstance().pfReefArray;
-        Transform reefTransform = Instantiate(reefTransformsArray[Random.Range(0, reefTransformsArray.Length)]);
-        
-        reefTransform.position = new Vector3(xPosition, yPosition);
-
-        SpriteRenderer reefSpriteRenderer = reefTransform.GetComponent<SpriteRenderer>();
-        reefSpriteRenderer.size = new Vector2(REEF_DIMENSION, REEF_DIMENSION);
-        
-        CircleCollider2D reefCircleCollider = reefTransform.GetComponent<CircleCollider2D>();
-        reefCircleCollider.radius = REEF_DIMENSION * .5f;
-
-        HandleReef.Reef reef = new HandleReef.Reef(reefTransform);
-        reefList.Add(reef);
-    }
-
-
     /********************************************************************** Creation of Speed Diamond *********************************************************/
     private void CreateSpeedRing (float xPosition)
     {

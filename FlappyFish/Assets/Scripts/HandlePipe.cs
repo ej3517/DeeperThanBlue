@@ -31,7 +31,7 @@ public class HandlePipe : MonoBehaviour
         pipeBodyBoxCollider.size = new Vector2(PIPE_WIDTH, height);
         pipeBodyBoxCollider.offset = new Vector2(0f, height * .5f);
 
-        Pipe pipe = new HandlePipe.Pipe(pipeHead, pipeBody);
+        Pipe pipe = new Pipe(pipeHead, pipeBody);
         pipeList.Add(pipe);
     }
     
