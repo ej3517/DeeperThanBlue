@@ -48,7 +48,7 @@ public class Level : MonoBehaviour
     private float pipeSpawnTimerMax;
     private float speed_ring_move_speed = 30f;
     // WaterSurface
-    private List<WaterSurface> waterSurfaceList;
+    private List<HandleWaterSurface.WaterSurface> waterSurfaceList;
     // CoralReef
     private List<HandleReef.Reef> reefList;
     // Structures and data for speed ring 
@@ -83,7 +83,7 @@ public class Level : MonoBehaviour
         // pipe
         pipeList = new List<HandlePipe.Pipe>();
         // waterSurface
-        waterSurfaceList = new List<WaterSurface>();
+        waterSurfaceList = new List<HandleWaterSurface.WaterSurface>();
         CreateInitialWaterSurface(CAMERA_ORTHO_SIZE);
         // speed diamond
         speedRingList = new List<SpeedRing>();
@@ -242,8 +242,8 @@ public class Level : MonoBehaviour
     {
         for (int i = 0; i < waterSurfaceList.Count; i++)
         {
-            WaterSurface waterSurface = waterSurfaceList[i];
-            waterSurface.Move();
+            HandleWaterSurface.WaterSurface waterSurface = waterSurfaceList[i];
+            waterSurface.Move(speed_ring_move_speed);
             if (waterSurface.GetXPosition() < WATERSURFACE_DESTROY_X_POSITION)
             {
                 waterSurface.DestroySelf();
@@ -345,7 +345,7 @@ public class Level : MonoBehaviour
             waterSurfaceBoxCollider.size = new Vector2(WATERSURFACE_WIDTH, WATERSURFACE_HEIGHT * .5f);
             waterSurfaceBoxCollider.offset = new Vector2(0f, - WATERSURFACE_HEIGHT * .5f);
 
-            WaterSurface waterSurface = new WaterSurface(waterSurfaceTransform);
+            HandleWaterSurface.WaterSurface waterSurface = new HandleWaterSurface.WaterSurface(waterSurfaceTransform);
             waterSurfaceList.Add(waterSurface);
 
             leftMostWaterSurfacePosition -= WATERSURFACE_WIDTH;
@@ -365,7 +365,7 @@ public class Level : MonoBehaviour
         waterSurfaceBoxCollider.size = new Vector2(WATERSURFACE_WIDTH, WATERSURFACE_HEIGHT* .5f);
         waterSurfaceBoxCollider.offset = new Vector2(0f, - WATERSURFACE_HEIGHT * .5f);
 
-        WaterSurface waterSurface = new WaterSurface(waterSurfaceTransform);
+        HandleWaterSurface.WaterSurface waterSurface = new HandleWaterSurface.WaterSurface(waterSurfaceTransform);
         waterSurfaceList.Add(waterSurface);
     }
     
@@ -414,35 +414,6 @@ public class Level : MonoBehaviour
         else
         {
             return false; 
-        }
-    }
-
-    /****************************************************************************************************
-    ************************************ Represent the Water Surface ************************************
-    *****************************************************************************************************/
-    
-    private class WaterSurface
-    {
-        private Transform waterSurfaceTransform;
-
-        public WaterSurface(Transform waterSurfaceTransform)
-        {
-            this.waterSurfaceTransform = waterSurfaceTransform;
-        }
-
-        public void Move()
-        {
-            waterSurfaceTransform.position += new Vector3(-1, 0, 0) * WATERSURFACE_MOVE_SPEED * Time.deltaTime;
-        }
-        
-        public float GetXPosition()
-        {
-            return waterSurfaceTransform.position.x;
-        }
-
-        public void DestroySelf()
-        {
-            Destroy(waterSurfaceTransform.gameObject);
         }
     }
     
