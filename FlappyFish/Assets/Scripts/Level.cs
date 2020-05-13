@@ -52,7 +52,7 @@ public class Level : MonoBehaviour
     // CoralReef
     private List<HandleReef.Reef> reefList;
     // Structures and data for speed ring 
-    private List<SpeedRing> speedRingList; 
+    private List<HandleSpeedRing.SpeedRing> speedRingList; 
     private float speedRingSpawnTimer; 
     private float speedRingSpawnTimerMax;
     public LayerMask m_LayerMask;
@@ -86,7 +86,7 @@ public class Level : MonoBehaviour
         waterSurfaceList = new List<HandleWaterSurface.WaterSurface>();
         HandleWaterSurface.CreateInitialWaterSurface(CAMERA_ORTHO_SIZE, waterSurfaceList);
         // speed diamond
-        speedRingList = new List<SpeedRing>();
+        speedRingList = new List<HandleSpeedRing.SpeedRing>();
         // coral reef
         reefList = new List<HandleReef.Reef>();
         HandleReef.CreateInitialReef(-CAMERA_ORTHO_SIZE, reefList);
@@ -198,14 +198,14 @@ public class Level : MonoBehaviour
     {
         for (int i = 0; i < speedRingList.Count; i++)
         {
-            SpeedRing sr = speedRingList[i];  
+            HandleSpeedRing.SpeedRing sr = speedRingList[i];  
             if (sr != null)
             {
                 bool isRightToTheBird = sr.getXPosition() > BIRD_X_POSITION; 
 
                 // bool to check whether fish touched rigid body in ring 
                 bool passedRing = true; 
-                sr.Move(); 
+                sr.Move(speed_ring_move_speed);
                 if (isRightToTheBird && sr.getXPosition() <= BIRD_X_POSITION && passedRing)
                 {
                     // Fish passed inside ring 
@@ -341,7 +341,7 @@ public class Level : MonoBehaviour
 
             Transform sr = Instantiate(GameAssets.GetInstance().pfSpeedRing);
             sr.position = new Vector3(xPosition - 2, yPosition); 
-            SpeedRing ring = new SpeedRing(sr); 
+            HandleSpeedRing.SpeedRing ring = new HandleSpeedRing.SpeedRing(sr); 
 
 
             canSpawnHere = PreventSpawnOverlap(ring.speedRingTransform);
@@ -371,41 +371,6 @@ public class Level : MonoBehaviour
         else
         {
             return false; 
-        }
-    }
-    
-    /*****************************************************************************************************************************************************
-     ************************************************************ Representation of Diamond Ring **********************************************************
-     *****************************************************************************************************************************************************/
-    public class SpeedRing
-    {
-        public Transform speedRingTransform; 
-    
-        
-        public SpeedRing(Transform speedRingTransform)
-        {
-            this.speedRingTransform = speedRingTransform; 
-        }
-
-        public void Move()
-        {
-            speedRingTransform.position += new Vector3(-1, 0, 0) * PIPE_MOVE_SPEED * Time.deltaTime; 
-        }
-
-        public float getXPosition()
-        {
-            return speedRingTransform.position.x; 
-        }
-
-        public void destroySelf()
-        {
-            Destroy(speedRingTransform.gameObject); 
-        }
-
-        public void size(float x)
-        {
-            Vector3 vec = new Vector3(x, 1, 0); 
-            speedRingTransform.localScale = vec; 
         }
     }
 }
