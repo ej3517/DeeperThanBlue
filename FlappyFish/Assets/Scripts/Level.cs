@@ -135,6 +135,43 @@ public class Level : MonoBehaviour
             HandleReefSpawning();
         }
     }
+    
+    /************************************ EVOLUTION OF THE DIFFICULTY ************************************/
+    
+    private void SetDifficulty(Difficulty difficulty)
+    {
+        switch (difficulty)
+        {
+            case Difficulty.Easy:
+                gapSize = 50f;
+                pipeSpawnTimerMax = 0.8f;
+                speedRingSpawnTimerMax = 3.0f; 
+                break;
+            case Difficulty.Medium:
+                gapSize = 40f;
+                pipeSpawnTimerMax = 1f;
+                speedRingSpawnTimerMax = 3.0f; 
+                break;
+            case Difficulty.Hard:
+                gapSize = 33f;
+                pipeSpawnTimerMax = 1.1f;
+                speedRingSpawnTimerMax = 3.0f; 
+                break;
+            case Difficulty.Impossible:
+                gapSize = 24f;
+                pipeSpawnTimerMax = 1.2f;
+                speedRingSpawnTimerMax = 3.0f; 
+                break;
+        }
+    }
+
+    private Difficulty GetDifficulty()
+    {
+        if (pipesSpawned >= 30) return Difficulty.Impossible;
+        if (pipesSpawned >= 20) return Difficulty.Hard;
+        if (pipesSpawned >= 10) return Difficulty.Medium;
+        return Difficulty.Easy;
+    }
 
     /********************************************* PIPE MOVEMENT / SCORE *********************************************/
     
@@ -191,9 +228,8 @@ public class Level : MonoBehaviour
         return pipesPassedCount;
     }
 
-    /***************************************************************************************************************
-    **********************************************   Speed Diamonds ************************************************
-    ***************************************************************************************************************/
+    /************************************************   Speed Diamonds Movement ************************************************/
+    
     private void HandleSpeedRingMovement()
     {
         for (int i = 0; i < speedRingList.Count; i++)
@@ -289,44 +325,8 @@ public class Level : MonoBehaviour
         }
     }
 
-    /************************************ EVOLUTION OF THE DIFFICULTY ************************************/
-    
-    private void SetDifficulty(Difficulty difficulty)
-    {
-        switch (difficulty)
-        {
-            case Difficulty.Easy:
-                gapSize = 50f;
-                pipeSpawnTimerMax = 0.8f;
-                speedRingSpawnTimerMax = 3.0f; 
-                break;
-            case Difficulty.Medium:
-                gapSize = 40f;
-                pipeSpawnTimerMax = 1f;
-                speedRingSpawnTimerMax = 3.0f; 
-                break;
-            case Difficulty.Hard:
-                gapSize = 33f;
-                pipeSpawnTimerMax = 1.1f;
-                speedRingSpawnTimerMax = 3.0f; 
-                break;
-            case Difficulty.Impossible:
-                gapSize = 24f;
-                pipeSpawnTimerMax = 1.2f;
-                speedRingSpawnTimerMax = 3.0f; 
-                break;
-        }
-    }
-
-    private Difficulty GetDifficulty()
-    {
-        if (pipesSpawned >= 30) return Difficulty.Impossible;
-        if (pipesSpawned >= 20) return Difficulty.Hard;
-        if (pipesSpawned >= 10) return Difficulty.Medium;
-        return Difficulty.Easy;
-    }
-
     /********************************************************************** Creation of Speed Diamond *********************************************************/
+    
     private void CreateSpeedRing (float xPosition)
     {
         bool canSpawnHere = false; 
