@@ -33,6 +33,7 @@
         <e p="Scripts" t="Include">
           <e p="Bird.cs" t="Include" />
           <e p="ButtonHandler.cs" t="Include" />
+          <e p="FollowFish.cs" t="Include" />
           <e p="GameAssets.cs" t="Include" />
           <e p="GameHandler.cs" t="Include" />
           <e p="GameOverWindow.cs" t="Include" />
@@ -42,6 +43,7 @@
           <e p="Score.cs" t="Include" />
           <e p="ScoreWindow.cs" t="Include" />
           <e p="SoundManager.cs" t="Include" />
+          <e p="TriggerDiamond.cs" t="Include" />
         </e>
       </e>
       <e p="FlappyFish.sln" t="IncludeFlat" />
