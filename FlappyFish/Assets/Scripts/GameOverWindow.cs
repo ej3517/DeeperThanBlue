@@ -21,7 +21,7 @@ public class GameOverWindow : MonoBehaviour
     }
     
 
-        private void Bird_OnDied(object sender, EventArgs e)
+    private void Bird_OnDied(object sender, EventArgs e)
     {
         scoreText.text = Level.GetInstance().GetPipesPassedCount().ToString();
         if (Score.TrySetNewHighScore(Level.GetInstance().GetPipesPassedCount()))
