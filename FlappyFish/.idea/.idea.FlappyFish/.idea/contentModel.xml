@@ -37,10 +37,10 @@
           <e p="GameAssets.cs" t="Include" />
           <e p="GameHandler.cs" t="Include" />
           <e p="GameOverWindow.cs" t="Include" />
+          <e p="HandlePipe.cs" t="Include" />
           <e p="Level.cs" t="Include" />
           <e p="Loader.cs" t="Include" />
           <e p="LoaderUpdate.cs" t="Include" />
-          <e p="Pipe.cs" t="Include" />
           <e p="Score.cs" t="Include" />
           <e p="ScoreWindow.cs" t="Include" />
           <e p="SoundManager.cs" t="Include" />

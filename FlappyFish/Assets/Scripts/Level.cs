@@ -41,8 +41,8 @@ public class Level : MonoBehaviour
     
     private Vector2 screenBounds;
     // Pipe 
-    private List<Pipe> pipeList;
-    private int pipesPassedCount;
+    private List<HandlePipe.Pipe> pipeList;
+    public int pipesPassedCount;
     private int pipesSpawned;
     private float gapSize;
     private float pipeSpawnTimer;
@@ -82,7 +82,7 @@ public class Level : MonoBehaviour
     {
         instance = this;
         // pipe
-        pipeList = new List<Pipe>();
+        pipeList = new List<HandlePipe.Pipe>();
         // waterSurface
         waterSurfaceList = new List<WaterSurface>();
         CreateInitialWaterSurface(CAMERA_ORTHO_SIZE);
@@ -137,13 +137,13 @@ public class Level : MonoBehaviour
         }
     }
 
-    /********************************************* PIPE MOVEMENT *********************************************/
+    /********************************************* PIPE MOVEMENT / SCORE *********************************************/
     
     private void HandlePipeMovement()
     {
         for (int i = 0; i<pipeList.Count; i++)
         {
-            Pipe pipe = pipeList[i];
+            HandlePipe.Pipe pipe = pipeList[i];
             bool isRightToTheBird = pipe.GetXPosition() > BIRD_X_POSITION;
             pipe.Move(speed_ring_move_speed);
             if (isRightToTheBird && pipe.GetXPosition() <= BIRD_X_POSITION)
@@ -180,6 +180,17 @@ public class Level : MonoBehaviour
         }
     }
     
+    private void CreateGapPipes(float gapY, float gapSize, float xPosition)
+    {
+        HandlePipe.CreatePipe(gapY - gapSize * .5f, xPosition, pipeList);
+        pipesSpawned++;
+        SetDifficulty(GetDifficulty());
+    }
+
+    public int GetPipesPassedCount()
+    {
+        return pipesPassedCount;
+    }
 
     /******************************************************************************************************************************************
     **********************************************   Speed Diamonds ***************************************************************************
@@ -211,8 +222,6 @@ public class Level : MonoBehaviour
             }
         }
     }
-
-
 
     private void HandleSpeedRingSpawning()
     {
@@ -317,47 +326,8 @@ public class Level : MonoBehaviour
         if (pipesSpawned >= 10) return Difficulty.Medium;
         return Difficulty.Easy;
     }
-
-    /**************************************** CREATION OF PIPE ****************************************/
     
-    private void CreateGapPipes(float gapY, float gapSize, float xPosition)
-    {
-        CreatePipe(gapY - gapSize * .5f, xPosition);
-        pipesSpawned++;
-        SetDifficulty(GetDifficulty());
-    }
     
-    private void CreatePipe(float height, float xPosition)
-    {
-        // set up pipe head
-        Transform pipeHead = Instantiate(GameAssets.GetInstance().pfPipeHead);
-        float pipeHeadYPosition;
-        pipeHeadYPosition = -CAMERA_ORTHO_SIZE + height - PIPE_HEAD_HEIGHT * .5f;
-        pipeHead.position = new Vector3(xPosition, pipeHeadYPosition);
-
-        // set up pipe body
-        Transform pipeBody = Instantiate(GameAssets.GetInstance().pfPipeBody);
-
-        float PipeBodyYPosition;
-        PipeBodyYPosition = -CAMERA_ORTHO_SIZE;
-     
-        pipeBody.position = new Vector3(xPosition, PipeBodyYPosition);
-
-        SpriteRenderer pipeBodySpriteRenderer = pipeBody.GetComponent<SpriteRenderer>();
-        pipeBodySpriteRenderer.size = new Vector2(PIPE_WIDTH, height);
-
-        BoxCollider2D pipeBodyBoxCollider = pipeBody.GetComponent<BoxCollider2D>();
-        pipeBodyBoxCollider.size = new Vector2(PIPE_WIDTH, height);
-        pipeBodyBoxCollider.offset = new Vector2(0f, height * .5f);
-
-        Pipe pipe = new Pipe(pipeHead, pipeBody);
-        pipeList.Add(pipe);
-    }
-
-    public int GetPipesPassedCount()
-    {
-        return pipesPassedCount;
-    }
     
     /************************************ CREATION OF WATERSURFACE ************************************/
 
