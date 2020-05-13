@@ -102,6 +102,11 @@ public class Level : MonoBehaviour
             // PIPE
             HandlePipeMovement();
             HandlePipeSpawning();
+
+            // SPEED DIAMONDS
+            HandleSpeedRingMovement();
+            HandleSpeedRingSpawning(); 
+
             // WATERSURFACE
             HandleWaterSurfaceMovement();
             HandleWaterSurfaceSpawning();
@@ -154,6 +159,54 @@ public class Level : MonoBehaviour
         }
     }
     
+
+    /******************************************************************************************************************************************
+    **********************************************   Speed Diamonds ***************************************************************************
+    *******************************************************************************************************************************************/
+    private void HandleSpeedRingMovement()
+    {
+        for (int i = 0; i < speedRingList.Count; i++)
+        {
+            SpeedRing sr = speedRingList[i];  
+            if (sr != null)
+            {
+                bool isRightToTheBird = sr.getXPosition() > BIRD_X_POSITION; 
+
+                // bool to check whether fish touched rigid body in ring 
+                bool passedRing = true; 
+                sr.Move(); 
+                if (isRightToTheBird && sr.getXPosition() <= BIRD_X_POSITION && passedRing)
+                {
+                    // Fish passed inside ring 
+                    Debug.Log("Passed in ring"); 
+                }
+                if (sr.getXPosition() < PIPE_DESTROY_X_POSITION + birdScript.transform.position.x)
+                {
+                    // Destroy ring 
+                    sr.destroySelf(); 
+                    speedRingList.Remove(sr); 
+                    i--; 
+                }
+            }
+        }
+    }
+
+
+
+    private void HandleSpeedRingSpawning()
+    {
+        bool canSpawnHere = false; 
+        speedRingSpawnTimer -= Time.deltaTime; 
+        if (speedRingSpawnTimer < 0)
+        {
+        
+            // Randomly time to generate another ring 
+            speedRingSpawnTimer = speedRingSpawnTimerMax + UnityEngine.Random.Range(-2,2); 
+            CreateSpeedRing(PIPE_SPAWN_X_POSITION + birdScript.transform.position.x); 
+        }
+
+    }
+
     /******************************************* WATER SURFACE MOVEMENT *******************************************/
 
     private void HandleWaterSurfaceMovement()
@@ -351,6 +404,7 @@ public class Level : MonoBehaviour
     }
     
 
+
     private void CreateReef(float xPosition, float yPosition)
     {
         Transform[] reefTransformsArray = GameAssets.GetInstance().pfReefArray;
@@ -366,6 +420,55 @@ public class Level : MonoBehaviour
 
         Reef reef = new Reef(reefTransform);
         reefList.Add(reef);
+    }
+
+
+    /********************************************************************** Creation of Speed Diamond *********************************************************/
+    private void CreateSpeedRing (float xPosition)
+    {
+        bool canSpawnHere = false; 
+
+        while (!canSpawnHere)
+        {
+            Debug.Log("Create Ring"); 
+
+            screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z)); 
+            float yPosition; 
+            yPosition = UnityEngine.Random.Range(-screenBounds.y, screenBounds.y); 
+
+            Transform sr = Instantiate(GameAssets.GetInstance().pfSpeedRing);
+            sr.position = new Vector3(xPosition - 2, yPosition); 
+            SpeedRing ring = new SpeedRing(sr); 
+
+
+            canSpawnHere = PreventSpawnOverlap(ring.speedRingTransform);
+            if (canSpawnHere)
+            {
+                Debug.Log("Created Ring");
+                
+                speedRingList.Add(ring); 
+                break;
+            } 
+            else {
+                Debug.Log("Destroyed Ring"); 
+                ring.destroySelf();                
+            }
+        }
+    }
+
+    private bool PreventSpawnOverlap(Transform tmpTransform)
+    { 
+        Collider2D colliders;  
+        colliders = Physics2D.OverlapBox(tmpTransform.position, tmpTransform.localScale * 2, 0f, m_LayerMask); 
+
+        if (colliders == null)
+        {
+            return true; 
+        }
+        else
+        {
+            return false; 
+        }
     }
 
     /****************************************************************************************************
@@ -458,5 +561,38 @@ public class Level : MonoBehaviour
             Destroy(pipeBodyTransform.gameObject);
         }
     }
-
 }
+     /*****************************************************************************************************************************************************
+     ************************************************************ Representation of Diamond Ring **********************************************************
+     *****************************************************************************************************************************************************/ 
+    public class SpeedRing
+    {
+        public Transform speedRingTransform; 
+    
+        
+        public SpeedRing(Transform speedRingTransform)
+        {
+            this.speedRingTransform = speedRingTransform; 
+        }
+
+        public void Move()
+        {
+            speedRingTransform.position += new Vector3(-1, 0, 0) * PIPE_MOVE_SPEED * Time.deltaTime; 
+        }
+
+        public float getXPosition()
+        {
+            return speedRingTransform.position.x; 
+        }
+
+        public void destroySelf()
+        {
+            Destroy(speedRingTransform.gameObject); 
+        }
+
+        public void size(float x)
+        {
+            Vector3 vec = new Vector3(x, 1, 0); 
+            speedRingTransform.localScale = vec; 
+        }
+    }
