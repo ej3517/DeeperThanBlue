@@ -173,7 +173,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.990566, g: 0.7807741, b: 0.08877712, a: 1}
   m_RaycastTarget: 1
-  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -334,7 +333,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -532,7 +530,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -610,7 +607,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.23584908, g: 0.23473659, b: 0.23473659, a: 1}
   m_RaycastTarget: 1
-  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -767,7 +763,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 1, b: 0.08237815, a: 1}
   m_RaycastTarget: 1
-  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -895,7 +890,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1203,7 +1197,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1358,6 +1351,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ed54ede92f43457bb3a6d269c9caf97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  diamondForce: {x: 0, y: 0}
+  speedPoints: 0
 --- !u!1 &1414926217
 GameObject:
   m_ObjectHideFlags: 0
@@ -1404,6 +1399,8 @@ MonoBehaviour:
   pfPipeHead: {fileID: 7925393861487258205, guid: fe611a7e22e814190b30b4dd85f6d771,
     type: 3}
   pfPipeBody: {fileID: 924513060111448761, guid: bfafd5c3324b94ed5a9a5619f86f4d75,
+    type: 3}
+  pfSpeedRing: {fileID: 2165374240041256975, guid: e9508b36317c24809b9d6ae88d67bad4,
     type: 3}
   pfWaterSurface: {fileID: 3733607909823703955, guid: e4f164cf18f7441e7b7295bdcb24e60f,
     type: 3}
@@ -1648,7 +1645,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1722,7 +1718,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
-  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1791,6 +1786,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a97b8ab44ea684a87959a1f484ca0f4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1878050150
 GameObject:
   m_ObjectHideFlags: 0
@@ -1843,7 +1841,6 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.764151, g: 0.764151, b: 0.764151, a: 1}
   m_RaycastTarget: 1
-  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []

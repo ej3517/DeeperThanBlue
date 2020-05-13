@@ -7,6 +7,7 @@ using CodeMonkey.Utils;
 public class Level : MonoBehaviour
 {
     private const float CAMERA_ORTHO_SIZE = 50f;
+    private Vector2 screenBounds;
     // PIPE
     private const float PIPE_WIDTH = 7.8f;
     private const float PIPE_HEAD_HEIGHT = 3.75f;
@@ -27,6 +28,12 @@ public class Level : MonoBehaviour
     // BIRD
     private const float BIRD_X_POSITION = 0;
 
+    // SPEED DIAMOND
+    private const float SPEED_RING_MOVE_SPEED = 30f;
+    private const float SPEED_RING_DESTROY_X_POSITION = -100f;
+    private const float SPEED_RING_SPAWN_X_POSITION = 100f;
+    private const float RING_HEIGHT = 2f; 
+    private const float RING_WIDTH = 2f; 
     private static Level instance;
 
     public static Level GetInstance()
@@ -45,9 +52,18 @@ public class Level : MonoBehaviour
     private List<WaterSurface> waterSurfaceList;
     // CoralReef
     private List<Reef> reefList;
+
+    // Structures and data for speed ring 
+    private List<SpeedRing> speedRingList; 
+    private float speedRingSpawnTimer; 
+    private float speedRingSpawnTimerMax; 
     // State
     private State state;
 
+    public LayerMask m_LayerMask;
+
+    FollowFish cameraScript; 
+    Bird birdScript; 
     public enum Difficulty
     {
         Easy,
@@ -70,6 +86,9 @@ public class Level : MonoBehaviour
         pipeList = new List<Pipe>();
         // waterSurface
         waterSurfaceList = new List<WaterSurface>();
+        // speed diamond
+        speedRingList = new List<SpeedRing>(); 
+
         CreateInitialWaterSurface(CAMERA_ORTHO_SIZE);
         // coral reef
         reefList = new List<Reef>();
@@ -81,6 +100,10 @@ public class Level : MonoBehaviour
 
     private void Start()
     {
+        cameraScript = Camera.main.GetComponent<FollowFish>();
+        birdScript = GameObject.Find("Bird").GetComponent<Bird>(); 
+        birdScript.speedPoints = 0;
+         
         Bird.GetInstance().OnDied += Bird_OnDied;
         Bird.GetInstance().OnStartedPlaying += Bird_OnStartedPlaying;
     }
@@ -269,18 +292,22 @@ public class Level : MonoBehaviour
             case Difficulty.Easy:
                 gapSize = 50f;
                 pipeSpawnTimerMax = 0.8f;
+                speedRingSpawnTimerMax = 3.0f; 
                 break;
             case Difficulty.Medium:
                 gapSize = 40f;
                 pipeSpawnTimerMax = 1f;
+                speedRingSpawnTimerMax = 3.0f; 
                 break;
             case Difficulty.Hard:
                 gapSize = 33f;
                 pipeSpawnTimerMax = 1.1f;
+                speedRingSpawnTimerMax = 3.0f; 
                 break;
             case Difficulty.Impossible:
                 gapSize = 24f;
                 pipeSpawnTimerMax = 1.2f;
+                speedRingSpawnTimerMax = 3.0f; 
                 break;
         }
     }
@@ -561,10 +588,11 @@ public class Level : MonoBehaviour
             Destroy(pipeBodyTransform.gameObject);
         }
     }
-}
-     /*****************************************************************************************************************************************************
+
+
+    /*****************************************************************************************************************************************************
      ************************************************************ Representation of Diamond Ring **********************************************************
-     *****************************************************************************************************************************************************/ 
+     *****************************************************************************************************************************************************/
     public class SpeedRing
     {
         public Transform speedRingTransform; 
@@ -596,3 +624,6 @@ public class Level : MonoBehaviour
             speedRingTransform.localScale = vec; 
         }
     }
+}
+ 
+
