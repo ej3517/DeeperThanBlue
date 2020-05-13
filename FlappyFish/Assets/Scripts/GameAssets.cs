@@ -17,10 +17,14 @@ public class GameAssets : MonoBehaviour
         instance = this;
     }
     
+    // Pipes
     public Transform pfPipeHead;
     public Transform pfPipeBody;
+    // WaterSurface
     public Transform pfWaterSurface;
+    // Ground
     public Transform[] pfReefArray;
+    // Sound
     public SoundAudioClip[] soundAudioClipArray;
     
     [Serializable]

@@ -19,6 +19,8 @@ public class Level : MonoBehaviour
     private const float WATERSURFACE_MOVE_SPEED = 30f;
     private const float WATERSURFACE_DESTROY_X_POSITION = -120f;
     private const float WATERSURFACE_SPAWN_X_POSITION = 120f;
+    // REEF
+    private const float REEF_DIMENTION = 14f;
     // BIRD
     private const float BIRD_X_POSITION = 0;
 
@@ -59,6 +61,11 @@ public class Level : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        // reef
+        CreateReef(20f, 0f);
+        CreateReef(40f, 0f);
+        CreateReef(60f, 0f);
+        CreateReef(80f, 0f);
         // pipe
         pipeList = new List<Pipe>();
         // waterSurface
@@ -274,8 +281,8 @@ public class Level : MonoBehaviour
         Transform waterSurfaceTransform = Instantiate(GameAssets.GetInstance().pfWaterSurface);
         waterSurfaceTransform.position = new Vector3(xPosition, yPosition);
         
-        SpriteRenderer WaterSurfaceSpriteRenderer = waterSurfaceTransform.GetComponent<SpriteRenderer>();
-        WaterSurfaceSpriteRenderer.size = new Vector2(WATERSURFACE_WIDTH, WATERSURFACE_HEIGHT);
+        SpriteRenderer waterSurfaceSpriteRenderer = waterSurfaceTransform.GetComponent<SpriteRenderer>();
+        waterSurfaceSpriteRenderer.size = new Vector2(WATERSURFACE_WIDTH, WATERSURFACE_HEIGHT);
 
         BoxCollider2D waterSurfaceBoxCollider = waterSurfaceTransform.GetComponent<BoxCollider2D>();
         waterSurfaceBoxCollider.size = new Vector2(WATERSURFACE_WIDTH, WATERSURFACE_HEIGHT* .5f);
@@ -285,6 +292,21 @@ public class Level : MonoBehaviour
         waterSurfaceList.Add(waterSurface);
     }
     
+    /************************************ CREATION OF CORALREEF ************************************/
+
+    private void CreateReef(float xPosition, float yPosition)
+    {
+        Transform[] reefTransformsArray = GameAssets.GetInstance().pfReefArray;
+        Transform reefTransform = Instantiate(reefTransformsArray[Random.Range(0, reefTransformsArray.Length)]);
+        reefTransform.position = new Vector3(xPosition, yPosition);
+
+        SpriteRenderer reefSpriteRenderer = reefTransform.GetComponent<SpriteRenderer>();
+        reefSpriteRenderer.size = new Vector2(REEF_DIMENTION, REEF_DIMENTION);
+        
+        CircleCollider2D reefCircleCollider = reefTransform.GetComponent<CircleCollider2D>();
+        reefCircleCollider.radius = REEF_DIMENTION * .5f;
+    }
+
     /****************************************************************************************************
     ************************************ Represent the Water Surface ************************************
     *****************************************************************************************************/
@@ -313,6 +335,34 @@ public class Level : MonoBehaviour
             Destroy(waterSurfaceTransform.gameObject);
         }
     }
+    /****************************************************************************************************
+    ************************************ Represent the Water Surface ************************************
+    *****************************************************************************************************/
+    
+    private class Reef
+    {
+        private Transform reefTransform;
+
+        public Reef(Transform reefTransform)
+        {
+            this.reefTransform = reefTransform;
+        }
+
+        public void Move()
+        {
+            reefTransform.position += new Vector3(-1, 0, 0) * WATERSURFACE_MOVE_SPEED * Time.deltaTime;
+        }
+        
+        public float GetXPosition()
+        {
+            return reefTransform.position.x;
+        }
+
+        public void DestroySelf()
+        {
+            Destroy(reefTransform.gameObject);
+        }
+    }
     
     /****************************************************************************************************
     ************************************ Represent a single pipe ****************************************
@@ -321,7 +371,6 @@ public class Level : MonoBehaviour
     {
         private Transform pipeHeadTransform;
         private Transform pipeBodyTransform;
-        private bool isBottom;
 
         public Pipe(Transform pipeHeadTransform, Transform pipeBodyTransform)
         {
