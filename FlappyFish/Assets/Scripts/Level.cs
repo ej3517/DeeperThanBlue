@@ -7,7 +7,6 @@ using CodeMonkey.Utils;
 public class Level : MonoBehaviour
 {
     private const float CAMERA_ORTHO_SIZE = 50f;
-    private Vector2 screenBounds;
     // PIPE
     private const float PIPE_WIDTH = 7.8f;
     private const float PIPE_HEAD_HEIGHT = 3.75f;
@@ -29,7 +28,6 @@ public class Level : MonoBehaviour
     private const float BIRD_X_POSITION = 0;
 
     // SPEED DIAMOND
-    private const float SPEED_RING_MOVE_SPEED = 30f;
     private const float SPEED_RING_DESTROY_X_POSITION = -100f;
     private const float SPEED_RING_SPAWN_X_POSITION = 100f;
     private const float RING_HEIGHT = 2f; 
@@ -41,6 +39,7 @@ public class Level : MonoBehaviour
         return instance;
     }
     
+    private Vector2 screenBounds;
     // Pipe 
     private List<Pipe> pipeList;
     private int pipesPassedCount;
@@ -48,20 +47,20 @@ public class Level : MonoBehaviour
     private float gapSize;
     private float pipeSpawnTimer;
     private float pipeSpawnTimerMax;
+    private float speed_ring_move_speed = 30f;
     // WaterSurface
     private List<WaterSurface> waterSurfaceList;
     // CoralReef
     private List<Reef> reefList;
-
     // Structures and data for speed ring 
     private List<SpeedRing> speedRingList; 
     private float speedRingSpawnTimer; 
-    private float speedRingSpawnTimerMax; 
+    private float speedRingSpawnTimerMax;
+    public LayerMask m_LayerMask;
     // State
     private State state;
-
-    public LayerMask m_LayerMask;
-
+    
+    
     FollowFish cameraScript; 
     Bird birdScript; 
     public enum Difficulty
@@ -86,10 +85,9 @@ public class Level : MonoBehaviour
         pipeList = new List<Pipe>();
         // waterSurface
         waterSurfaceList = new List<WaterSurface>();
-        // speed diamond
-        speedRingList = new List<SpeedRing>(); 
-
         CreateInitialWaterSurface(CAMERA_ORTHO_SIZE);
+        // speed diamond
+        speedRingList = new List<SpeedRing>();
         // coral reef
         reefList = new List<Reef>();
         CreateInitialReef(-CAMERA_ORTHO_SIZE);
@@ -147,7 +145,7 @@ public class Level : MonoBehaviour
         {
             Pipe pipe = pipeList[i];
             bool isRightToTheBird = pipe.GetXPosition() > BIRD_X_POSITION;
-            pipe.Move();
+            pipe.Move(speed_ring_move_speed);
             if (isRightToTheBird && pipe.GetXPosition() <= BIRD_X_POSITION)
             {
                 // Pipe passed Bird
@@ -555,41 +553,8 @@ public class Level : MonoBehaviour
             Destroy(reefTransform.gameObject);
         }
     }
-
-    /****************************************************************************************************
-    ************************************ Represent a single pipe ****************************************
-    *****************************************************************************************************/
-    private class Pipe
-    {
-        private Transform pipeHeadTransform;
-        private Transform pipeBodyTransform;
-
-        public Pipe(Transform pipeHeadTransform, Transform pipeBodyTransform)
-        {
-            this.pipeHeadTransform = pipeHeadTransform;
-            this.pipeBodyTransform = pipeBodyTransform;
-        }
-
-        public void Move()
-        {
-            pipeHeadTransform.position += new Vector3(-1, 0, 0) * PIPE_MOVE_SPEED * Time.deltaTime;
-            pipeBodyTransform.position += new Vector3(-1, 0, 0) * PIPE_MOVE_SPEED * Time.deltaTime;
-
-        }
-
-        public float GetXPosition()
-        {
-            return pipeHeadTransform.position.x;
-        }
-
-        public void DestroySelf()
-        {
-            Destroy(pipeHeadTransform.gameObject);
-            Destroy(pipeBodyTransform.gameObject);
-        }
-    }
-
-
+    
+    
     /*****************************************************************************************************************************************************
      ************************************************************ Representation of Diamond Ring **********************************************************
      *****************************************************************************************************************************************************/

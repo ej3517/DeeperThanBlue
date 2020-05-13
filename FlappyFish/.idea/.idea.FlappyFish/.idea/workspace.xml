@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="60884b82-83d6-468b-a134-8eabc3e9fcf8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Pipe.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Pipe.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +20,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/CodeMonkey/Utils/Button_UI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Score.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/CodeMonkey/Utils/UI_Bar.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Pipe.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SoundManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameAssets.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Bird.cs" root0="FORCE_HIGHLIGHTING" />
@@ -49,6 +52,8 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Bird.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ReefManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameAssets.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Pipe.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Reef.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Level.cs" />
       </list>
     </option>
