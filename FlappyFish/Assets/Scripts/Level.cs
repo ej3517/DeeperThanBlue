@@ -40,6 +40,8 @@ public class Level : MonoBehaviour
     private float pipeSpawnTimerMax;
     // WaterSurface
     private List<WaterSurface> waterSurfaceList;
+    // CoralReef
+    private List<Transform> reefList;
     // State
     private State state;
 
@@ -61,16 +63,14 @@ public class Level : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        // reef
-        CreateReef(20f, 0f);
-        CreateReef(40f, 0f);
-        CreateReef(60f, 0f);
-        CreateReef(80f, 0f);
         // pipe
         pipeList = new List<Pipe>();
         // waterSurface
         waterSurfaceList = new List<WaterSurface>();
         CreateInitialWaterSurface(CAMERA_ORTHO_SIZE);
+        // coral reef
+        reefList = new List<Transform>();
+        CreateReef(20f, 0f);
         //difficulty
         SetDifficulty(Difficulty.Easy);
         state = State.WaitingToStart;
@@ -102,6 +102,8 @@ public class Level : MonoBehaviour
             // WATERSURFACE
             HandleWaterSurfaceMovement();
             HandleWaterSurfaceSpawning();
+            // REEF
+            HandleReefMovement();
         }
     }
 
@@ -172,6 +174,17 @@ public class Level : MonoBehaviour
         if (lastWaterSurfaceXPosition < WATERSURFACE_SPAWN_X_POSITION - WATERSURFACE_WIDTH + 1)
         {
             CreateWaterSurface(WATERSURFACE_SPAWN_X_POSITION, CAMERA_ORTHO_SIZE);
+        }
+    }
+    
+    /******************************************* WATER SURFACE MOVEMENT *******************************************/
+
+    private void HandleReefMovement()
+    {
+        for (int i = 0; i < reefList.Count; i++)
+        {
+            Transform reef = reefList[i];
+            reef.position += new Vector3(-1, 0, 0) * WATERSURFACE_MOVE_SPEED * Time.deltaTime;
         }
     }
 
@@ -305,6 +318,8 @@ public class Level : MonoBehaviour
         
         CircleCollider2D reefCircleCollider = reefTransform.GetComponent<CircleCollider2D>();
         reefCircleCollider.radius = REEF_DIMENTION * .5f;
+
+        reefList.Add(reefTransform);
     }
 
     /****************************************************************************************************
@@ -336,33 +351,9 @@ public class Level : MonoBehaviour
         }
     }
     /****************************************************************************************************
-    ************************************ Represent the Water Surface ************************************
+    ************************************** Represent the Coral Reef *************************************
     *****************************************************************************************************/
     
-    private class Reef
-    {
-        private Transform reefTransform;
-
-        public Reef(Transform reefTransform)
-        {
-            this.reefTransform = reefTransform;
-        }
-
-        public void Move()
-        {
-            reefTransform.position += new Vector3(-1, 0, 0) * WATERSURFACE_MOVE_SPEED * Time.deltaTime;
-        }
-        
-        public float GetXPosition()
-        {
-            return reefTransform.position.x;
-        }
-
-        public void DestroySelf()
-        {
-            Destroy(reefTransform.gameObject);
-        }
-    }
     
     /****************************************************************************************************
     ************************************ Represent a single pipe ****************************************
