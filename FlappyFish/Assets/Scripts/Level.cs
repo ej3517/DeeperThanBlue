@@ -1,18 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI; 
 using CodeMonkey;
 using CodeMonkey.Utils;
 
 public class Level : MonoBehaviour
 {
+    // Constants for camera 
     private const float CAMERA_ORTHO_SIZE = 50f;
+
+    private Vector2 screenBounds;
+    // Constants for pipe
+
     // PIPE
+
     private const float PIPE_WIDTH = 7.8f;
     private const float PIPE_HEAD_HEIGHT = 3.75f;
     private const float PIPE_MOVE_SPEED = 30f;
     private const float PIPE_DESTROY_X_POSITION = -100f;
     private const float PIPE_SPAWN_X_POSITION = 100f;
+
+
+    // Constants for bird - in this case fish 
+    private const float BIRD_X_POSITION = 0;    // -- fish position will not be constant. will need to be changed 
+
+    // Constants for speed ring 
+    private const float SPEED_RING_MOVE_SPEED = 30f;
+    private const float SPEED_RING_DESTROY_X_POSITION = -100f;
+    private const float SPEED_RING_SPAWN_X_POSITION = 100f;
+    private const float RING_HEIGHT = 2f; 
+    private const float RING_WIDTH = 2f; 
+    //public Collider2D colliders; 
+
     // WATER SURFACE
     private const float WATERSURFACE_WIDTH = 20f;
     private const float WATERSURFACE_HEIGHT = 8f;
@@ -21,8 +41,9 @@ public class Level : MonoBehaviour
     private const float WATERSURFACE_SPAWN_X_POSITION = 120f;
     // REEF
     private const float REEF_DIMENTION = 14f;
-    // BIRD
-    private const float BIRD_X_POSITION = 0;
+    
+   
+
 
     private static Level instance;
 
@@ -30,19 +51,34 @@ public class Level : MonoBehaviour
     {
         return instance;
     }
-    
+
+
+    // Structures and data required for pipe    
     // Pipe 
+
     private List<Pipe> pipeList;
     private int pipesPassedCount;
     private int pipesSpawned;
     private float gapSize;
     private float pipeSpawnTimer;
     private float pipeSpawnTimerMax;
+
+    private float gapSize;
+
+    // Structures and data for speed ring 
+    private List<SpeedRing> speedRingList; 
+    private float speedRingSpawnTimer; 
+    private float speedRingSpawnTimerMax; 
+
     // WaterSurface
     private List<WaterSurface> waterSurfaceList;
     // State
-    private State state;
 
+    private State state;
+    public LayerMask m_LayerMask;
+
+    FollowFish cameraScript; 
+    Bird birdScript; 
     public enum Difficulty
     {
         Easy,
@@ -68,16 +104,24 @@ public class Level : MonoBehaviour
         CreateReef(80f, 0f);
         // pipe
         pipeList = new List<Pipe>();
+
+        speedRingList = new List<SpeedRing>(); 
+
         // waterSurface
         waterSurfaceList = new List<WaterSurface>();
         CreateInitialWaterSurface(CAMERA_ORTHO_SIZE);
         //difficulty
+
         SetDifficulty(Difficulty.Easy);
         state = State.WaitingToStart;
     }
 
     private void Start()
     {
+        cameraScript = Camera.main.GetComponent<FollowFish>();
+        birdScript = GameObject.Find("Bird").GetComponent<Bird>(); 
+        birdScript.speedPoints = 0; 
+
         Bird.GetInstance().OnDied += Bird_OnDied;
         Bird.GetInstance().OnStartedPlaying += Bird_OnStartedPlaying;
     }
@@ -99,6 +143,11 @@ public class Level : MonoBehaviour
             // PIPE
             HandlePipeMovement();
             HandlePipeSpawning();
+
+            // SPEED DIAMONDS
+            HandleSpeedRingMovement();
+            HandleSpeedRingSpawning(); 
+
             // WATERSURFACE
             HandleWaterSurfaceMovement();
             HandleWaterSurfaceSpawning();
@@ -120,7 +169,7 @@ public class Level : MonoBehaviour
                 SoundManager.PlaySound(SoundManager.Sound.Score);
                 pipesPassedCount++;
             }
-            if (pipe.GetXPosition() < PIPE_DESTROY_X_POSITION)
+            if (pipe.GetXPosition() < PIPE_DESTROY_X_POSITION + birdScript.transform.position.x)
             {
                 // Destroy Pipe
                 pipe.DestroySelf();
@@ -144,7 +193,7 @@ public class Level : MonoBehaviour
             float maxHeight = totalHeight - gapSize * .5f - heightEdgeLimit;
 
             float height = UnityEngine.Random.Range(minHeight, maxHeight);
-            CreateGapPipes(height, gapSize, PIPE_SPAWN_X_POSITION);
+            CreateGapPipes(height, gapSize, PIPE_SPAWN_X_POSITION + birdScript.transform.position.x);
         }
     }
     
@@ -165,6 +214,51 @@ public class Level : MonoBehaviour
         }
     }
 
+
+    private void HandleSpeedRingMovement()
+    {
+        for (int i = 0; i < speedRingList.Count; i++)
+        {
+            SpeedRing sr = speedRingList[i];  
+            if (sr != null)
+            {
+                bool isRightToTheBird = sr.getXPosition() > BIRD_X_POSITION; 
+
+                // bool to check whether fish touched rigid body in ring 
+                bool passedRing = true; 
+                sr.Move(); 
+                if (isRightToTheBird && sr.getXPosition() <= BIRD_X_POSITION && passedRing)
+                {
+                    // Fish passed inside ring 
+                    Debug.Log("Passed in ring"); 
+                }
+                if (sr.getXPosition() < PIPE_DESTROY_X_POSITION + birdScript.transform.position.x)
+                {
+                    // Destroy ring 
+                    sr.destroySelf(); 
+                    speedRingList.Remove(sr); 
+                    i--; 
+                }
+            }
+        }
+    }
+
+
+
+    private void HandleSpeedRingSpawning()
+    {
+        bool canSpawnHere = false; 
+        speedRingSpawnTimer -= Time.deltaTime; 
+        if (speedRingSpawnTimer < 0)
+        {
+        
+            // Randomly time to generate another ring 
+            speedRingSpawnTimer = speedRingSpawnTimerMax + UnityEngine.Random.Range(-2,2); 
+            CreateSpeedRing(PIPE_SPAWN_X_POSITION + birdScript.transform.position.x); 
+        }
+
+    }
+
     private void HandleWaterSurfaceSpawning()
     {
         // Spawn a new water surface after the last one);
@@ -177,6 +271,7 @@ public class Level : MonoBehaviour
 
     /************************************ EVOLUTION OF THE DIFFICULTY ************************************/
     
+
     private void SetDifficulty(Difficulty difficulty)
     {
         switch (difficulty)
@@ -184,18 +279,22 @@ public class Level : MonoBehaviour
             case Difficulty.Easy:
                 gapSize = 50f;
                 pipeSpawnTimerMax = 0.8f;
+                speedRingSpawnTimerMax = 3.0f; 
                 break;
             case Difficulty.Medium:
                 gapSize = 40f;
                 pipeSpawnTimerMax = 1f;
+                speedRingSpawnTimerMax = 3.0f; 
                 break;
             case Difficulty.Hard:
                 gapSize = 33f;
                 pipeSpawnTimerMax = 1.1f;
+                speedRingSpawnTimerMax = 3.0f; 
                 break;
             case Difficulty.Impossible:
                 gapSize = 24f;
                 pipeSpawnTimerMax = 1.2f;
+                speedRingSpawnTimerMax = 3.0f; 
                 break;
         }
     }
@@ -213,6 +312,7 @@ public class Level : MonoBehaviour
     private void CreateGapPipes(float gapY, float gapSize, float xPosition)
     {
         CreatePipe(gapY - gapSize * .5f, xPosition);
+
         pipesSpawned++;
         SetDifficulty(GetDifficulty());
     }
@@ -244,7 +344,58 @@ public class Level : MonoBehaviour
         pipeList.Add(pipe);
     }
 
+
+    private void CreateSpeedRing (float xPosition)
+    {
+        bool canSpawnHere = false; 
+
+        while (!canSpawnHere)
+        {
+            Debug.Log("Create Ring"); 
+
+            screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z)); 
+            float yPosition; 
+            yPosition = UnityEngine.Random.Range(-screenBounds.y, screenBounds.y); 
+
+            Transform sr = Instantiate(GameAssets.GetInstance().pfSpeedRing);
+            sr.position = new Vector3(xPosition - 2, yPosition); 
+            SpeedRing ring = new SpeedRing(sr); 
+
+
+            canSpawnHere = PreventSpawnOverlap(ring.speedRingTransform);
+            if (canSpawnHere)
+            {
+                Debug.Log("Created Ring");
+                
+                speedRingList.Add(ring); 
+                break;
+            } 
+            else {
+                Debug.Log("Destroyed Ring"); 
+                ring.destroySelf();                
+            }
+        }
+    }
+
+    private bool PreventSpawnOverlap(Transform tmpTransform)
+    { 
+        Collider2D colliders;  
+        colliders = Physics2D.OverlapBox(tmpTransform.position, tmpTransform.localScale * 2, 0f, m_LayerMask); 
+
+        if (colliders == null)
+        {
+            return true; 
+        }
+        else
+        {
+            return false; 
+        }
+    }
+
+    public int GetPipesScore()
+
     public int GetPipesPassedCount()
+
     {
         return pipesPassedCount;
     }
@@ -397,4 +548,41 @@ public class Level : MonoBehaviour
         }
     }
 
+    /* 
+     * represents speed rings 
+    */ 
+
+    public class SpeedRing
+    {
+        public Transform speedRingTransform; 
+    
+        
+        public SpeedRing(Transform speedRingTransform)
+        {
+            this.speedRingTransform = speedRingTransform; 
+        }
+
+        public void Move()
+        {
+            speedRingTransform.position += new Vector3(-1, 0, 0) * PIPE_MOVE_SPEED * Time.deltaTime; 
+        }
+
+        public float getXPosition()
+        {
+            return speedRingTransform.position.x; 
+        }
+
+        public void destroySelf()
+        {
+            Destroy(speedRingTransform.gameObject); 
+        }
+
+        public void size(float x)
+        {
+            Vector3 vec = new Vector3(x, 1, 0); 
+            speedRingTransform.localScale = vec; 
+        }
+    }
+
 }
+

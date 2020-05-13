@@ -20,6 +20,9 @@ public class GameAssets : MonoBehaviour
     // Pipes
     public Transform pfPipeHead;
     public Transform pfPipeBody;
+
+    public Transform pfSpeedRing; 
+
     // WaterSurface
     public Transform pfWaterSurface;
     // Ground
