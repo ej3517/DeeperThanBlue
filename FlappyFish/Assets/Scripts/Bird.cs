@@ -27,6 +27,7 @@ public class Bird : MonoBehaviour
     public Vector2 diamondForce; 
     private Vector2 m_startForce; 
 
+    public int speedPoints; 
  
     
     private enum State
@@ -42,8 +43,7 @@ public class Bird : MonoBehaviour
         birdrigidbody2D = GetComponent<Rigidbody2D>();
         birdrigidbody2D.bodyType = RigidbodyType2D.Static;
         state = State.WaitingToStart;
-
-        //diamondForce = new Vector2(100.0f, 0.0f);
+        speedPoints = 0; 
     }
 
     private void Update()
@@ -53,6 +53,8 @@ public class Bird : MonoBehaviour
             case State.WaitingToStart:
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
+                    speedPoints = 0; 
+                    
                     state = State.Playing;
                     birdrigidbody2D.bodyType = RigidbodyType2D.Dynamic;
                     if (OnStartedPlaying!= null) OnStartedPlaying(this, EventArgs.Empty);
@@ -62,6 +64,7 @@ public class Bird : MonoBehaviour
             case State.Playing:
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
+                    Debug.Log("Playing"); 
                     Jump();
                 }
                 break;
@@ -82,6 +85,7 @@ public class Bird : MonoBehaviour
         {
             m_startForce = birdrigidbody2D.transform.position; 
             birdrigidbody2D.AddForce(diamondForce, ForceMode2D.Impulse); 
+            speedPoints++; 
         }
         else {
             birdrigidbody2D.bodyType = RigidbodyType2D.Static;

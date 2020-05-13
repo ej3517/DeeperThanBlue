@@ -50,6 +50,8 @@ public class Level : MonoBehaviour
     private State state;
     public LayerMask m_LayerMask;
 
+    FollowFish cameraScript; 
+    Bird birdScript; 
     public enum Difficulty
     {
         Easy,
@@ -77,6 +79,10 @@ public class Level : MonoBehaviour
 
     private void Start()
     {
+        cameraScript = Camera.main.GetComponent<FollowFish>();
+        birdScript = GameObject.Find("Bird").GetComponent<Bird>(); 
+        birdScript.speedPoints = 0; 
+
         Bird.GetInstance().OnDied += Bird_OnDied;
         Bird.GetInstance().OnStartedPlaying += Bird_OnStartedPlaying;
     }
@@ -116,7 +122,7 @@ public class Level : MonoBehaviour
             float maxHeight = totalHeight - gapSize * .5f - heightEdgeLimit;
 
             float height = UnityEngine.Random.Range(minHeight, maxHeight);
-            CreateGapPipes(height, gapSize, PIPE_SPAWN_X_POSITION);
+            CreateGapPipes(height, gapSize, PIPE_SPAWN_X_POSITION + birdScript.transform.position.x);
         }
     }
 
@@ -133,7 +139,7 @@ public class Level : MonoBehaviour
                 SoundManager.PlaySound(SoundManager.Sound.Score);
                 pipesPassedCount++;
             }
-            if (pipe.getXPosition() < PIPE_DESTROY_X_POSITION)
+            if (pipe.getXPosition() < PIPE_DESTROY_X_POSITION + birdScript.transform.position.x)
             {
                 // Destroy Pipe
                 pipe.destroySelf();
@@ -160,7 +166,7 @@ public class Level : MonoBehaviour
                     // Fish passed inside ring 
                     Debug.Log("Passed in ring"); 
                 }
-                if (sr.getXPosition() < PIPE_DESTROY_X_POSITION)
+                if (sr.getXPosition() < PIPE_DESTROY_X_POSITION + birdScript.transform.position.x)
                 {
                     // Destroy ring 
                     sr.destroySelf(); 
@@ -182,7 +188,7 @@ public class Level : MonoBehaviour
         
             // Randomly time to generate another ring 
             speedRingSpawnTimer = speedRingSpawnTimerMax + UnityEngine.Random.Range(-2,2); 
-            CreateSpeedRing(PIPE_SPAWN_X_POSITION); 
+            CreateSpeedRing(PIPE_SPAWN_X_POSITION + birdScript.transform.position.x); 
         }
 
     }
