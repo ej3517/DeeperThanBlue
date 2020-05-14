@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using CodeMonkey;
-using UnityEditorInternal;
+
 
 public class Bird : MonoBehaviour
 {
@@ -71,6 +68,11 @@ public class Bird : MonoBehaviour
             case State.Dead:
                 break;
         }
+
+        if (birdrigidbody2D.position.y < -50 || birdrigidbody2D.position.y > 50)
+        {
+            if (OnDied != null) OnDied(this, EventArgs.Empty);
+        }
     }
 
     private void Jump()
@@ -90,15 +92,22 @@ public class Bird : MonoBehaviour
         else if (collider.gameObject.CompareTag("Reef"))
         {
             Jump();
+        /*if (collider.gameObject.name == "pfSpeedRing(Clone)")
+        {
+            m_startForce = birdrigidbody2D.transform.position; 
+            birdrigidbody2D.AddForce(diamondForce, ForceMode2D.Impulse); 
+            speedPoints++; */         // Trusting that the dev branch is correct
         }
         else {
             birdrigidbody2D.bodyType = RigidbodyType2D.Static;
             SoundManager.PlaySound(SoundManager.Sound.Lose);
             if (OnDied != null) OnDied(this, EventArgs.Empty);
         }
-
     }
 
-    
 
+    public Vector3 getPosition()
+    {
+        return birdrigidbody2D.position;
+    }
 }
