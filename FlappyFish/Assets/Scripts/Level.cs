@@ -49,6 +49,9 @@ public class Level : MonoBehaviour
     private List<HandleSpeedRing.SpeedRing> speedRingList; 
     private float speedRingSpawnTimer; 
     private float speedRingSpawnTimerMax;
+
+    // Boat
+    private HandleBoat.Boat boat; 
     public LayerMask m_LayerMask;
     // State
     private State state;
@@ -86,6 +89,10 @@ public class Level : MonoBehaviour
         // coral reef
         reefList = new List<HandleReef.Reef>();
         HandleReef.CreateInitialReef(-CAMERA_ORTHO_SIZE, reefList);
+        // boat 
+        boat = HandleBoat.CreateBoat(); 
+
+
         //difficulty
         SetDifficulty(Difficulty.Easy);
         state = State.WaitingToStart;
@@ -126,10 +133,13 @@ public class Level : MonoBehaviour
             // WATERSURFACE
             HandleWaterSurfaceMovement();
             HandleWaterSurfaceSpawning();
-            
+
             // REEF
             HandleReefMovement();
             HandleReefSpawning();
+
+            // BOAT 
+            boat.Move(birdSpeed); 
         }
     }
     
