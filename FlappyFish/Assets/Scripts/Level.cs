@@ -8,7 +8,6 @@ public class Level : MonoBehaviour
     // Constants for camera 
     private const float CAMERA_ORTHO_SIZE = 50f;
 
-    private Vector2 screenBounds;
     // Constants for pipe
 
     // PIPE
@@ -16,20 +15,13 @@ public class Level : MonoBehaviour
     //Maybe not needed?
     //private const float PIPE_WIDTH = 7.8f;
     //private const float PIPE_HEAD_HEIGHT = 3.75f;
-    //private const float PIPE_MOVE_SPEED = 30f;
+    private const float PIPE_MOVE_SPEED = 30f;
     private const float PIPE_DESTROY_X_POSITION = -100f;
     private const float PIPE_SPAWN_X_POSITION = 100f;
 
 
-    // Constants for bird - in this case fish 
-    private const float BIRD_X_POSITION = 0;    // -- fish position will not be constant. will need to be changed 
-
     // Constants for speed ring 
     private const float SPEED_RING_MOVE_SPEED = 30f;
-    private const float SPEED_RING_DESTROY_X_POSITION = -100f;
-    private const float SPEED_RING_SPAWN_X_POSITION = 100f;
-    private const float RING_HEIGHT = 2f; 
-    private const float RING_WIDTH = 2f; 
     //public Collider2D colliders; 
 
     // WATER SURFACE
@@ -71,11 +63,6 @@ public class Level : MonoBehaviour
     private float pipeSpawnTimer;
     private float pipeSpawnTimerMax;
 
-    // Structures and data for speed ring 
-    private List<SpeedRing> speedRingList; 
-    private float speedRingSpawnTimer; 
-    private float speedRingSpawnTimerMax; 
-
     // WaterSurface
     private List<HandleWaterSurface.WaterSurface> waterSurfaceList;
     // CoralReef
@@ -93,10 +80,8 @@ public class Level : MonoBehaviour
     // SPEED
     public float birdSpeed = 30f;
     
-    
     FollowFish cameraScript; 
     Bird birdScript; 
-    public LayerMask m_LayerMask;
 
     private static QuestionWindow questionWindow;
     public float displaytime;
@@ -124,9 +109,6 @@ public class Level : MonoBehaviour
         //pipeList = new List<Pipe>();
         questionBlobList = new List<QuestionBlob>();
         questionWindow = QuestionWindow.getInstance();
-
-
-        speedRingList = new List<SpeedRing>(); 
 
         // waterSurface
         waterSurfaceList = new List<HandleWaterSurface.WaterSurface>();
@@ -354,35 +336,6 @@ public class Level : MonoBehaviour
         }
     }
 
-
-    private void HandleSpeedRingMovement()
-    {
-        for (int i = 0; i < speedRingList.Count; i++)
-        {
-            SpeedRing sr = speedRingList[i];  
-            if (sr != null)
-            {
-                bool isRightToTheBird = sr.getXPosition() > BIRD_X_POSITION; 
-
-                // bool to check whether fish touched rigid body in ring 
-                bool passedRing = true; 
-                sr.Move(); 
-                if (isRightToTheBird && sr.getXPosition() <= BIRD_X_POSITION && passedRing)
-                {
-                    // Fish passed inside ring 
-                    Debug.Log("Passed in ring"); 
-                }
-                if (sr.getXPosition() < PIPE_DESTROY_X_POSITION + birdScript.transform.position.x)
-                {
-                    // Destroy ring 
-                    sr.destroySelf(); 
-                    speedRingList.Remove(sr); 
-                    i--; 
-                }
-            }
-        }
-    }
-
     private void HandleQuestionMovement()
     {
         for (int i = 0; i < questionBlobList.Count; i++)
@@ -409,20 +362,7 @@ public class Level : MonoBehaviour
             }
         }
     }
-
-    private void HandleSpeedRingSpawning()
-    {
-        bool canSpawnHere = false; 
-        speedRingSpawnTimer -= Time.deltaTime; 
-        if (speedRingSpawnTimer < 0)
-        {
-        
-            // Randomly time to generate another ring 
-            speedRingSpawnTimer = speedRingSpawnTimerMax + UnityEngine.Random.Range(-2,2); 
-            CreateSpeedRing(PIPE_SPAWN_X_POSITION + birdScript.transform.position.x); 
-        }
-
-    }
+  
 
     private void HandleWaterSurfaceSpawning()
     {
@@ -454,8 +394,13 @@ public class Level : MonoBehaviour
     private void HandleReefSpawning()
     {
         float lastReefXPosition = reefList[reefList.Count - 1].GetXPosition();
-        if (lastReefXPosition < REEF_SPAWN_X_POSITION - REEF_DIMENSION * 0.75)
-/*
+        if (lastReefXPosition < REEF_SPAWN_X_POSITION - REEF_DIMENSION * 0.75)          //TODO: Is this Right?
+        {
+            int randomReefPipeHeight = Random.Range(1, REEF_PIPE_MAX_HEIGHT + 1);
+            HandleReef.CreateReef(REEF_SPAWN_X_POSITION, -CAMERA_ORTHO_SIZE, reefList, randomReefPipeHeight);
+        }
+    }
+    /*
             case Difficulty.Easy:
                 gapSize = 50f;
                 pipeSpawnTimerMax = 0.8f;
@@ -487,7 +432,7 @@ public class Level : MonoBehaviour
         return Difficulty.Easy;
     }
 
-
+    */
     private void SpawnQuestion(float _height, float _position)
     {
         Transform _questionBlob = Instantiate(GameAssets.GetInstance().pfQuestionBlob);
@@ -495,10 +440,10 @@ public class Level : MonoBehaviour
         QuestionBlob qb = new QuestionBlob(_questionBlob); 
         questionBlobList.Add(qb);
     }
-    */
+    
 
     /**************************************** CREATION OF PIPE ****************************************/
-    
+
     /*
     private void CreateGapPipes(float gapY, float gapSize, float xPosition)
     {
@@ -599,15 +544,11 @@ public class Level : MonoBehaviour
         
         // Creation of the Initial Water Line
         while (leftMostWaterSurfacePosition > WATERSURFACE_DESTROY_X_POSITION)
-*/
-        {
-            int randomReefPipeHeight = Random.Range(1, REEF_PIPE_MAX_HEIGHT + 1);
-            HandleReef.CreateReef(REEF_SPAWN_X_POSITION, -CAMERA_ORTHO_SIZE, reefList, randomReefPipeHeight);
-        }
-    }
+    */
+
 
     /********************************************************************** Creation of Speed Diamond *********************************************************/
-    
+
     private void CreateSpeedRing (float xPosition)
     {
         bool canSpawnHere = false; 
@@ -654,12 +595,12 @@ public class Level : MonoBehaviour
             return false; 
         }
     }
-}
- 
 
-    /* 
-     * represents speed rings 
-    */ 
+
+
+/* 
+ * represents speed rings 
+*/
 /*
     public class SpeedRing
     {
@@ -692,7 +633,7 @@ public class Level : MonoBehaviour
             speedRingTransform.localScale = vec; 
         }
     }
-    
+    */
     private class QuestionBlob
     {
         private Transform questionTransform;
@@ -722,8 +663,6 @@ public class Level : MonoBehaviour
 
     }
     
-    public static bool GetQuestion;
-
     private void PopoupQuestion()
     {
         // TODO: Get question with answer from server
@@ -732,7 +671,7 @@ public class Level : MonoBehaviour
         questionWindow.displayQuestion();
         displaytime = 1f;
     }
-
+    
     private void HandlePopupQuestion()
     {
         if (displaytime > 0)
@@ -748,4 +687,4 @@ public class Level : MonoBehaviour
 
 
 }
-*/
+
