@@ -4,12 +4,21 @@ using UnityEngine;
 
 public class Boat : MonoBehaviour
 {
-    private const float BOAT_Y_POSITION = 42f;
-    private const float BOAT_WIDTH = 5f;
-    private const float BOAT_HEIGHT = 4f;
-
     public float boatSpeed = 5f;
+    private Rigidbody2D boatRigidBody;
     
-    
+    private void Awake()
+    {
+        boatRigidBody = GetComponent<Rigidbody2D>();
+    }
 
+    private void Update()
+    {
+        MoveForward(boatSpeed);
+    }
+    
+    private void MoveForward(float horizontalSpeed)
+    {
+        boatRigidBody.velocity = Vector2.right * horizontalSpeed;
+    }
 }

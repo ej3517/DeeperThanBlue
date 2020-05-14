@@ -2,11 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="60884b82-83d6-468b-a134-8eabc3e9fcf8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Textures/FishingNet.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Textures/FishingNet.png.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HandleBoat.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HandleBoat.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/transport.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/transport.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/pfBoat.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/pfBoat.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/pfWaterSurface.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/pfWaterSurface.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Boat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Boat.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/Boat.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Boat.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/Boat.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Boat.png.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,8 +68,8 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/HandleSpeedRing.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HandleReef.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Bird.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Boat.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Level.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Boat.cs" />
       </list>
     </option>
   </component>
