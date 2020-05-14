@@ -3,9 +3,20 @@
   <component name="ChangeListManager">
     <list default="true" id="60884b82-83d6-468b-a134-8eabc3e9fcf8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HandleReef.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HandleReef.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef_1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef_1.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef_10.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef_10.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef_2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef_2.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef_3.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef_3.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef_4.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef_4.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef_5.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef_5.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef_6.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef_6.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef_7.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef_7.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef_8.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef_8.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef_9.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef_9.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/pfSpeedRing.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/pfSpeedRing.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Bird.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Bird.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +62,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Score.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ScoreWindow.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameOverWindow.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Bird.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ReefManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameAssets.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Reef.cs" />
@@ -61,6 +71,7 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/HandleSpeedRing.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Level.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HandleReef.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Bird.cs" />
       </list>
     </option>
   </component>
