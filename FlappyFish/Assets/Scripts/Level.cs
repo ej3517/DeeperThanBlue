@@ -8,15 +8,10 @@ public class Level : MonoBehaviour
 {
     private const float CAMERA_ORTHO_SIZE = 50f;
     // PIPE
-    private const float PIPE_WIDTH = 7.8f;
-    private const float PIPE_HEAD_HEIGHT = 3.75f;
-    private const float PIPE_MOVE_SPEED = 30f;
     private const float PIPE_DESTROY_X_POSITION = -100f;
     private const float PIPE_SPAWN_X_POSITION = 100f;
     // WATER SURFACE
     private const float WATERSURFACE_WIDTH = 20f;
-    private const float WATERSURFACE_HEIGHT = 8f;
-    private const float WATERSURFACE_MOVE_SPEED = 30f;
     private const float WATERSURFACE_DESTROY_X_POSITION = -120f;
     private const float WATERSURFACE_SPAWN_X_POSITION = 120f;
     // REEF
@@ -25,7 +20,6 @@ public class Level : MonoBehaviour
     private const float REEF_SPAWN_X_POSITION = 120f;
     // BIRD
     private const float BIRD_X_POSITION = 0;
-
     // SPEED DIAMOND
     private const float SPEED_RING_DESTROY_X_POSITION = -100f;
     private const float SPEED_RING_SPAWN_X_POSITION = 100f;
@@ -46,7 +40,6 @@ public class Level : MonoBehaviour
     private float gapSize;
     private float pipeSpawnTimer;
     private float pipeSpawnTimerMax;
-    private float speed_ring_move_speed = 30f;
     // WaterSurface
     private List<HandleWaterSurface.WaterSurface> waterSurfaceList;
     // CoralReef
@@ -58,6 +51,8 @@ public class Level : MonoBehaviour
     public LayerMask m_LayerMask;
     // State
     private State state;
+    // SPEED
+    private float birdSpeed = 30f;
     
     
     FollowFish cameraScript; 
@@ -181,7 +176,7 @@ public class Level : MonoBehaviour
         {
             HandlePipe.Pipe pipe = pipeList[i];
             bool isRightToTheBird = pipe.GetXPosition() > BIRD_X_POSITION;
-            pipe.Move(speed_ring_move_speed);
+            pipe.Move(birdSpeed);
             if (isRightToTheBird && pipe.GetXPosition() <= BIRD_X_POSITION)
             {
                 // Pipe passed Bird
@@ -241,7 +236,7 @@ public class Level : MonoBehaviour
 
                 // bool to check whether fish touched rigid body in ring 
                 bool passedRing = true; 
-                sr.Move(speed_ring_move_speed);
+                sr.Move(birdSpeed);
                 if (isRightToTheBird && sr.getXPosition() <= BIRD_X_POSITION && passedRing)
                 {
                     // Fish passed inside ring 
@@ -279,7 +274,7 @@ public class Level : MonoBehaviour
         for (int i = 0; i < waterSurfaceList.Count; i++)
         {
             HandleWaterSurface.WaterSurface waterSurface = waterSurfaceList[i];
-            waterSurface.Move(speed_ring_move_speed);
+            waterSurface.Move(birdSpeed);
             if (waterSurface.GetXPosition() < WATERSURFACE_DESTROY_X_POSITION)
             {
                 waterSurface.DestroySelf();
@@ -306,7 +301,7 @@ public class Level : MonoBehaviour
         for (int i = 0; i < reefList.Count; i++)
         {
             HandleReef.Reef reef = reefList[i];
-            reef.Move(speed_ring_move_speed);
+            reef.Move(birdSpeed);
             if (reef.GetXPosition() < REEF_DESTROY_X_POSITION)
             {
                 reef.DestroySelf();
