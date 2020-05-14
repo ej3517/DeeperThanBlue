@@ -53,7 +53,7 @@ public class Level : MonoBehaviour
     // State
     private State state;
     // SPEED
-    private float birdSpeed = 30f;
+    public float birdSpeed = 30f;
     
     
     FollowFish cameraScript; 
@@ -126,6 +126,7 @@ public class Level : MonoBehaviour
             // WATERSURFACE
             HandleWaterSurfaceMovement();
             HandleWaterSurfaceSpawning();
+            
             // REEF
             HandleReefMovement();
             HandleReefSpawning();
