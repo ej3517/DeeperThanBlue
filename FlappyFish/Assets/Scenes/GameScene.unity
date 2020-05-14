@@ -1415,6 +1415,7 @@ MonoBehaviour:
   - {fileID: 3228869125502735068, guid: 995ad06c19c744ff0bcabb05233aba09, type: 3}
   - {fileID: 1885980896317321637, guid: 0416d133d734146649e37f633fdcbe5e, type: 3}
   - {fileID: 8985809393253343289, guid: 86e80d39f982a4d808042067ea5c7a55, type: 3}
+  pfBoat: {fileID: 6816506258275476580, guid: 1655bad4cac824194b2fc2de04a73122, type: 3}
   soundAudioClipArray:
   - sound: 0
     audioClip: {fileID: 8300000, guid: b0664f294a7284007a1510c7ee06ab8e, type: 3}
