@@ -25,52 +25,65 @@ public class HandleReef : MonoBehaviour
             CircleCollider2D reefCircleCollider = reefTransform.GetComponent<CircleCollider2D>();
             reefCircleCollider.radius = REEF_DIMENSION * .5f;
 
-            Reef reef = new Reef(reefTransform);
+            Transform[] reefArray = {reefTransform};
+            Reef reef = new Reef(reefArray);
             reefList.Add(reef);
 
-            leftMostReef -= REEF_DIMENSION;
+            leftMostReef -= REEF_DIMENSION * 0.75f;
         }
     }
     
-    public static void CreateReef(float xPosition, float yPosition, List<Reef> reefList)
+    public static void CreateReef(float xPosition, float yPosition, List<Reef> reefList, int pipeHeight)
     {
         Transform[] reefTransformsArray = GameAssets.GetInstance().pfReefArray;
-        Transform reefTransform = Instantiate(reefTransformsArray[Random.Range(0, reefTransformsArray.Length)]);
+        Transform[] reefPipeArray = new Transform[pipeHeight];
         
-        reefTransform.position = new Vector3(xPosition, yPosition);
+        for (int i = 0; i < pipeHeight; i++)
+        {
+            Transform reefTransform = Instantiate(reefTransformsArray[Random.Range(0, reefTransformsArray.Length)]);
+            reefTransform.position = new Vector3(xPosition, yPosition + i * REEF_DIMENSION * .75f);
 
-        SpriteRenderer reefSpriteRenderer = reefTransform.GetComponent<SpriteRenderer>();
-        reefSpriteRenderer.size = new Vector2(REEF_DIMENSION, REEF_DIMENSION);
+            SpriteRenderer reefSpriteRenderer = reefTransform.GetComponent<SpriteRenderer>();
+            reefSpriteRenderer.size = new Vector2(REEF_DIMENSION, REEF_DIMENSION);
+
+            CircleCollider2D reefCircleCollider = reefTransform.GetComponent<CircleCollider2D>();
+            reefCircleCollider.radius = REEF_DIMENSION * .5f;
+
+            reefPipeArray[i] = reefTransform;
+        }
         
-        CircleCollider2D reefCircleCollider = reefTransform.GetComponent<CircleCollider2D>();
-        reefCircleCollider.radius = REEF_DIMENSION * .5f;
-
-        Reef reef = new Reef(reefTransform);
+        Reef reef = new Reef(reefPipeArray);
         reefList.Add(reef);
     }
     
     public class Reef
     {
-        private Transform reefTransform;
+        private Transform[] reefTransformArray;
 
-        public Reef(Transform reefTransform)
+        public Reef(Transform[] reefTransformArray)
         {
-            this.reefTransform = reefTransform;
+            this.reefTransformArray = reefTransformArray;
         }
 
         public void Move(float speed)
         {
-            reefTransform.position += new Vector3(-1, 0, 0) * speed * Time.deltaTime;
+            foreach (Transform reefTransform in reefTransformArray)
+            {
+                reefTransform.position += new Vector3(-1, 0, 0) * speed * Time.deltaTime;
+            }
         }
 
         public float GetXPosition()
         {
-            return reefTransform.position.x;
+            return reefTransformArray[0].position.x;
         }
 
         public void DestroySelf()
         {
-            Destroy(reefTransform.gameObject);
+            foreach (Transform reefTransform in reefTransformArray)
+            {
+                Destroy(reefTransform.gameObject);
+            }
         }
     }
 }

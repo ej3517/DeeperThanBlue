@@ -18,6 +18,7 @@ public class Level : MonoBehaviour
     private const float REEF_DIMENSION = 14f;
     private const float REEF_DESTROY_X_POSITION = -120f;
     private const float REEF_SPAWN_X_POSITION = 120f;
+    private const int REEF_PIPE_MAX_HEIGHT = 5;
     // BIRD
     private const float BIRD_X_POSITION = 0;
     // SPEED DIAMOND
@@ -314,9 +315,10 @@ public class Level : MonoBehaviour
     private void HandleReefSpawning()
     {
         float lastReefXPosition = reefList[reefList.Count - 1].GetXPosition();
-        if (lastReefXPosition < REEF_SPAWN_X_POSITION - REEF_DIMENSION + 1)
+        if (lastReefXPosition < REEF_SPAWN_X_POSITION - REEF_DIMENSION * 0.75)
         {
-            HandleReef.CreateReef(REEF_SPAWN_X_POSITION, -CAMERA_ORTHO_SIZE, reefList);
+            int randomReefPipeHeight = Random.Range(1, REEF_PIPE_MAX_HEIGHT + 1);
+            HandleReef.CreateReef(REEF_SPAWN_X_POSITION, -CAMERA_ORTHO_SIZE, reefList, randomReefPipeHeight);
         }
     }
 
