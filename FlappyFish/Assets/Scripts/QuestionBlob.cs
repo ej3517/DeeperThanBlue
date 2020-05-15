@@ -10,9 +10,9 @@ public class QuestionBlob : MonoBehaviour
         questionTransform = _questionTransform;
     }
 
-    public void Move(float PIPE_MOVE_SPEED)
+    public void Move(float speed)
     {
-        questionTransform.position += new Vector3(-1, 0, 0) * PIPE_MOVE_SPEED * Time.deltaTime;        //RENAME MOVESPEED
+        questionTransform.position += new Vector3(-1, 0, 0) * speed * Time.deltaTime;   //RENAME MOVESPEED
     }
 
     public float getXPosition()

@@ -89,7 +89,7 @@ public class Bird : MonoBehaviour
             birdrigidbody2D.AddForce(diamondForce, ForceMode2D.Impulse); 
             speedPoints++;
         }
-        else if (collider.gameObject.CompareTag("Reef"))
+        else if (collider.gameObject.CompareTag("Reef")||collider.gameObject.CompareTag("Pipe"))
         {
             Jump();
         }
@@ -100,8 +100,6 @@ public class Bird : MonoBehaviour
         }
 
     }
-
-    
 
     public Vector3 getPosition()
     {

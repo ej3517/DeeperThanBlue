@@ -7,6 +7,7 @@ TagManager:
   - Reef
   - SpeedRing
   - Boat
+  - Pipe
   layers:
   - Default
   - TransparentFX

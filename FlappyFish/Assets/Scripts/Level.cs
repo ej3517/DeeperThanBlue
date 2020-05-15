@@ -9,18 +9,14 @@ public class Level : MonoBehaviour
     private const float CAMERA_ORTHO_SIZE = 50f;
 
     private Vector2 screenBounds;
-    // Constants for pipe
 
     // PIPE
     private const float PIPE_DESTROY_X_POSITION = -100f;
     private const float PIPE_SPAWN_X_POSITION = 100f;
-
     // Constants for speed ring 
     private const float SPEED_RING_MOVE_SPEED = 30f;
     private const float SPEED_RING_DESTROY_X_POSITION = -100f;
     private const float SPEED_RING_SPAWN_X_POSITION = 100f;
-    //public Collider2D colliders; 
-
     // WATER SURFACE
     private const float WATERSURFACE_WIDTH = 20f;
     private const float WATERSURFACE_DESTROY_X_POSITION = -120f;
@@ -50,12 +46,9 @@ public class Level : MonoBehaviour
     private float pipeSpawnTimer;
     private float pipeSpawnTimerMax;
 
-
     // Questions
     private List<QuestionBlob> questionBlobList;
     private static QuestionWindow questionWindow;
-
-
 
     // WaterSurface
     private List<HandleWaterSurface.WaterSurface> waterSurfaceList;
@@ -148,10 +141,6 @@ public class Level : MonoBehaviour
             HandleSpeedRingMovement();
             HandleSpeedRingSpawning();
 
-            // QUESTIONS
-            HandlePopupQuestion();
-            HandleQuestionMovement();
-
             // WATERSURFACE
             HandleWaterSurfaceMovement();
             HandleWaterSurfaceSpawning();
@@ -159,6 +148,10 @@ public class Level : MonoBehaviour
             // REEF
             HandleReefMovement();
             HandleReefSpawning();
+            
+            // QUESTIONS
+            HandleQuestionMovement();
+            HandlePopupQuestion();
         }
     }
     
@@ -326,15 +319,14 @@ public class Level : MonoBehaviour
             }
         }
     }
-
+    
+    /************************************ QUESTION MOVEMENT ************************************/
     private void HandleQuestionMovement()
     {
         for (int i = 0; i < questionBlobList.Count; i++)
         {
             QuestionBlob question = questionBlobList[i];
-            bool isRightToTheBird = question.getXPosition() > BIRD_X_POSITION;
             question.Move(birdSpeed);
-            
             if(question.getDistance(Bird.GetInstance().getPosition()) < 9)
             {
                 SoundManager.PlaySound(SoundManager.Sound.Question); //TODO: Add sound

@@ -14,7 +14,7 @@ public class Boat : MonoBehaviour
 
     private void Update()
     {
-        MoveForward(boatSpeed);
+        // MoveForward(boatSpeed);
     }
     
     private void MoveForward(float horizontalSpeed)
