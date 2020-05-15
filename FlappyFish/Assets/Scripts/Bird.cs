@@ -83,11 +83,15 @@ public class Bird : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.name == "pfSpeedRing(Clone)")
+        if (collider.gameObject.CompareTag("SpeedRing"))
         {
             m_startForce = birdrigidbody2D.transform.position; 
             birdrigidbody2D.AddForce(diamondForce, ForceMode2D.Impulse); 
-            speedPoints++; 
+            speedPoints++;
+        }
+        else if (collider.gameObject.CompareTag("Reef"))
+        {
+            Jump();
         }
         else {
             birdrigidbody2D.bodyType = RigidbodyType2D.Static;
@@ -96,6 +100,8 @@ public class Bird : MonoBehaviour
         }
 
     }
+
+    
 
     public Vector3 getPosition()
     {

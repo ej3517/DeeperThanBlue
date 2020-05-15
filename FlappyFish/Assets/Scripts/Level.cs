@@ -12,73 +12,71 @@ public class Level : MonoBehaviour
     // Constants for pipe
 
     // PIPE
-
-    private const float PIPE_WIDTH = 7.8f;
-    private const float PIPE_HEAD_HEIGHT = 3.75f;
-    private const float PIPE_MOVE_SPEED = 30f;
     private const float PIPE_DESTROY_X_POSITION = -100f;
     private const float PIPE_SPAWN_X_POSITION = 100f;
-
-
-    // Constants for bird - in this case fish 
-    private const float BIRD_X_POSITION = 0;    // -- fish position will not be constant. will need to be changed 
 
     // Constants for speed ring 
     private const float SPEED_RING_MOVE_SPEED = 30f;
     private const float SPEED_RING_DESTROY_X_POSITION = -100f;
     private const float SPEED_RING_SPAWN_X_POSITION = 100f;
-    private const float RING_HEIGHT = 2f; 
-    private const float RING_WIDTH = 2f; 
     //public Collider2D colliders; 
 
     // WATER SURFACE
     private const float WATERSURFACE_WIDTH = 20f;
-    private const float WATERSURFACE_HEIGHT = 8f;
-    private const float WATERSURFACE_MOVE_SPEED = 30f;
     private const float WATERSURFACE_DESTROY_X_POSITION = -120f;
     private const float WATERSURFACE_SPAWN_X_POSITION = 120f;
     // REEF
-    private const float REEF_DIMENTION = 14f;
-    
-   
-
-
+    private const float REEF_DIMENSION = 14f;
+    private const float REEF_DESTROY_X_POSITION = -120f;
+    private const float REEF_SPAWN_X_POSITION = 120f;
+    private const int REEF_PIPE_MAX_HEIGHT = 5;
+    // BIRD
+    private const float BIRD_X_POSITION = 0;
+    // SPEED DIAMOND
+    private const float RING_HEIGHT = 2f; 
+    private const float RING_WIDTH = 2f; 
     private static Level instance;
 
     public static Level GetInstance()
     {
         return instance;
     }
-
-    // Structures and data required for pipe    
+    
     // Pipe 
-
-    private List<QuestionBlob> questionBlobList;
-    private List<Pipe> pipeList;
-    private int pipesPassedCount;
+    private List<HandlePipe.Pipe> pipeList;
+    public int pipesPassedCount;
     private int pipesSpawned;
     private float gapSize;
     private float pipeSpawnTimer;
     private float pipeSpawnTimerMax;
 
-    // Structures and data for speed ring 
-    private List<SpeedRing> speedRingList; 
-    private float speedRingSpawnTimer; 
-    private float speedRingSpawnTimerMax; 
+
+    // Questions
+    private List<QuestionBlob> questionBlobList;
+    private static QuestionWindow questionWindow;
+
+
 
     // WaterSurface
-    private List<WaterSurface> waterSurfaceList;
+    private List<HandleWaterSurface.WaterSurface> waterSurfaceList;
+    // CoralReef
+    private List<HandleReef.Reef> reefList;
+    // Structures and data for speed ring 
+    private List<HandleSpeedRing.SpeedRing> speedRingList; 
+    private float speedRingSpawnTimer; 
+    private float speedRingSpawnTimerMax;
+
+    // Boat
+    public LayerMask m_LayerMask;
     // State
 
     private State state;
-    public LayerMask m_LayerMask;
-
-    private static QuestionWindow questionWindow;
-    public float displaytime;
-
-    //FollowFish cameraScript; 
+    // SPEED
+    public float birdSpeed = 30f;
+    
+    
+    FollowFish cameraScript; 
     Bird birdScript; 
-
     public enum Difficulty
     {
         Easy,
@@ -97,34 +95,31 @@ public class Level : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        // reef
-        CreateReef(20f, 0f);
-        CreateReef(40f, 0f);
-        CreateReef(60f, 0f);
-        CreateReef(80f, 0f);
         // pipe
-        pipeList = new List<Pipe>();
-        questionBlobList = new List<QuestionBlob>();
-        questionWindow = QuestionWindow.getInstance();
-
-
-        speedRingList = new List<SpeedRing>(); 
-
+        pipeList = new List<HandlePipe.Pipe>();
         // waterSurface
-        waterSurfaceList = new List<WaterSurface>();
-        CreateInitialWaterSurface(CAMERA_ORTHO_SIZE);
+        waterSurfaceList = new List<HandleWaterSurface.WaterSurface>();
+        HandleWaterSurface.CreateInitialWaterSurface(CAMERA_ORTHO_SIZE, waterSurfaceList);
+        // speed diamond
+        speedRingList = new List<HandleSpeedRing.SpeedRing>();
+        // coral reef
+        reefList = new List<HandleReef.Reef>();
+        HandleReef.CreateInitialReef(-CAMERA_ORTHO_SIZE, reefList);
         //difficulty
 
         SetDifficulty(Difficulty.Easy);
         state = State.WaitingToStart;
+
+        questionBlobList = new List<QuestionBlob>();
+        questionWindow = QuestionWindow.getInstance();
     }
 
     private void Start()
     {
-        //cameraScript = Camera.main.GetComponent<FollowFish>();
+        cameraScript = Camera.main.GetComponent<FollowFish>();
         birdScript = GameObject.Find("Bird").GetComponent<Bird>(); 
-        birdScript.speedPoints = 0; 
-
+        birdScript.speedPoints = 0;
+         
         Bird.GetInstance().OnDied += Bird_OnDied;
         Bird.GetInstance().OnStartedPlaying += Bird_OnStartedPlaying;
     }
@@ -147,30 +142,72 @@ public class Level : MonoBehaviour
         {
             // PIPE
             HandlePipeMovement();
-            HandleQuestionMovement();
             HandlePipeSpawning();
-            HandlePopupQuestion();
-            //HandleQuestionSpawning();
 
             // SPEED DIAMONDS
             HandleSpeedRingMovement();
-            HandleSpeedRingSpawning(); 
+            HandleSpeedRingSpawning();
+
+            // QUESTIONS
+            HandlePopupQuestion();
+            HandleQuestionMovement();
 
             // WATERSURFACE
             HandleWaterSurfaceMovement();
             HandleWaterSurfaceSpawning();
+
+            // REEF
+            HandleReefMovement();
+            HandleReefSpawning();
+        }
+    }
+    
+    /************************************ EVOLUTION OF THE DIFFICULTY ************************************/
+    
+    private void SetDifficulty(Difficulty difficulty)
+    {
+        switch (difficulty)
+        {
+            case Difficulty.Easy:
+                gapSize = 50f;
+                pipeSpawnTimerMax = 0.8f;
+                speedRingSpawnTimerMax = 3.0f; 
+                break;
+            case Difficulty.Medium:
+                gapSize = 40f;
+                pipeSpawnTimerMax = 1f;
+                speedRingSpawnTimerMax = 3.0f; 
+                break;
+            case Difficulty.Hard:
+                gapSize = 33f;
+                pipeSpawnTimerMax = 1.1f;
+                speedRingSpawnTimerMax = 3.0f; 
+                break;
+            case Difficulty.Impossible:
+                gapSize = 24f;
+                pipeSpawnTimerMax = 1.2f;
+                speedRingSpawnTimerMax = 3.0f; 
+                break;
         }
     }
 
-    /********************************************* PIPE MOVEMENT *********************************************/
+    private Difficulty GetDifficulty()
+    {
+        if (pipesSpawned >= 30) return Difficulty.Impossible;
+        if (pipesSpawned >= 20) return Difficulty.Hard;
+        if (pipesSpawned >= 10) return Difficulty.Medium;
+        return Difficulty.Easy;
+    }
+
+    /********************************************* PIPE MOVEMENT / SCORE *********************************************/
     
     private void HandlePipeMovement()
     {
         for (int i = 0; i<pipeList.Count; i++)
         {
-            Pipe pipe = pipeList[i];
+            HandlePipe.Pipe pipe = pipeList[i];
             bool isRightToTheBird = pipe.GetXPosition() > BIRD_X_POSITION;
-            pipe.Move();
+            pipe.Move(birdSpeed);
             if (isRightToTheBird && pipe.GetXPosition() <= BIRD_X_POSITION)
             {
                 // Pipe passed Bird
@@ -217,36 +254,32 @@ public class Level : MonoBehaviour
         }
     }
     
-    /******************************************* WATER SURFACE MOVEMENT *******************************************/
-
-    private void HandleWaterSurfaceMovement()
+    private void CreateGapPipes(float gapY, float gapSize, float xPosition)
     {
-        for (int i = 0; i < waterSurfaceList.Count; i++)
-        {
-            WaterSurface waterSurface = waterSurfaceList[i];
-            waterSurface.Move();
-            if (waterSurface.GetXPosition() < WATERSURFACE_DESTROY_X_POSITION)
-            {
-                waterSurface.DestroySelf();
-                waterSurfaceList.Remove(waterSurface);
-                i--;
-            }
-        }
+        HandlePipe.CreatePipe(gapY - gapSize * .5f, xPosition, pipeList);
+        pipesSpawned++;
+        SetDifficulty(GetDifficulty());
     }
 
+    public int GetPipesPassedCount()
+    {
+        return pipesPassedCount;
+    }
 
+    /************************************************   Speed Diamonds Movement ************************************************/
+    
     private void HandleSpeedRingMovement()
     {
         for (int i = 0; i < speedRingList.Count; i++)
         {
-            SpeedRing sr = speedRingList[i];  
+            HandleSpeedRing.SpeedRing sr = speedRingList[i];  
             if (sr != null)
             {
                 bool isRightToTheBird = sr.getXPosition() > BIRD_X_POSITION; 
 
                 // bool to check whether fish touched rigid body in ring 
                 bool passedRing = true; 
-                sr.Move(); 
+                sr.Move(birdSpeed);
                 if (isRightToTheBird && sr.getXPosition() <= BIRD_X_POSITION && passedRing)
                 {
                     // Fish passed inside ring 
@@ -263,13 +296,44 @@ public class Level : MonoBehaviour
         }
     }
 
+    private void HandleSpeedRingSpawning()
+    {
+        bool canSpawnHere = false; 
+        speedRingSpawnTimer -= Time.deltaTime; 
+        if (speedRingSpawnTimer < 0)
+        {
+        
+            // Randomly time to generate another ring 
+            speedRingSpawnTimer = speedRingSpawnTimerMax + UnityEngine.Random.Range(-2,2); 
+            CreateSpeedRing(PIPE_SPAWN_X_POSITION + birdScript.transform.position.x); 
+        }
+
+    }
+
+    /******************************************* WATER SURFACE MOVEMENT *******************************************/
+
+    private void HandleWaterSurfaceMovement()
+    {
+        for (int i = 0; i < waterSurfaceList.Count; i++)
+        {
+            HandleWaterSurface.WaterSurface waterSurface = waterSurfaceList[i];
+            waterSurface.Move(birdSpeed);
+            if (waterSurface.GetXPosition() < WATERSURFACE_DESTROY_X_POSITION)
+            {
+                waterSurface.DestroySelf();
+                waterSurfaceList.Remove(waterSurface);
+                i--;
+            }
+        }
+    }
+
     private void HandleQuestionMovement()
     {
         for (int i = 0; i < questionBlobList.Count; i++)
         {
             QuestionBlob question = questionBlobList[i];
             bool isRightToTheBird = question.getXPosition() > BIRD_X_POSITION;
-            question.Move();
+            question.Move(birdSpeed);
             
             if(question.getDistance(Bird.GetInstance().getPosition()) < 9)
             {
@@ -290,116 +354,45 @@ public class Level : MonoBehaviour
         }
     }
 
-    private void HandleSpeedRingSpawning()
-    {
-        bool canSpawnHere = false; 
-        speedRingSpawnTimer -= Time.deltaTime; 
-        if (speedRingSpawnTimer < 0)
-        {
-        
-            // Randomly time to generate another ring 
-            speedRingSpawnTimer = speedRingSpawnTimerMax + UnityEngine.Random.Range(-2,2); 
-            CreateSpeedRing(PIPE_SPAWN_X_POSITION + birdScript.transform.position.x); 
-        }
-
-    }
-
     private void HandleWaterSurfaceSpawning()
     {
         // Spawn a new water surface after the last one);
         float lastWaterSurfaceXPosition = waterSurfaceList[waterSurfaceList.Count - 1].GetXPosition();
         if (lastWaterSurfaceXPosition < WATERSURFACE_SPAWN_X_POSITION - WATERSURFACE_WIDTH + 1)
         {
-            CreateWaterSurface(WATERSURFACE_SPAWN_X_POSITION, CAMERA_ORTHO_SIZE);
+            HandleWaterSurface.CreateWaterSurface(WATERSURFACE_SPAWN_X_POSITION, CAMERA_ORTHO_SIZE, waterSurfaceList);
         }
     }
-
-    /************************************ EVOLUTION OF THE DIFFICULTY ************************************/
     
-    private void SetDifficulty(Difficulty difficulty)
+    /******************************************* CORAL REEF MOVEMENT *******************************************/
+
+    private void HandleReefMovement()
     {
-        switch (difficulty)
+        for (int i = 0; i < reefList.Count; i++)
         {
-            case Difficulty.Easy:
-                gapSize = 50f;
-                pipeSpawnTimerMax = 0.8f;
-                speedRingSpawnTimerMax = 3.0f; 
-                break;
-            case Difficulty.Medium:
-                gapSize = 40f;
-                pipeSpawnTimerMax = 1f;
-                speedRingSpawnTimerMax = 3.0f; 
-                break;
-            case Difficulty.Hard:
-                gapSize = 33f;
-                pipeSpawnTimerMax = 1.1f;
-                speedRingSpawnTimerMax = 3.0f; 
-                break;
-            case Difficulty.Impossible:
-                gapSize = 24f;
-                pipeSpawnTimerMax = 1.2f;
-                speedRingSpawnTimerMax = 3.0f; 
-                break;
+            HandleReef.Reef reef = reefList[i];
+            reef.Move(birdSpeed);
+            if (reef.GetXPosition() < REEF_DESTROY_X_POSITION)
+            {
+                reef.DestroySelf();
+                reefList.Remove(reef);
+                i--;
+            }
         }
     }
 
-    private Difficulty GetDifficulty()
+    private void HandleReefSpawning()
     {
-        if (pipesSpawned >= 30) return Difficulty.Impossible;
-        if (pipesSpawned >= 20) return Difficulty.Hard;
-        if (pipesSpawned >= 10) return Difficulty.Medium;
-        return Difficulty.Easy;
+        float lastReefXPosition = reefList[reefList.Count - 1].GetXPosition();
+        if (lastReefXPosition < REEF_SPAWN_X_POSITION - REEF_DIMENSION * 0.75)
+        {
+            int randomReefPipeHeight = Random.Range(1, REEF_PIPE_MAX_HEIGHT + 1);
+            HandleReef.CreateReef(REEF_SPAWN_X_POSITION, -CAMERA_ORTHO_SIZE, reefList, randomReefPipeHeight);
+        }
     }
 
-
-    private void SpawnQuestion(float _height, float _position)
-    {
-        Transform _questionBlob = Instantiate(GameAssets.GetInstance().pfQuestionBlob);
-        _questionBlob.position = new Vector3(_position, _height);
-        QuestionBlob qb = new QuestionBlob(_questionBlob); 
-        questionBlobList.Add(qb);
-    }
-
-
-    /**************************************** CREATION OF PIPE ****************************************/
+    /********************************************************************** Creation of Speed Diamond *********************************************************/
     
-
-    private void CreateGapPipes(float gapY, float gapSize, float xPosition)
-    {
-        CreatePipe(gapY - gapSize * .5f, xPosition);
-
-        pipesSpawned++;
-        SetDifficulty(GetDifficulty());
-    }
-    
-    private void CreatePipe(float height, float xPosition)
-    {
-        // set up pipe head
-        Transform pipeHead = Instantiate(GameAssets.GetInstance().pfPipeHead);
-        float pipeHeadYPosition;
-        pipeHeadYPosition = -CAMERA_ORTHO_SIZE + height - PIPE_HEAD_HEIGHT * .5f;
-        pipeHead.position = new Vector3(xPosition, pipeHeadYPosition);
-
-        // set up pipe body
-        Transform pipeBody = Instantiate(GameAssets.GetInstance().pfPipeBody);
-
-        float PipeBodyYPosition;
-        PipeBodyYPosition = -CAMERA_ORTHO_SIZE;
-     
-        pipeBody.position = new Vector3(xPosition, PipeBodyYPosition);
-
-        SpriteRenderer pipeBodySpriteRenderer = pipeBody.GetComponent<SpriteRenderer>();
-        pipeBodySpriteRenderer.size = new Vector2(PIPE_WIDTH, height);
-
-        BoxCollider2D pipeBodyBoxCollider = pipeBody.GetComponent<BoxCollider2D>();
-        pipeBodyBoxCollider.size = new Vector2(PIPE_WIDTH, height);
-        pipeBodyBoxCollider.offset = new Vector2(0f, height * .5f);
-
-        Pipe pipe = new Pipe(pipeHead, pipeBody);
-        pipeList.Add(pipe);
-    }
-
-
     private void CreateSpeedRing (float xPosition)
     {
         bool canSpawnHere = false; 
@@ -414,7 +407,7 @@ public class Level : MonoBehaviour
 
             Transform sr = Instantiate(GameAssets.GetInstance().pfSpeedRing);
             sr.position = new Vector3(xPosition - 2, yPosition); 
-            SpeedRing ring = new SpeedRing(sr); 
+            HandleSpeedRing.SpeedRing ring = new HandleSpeedRing.SpeedRing(sr); 
 
 
             canSpawnHere = PreventSpawnOverlap(ring.speedRingTransform);
@@ -447,228 +440,7 @@ public class Level : MonoBehaviour
         }
     }
 
-    //public int GetPipesScore()
-
-    public int GetPipesPassedCount()
-
-    {
-        return pipesPassedCount;
-    }
-    
-    /************************************ CREATION OF WATERSURFACE ************************************/
-
-    private void CreateInitialWaterSurface(float yPosition)
-    {
-        float leftMostWaterSurfacePosition = WATERSURFACE_SPAWN_X_POSITION;
-        
-        // Creation of the Initial Water Line
-        while (leftMostWaterSurfacePosition > WATERSURFACE_DESTROY_X_POSITION)
-        {
-            Transform waterSurfaceTransform = Instantiate(GameAssets.GetInstance().pfWaterSurface);
-            waterSurfaceTransform.position = new Vector3(leftMostWaterSurfacePosition, yPosition);
-        
-            SpriteRenderer WaterSurfaceSpriteRenderer = waterSurfaceTransform.GetComponent<SpriteRenderer>();
-            WaterSurfaceSpriteRenderer.size = new Vector2(WATERSURFACE_WIDTH, WATERSURFACE_HEIGHT);
-
-            BoxCollider2D waterSurfaceBoxCollider = waterSurfaceTransform.GetComponent<BoxCollider2D>();
-            waterSurfaceBoxCollider.size = new Vector2(WATERSURFACE_WIDTH, WATERSURFACE_HEIGHT * .5f);
-            waterSurfaceBoxCollider.offset = new Vector2(0f, - WATERSURFACE_HEIGHT * .5f);
-
-            WaterSurface waterSurface = new WaterSurface(waterSurfaceTransform);
-            waterSurfaceList.Add(waterSurface);
-
-            leftMostWaterSurfacePosition -= WATERSURFACE_WIDTH;
-        }
-    }
-
-    private void CreateWaterSurface(float xPosition, float yPosition)
-    {
-        // Set up a Water Surface tiled
-        Transform waterSurfaceTransform = Instantiate(GameAssets.GetInstance().pfWaterSurface);
-        waterSurfaceTransform.position = new Vector3(xPosition, yPosition);
-        
-        SpriteRenderer waterSurfaceSpriteRenderer = waterSurfaceTransform.GetComponent<SpriteRenderer>();
-        waterSurfaceSpriteRenderer.size = new Vector2(WATERSURFACE_WIDTH, WATERSURFACE_HEIGHT);
-
-        BoxCollider2D waterSurfaceBoxCollider = waterSurfaceTransform.GetComponent<BoxCollider2D>();
-        waterSurfaceBoxCollider.size = new Vector2(WATERSURFACE_WIDTH, WATERSURFACE_HEIGHT* .5f);
-        waterSurfaceBoxCollider.offset = new Vector2(0f, - WATERSURFACE_HEIGHT * .5f);
-
-        WaterSurface waterSurface = new WaterSurface(waterSurfaceTransform);
-        waterSurfaceList.Add(waterSurface);
-    }
-    
-    /************************************ CREATION OF CORALREEF ************************************/
-
-    private void CreateReef(float xPosition, float yPosition)
-    {
-        Transform[] reefTransformsArray = GameAssets.GetInstance().pfReefArray;
-        Transform reefTransform = Instantiate(reefTransformsArray[Random.Range(0, reefTransformsArray.Length)]);
-        reefTransform.position = new Vector3(xPosition, yPosition);
-
-        SpriteRenderer reefSpriteRenderer = reefTransform.GetComponent<SpriteRenderer>();
-        reefSpriteRenderer.size = new Vector2(REEF_DIMENTION, REEF_DIMENTION);
-        
-        CircleCollider2D reefCircleCollider = reefTransform.GetComponent<CircleCollider2D>();
-        reefCircleCollider.radius = REEF_DIMENTION * .5f;
-    }
-
-    /****************************************************************************************************
-    ************************************ Represent the Water Surface ************************************
-    *****************************************************************************************************/
-    
-    private class WaterSurface
-    {
-        private Transform waterSurfaceTransform;
-
-        public WaterSurface(Transform waterSurfaceTransform)
-        {
-            this.waterSurfaceTransform = waterSurfaceTransform;
-        }
-
-        public void Move()
-        {
-            waterSurfaceTransform.position += new Vector3(-1, 0, 0) * WATERSURFACE_MOVE_SPEED * Time.deltaTime;
-        }
-        
-        public float GetXPosition()
-        {
-            return waterSurfaceTransform.position.x;
-        }
-
-        public void DestroySelf()
-        {
-            Destroy(waterSurfaceTransform.gameObject);
-        }
-    }
-    /****************************************************************************************************
-    ************************************ Represent the Water Surface ************************************
-    *****************************************************************************************************/
-    
-    private class Reef
-    {
-        private Transform reefTransform;
-
-        public Reef(Transform reefTransform)
-        {
-            this.reefTransform = reefTransform;
-        }
-
-        public void Move()
-        {
-            reefTransform.position += new Vector3(-1, 0, 0) * WATERSURFACE_MOVE_SPEED * Time.deltaTime;
-        }
-        
-        public float GetXPosition()
-        {
-            return reefTransform.position.x;
-        }
-
-        public void DestroySelf()
-        {
-            Destroy(reefTransform.gameObject);
-        }
-    }
-    
-    /****************************************************************************************************
-    ************************************ Represent a single pipe ****************************************
-    *****************************************************************************************************/
-    private class Pipe
-    {
-        private Transform pipeHeadTransform;
-        private Transform pipeBodyTransform;
-
-        public Pipe(Transform pipeHeadTransform, Transform pipeBodyTransform)
-        {
-            this.pipeHeadTransform = pipeHeadTransform;
-            this.pipeBodyTransform = pipeBodyTransform;
-        }
-
-        public void Move()
-        {
-            pipeHeadTransform.position += new Vector3(-1, 0, 0) * PIPE_MOVE_SPEED * Time.deltaTime;
-            pipeBodyTransform.position += new Vector3(-1, 0, 0) * PIPE_MOVE_SPEED * Time.deltaTime;
-
-        }
-
-        public float GetXPosition()
-        {
-            return pipeHeadTransform.position.x;
-        }
-
-        public void DestroySelf()
-        {
-            Destroy(pipeHeadTransform.gameObject);
-            Destroy(pipeBodyTransform.gameObject);
-        }
-    }
-
-    /* 
-     * represents speed rings 
-    */ 
-
-    public class SpeedRing
-    {
-        public Transform speedRingTransform; 
-    
-        
-        public SpeedRing(Transform speedRingTransform)
-        {
-            this.speedRingTransform = speedRingTransform; 
-        }
-
-        public void Move()
-        {
-            speedRingTransform.position += new Vector3(-1, 0, 0) * PIPE_MOVE_SPEED * Time.deltaTime; 
-        }
-
-        public float getXPosition()
-        {
-            return speedRingTransform.position.x; 
-        }
-
-        public void destroySelf()
-        {
-            Destroy(speedRingTransform.gameObject); 
-        }
-
-        public void size(float x)
-        {
-            Vector3 vec = new Vector3(x, 1, 0); 
-            speedRingTransform.localScale = vec; 
-        }
-    }
-    
-    private class QuestionBlob
-    {
-        private Transform questionTransform;
-        public QuestionBlob(Transform _questionTransform)
-        {
-            questionTransform = _questionTransform;
-        }
-
-        public void Move()
-        {
-            questionTransform.position += new Vector3(-1, 0, 0) * PIPE_MOVE_SPEED * Time.deltaTime;        //RENAME MOVESPEED
-        }
-
-        public float getXPosition()
-        {
-            return questionTransform.position.x;
-        }
-        public float getDistance(Vector3 _from)
-        {
-            return Vector3.Distance(_from, questionTransform.position);
-        }
-
-        public void destroySelf()
-        {
-            Destroy(questionTransform.gameObject);
-        }
-
-    }
-    
-    public static bool GetQuestion;
+    private float displaytime = 1f;
 
     private void PopoupQuestion()
     {
@@ -686,12 +458,19 @@ public class Level : MonoBehaviour
             displaytime -= Time.deltaTime;
             if (displaytime <= 0)
             {
-               questionWindow.Hide();
+                questionWindow.Hide();
             }
         }
     }
 
-
+    private void SpawnQuestion(float _height, float _position)
+    {
+        Transform _questionBlob = Instantiate(GameAssets.GetInstance().pfQuestionBlob);
+        _questionBlob.position = new Vector3(_position, _height);
+        QuestionBlob qb = new QuestionBlob(_questionBlob);
+        questionBlobList.Add(qb);
+    }
 
 }
+
 
