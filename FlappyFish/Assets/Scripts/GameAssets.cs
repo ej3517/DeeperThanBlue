@@ -20,13 +20,15 @@ public class GameAssets : MonoBehaviour
     // Pipes
     public Transform pfPipeHead;
     public Transform pfPipeBody;
-    public Transform pfQuestionBlob;
+    // Speed Diamond
     public Transform pfSpeedRing; 
-
+    
     // WaterSurface
     public Transform pfWaterSurface;
     // Ground
     public Transform[] pfReefArray;
+    // Boat 
+    public Transform pfBoat; 
     // Sound
     public SoundAudioClip[] soundAudioClipArray;
     
