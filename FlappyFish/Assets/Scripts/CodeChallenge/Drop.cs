@@ -12,11 +12,11 @@ public class Drop : MonoBehaviour, IDropHandler
         if (eventData.pointerDrag != null)
         {
             currentObj = GetComponent<Transform>();
-            //Transform block = eventData.pointerDrag.GetComponent<Transform>();
-            //Block blockClass = eventData.pointerDrag.GetComponent<Block>();
-            //block.transform.SetParent(currentObj);
-            //eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = /*GetComponent<RectTransform>().anchoredPosition - */ new Vector3(0, -70,0); //TODO make size dynamic
-            //Debug.LogError(blockClass.temp.ToString());
+            Transform block = eventData.pointerDrag.GetComponent<Transform>();
+            Block blockClass = eventData.pointerDrag.GetComponent<Block>();
+            block.transform.SetParent(currentObj);
+            eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = /*GetComponent<RectTransform>().anchoredPosition - */ new Vector3(0, -70,0); //TODO make size dynamic
+            Debug.LogError(blockClass.type.ToString());
         }
         
         
