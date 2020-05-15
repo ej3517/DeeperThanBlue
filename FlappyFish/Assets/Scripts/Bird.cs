@@ -92,11 +92,11 @@ public class Bird : MonoBehaviour
         else if (collider.gameObject.CompareTag("Reef"))
         {
             Jump();
-        /*if (collider.gameObject.name == "pfSpeedRing(Clone)")
-        {
-            m_startForce = birdrigidbody2D.transform.position; 
-            birdrigidbody2D.AddForce(diamondForce, ForceMode2D.Impulse); 
-            speedPoints++; */         // Trusting that the dev branch is correct
+            /*if (collider.gameObject.name == "pfSpeedRing(Clone)")
+            {
+                m_startForce = birdrigidbody2D.transform.position; 
+                birdrigidbody2D.AddForce(diamondForce, ForceMode2D.Impulse); 
+                speedPoints++; */         // Trusting that the dev branch is correct
         }
         else {
             birdrigidbody2D.bodyType = RigidbodyType2D.Static;
