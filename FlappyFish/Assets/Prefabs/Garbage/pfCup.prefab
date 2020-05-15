@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4596575315677717620}
   - component: {fileID: 1929019248017605693}
   - component: {fileID: 5754252320117053300}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pfCup
   m_TagString: Obstacles
   m_Icon: {fileID: 0}

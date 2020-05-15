@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6937572813574618563}
   - component: {fileID: 1331972239695017982}
   - component: {fileID: 4359638862785561988}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pfPlastic
   m_TagString: Obstacles
   m_Icon: {fileID: 0}

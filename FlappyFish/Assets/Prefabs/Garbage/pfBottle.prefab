@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7137794823702835172}
   - component: {fileID: 7231968537770606876}
   - component: {fileID: 2293203637230163551}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pfBottle
   m_TagString: Obstacles
   m_Icon: {fileID: 0}

@@ -9,7 +9,7 @@ public class Level : MonoBehaviour
     private const float CAMERA_ORTHO_SIZE = 50f;
     // PIPE
     private const float PIPE_DESTROY_X_POSITION = -100f;
-    private const float PIPE_SPAWN_X_POSITION = 100f;
+    private const float PIPE_SPAWN_X_POSITION = 120f;
     // WATER SURFACE
     private const float WATERSURFACE_WIDTH = 20f;
     private const float WATERSURFACE_DESTROY_X_POSITION = -120f;
@@ -418,12 +418,10 @@ public class Level : MonoBehaviour
 
         if (colliders == null)
         {
-            Debug.Log("Can spawn"); 
             return true; 
         }
         else
         {
-            Debug.Log("Can't spawn");
             return false; 
         }
     }
