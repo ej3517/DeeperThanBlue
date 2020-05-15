@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1739185557137799939}
   m_Layer: 0
   m_Name: pfQuestionBlob
-  m_TagString: Untagged
+  m_TagString: QuestionBlob
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

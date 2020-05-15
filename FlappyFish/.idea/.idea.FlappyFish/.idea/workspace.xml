@@ -3,14 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="60884b82-83d6-468b-a134-8eabc3e9fcf8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef_16.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef_16.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef_25.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef_25.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef_6.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef_6.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/pfPipeBody.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/pfPipeBody.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/pfPipeHead.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/pfPipeHead.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Bird.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Bird.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/pfQuestionBlob.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/pfQuestionBlob.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Boat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Boat.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameAssets.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameAssets.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/QuestionBlob.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/QuestionBlob.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
@@ -26,6 +21,7 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Boat.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/HandleWaterSurface.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TriggerDiamond.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Pipe.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SoundManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameAssets.cs" root0="FORCE_HIGHLIGHTING" />
@@ -73,10 +69,10 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/HandleSpeedRing.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HandleReef.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Bird.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/QuestionBlob.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameAssets.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Level.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Boat.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/QuestionBlob.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Level.cs" />
       </list>
     </option>
   </component>

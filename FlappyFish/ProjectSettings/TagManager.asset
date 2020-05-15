@@ -8,6 +8,7 @@ TagManager:
   - SpeedRing
   - Boat
   - Pipe
+  - QuestionBlob
   layers:
   - Default
   - TransparentFX

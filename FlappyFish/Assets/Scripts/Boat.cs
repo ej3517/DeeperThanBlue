@@ -14,10 +14,10 @@ public class Boat : MonoBehaviour
 
     private void Update()
     {
-        // MoveForward(boatSpeed);
+        Move(boatSpeed);
     }
-    
-    private void MoveForward(float horizontalSpeed)
+
+    private void Move(float horizontalSpeed)
     {
         boatRigidBody.velocity = Vector2.right * horizontalSpeed;
     }

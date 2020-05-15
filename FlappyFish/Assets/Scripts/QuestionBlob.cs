@@ -29,4 +29,8 @@ public class QuestionBlob : MonoBehaviour
         Destroy(questionTransform.gameObject);
     }
 
+    public void Hide()
+    {
+        questionTransform.localScale = new Vector3(1, 0, 0);
+    }
 }
