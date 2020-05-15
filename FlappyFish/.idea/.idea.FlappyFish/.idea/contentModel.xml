@@ -46,6 +46,8 @@
           <e p="Loader.cs" t="Include" />
           <e p="LoaderUpdate.cs" t="Include" />
           <e p="Pipe.cs" t="Include" />
+          <e p="QuestionBlob.cs" t="Include" />
+          <e p="QuestionWindow.cs" t="Include" />
           <e p="Score.cs" t="Include" />
           <e p="ScoreWindow.cs" t="Include" />
           <e p="SoundManager.cs" t="Include" />

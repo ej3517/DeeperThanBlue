@@ -1,15 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using CodeMonkey;
-using CodeMonkey.Utils;
+using UnityEngine.UI; 
 
 public class Level : MonoBehaviour
 {
+    // Constants for camera 
     private const float CAMERA_ORTHO_SIZE = 50f;
+
+    private Vector2 screenBounds;
+    // Constants for pipe
+
     // PIPE
     private const float PIPE_DESTROY_X_POSITION = -100f;
     private const float PIPE_SPAWN_X_POSITION = 100f;
+
+    // Constants for speed ring 
+    private const float SPEED_RING_MOVE_SPEED = 30f;
+    private const float SPEED_RING_DESTROY_X_POSITION = -100f;
+    private const float SPEED_RING_SPAWN_X_POSITION = 100f;
+    //public Collider2D colliders; 
+
     // WATER SURFACE
     private const float WATERSURFACE_WIDTH = 20f;
     private const float WATERSURFACE_DESTROY_X_POSITION = -120f;
@@ -22,8 +33,6 @@ public class Level : MonoBehaviour
     // BIRD
     private const float BIRD_X_POSITION = 0;
     // SPEED DIAMOND
-    private const float SPEED_RING_DESTROY_X_POSITION = -100f;
-    private const float SPEED_RING_SPAWN_X_POSITION = 100f;
     private const float RING_HEIGHT = 2f; 
     private const float RING_WIDTH = 2f; 
     private static Level instance;
@@ -33,7 +42,6 @@ public class Level : MonoBehaviour
         return instance;
     }
     
-    private Vector2 screenBounds;
     // Pipe 
     private List<HandlePipe.Pipe> pipeList;
     public int pipesPassedCount;
@@ -41,6 +49,14 @@ public class Level : MonoBehaviour
     private float gapSize;
     private float pipeSpawnTimer;
     private float pipeSpawnTimerMax;
+
+
+    // Questions
+    private List<QuestionBlob> questionBlobList;
+    private static QuestionWindow questionWindow;
+
+
+
     // WaterSurface
     private List<HandleWaterSurface.WaterSurface> waterSurfaceList;
     // CoralReef
@@ -53,6 +69,7 @@ public class Level : MonoBehaviour
     // Boat
     public LayerMask m_LayerMask;
     // State
+
     private State state;
     // SPEED
     public float birdSpeed = 30f;
@@ -89,8 +106,12 @@ public class Level : MonoBehaviour
         reefList = new List<HandleReef.Reef>();
         HandleReef.CreateInitialReef(-CAMERA_ORTHO_SIZE, reefList);
         //difficulty
+
         SetDifficulty(Difficulty.Easy);
         state = State.WaitingToStart;
+
+        questionBlobList = new List<QuestionBlob>();
+        questionWindow = QuestionWindow.getInstance();
     }
 
     private void Start()
@@ -111,6 +132,8 @@ public class Level : MonoBehaviour
     private void Bird_OnDied(object sender, System.EventArgs e)
     {
         state = State.BirdDead;
+        questionWindow.Hide();
+        //TODO: Delete question tokens?
     }
 
     private void Update()
@@ -123,7 +146,11 @@ public class Level : MonoBehaviour
 
             // SPEED DIAMONDS
             HandleSpeedRingMovement();
-            HandleSpeedRingSpawning(); 
+            HandleSpeedRingSpawning();
+
+            // QUESTIONS
+            HandlePopupQuestion();
+            HandleQuestionMovement();
 
             // WATERSURFACE
             HandleWaterSurfaceMovement();
@@ -187,7 +214,7 @@ public class Level : MonoBehaviour
                 SoundManager.PlaySound(SoundManager.Sound.Score);
                 pipesPassedCount++;
             }
-            if (pipe.GetXPosition() < PIPE_DESTROY_X_POSITION)
+            if (pipe.GetXPosition() < PIPE_DESTROY_X_POSITION + birdScript.transform.position.x)
             {
                 // Destroy Pipe
                 pipe.DestroySelf();
@@ -197,6 +224,8 @@ public class Level : MonoBehaviour
         }
     }
 
+    
+    private int questionGap = 1;
     private void HandlePipeSpawning()
     {
         pipeSpawnTimer -= Time.deltaTime;
@@ -212,6 +241,16 @@ public class Level : MonoBehaviour
 
             float height = UnityEngine.Random.Range(minHeight, maxHeight);
             CreateGapPipes(height, gapSize, PIPE_SPAWN_X_POSITION);
+
+            questionGap -= 1;
+            if (questionGap == 0)
+            {
+                questionGap = UnityEngine.Random.Range(2, 5);         // TODO: Move constants
+                //SpawnQuestion(height/2- gapSize/2, PIPE_SPAWN_X_POSITION);
+                SpawnQuestion(height/2 - gapSize/2 , PIPE_SPAWN_X_POSITION);
+               
+            }
+            CreateGapPipes(height, gapSize, PIPE_SPAWN_X_POSITION + birdScript.transform.position.x);
         }
     }
     
@@ -283,6 +322,33 @@ public class Level : MonoBehaviour
             {
                 waterSurface.DestroySelf();
                 waterSurfaceList.Remove(waterSurface);
+                i--;
+            }
+        }
+    }
+
+    private void HandleQuestionMovement()
+    {
+        for (int i = 0; i < questionBlobList.Count; i++)
+        {
+            QuestionBlob question = questionBlobList[i];
+            bool isRightToTheBird = question.getXPosition() > BIRD_X_POSITION;
+            question.Move(birdSpeed);
+            
+            if(question.getDistance(Bird.GetInstance().getPosition()) < 9)
+            {
+                SoundManager.PlaySound(SoundManager.Sound.Question); //TODO: Add sound
+                question.destroySelf();
+                questionBlobList.Remove(question);
+                i--;
+                PopoupQuestion();
+            }
+            
+            //Out of range
+            if (question.getXPosition() < PIPE_DESTROY_X_POSITION)
+            {
+                question.destroySelf();
+                questionBlobList.Remove(question);
                 i--;
             }
         }
@@ -373,6 +439,38 @@ public class Level : MonoBehaviour
             return false; 
         }
     }
+
+    private float displaytime = 1f;
+
+    private void PopoupQuestion()
+    {
+        // TODO: Get question with answer from server
+
+        // Create a textbox
+        questionWindow.displayQuestion();
+        displaytime = 1f;
+    }
+
+    private void HandlePopupQuestion()
+    {
+        if (displaytime > 0)
+        {
+            displaytime -= Time.deltaTime;
+            if (displaytime <= 0)
+            {
+                questionWindow.Hide();
+            }
+        }
+    }
+
+    private void SpawnQuestion(float _height, float _position)
+    {
+        Transform _questionBlob = Instantiate(GameAssets.GetInstance().pfQuestionBlob);
+        _questionBlob.position = new Vector3(_position, _height);
+        QuestionBlob qb = new QuestionBlob(_questionBlob);
+        questionBlobList.Add(qb);
+    }
+
 }
- 
+
 
