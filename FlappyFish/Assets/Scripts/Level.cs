@@ -15,16 +15,10 @@ public class Level : MonoBehaviour
     private const float PIPE_DESTROY_X_POSITION = -100f;
     private const float PIPE_SPAWN_X_POSITION = 100f;
 
-
-    // Constants for bird - in this case fish 
-    private const float BIRD_X_POSITION = 0;    // -- fish position will not be constant. will need to be changed 
-
     // Constants for speed ring 
     private const float SPEED_RING_MOVE_SPEED = 30f;
     private const float SPEED_RING_DESTROY_X_POSITION = -100f;
     private const float SPEED_RING_SPAWN_X_POSITION = 100f;
-    private const float RING_HEIGHT = 2f; 
-    private const float RING_WIDTH = 2f; 
     //public Collider2D colliders; 
 
     // WATER SURFACE
@@ -39,8 +33,6 @@ public class Level : MonoBehaviour
     // BIRD
     private const float BIRD_X_POSITION = 0;
     // SPEED DIAMOND
-    private const float SPEED_RING_DESTROY_X_POSITION = -100f;
-    private const float SPEED_RING_SPAWN_X_POSITION = 100f;
     private const float RING_HEIGHT = 2f; 
     private const float RING_WIDTH = 2f; 
     private static Level instance;
@@ -50,7 +42,6 @@ public class Level : MonoBehaviour
         return instance;
     }
     
-    private Vector2 screenBounds;
     // Pipe 
     private List<HandlePipe.Pipe> pipeList;
     public int pipesPassedCount;
@@ -59,10 +50,12 @@ public class Level : MonoBehaviour
     private float pipeSpawnTimer;
     private float pipeSpawnTimerMax;
 
-    // Structures and data for speed ring 
-    private List<SpeedRing> speedRingList; 
-    private float speedRingSpawnTimer; 
-    private float speedRingSpawnTimerMax; 
+
+    // Questions
+    private List<QuestionBlob> questionBlobList;
+    private static QuestionWindow questionWindow;
+
+
 
     // WaterSurface
     private List<HandleWaterSurface.WaterSurface> waterSurfaceList;
@@ -116,6 +109,9 @@ public class Level : MonoBehaviour
 
         SetDifficulty(Difficulty.Easy);
         state = State.WaitingToStart;
+
+        questionBlobList = new List<QuestionBlob>();
+        questionWindow = QuestionWindow.getInstance();
     }
 
     private void Start()
@@ -146,12 +142,15 @@ public class Level : MonoBehaviour
         {
             // PIPE
             HandlePipeMovement();
-            HandleQuestionMovement();
             HandlePipeSpawning();
 
             // SPEED DIAMONDS
             HandleSpeedRingMovement();
-            HandleSpeedRingSpawning(); 
+            HandleSpeedRingSpawning();
+
+            // QUESTIONS
+            HandlePopupQuestion();
+            HandleQuestionMovement();
 
             // WATERSURFACE
             HandleWaterSurfaceMovement();
@@ -328,42 +327,13 @@ public class Level : MonoBehaviour
         }
     }
 
-
-    private void HandleSpeedRingMovement()
-    {
-        for (int i = 0; i < speedRingList.Count; i++)
-        {
-            SpeedRing sr = speedRingList[i];  
-            if (sr != null)
-            {
-                bool isRightToTheBird = sr.getXPosition() > BIRD_X_POSITION; 
-
-                // bool to check whether fish touched rigid body in ring 
-                bool passedRing = true; 
-                sr.Move(); 
-                if (isRightToTheBird && sr.getXPosition() <= BIRD_X_POSITION && passedRing)
-                {
-                    // Fish passed inside ring 
-                    Debug.Log("Passed in ring"); 
-                }
-                if (sr.getXPosition() < PIPE_DESTROY_X_POSITION + birdScript.transform.position.x)
-                {
-                    // Destroy ring 
-                    sr.destroySelf(); 
-                    speedRingList.Remove(sr); 
-                    i--; 
-                }
-            }
-        }
-    }
-
     private void HandleQuestionMovement()
     {
         for (int i = 0; i < questionBlobList.Count; i++)
         {
             QuestionBlob question = questionBlobList[i];
             bool isRightToTheBird = question.getXPosition() > BIRD_X_POSITION;
-            question.Move();
+            question.Move(birdSpeed);
             
             if(question.getDistance(Bird.GetInstance().getPosition()) < 9)
             {
@@ -382,20 +352,6 @@ public class Level : MonoBehaviour
                 i--;
             }
         }
-    }
-
-    private void HandleSpeedRingSpawning()
-    {
-        bool canSpawnHere = false; 
-        speedRingSpawnTimer -= Time.deltaTime; 
-        if (speedRingSpawnTimer < 0)
-        {
-        
-            // Randomly time to generate another ring 
-            speedRingSpawnTimer = speedRingSpawnTimerMax + UnityEngine.Random.Range(-2,2); 
-            CreateSpeedRing(PIPE_SPAWN_X_POSITION + birdScript.transform.position.x); 
-        }
-
     }
 
     private void HandleWaterSurfaceSpawning()
@@ -483,6 +439,38 @@ public class Level : MonoBehaviour
             return false; 
         }
     }
+
+    private float displaytime = 1f;
+
+    private void PopoupQuestion()
+    {
+        // TODO: Get question with answer from server
+
+        // Create a textbox
+        questionWindow.displayQuestion();
+        displaytime = 1f;
+    }
+
+    private void HandlePopupQuestion()
+    {
+        if (displaytime > 0)
+        {
+            displaytime -= Time.deltaTime;
+            if (displaytime <= 0)
+            {
+                questionWindow.Hide();
+            }
+        }
+    }
+
+    private void SpawnQuestion(float _height, float _position)
+    {
+        Transform _questionBlob = Instantiate(GameAssets.GetInstance().pfQuestionBlob);
+        _questionBlob.position = new Vector3(_position, _height);
+        QuestionBlob qb = new QuestionBlob(_questionBlob);
+        questionBlobList.Add(qb);
+    }
+
 }
- 
+
 
