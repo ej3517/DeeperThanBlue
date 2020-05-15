@@ -1416,6 +1416,12 @@ MonoBehaviour:
   - {fileID: 1885980896317321637, guid: 0416d133d734146649e37f633fdcbe5e, type: 3}
   - {fileID: 8985809393253343289, guid: 86e80d39f982a4d808042067ea5c7a55, type: 3}
   pfBoat: {fileID: 6816506258275476580, guid: 1655bad4cac824194b2fc2de04a73122, type: 3}
+  pfCup: {fileID: 4596575315677717620, guid: ce9e30308a4644f60baba578ebb1aa86, type: 3}
+  pfGlass: {fileID: 6945569842607345777, guid: 70b6d8a3742054a668187e06c2b94f64, type: 3}
+  pfPlastic: {fileID: 6937572813574618563, guid: 3f1e1322ef2134817b9f1f319eb62c04,
+    type: 3}
+  pfBottle: {fileID: 7137794823702835172, guid: 9ed1eb3e3e8124e17840bc91047aa66e,
+    type: 3}
   soundAudioClipArray:
   - sound: 0
     audioClip: {fileID: 8300000, guid: b0664f294a7284007a1510c7ee06ab8e, type: 3}

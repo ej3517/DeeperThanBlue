@@ -53,6 +53,12 @@ public class Level : MonoBehaviour
     // Boat
     private HandleBoat.Boat boat; 
     public LayerMask m_LayerMask;
+
+    // Garbage 
+    private List<HandleObstacles.Garbage> garbageList; 
+    private float garbageSpawnTimer; 
+    private float garbageSpawnTimerMax;
+
     // State
     private State state;
     // SPEED
@@ -91,6 +97,8 @@ public class Level : MonoBehaviour
         HandleReef.CreateInitialReef(-CAMERA_ORTHO_SIZE, reefList);
         // boat 
         boat = HandleBoat.CreateBoat(); 
+        // garbage obstacles
+        garbageList = new List<HandleObstacles.Garbage>(); 
 
 
         //difficulty
@@ -139,7 +147,11 @@ public class Level : MonoBehaviour
             HandleReefSpawning();
 
             // BOAT 
-            boat.Move(birdSpeed); 
+            //boat.Move(birdSpeed); 
+
+            // OBSTACLES
+            HandleObstaclesMovement(); 
+            HandleObstaclesSpawning(); 
         }
     }
     
@@ -153,21 +165,25 @@ public class Level : MonoBehaviour
                 gapSize = 50f;
                 pipeSpawnTimerMax = 0.8f;
                 speedRingSpawnTimerMax = 3.0f; 
+                garbageSpawnTimerMax = 3.0f; 
                 break;
             case Difficulty.Medium:
                 gapSize = 40f;
                 pipeSpawnTimerMax = 1f;
                 speedRingSpawnTimerMax = 3.0f; 
+                garbageSpawnTimerMax = 2.5f; 
                 break;
             case Difficulty.Hard:
                 gapSize = 33f;
                 pipeSpawnTimerMax = 1.1f;
-                speedRingSpawnTimerMax = 3.0f; 
+                speedRingSpawnTimerMax = 3.0f;
+                garbageSpawnTimerMax = 2.0f;  
                 break;
             case Difficulty.Impossible:
                 gapSize = 24f;
                 pipeSpawnTimerMax = 1.2f;
-                speedRingSpawnTimerMax = 3.0f; 
+                speedRingSpawnTimerMax = 3.0f;
+                garbageSpawnTimerMax = 1.5f;  
                 break;
         }
     }
@@ -333,6 +349,37 @@ public class Level : MonoBehaviour
         }
     }
 
+
+    /********************************************* GARBAGE OBSTACLES *********************************************/
+
+    private void HandleObstaclesMovement()
+    {
+        for (int i = 0; i < garbageList.Count; i++)
+        {
+            HandleObstacles.Garbage garbage = garbageList[i]; 
+            if (garbage != null)
+            {
+                garbage.Move(birdSpeed);
+                if (garbage.getXPosition() < REEF_DESTROY_X_POSITION)
+                {
+                    garbage.destroySelf(); 
+                    garbageList.Remove(garbage); 
+                    i--; 
+                }
+            }          
+        }
+    }
+
+    private void HandleObstaclesSpawning()
+    {    
+        garbageSpawnTimer -= Time.deltaTime; 
+        if (garbageSpawnTimer < 0)
+        {
+            // Randomly time to generate another ring 
+            garbageSpawnTimer = garbageSpawnTimerMax + UnityEngine.Random.Range(0,1); 
+            HandleObstacles.CreateGarbage(garbageList); 
+        }
+    }
     /********************************************************************** Creation of Speed Diamond *********************************************************/
     
     private void CreateSpeedRing (float xPosition)

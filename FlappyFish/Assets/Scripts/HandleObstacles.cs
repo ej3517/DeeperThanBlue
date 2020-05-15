@@ -9,6 +9,7 @@ public class HandleObstacles : MonoBehaviour
     static System.Random random; 
     private static Vector2 screenBounds;
     private static List<Garbage> garbageList; 
+    public static LayerMask m_LayerMask;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +30,8 @@ public class HandleObstacles : MonoBehaviour
         // set up new garbage element 
         while(!canSpawnHere)
         {
-            switch (random.Next(0, 4))
+       
+            switch (UnityEngine.Random.Range(0,4))
             {
                 case 0: garbageTransform = Instantiate(GameAssets.GetInstance().pfCup); break; 
                 case 1: garbageTransform = Instantiate(GameAssets.GetInstance().pfGlass); break;
@@ -41,25 +43,27 @@ public class HandleObstacles : MonoBehaviour
             screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
             yPosition = UnityEngine.Random.Range(-screenBounds.y, screenBounds.y);
             garbageTransform.position = new Vector3(GARBAGE_SPAWN_X_POSITION, yPosition);
+            garbageTransform.rotation = Quaternion.Euler(0, 0, UnityEngine.Random.Range(0f, 360f)); 
 
 
             SpriteRenderer garbageSpriteRenderer = garbageTransform.GetComponent<SpriteRenderer>();
             garbageSpriteRenderer.size = new Vector2(30, 30);
 
             Garbage garbage = new Garbage(garbageTransform); 
-
+            
             canSpawnHere = PreventSpawnOverlap(garbageTransform); 
-
+       
             if (canSpawnHere)
             {
                 Debug.Log("Created Trash");
                 
-                garbageList.Add(garbage); 
+                listGarbage.Add(garbage); 
                 break;
             } 
             else {
-                Debug.Log("Destroyed Ring"); 
-                garbage.destroySelf();                
+                Debug.Log("Destroyed Trash"); 
+                listGarbage.Remove(garbage);
+                garbage.destroySelf(); 
             }
         }
              
@@ -84,7 +88,7 @@ public class HandleObstacles : MonoBehaviour
     {
         public Transform garbageTransform;
 
-        public void SpeedRing (Transform garbageTransform)
+        public Garbage(Transform garbageTransform)
         {
             this.garbageTransform = garbageTransform; 
         }
