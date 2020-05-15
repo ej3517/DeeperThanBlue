@@ -1117,7 +1117,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 30
+  m_SortingOrder: 15
   m_Sprite: {fileID: -1777884534395591585, guid: a099fe50ae6124ee8af1d22f0510f5ef,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2025,7 +2025,29 @@ MonoBehaviour:
   - {fileID: 3228869125502735068, guid: 995ad06c19c744ff0bcabb05233aba09, type: 3}
   - {fileID: 1885980896317321637, guid: 0416d133d734146649e37f633fdcbe5e, type: 3}
   - {fileID: 8985809393253343289, guid: 86e80d39f982a4d808042067ea5c7a55, type: 3}
-  pfBoat: {fileID: 1202729857}
+  - {fileID: 1512435445420391961, guid: 78c84a72e5c21403aa79845e99ef3f06, type: 3}
+  - {fileID: 7977830742205053772, guid: 502faed425f064f51ae7f7863cafc9fd, type: 3}
+  - {fileID: 2279824558254836733, guid: b0542086d4cca4058847621d09d2a89c, type: 3}
+  - {fileID: 6501935715749695670, guid: 29d85843cfdd346138a60a06cc6619fe, type: 3}
+  - {fileID: 8296278603642142942, guid: 360f8a5216af44bb68c2f7c844f93fb3, type: 3}
+  - {fileID: 390475408249161714, guid: 425104af446df452aa326615b0de6fd7, type: 3}
+  - {fileID: 1138020646677269486, guid: 2ebae893bce404c7eb3076d51da92fcf, type: 3}
+  - {fileID: 203817293296431053, guid: 47081b7ff2f5c430a8d693d043ceb787, type: 3}
+  - {fileID: 479322605362897777, guid: c90041515c4b1405789ac960c9295932, type: 3}
+  - {fileID: 2459258234322876528, guid: f37e65e0b0c5c44f999b753636babc92, type: 3}
+  - {fileID: 6800617943192977283, guid: 32c7ec2d22f6c4b2ca7bafe2b47e424c, type: 3}
+  - {fileID: 2141971585812545292, guid: 1e5d103ba974944b0819e2c9d904ee5c, type: 3}
+  - {fileID: 1942168400333377254, guid: 16748afe0736e4e96b14e3eb6cf81c2f, type: 3}
+  - {fileID: 7170262852171520645, guid: 361b2548ebefe4f4a8367ae937c24dd3, type: 3}
+  - {fileID: 5890635376944614711, guid: 3771a27948dba48d0af82a84d9e1e424, type: 3}
+  - {fileID: 5457602767740973179, guid: 98a5242e06ad74e41820d3f528a2bfdb, type: 3}
+  - {fileID: 6233900272702310265, guid: d25101576772344d98ebeb5b320521e5, type: 3}
+  - {fileID: 6712317664935293066, guid: b3c48c0a8f84d4f22ab636caf305a2d1, type: 3}
+  - {fileID: 5453062079187750690, guid: 99b73b89fe196496a8e551131389a109, type: 3}
+  - {fileID: 8250105595655785901, guid: 6cbd75582c78d4ca182d89ef7eb96870, type: 3}
+  - {fileID: 8979750897080551612, guid: d458b46744225485694b0eaec91c6dc9, type: 3}
+  - {fileID: 6684419400426919682, guid: 2f5e1fb85ffc844f884c162f7abdf4c0, type: 3}
+  pfBoat: {fileID: 0}
   soundAudioClipArray:
   - sound: 0
     audioClip: {fileID: 8300000, guid: b0664f294a7284007a1510c7ee06ab8e, type: 3}
