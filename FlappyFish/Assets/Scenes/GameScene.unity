@@ -1231,7 +1231,7 @@ GameObject:
   - component: {fileID: 1250702668}
   - component: {fileID: 1250702670}
   - component: {fileID: 1250702669}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bird
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1796,7 +1796,7 @@ MonoBehaviour:
   pipesPassedCount: 0
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   birdSpeed: 30
 --- !u!1 &1878050150
 GameObject:

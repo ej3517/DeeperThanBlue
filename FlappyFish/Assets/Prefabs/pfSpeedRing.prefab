@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5008781968969364341}
   - component: {fileID: 4078714175199840066}
   - component: {fileID: 7086196601427212839}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: pfSpeedRing
   m_TagString: SpeedRing
   m_Icon: {fileID: 0}

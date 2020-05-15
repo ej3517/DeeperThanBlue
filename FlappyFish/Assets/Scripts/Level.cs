@@ -386,31 +386,28 @@ public class Level : MonoBehaviour
     {
         bool canSpawnHere = false; 
 
+
+        Debug.Log("Create Ring"); 
+
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z)); 
+        float yPosition; 
+        Transform sr = Instantiate(GameAssets.GetInstance().pfSpeedRing);
         while (!canSpawnHere)
         {
-            Debug.Log("Create Ring"); 
-
-            screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z)); 
-            float yPosition; 
             yPosition = UnityEngine.Random.Range(-screenBounds.y, screenBounds.y); 
 
-            Transform sr = Instantiate(GameAssets.GetInstance().pfSpeedRing);
-            sr.position = new Vector3(xPosition - 2, yPosition); 
+            
+            sr.position = new Vector3(xPosition - 20f, yPosition); 
             HandleSpeedRing.SpeedRing ring = new HandleSpeedRing.SpeedRing(sr); 
 
-
+           
             canSpawnHere = PreventSpawnOverlap(ring.speedRingTransform);
             if (canSpawnHere)
             {
                 Debug.Log("Created Ring");
-                
                 speedRingList.Add(ring); 
                 break;
             } 
-            else {
-                Debug.Log("Destroyed Ring"); 
-                ring.destroySelf();                
-            }
         }
     }
 
@@ -421,10 +418,12 @@ public class Level : MonoBehaviour
 
         if (colliders == null)
         {
+            Debug.Log("Can spawn"); 
             return true; 
         }
         else
         {
+            Debug.Log("Can't spawn");
             return false; 
         }
     }

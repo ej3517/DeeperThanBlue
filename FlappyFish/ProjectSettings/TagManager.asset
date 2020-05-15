@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Reef
   - SpeedRing
+  - Obstacles
   layers:
   - Default
   - TransparentFX
