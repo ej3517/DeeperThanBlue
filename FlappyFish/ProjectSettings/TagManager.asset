@@ -6,7 +6,11 @@ TagManager:
   tags:
   - Reef
   - SpeedRing
+<<<<<<< HEAD
   - Obstacles
+=======
+  - Boat
+>>>>>>> master
   layers:
   - Default
   - TransparentFX

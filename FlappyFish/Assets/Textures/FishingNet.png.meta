@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4a576c53bae1c304eb9d5d7d75a42f27
+guid: a099fe50ae6124ee8af1d22f0510f5ef
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6682738439518977790
-    second: Ground_0
+      213: -1777884534395591585
+    second: FishingNet_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: -1
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -48,9 +48,9 @@ TextureImporter:
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 10
+  spritePixelsToUnits: 20
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 0
+  spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -102,22 +102,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ground_0
+      name: FishingNet_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 162
-        width: 305
-        height: 47
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 1038
+        y: 200
+        width: 1057
+        height: 1800
+      alignment: 9
+      pivot: {x: 0.9, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: efe706e343bddbc50800000000000000
-      internalID: 6682738439518977790
+      spriteID: f54a0b38f6fa357e0800000000000000
+      internalID: -1777884534395591585
       vertices: []
       indices: 
       edges: []

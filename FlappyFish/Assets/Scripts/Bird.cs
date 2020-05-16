@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using CodeMonkey;
-using UnityEditorInternal;
+
 
 public class Bird : MonoBehaviour
 {
@@ -82,6 +79,11 @@ public class Bird : MonoBehaviour
             case State.Dead:
                 break;
         }
+
+        if (birdrigidbody2D.position.y < -50 || birdrigidbody2D.position.y > 50)
+        {
+            if (OnDied != null) OnDied(this, EventArgs.Empty);
+        }
     }
 
     private void Jump()
@@ -117,4 +119,8 @@ public class Bird : MonoBehaviour
 
     
 
+    public Vector3 getPosition()
+    {
+        return birdrigidbody2D.position;
+    }
 }

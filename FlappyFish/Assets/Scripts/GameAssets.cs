@@ -21,8 +21,11 @@ public class GameAssets : MonoBehaviour
     public Transform pfPipeHead;
     public Transform pfPipeBody;
     // Speed Diamond
-    public Transform pfSpeedRing; 
-    
+    public Transform pfSpeedRing;
+    // Question Blob;
+    public Transform pfQuestionBlob;
+
+
     // WaterSurface
     public Transform pfWaterSurface;
     // Ground

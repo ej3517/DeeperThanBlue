@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,6 +22,11 @@ public class ScoreWindow : MonoBehaviour
 
     private void Update()
     {
-        scoreText.text = Level.GetInstance().GetPipesPassedCount().ToString();
+        try
+        {
+            scoreText.text = Level.GetInstance().GetPipesPassedCount().ToString();
+        }
+        catch (Exception e)         // Just to hide the errors when they're not needed
+        {; }
     }
 }
