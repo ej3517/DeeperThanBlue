@@ -58,12 +58,12 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
 
     public virtual void OnPointerDown(PointerEventData eventData)
     {
-        Debug.LogWarning("OnPointerDown");
+        //Debug.LogWarning("OnPointerDown");
     }
 
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.LogError("Dropped in box");
+        //Debug.LogError("Dropped in box");
         if ((eventData.pointerDrag != null) && (eventData.pointerDrag.GetComponent<Block>().type != "Start") )      // Weird bug where start can be dragged onto itself...
         {
             if (belowBlock == null)
@@ -89,7 +89,7 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
     {
         if (!topLayer)
         {
-            Debug.LogError(type);
+            //Debug.LogError(type);
             return aboveBlock.GetParent();
         }
         else
