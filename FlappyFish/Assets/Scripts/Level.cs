@@ -12,11 +12,7 @@ public class Level : MonoBehaviour
 
     // PIPE
     private const float PIPE_DESTROY_X_POSITION = -100f;
-    private const float PIPE_SPAWN_X_POSITION = 100f;
-    // Constants for speed ring 
-    private const float SPEED_RING_MOVE_SPEED = 30f;
-    private const float SPEED_RING_DESTROY_X_POSITION = -100f;
-    private const float SPEED_RING_SPAWN_X_POSITION = 100f;
+    private const float PIPE_SPAWN_X_POSITION = 120f;
     // WATER SURFACE
     private const float WATERSURFACE_WIDTH = 20f;
     private const float WATERSURFACE_DESTROY_X_POSITION = -120f;
@@ -61,6 +57,12 @@ public class Level : MonoBehaviour
 
     // Boat
     public LayerMask m_LayerMask;
+
+    // Garbage 
+    private List<HandleObstacles.Garbage> garbageList; 
+    private float garbageSpawnTimer; 
+    private float garbageSpawnTimerMax;
+
     // State
 
     private State state;
@@ -98,6 +100,12 @@ public class Level : MonoBehaviour
         // coral reef
         reefList = new List<HandleReef.Reef>();
         HandleReef.CreateInitialReef(-CAMERA_ORTHO_SIZE, reefList);
+        // boat 
+        //boat = HandleBoat.CreateBoat(); 
+        // garbage obstacles
+        garbageList = new List<HandleObstacles.Garbage>(); 
+
+
         //difficulty
 
         SetDifficulty(Difficulty.Easy);
@@ -148,6 +156,13 @@ public class Level : MonoBehaviour
             // REEF
             HandleReefMovement();
             HandleReefSpawning();
+
+            // BOAT 
+            //boat.Move(birdSpeed); 
+
+            // OBSTACLES
+            HandleObstaclesMovement(); 
+            HandleObstaclesSpawning(); 
             
             // QUESTIONS
             HandleQuestionMovement();
@@ -165,21 +180,25 @@ public class Level : MonoBehaviour
                 gapSize = 50f;
                 pipeSpawnTimerMax = 0.8f;
                 speedRingSpawnTimerMax = 3.0f; 
+                garbageSpawnTimerMax = 3.0f; 
                 break;
             case Difficulty.Medium:
                 gapSize = 40f;
                 pipeSpawnTimerMax = 1f;
                 speedRingSpawnTimerMax = 3.0f; 
+                garbageSpawnTimerMax = 2.5f; 
                 break;
             case Difficulty.Hard:
                 gapSize = 33f;
                 pipeSpawnTimerMax = 1.1f;
-                speedRingSpawnTimerMax = 3.0f; 
+                speedRingSpawnTimerMax = 3.0f;
+                garbageSpawnTimerMax = 2.0f;  
                 break;
             case Difficulty.Impossible:
                 gapSize = 24f;
                 pipeSpawnTimerMax = 1.2f;
-                speedRingSpawnTimerMax = 3.0f; 
+                speedRingSpawnTimerMax = 3.0f;
+                garbageSpawnTimerMax = 1.5f;  
                 break;
         }
     }
@@ -382,37 +401,65 @@ public class Level : MonoBehaviour
         }
     }
 
+
+    /********************************************* GARBAGE OBSTACLES *********************************************/
+
+    private void HandleObstaclesMovement()
+    {
+        for (int i = 0; i < garbageList.Count; i++)
+        {
+            HandleObstacles.Garbage garbage = garbageList[i]; 
+            if (garbage != null)
+            {
+                garbage.Move(birdSpeed);
+                if (garbage.getXPosition() < REEF_DESTROY_X_POSITION)
+                {
+                    garbage.destroySelf(); 
+                    garbageList.Remove(garbage); 
+                    i--; 
+                }
+            }          
+        }
+    }
+
+    private void HandleObstaclesSpawning()
+    {    
+        garbageSpawnTimer -= Time.deltaTime; 
+        if (garbageSpawnTimer < 0)
+        {
+            // Randomly time to generate another ring 
+            garbageSpawnTimer = garbageSpawnTimerMax + UnityEngine.Random.Range(0,1); 
+            HandleObstacles.CreateGarbage(garbageList); 
+        }
+    }
     /********************************************************************** Creation of Speed Diamond *********************************************************/
     
     private void CreateSpeedRing (float xPosition)
     {
         bool canSpawnHere = false; 
 
+
+        Debug.Log("Create Ring"); 
+
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z)); 
+        float yPosition; 
+        Transform sr = Instantiate(GameAssets.GetInstance().pfSpeedRing);
         while (!canSpawnHere)
         {
-            Debug.Log("Create Ring"); 
-
-            screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z)); 
-            float yPosition; 
             yPosition = UnityEngine.Random.Range(-screenBounds.y, screenBounds.y); 
 
-            Transform sr = Instantiate(GameAssets.GetInstance().pfSpeedRing);
-            sr.position = new Vector3(xPosition - 2, yPosition); 
+            
+            sr.position = new Vector3(xPosition - 20f, yPosition); 
             HandleSpeedRing.SpeedRing ring = new HandleSpeedRing.SpeedRing(sr); 
 
-
+           
             canSpawnHere = PreventSpawnOverlap(ring.speedRingTransform);
             if (canSpawnHere)
             {
                 Debug.Log("Created Ring");
-                
                 speedRingList.Add(ring); 
                 break;
             } 
-            else {
-                Debug.Log("Destroyed Ring"); 
-                ring.destroySelf();                
-            }
         }
     }
 

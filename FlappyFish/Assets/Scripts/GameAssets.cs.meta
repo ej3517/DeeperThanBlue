@@ -3,7 +3,19 @@ guid: 6b7830bf2884c4562ac9dbbbf273f044
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - pfPipeHead: {instanceID: 0}
+  - pfPipeBody: {instanceID: 0}
+  - pfSpeedRing: {instanceID: 0}
+  - pfWaterSurface: {instanceID: 0}
+  - pfBoat: {instanceID: 0}
+  - pfCup: {fileID: 4596575315677717620, guid: ce9e30308a4644f60baba578ebb1aa86, type: 3}
+  - pfGlass: {fileID: 6945569842607345777, guid: 70b6d8a3742054a668187e06c2b94f64,
+      type: 3}
+  - pfPlastic: {fileID: 6937572813574618563, guid: 3f1e1322ef2134817b9f1f319eb62c04,
+      type: 3}
+  - pfBottle: {fileID: 7137794823702835172, guid: 9ed1eb3e3e8124e17840bc91047aa66e,
+      type: 3}
   executionOrder: -1100
   icon: {instanceID: 0}
   userData: 

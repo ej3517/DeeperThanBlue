@@ -877,6 +877,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aab6ba6e36bb04a1996a4b5a8b6a9528, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   m_Script: {fileID: 11500000, guid: 10fbaeddfa7cd46eaa10090d6a7904e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -1995,6 +1998,13 @@ MonoBehaviour:
   - {fileID: 3228869125502735068, guid: 995ad06c19c744ff0bcabb05233aba09, type: 3}
   - {fileID: 1885980896317321637, guid: 0416d133d734146649e37f633fdcbe5e, type: 3}
   - {fileID: 8985809393253343289, guid: 86e80d39f982a4d808042067ea5c7a55, type: 3}
+  pfBoat: {fileID: 6816506258275476580, guid: 1655bad4cac824194b2fc2de04a73122, type: 3}
+  pfCup: {fileID: 4596575315677717620, guid: ce9e30308a4644f60baba578ebb1aa86, type: 3}
+  pfGlass: {fileID: 6945569842607345777, guid: 70b6d8a3742054a668187e06c2b94f64, type: 3}
+  pfPlastic: {fileID: 6937572813574618563, guid: 3f1e1322ef2134817b9f1f319eb62c04,
+    type: 3}
+  pfBottle: {fileID: 7137794823702835172, guid: 9ed1eb3e3e8124e17840bc91047aa66e,
+    type: 3}
   - {fileID: 1512435445420391961, guid: 78c84a72e5c21403aa79845e99ef3f06, type: 3}
   - {fileID: 7977830742205053772, guid: 502faed425f064f51ae7f7863cafc9fd, type: 3}
   - {fileID: 2279824558254836733, guid: b0542086d4cca4058847621d09d2a89c, type: 3}
@@ -2488,7 +2498,7 @@ MonoBehaviour:
   pipesPassedCount: 0
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   birdSpeed: 30
 --- !u!1 &1878050150
 GameObject:

@@ -28,7 +28,15 @@ public class GameAssets : MonoBehaviour
     public Transform pfWaterSurface;
     // Ground
     public Transform[] pfReefArray;
- 
+    // Boat 
+    public Transform pfBoat; 
+
+    // Garbage 
+    public Transform pfCup; 
+    public Transform pfGlass; 
+    public Transform pfPlastic; 
+    public Transform pfBottle; 
+
     // Sound
     public SoundAudioClip[] soundAudioClipArray;
     
