@@ -349,8 +349,7 @@ public class Level : MonoBehaviour
             if(question.getDistance(Bird.GetInstance().getPosition()) < 9)
             {
                 SoundManager.PlaySound(SoundManager.Sound.Question); //TODO: Add sound
-                question.destroySelf();
-                questionBlobList.Remove(question);
+                question.Hide();
                 i--;
                 PopoupQuestion();
             }
