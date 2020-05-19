@@ -105,7 +105,7 @@ public class Level : MonoBehaviour
         reefList = new List<HandleReef.Reef>();
         HandleReef.CreateInitialReef(-CAMERA_ORTHO_SIZE, reefList);
         // boat 
-        //boat = HandleBoat.CreateBoat(); 
+        boat = HandleBoat.CreateBoat(); 
         // garbage obstacles
         garbageList = new List<HandleObstacles.Garbage>(); 
 

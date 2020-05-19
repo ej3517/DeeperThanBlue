@@ -20,6 +20,8 @@ public class Bird : MonoBehaviour
     private State state;
 
 
+    Level levelScript; 
+
     // Variables for application of speed boost 
     public Vector2 diamondForce; 
     private Vector2 m_startForce; 
@@ -41,6 +43,8 @@ public class Bird : MonoBehaviour
         birdrigidbody2D.bodyType = RigidbodyType2D.Static;
         state = State.WaitingToStart;
         speedPoints = 0; 
+
+        levelScript = GameObject.Find("Level").GetComponent<Level>(); 
     }
 
     private void Update()
@@ -61,6 +65,13 @@ public class Bird : MonoBehaviour
             case State.Playing:
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
+                    if (levelScript.birdSpeed > 30){
+                        levelScript.birdSpeed -= 0.5f; 
+                    }
+                    else if (levelScript.birdSpeed < 30){
+                        levelScript.birdSpeed += 0.5f; 
+                    }
+    
                     Debug.Log("Playing"); 
                     Jump();
                 }
@@ -85,13 +96,18 @@ public class Bird : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("SpeedRing"))
         {
-            m_startForce = birdrigidbody2D.transform.position; 
-            birdrigidbody2D.AddForce(diamondForce, ForceMode2D.Impulse); 
+            collider.gameObject.active = false; 
+            levelScript.birdSpeed = 60; 
             speedPoints++;
         }
         else if (collider.gameObject.CompareTag("Reef"))
         {
             Jump();
+        }
+        else if (collider.gameObject.CompareTag("Obstacles"))
+        {
+            collider.gameObject.active = false; 
+            levelScript.birdSpeed = 20; 
         }
         else {
             birdrigidbody2D.bodyType = RigidbodyType2D.Static;
