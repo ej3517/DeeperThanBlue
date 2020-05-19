@@ -6,7 +6,12 @@ TagManager:
   tags:
   - Reef
   - SpeedRing
+<<<<<<< HEAD
   - Obstacles
+=======
+  - Boat
+  - Pipe
+>>>>>>> d4982c446fdcad90c5e93c92abf2c76886ecc258
   layers:
   - Default
   - TransparentFX
