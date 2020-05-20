@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Translation portal</title>
+  </head>
+  <body>
+
+    <h1> Input translation </h1>
+
+
+    <form action="/translation" method="POST">
+      <input type="text" placeholder="input" name="input" />
+      <input type="text" placeholder="translation" name="translation" />
+      <button type="submit">Submit</button>
+    </form>
+
+
+    <h2> translation </h2>
+     <ul class="translation">
+      <!-- Loop through translation -->
+      <% for(var i = 0; i < translation.length; i++) {%>
+
+        <li class="translation">
+          <!-- Output name from the iterated translation object -->
+          <span><%= translation[i].input %></span>:
+          <!-- Output translation from the iterated translation object -->
+          <span><%= translation[i].translation %></span>
+        </li>
+      <% } %>
+    </ul>
+
+    <div>
+      <h3>Hi replaces</h3>
+      <p>
+        Replace first 'a' with Hi translation
+      </p>
+      <button id="update-button">Replace 'a'</button>
+    </div>
+
+
+    <div>
+      <h4>Remove Hi!</h4>
+      <p>
+        Delete one Hi translation. Does nothing if there are no more Hi translations
+      </p>
+      <button id="delete-button">Delete Hi translation</button>
+    </div>
+    <div id="message"></div>
+
+    <script src="main.js"></script>
+
+  </body>
+</html>
