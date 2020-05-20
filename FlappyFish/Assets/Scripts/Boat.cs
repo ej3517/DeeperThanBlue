@@ -8,8 +8,6 @@ public class Boat : MonoBehaviour
     // SPEED
     private float boatSpeed;
     private float relativeSpeedOfBoatWrtFish;
-    private float boatSpeedTimer;
-    private float boatSpeedTimerMax = 0.5f;
     private float boatSpeedMultiplier = 1.1f;
     // GLOBAL VAR
     private Rigidbody2D boatRigidBody2D;
@@ -41,7 +39,6 @@ public class Boat : MonoBehaviour
         boatTransform = GetComponent<Transform>();
         // Speed
         boatSpeed = 35f;
-        boatSpeedTimer = boatSpeedTimerMax;
     }
     
     private void Start(){     
@@ -57,11 +54,23 @@ public class Boat : MonoBehaviour
 
     private void Update()
     {
-        if (state == State.Moving)
+        switch (state)
         {
-            HandleBoatSpeed();
-            relativeSpeedOfBoatWrtFish = boatSpeed - Level.GetInstance().birdSpeed;
-            Move(relativeSpeedOfBoatWrtFish);
+            case State.Moving:
+                HandleBoatSpeed();
+                relativeSpeedOfBoatWrtFish = boatSpeed - Level.GetInstance().birdSpeed;
+                Move(relativeSpeedOfBoatWrtFish);
+                break;
+            case State.Waiting:
+                relativeSpeedOfBoatWrtFish = boatSpeed - Level.GetInstance().birdSpeed;
+                if (relativeSpeedOfBoatWrtFish > 0)
+                {
+                    state = State.Moving;
+                    boatRigidBody2D.bodyType = RigidbodyType2D.Dynamic;
+                }
+                break;
+            case State.BirdDied:
+                break;
         }
     }
 
@@ -72,18 +81,11 @@ public class Boat : MonoBehaviour
 
     private void HandleBoatSpeed()
     {
-        boatSpeedTimer -= Time.deltaTime;
         if (GetXPosition() < -110f)
         {
             state = State.Waiting;
             boatRigidBody2D.bodyType = RigidbodyType2D.Static;
-            boatSpeedTimer = boatSpeedTimerMax;
         }
-        // else if (boatSpeedTimer < 0)
-        // {
-        //     boatSpeedTimer = boatSpeedTimerMax;
-        //     boatSpeed *= boatSpeedMultiplier;
-        // }
     }
 
     private float GetXPosition()

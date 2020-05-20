@@ -2,12 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="60884b82-83d6-468b-a134-8eabc3e9fcf8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/HandleQuestionBlob.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Bird.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Bird.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Boat.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Boat.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameAssets.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameAssets.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HandleObstacles.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HandleObstacles.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/HandleSpeedRing.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HandleSpeedRing.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TriggerDiamond.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TriggerDiamond.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/QuestionBlob.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/QuestionBlob.cs.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,23 +25,22 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Boat.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/HandleWaterSurface.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TriggerDiamond.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Pipe.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SoundManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameAssets.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Bird.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Loader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/HandleObstacles.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameOverWindow.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ButtonHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Level.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ScoreWindow.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/LoaderUpdate.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/HandleQuestionBlob.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Prefabs/pfPipeBody.prefab" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/CodeMonkey/Utils/Button_UI.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Score.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/CodeMonkey/Utils/UI_Bar.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/QuestionBlob.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scenes/GameScene.unity" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/CodeMonkey/Utils/Button_Sprite.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Textures/transport.png.meta" root0="FORCE_HIGHLIGHTING" />
@@ -62,17 +66,19 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/GameOverWindow.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ReefManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Reef.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Pipe.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HandlePipe.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HandleWaterSurface.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HandleReef.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameAssets.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/TriggerDiamond.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Pipe.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Boat.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/HandleObstacles.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/HandleQuestionBlob.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/QuestionBlob.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameAssets.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Bird.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Level.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Boat.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HandleSpeedRing.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/TriggerDiamond.cs" />
       </list>
     </option>
   </component>

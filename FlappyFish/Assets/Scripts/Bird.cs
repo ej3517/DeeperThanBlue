@@ -63,7 +63,6 @@ public class Bird : MonoBehaviour
             case State.Playing:
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    Debug.Log("Playing"); 
                     Jump();
                 }
                 break;
@@ -87,8 +86,8 @@ public class Bird : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("SpeedRing"))
         {
-            collider.gameObject.active = false; 
-            levelScript.birdSpeed = 100; 
+            collider.gameObject.SetActive(false); 
+            levelScript.birdSpeed = 40f; 
             speedPoints++;
         }
         else if (collider.gameObject.CompareTag("Reef")||collider.gameObject.CompareTag("Pipe"))
@@ -97,8 +96,8 @@ public class Bird : MonoBehaviour
         }
         else if (collider.gameObject.CompareTag("Obstacles"))
         {
-            collider.gameObject.active = false; 
-            levelScript.birdSpeed = 20;
+            collider.gameObject.SetActive(false);
+            levelScript.birdSpeed = 20f;
         }
         else {
             birdrigidbody2D.bodyType = RigidbodyType2D.Static;

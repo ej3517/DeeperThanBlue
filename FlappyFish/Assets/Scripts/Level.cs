@@ -41,7 +41,7 @@ public class Level : MonoBehaviour
     private float pipeSpawnTimerMax;
 
     // Questions
-    private List<QuestionBlob> questionBlobList;
+    private List<HandleQuestionBlob.QuestionBlob> questionBlobList;
     private static QuestionWindow questionWindow;
 
     // WaterSurface
@@ -52,10 +52,7 @@ public class Level : MonoBehaviour
     private List<HandleSpeedRing.SpeedRing> speedRingList; 
     private float speedRingSpawnTimer; 
     private float speedRingSpawnTimerMax;
-
-    // Boat
-    public LayerMask m_LayerMask;
-
+    
     // Garbage 
     private List<HandleObstacles.Garbage> garbageList; 
     private float garbageSpawnTimer; 
@@ -105,7 +102,7 @@ public class Level : MonoBehaviour
         SetDifficulty(Difficulty.Easy);
         state = State.WaitingToStart;
 
-        questionBlobList = new List<QuestionBlob>();
+        questionBlobList = new List<HandleQuestionBlob.QuestionBlob>();
         questionWindow = QuestionWindow.getInstance();
     }
 
@@ -249,7 +246,7 @@ public class Level : MonoBehaviour
             {
                 questionGap = UnityEngine.Random.Range(2, 5);         // TODO: Move constants
                 //SpawnQuestion(height/2- gapSize/2, PIPE_SPAWN_X_POSITION);
-                SpawnQuestion(height/2 - gapSize/2 , PIPE_SPAWN_X_POSITION);
+                HandleQuestionBlob.SpawnQuestion(height/2 - gapSize/2 , PIPE_SPAWN_X_POSITION, questionBlobList);
                
             }
             CreateGapPipes(height, gapSize, PIPE_SPAWN_X_POSITION + birdScript.transform.position.x);
@@ -285,7 +282,6 @@ public class Level : MonoBehaviour
                 if (isRightToTheBird && sr.getXPosition() <= BIRD_X_POSITION && passedRing)
                 {
                     // Fish passed inside ring 
-                    Debug.Log("Passed in ring"); 
                 }
                 if (sr.getXPosition() < PIPE_DESTROY_X_POSITION + birdScript.transform.position.x)
                 {
@@ -306,8 +302,8 @@ public class Level : MonoBehaviour
         {
         
             // Randomly time to generate another ring 
-            speedRingSpawnTimer = speedRingSpawnTimerMax + UnityEngine.Random.Range(-2,2); 
-            CreateSpeedRing(PIPE_SPAWN_X_POSITION + birdScript.transform.position.x); 
+            speedRingSpawnTimer = speedRingSpawnTimerMax + Random.Range(-2,2); 
+            HandleSpeedRing.CreateSpeedRing(PIPE_SPAWN_X_POSITION + birdScript.transform.position.x, speedRingList); 
         }
 
     }
@@ -334,7 +330,7 @@ public class Level : MonoBehaviour
     {
         for (int i = 0; i < questionBlobList.Count; i++)
         {
-            QuestionBlob question = questionBlobList[i];
+            HandleQuestionBlob.QuestionBlob question = questionBlobList[i];
             question.Move(birdSpeed);
             if(question.getDistance(Bird.GetInstance().getPosition()) < 9)
             {
@@ -402,9 +398,9 @@ public class Level : MonoBehaviour
             if (garbage != null)
             {
                 garbage.Move(birdSpeed);
-                if (garbage.getXPosition() < REEF_DESTROY_X_POSITION)
+                if (garbage.GetXPosition() < REEF_DESTROY_X_POSITION)
                 {
-                    garbage.destroySelf(); 
+                    garbage.DestroySelf(); 
                     garbageList.Remove(garbage); 
                     i--; 
                 }
@@ -424,36 +420,31 @@ public class Level : MonoBehaviour
     }
     /********************************************************************** Creation of Speed Diamond *********************************************************/
     
-    private void CreateSpeedRing (float xPosition)
+    /*private void CreateSpeedRing (float xPosition)
     {
-        bool canSpawnHere = false; 
-
-
-        Debug.Log("Create Ring"); 
+        bool canSpawnHere = false;
 
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z)); 
         float yPosition; 
-        Transform sr = Instantiate(GameAssets.GetInstance().pfSpeedRing);
+        Transform speedRingTransform = Instantiate(GameAssets.GetInstance().pfSpeedRing);
         while (!canSpawnHere)
         {
-            yPosition = UnityEngine.Random.Range(-screenBounds.y, screenBounds.y); 
+            yPosition = Random.Range(-screenBounds.y, screenBounds.y); 
 
             
-            sr.position = new Vector3(xPosition - 20f, yPosition); 
-            HandleSpeedRing.SpeedRing ring = new HandleSpeedRing.SpeedRing(sr); 
-
-           
+            speedRingTransform.position = new Vector3(xPosition - 20f, yPosition); 
+            HandleSpeedRing.SpeedRing ring = new HandleSpeedRing.SpeedRing(speedRingTransform); 
+            
             canSpawnHere = PreventSpawnOverlap(ring.speedRingTransform);
             if (canSpawnHere)
             {
-                Debug.Log("Created Ring");
                 speedRingList.Add(ring); 
                 break;
             } 
         }
-    }
+    }*/
 
-    private bool PreventSpawnOverlap(Transform tmpTransform)
+    /*private bool PreventSpawnOverlap(Transform tmpTransform)
     { 
         Collider2D colliders;  
         colliders = Physics2D.OverlapBox(tmpTransform.position, tmpTransform.localScale * 2, 0f, m_LayerMask); 
@@ -466,7 +457,9 @@ public class Level : MonoBehaviour
         {
             return false; 
         }
-    }
+    }*/
+    
+    /********************************************************************** Creation of the QuestionBlob *********************************************************/
 
     private float displaytime = 1f;
 
@@ -490,15 +483,7 @@ public class Level : MonoBehaviour
             }
         }
     }
-
-    private void SpawnQuestion(float _height, float _position)
-    {
-        Transform _questionBlob = Instantiate(GameAssets.GetInstance().pfQuestionBlob);
-        _questionBlob.position = new Vector3(_position, _height);
-        QuestionBlob qb = new QuestionBlob(_questionBlob);
-        questionBlobList.Add(qb);
-    }
-
+    
 }
 
 

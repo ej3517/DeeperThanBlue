@@ -59,8 +59,6 @@ public class HandleObstacles : MonoBehaviour
        
             if (canSpawnHere)
             {
-                Debug.Log("Created Trash");
-                
                 listGarbage.Add(garbage); 
                 break;
             } 
@@ -71,15 +69,13 @@ public class HandleObstacles : MonoBehaviour
     private static bool PreventSpawnOverlap(Transform tmpTransform)
     { 
         Collider2D colliders;  
-        colliders = Physics2D.OverlapBox(tmpTransform.position, tmpTransform.localScale, 0f, m_LayerMask); 
-        Debug.Log(tmpTransform.localScale);
+        colliders = Physics2D.OverlapBox(tmpTransform.position, tmpTransform.localScale, 0f, m_LayerMask);
         if (colliders == null)
         {
             return true; 
         }
         else
         {
-            Debug.Log("Can't spawn");
             return false; 
         }
     }
@@ -98,21 +94,16 @@ public class HandleObstacles : MonoBehaviour
             garbageTransform.position += new Vector3(-1, 0, 0) * speed * Time.deltaTime; 
         }
 
-        public float getXPosition()
+        public float GetXPosition()
         {
             return garbageTransform.position.x; 
         }
 
-        public void destroySelf()
+        public void DestroySelf()
         {
             Destroy(garbageTransform.gameObject); 
         }
-
-        public void size(float x)
-        {
-            Vector3 vec = new Vector3(x, 1, 0); 
-            garbageTransform.localScale = vec; 
-        }
+        
     }
     
 }
