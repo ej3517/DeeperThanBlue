@@ -69,9 +69,8 @@ public class Level : MonoBehaviour
     // SPEED
     public float birdSpeed = 30f;
     
-    
     FollowFish cameraScript; 
-    Bird birdScript; 
+    Bird birdScript;
     public enum Difficulty
     {
         Easy,

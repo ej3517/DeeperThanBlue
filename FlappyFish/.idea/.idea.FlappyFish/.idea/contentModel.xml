@@ -38,6 +38,7 @@
           <e p="GameAssets.cs" t="Include" />
           <e p="GameHandler.cs" t="Include" />
           <e p="GameOverWindow.cs" t="Include" />
+          <e p="HandleObstacles.cs" t="Include" />
           <e p="HandlePipe.cs" t="Include" />
           <e p="HandleReef.cs" t="Include" />
           <e p="HandleSpeedRing.cs" t="Include" />

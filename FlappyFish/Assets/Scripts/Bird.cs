@@ -15,12 +15,11 @@ public class Bird : MonoBehaviour
 
     public event EventHandler OnDied;
     public event EventHandler OnStartedPlaying;
-    
+
     private Rigidbody2D birdrigidbody2D;
     private State state;
-
-
-    Level levelScript; 
+    
+    Level levelScript;
 
     // Variables for application of speed boost 
     public Vector2 diamondForce; 
@@ -44,7 +43,7 @@ public class Bird : MonoBehaviour
         state = State.WaitingToStart;
         speedPoints = 0; 
 
-        levelScript = GameObject.Find("Level").GetComponent<Level>(); 
+        levelScript = GameObject.Find("Level").GetComponent<Level>();
     }
 
     private void Update()
@@ -107,7 +106,7 @@ public class Bird : MonoBehaviour
         else if (collider.gameObject.CompareTag("Obstacles"))
         {
             collider.gameObject.active = false; 
-            levelScript.birdSpeed = 20; 
+            levelScript.birdSpeed = 20;
         }
         else {
             birdrigidbody2D.bodyType = RigidbodyType2D.Static;
