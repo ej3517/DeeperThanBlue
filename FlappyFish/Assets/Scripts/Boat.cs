@@ -65,8 +65,9 @@ public class Boat : MonoBehaviour
                 relativeSpeedOfBoatWrtFish = boatSpeed - Level.GetInstance().birdSpeed;
                 if (relativeSpeedOfBoatWrtFish > 0)
                 {
-                    state = State.Moving;
                     boatRigidBody2D.bodyType = RigidbodyType2D.Dynamic;
+                    Move(relativeSpeedOfBoatWrtFish);
+                    state = State.Moving;
                 }
                 break;
             case State.BirdDied:
@@ -81,18 +82,13 @@ public class Boat : MonoBehaviour
 
     private void HandleBoatSpeed()
     {
-        if (GetXPosition() < -110f)
+        if (boatTransform.position.x < -110f)
         {
             state = State.Waiting;
             boatRigidBody2D.bodyType = RigidbodyType2D.Static;
         }
     }
-
-    private float GetXPosition()
-    {
-        return boatTransform.position.x;
-    }
-
+    
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Bird"))

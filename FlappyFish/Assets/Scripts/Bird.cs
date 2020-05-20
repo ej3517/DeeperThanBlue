@@ -87,7 +87,7 @@ public class Bird : MonoBehaviour
         if (collider.gameObject.CompareTag("SpeedRing"))
         {
             collider.gameObject.SetActive(false); 
-            levelScript.birdSpeed = 40f; 
+            levelScript.birdSpeed = 50f; 
             speedPoints++;
         }
         else if (collider.gameObject.CompareTag("Reef")||collider.gameObject.CompareTag("Pipe"))
@@ -97,7 +97,7 @@ public class Bird : MonoBehaviour
         else if (collider.gameObject.CompareTag("Obstacles"))
         {
             collider.gameObject.SetActive(false);
-            levelScript.birdSpeed = 20f;
+            levelScript.birdSpeed = 10f;
         }
         else {
             birdrigidbody2D.bodyType = RigidbodyType2D.Static;

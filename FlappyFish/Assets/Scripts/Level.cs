@@ -418,46 +418,6 @@ public class Level : MonoBehaviour
             HandleObstacles.CreateGarbage(garbageList); 
         }
     }
-    /********************************************************************** Creation of Speed Diamond *********************************************************/
-    
-    /*private void CreateSpeedRing (float xPosition)
-    {
-        bool canSpawnHere = false;
-
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z)); 
-        float yPosition; 
-        Transform speedRingTransform = Instantiate(GameAssets.GetInstance().pfSpeedRing);
-        while (!canSpawnHere)
-        {
-            yPosition = Random.Range(-screenBounds.y, screenBounds.y); 
-
-            
-            speedRingTransform.position = new Vector3(xPosition - 20f, yPosition); 
-            HandleSpeedRing.SpeedRing ring = new HandleSpeedRing.SpeedRing(speedRingTransform); 
-            
-            canSpawnHere = PreventSpawnOverlap(ring.speedRingTransform);
-            if (canSpawnHere)
-            {
-                speedRingList.Add(ring); 
-                break;
-            } 
-        }
-    }*/
-
-    /*private bool PreventSpawnOverlap(Transform tmpTransform)
-    { 
-        Collider2D colliders;  
-        colliders = Physics2D.OverlapBox(tmpTransform.position, tmpTransform.localScale * 2, 0f, m_LayerMask); 
-
-        if (colliders == null)
-        {
-            return true; 
-        }
-        else
-        {
-            return false; 
-        }
-    }*/
     
     /********************************************************************** Creation of the QuestionBlob *********************************************************/
 
