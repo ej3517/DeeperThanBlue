@@ -25,8 +25,6 @@ public class Level : MonoBehaviour
     // BIRD
     private const float BIRD_X_POSITION = 0;
     // SPEED DIAMOND
-    private const float RING_HEIGHT = 2f; 
-    private const float RING_WIDTH = 2f; 
     private static Level instance;
 
     public static Level GetInstance()
@@ -67,9 +65,8 @@ public class Level : MonoBehaviour
 
     private State state;
     // SPEED
-    public float birdSpeed = 30f;
+    public float birdSpeed;
     
-    FollowFish cameraScript; 
     Bird birdScript;
     public enum Difficulty
     {
@@ -89,6 +86,8 @@ public class Level : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        // speed
+        birdSpeed = 30f;
         // pipe
         pipeList = new List<HandlePipe.Pipe>();
         // waterSurface
@@ -99,12 +98,8 @@ public class Level : MonoBehaviour
         // coral reef
         reefList = new List<HandleReef.Reef>();
         HandleReef.CreateInitialReef(-CAMERA_ORTHO_SIZE, reefList);
-        // boat 
-        //boat = HandleBoat.CreateBoat(); 
         // garbage obstacles
-        garbageList = new List<HandleObstacles.Garbage>(); 
-
-
+        garbageList = new List<HandleObstacles.Garbage>();
         //difficulty
 
         SetDifficulty(Difficulty.Easy);
@@ -116,7 +111,6 @@ public class Level : MonoBehaviour
 
     private void Start()
     {
-        cameraScript = Camera.main.GetComponent<FollowFish>();
         birdScript = GameObject.Find("Bird").GetComponent<Bird>(); 
         birdScript.speedPoints = 0;
          
@@ -155,10 +149,7 @@ public class Level : MonoBehaviour
             // REEF
             HandleReefMovement();
             HandleReefSpawning();
-
-            // BOAT 
-            //boat.Move(birdSpeed); 
-
+            
             // OBSTACLES
             HandleObstaclesMovement(); 
             HandleObstaclesSpawning(); 

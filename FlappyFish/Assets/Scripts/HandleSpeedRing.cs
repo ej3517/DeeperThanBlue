@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class HandleSpeedRing : MonoBehaviour
 {
-    private const float SPEED_RING_DESTROY_X_POSITION = -100f;
-    private const float SPEED_RING_SPAWN_X_POSITION = 100f;
-    private const float RING_HEIGHT = 2f; 
-    private const float RING_WIDTH = 2f;
-    
-
     public class SpeedRing
     {
         public Transform speedRingTransform;

@@ -2,8 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using CodeMonkey;
-using CodeMonkey.Utils;
 
 public class Boat : MonoBehaviour
 {
@@ -28,8 +26,7 @@ public class Boat : MonoBehaviour
     private enum State
     {
         WaitingToStart,
-        Catching,
-        FallingBehind,
+        Moving,
         Waiting,
         BirdDied
     }
@@ -43,7 +40,7 @@ public class Boat : MonoBehaviour
         // Transform
         boatTransform = GetComponent<Transform>();
         // Speed
-        boatSpeed = 10f;
+        boatSpeed = 35f;
         boatSpeedTimer = boatSpeedTimerMax;
     }
     
@@ -54,25 +51,16 @@ public class Boat : MonoBehaviour
 
     private void Bird_OnStartedPlaying(object sender, EventArgs e)
     {
-        state = State.Catching;
+        state = State.Moving;
         boatRigidBody2D.bodyType = RigidbodyType2D.Dynamic;
-        CMDebug.TextPopupMouse(GetXPosition().ToString());
     }
 
     private void Update()
     {
-        if (state == State.Catching)
+        if (state == State.Moving)
         {
             HandleBoatSpeed();
-            // relativeSpeedOfBoatWrtFish = boatSpeed - Level.GetInstance().birdSpeed;
-            relativeSpeedOfBoatWrtFish = 35f - Level.GetInstance().birdSpeed;
-            Move(relativeSpeedOfBoatWrtFish);
-        }
-        else if (state == State.FallingBehind)
-        {
-            HandleBoatSpeed();
-            // relativeSpeedOfBoatWrtFish = boatSpeed - Level.GetInstance().birdSpeed;
-            relativeSpeedOfBoatWrtFish = 25f - Level.GetInstance().birdSpeed;
+            relativeSpeedOfBoatWrtFish = boatSpeed - Level.GetInstance().birdSpeed;
             Move(relativeSpeedOfBoatWrtFish);
         }
     }
@@ -91,11 +79,11 @@ public class Boat : MonoBehaviour
             boatRigidBody2D.bodyType = RigidbodyType2D.Static;
             boatSpeedTimer = boatSpeedTimerMax;
         }
-        else if (boatSpeedTimer < 0)
-        {
-            boatSpeedTimer = boatSpeedTimerMax;
-            boatSpeed *= boatSpeedMultiplier;
-        }
+        // else if (boatSpeedTimer < 0)
+        // {
+        //     boatSpeedTimer = boatSpeedTimerMax;
+        //     boatSpeed *= boatSpeedMultiplier;
+        // }
     }
 
     private float GetXPosition()

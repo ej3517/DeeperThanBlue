@@ -26,7 +26,6 @@ public class Bird : MonoBehaviour
     private Vector2 m_startForce; 
 
     public int speedPoints; 
- 
     
     private enum State
     {
@@ -64,13 +63,6 @@ public class Bird : MonoBehaviour
             case State.Playing:
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    if (levelScript.birdSpeed > 30){
-                        levelScript.birdSpeed -= 0.5f; 
-                    }
-                    else if (levelScript.birdSpeed < 30){
-                        levelScript.birdSpeed += 0.5f; 
-                    }
-    
                     Debug.Log("Playing"); 
                     Jump();
                 }
@@ -96,7 +88,7 @@ public class Bird : MonoBehaviour
         if (collider.gameObject.CompareTag("SpeedRing"))
         {
             collider.gameObject.active = false; 
-            levelScript.birdSpeed = 60; 
+            levelScript.birdSpeed = 100; 
             speedPoints++;
         }
         else if (collider.gameObject.CompareTag("Reef")||collider.gameObject.CompareTag("Pipe"))
