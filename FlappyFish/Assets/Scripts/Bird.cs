@@ -1,11 +1,10 @@
 ﻿using System;
-using CodeMonkey;
 using UnityEngine;
 
 
 public class Bird : MonoBehaviour
 {
-    private const float JUMP_AMOUNT = 100f;
+    private const float JUMP_AMOUNT = 50f;
     public float speedRingBoost;
     public float speedObstacleReduction;
     private bool isGravityToGround;
@@ -25,7 +24,6 @@ public class Bird : MonoBehaviour
     Level levelScript;
 
     // Variables for application of speed boost 
-    public Vector2 diamondForce; 
     private Vector2 m_startForce; 
 
     public int speedPoints; 
@@ -66,7 +64,7 @@ public class Bird : MonoBehaviour
                 }
                 break;
             case State.Playing:
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetKey(KeyCode.Space))
                 {
                     Jump(isGravityToGround);
                 }
@@ -110,7 +108,6 @@ public class Bird : MonoBehaviour
         else if (collider.gameObject.CompareTag("WaterSurface"))
         {
             // Repel from surface
-            Debug.Log("the condition is reach");
             Jump(false);
         }
         else if (collider.gameObject.CompareTag("Obstacles"))
@@ -121,10 +118,11 @@ public class Bird : MonoBehaviour
             birdrigidbody2D.gravityScale *= -1;
             isGravityToGround = !isGravityToGround;
         }
-        else {
+        else{
             birdrigidbody2D.bodyType = RigidbodyType2D.Static;
             SoundManager.PlaySound(SoundManager.Sound.Lose);
             if (OnDied != null) OnDied(this, EventArgs.Empty);
+            state = State.Dead;
         }
 
     }

@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class HandleQuestionBlob : MonoBehaviour
 {
+    private const float DEADLY_COIN_DIAMETER = 1.5f;
+    
     public static void SpawnQuestion(float _height, float _position, List<QuestionBlob> questionBlobList)
     {
-        Transform _questionBlob = Instantiate(GameAssets.GetInstance().pfQuestionBlob);
-        _questionBlob.position = new Vector3(_position, _height);
-        QuestionBlob qb = new QuestionBlob(_questionBlob);
+        Transform questionBlobTransform = Instantiate(GameAssets.GetInstance().pfQuestionBlob);
+        questionBlobTransform.position = new Vector3(_position, _height);
+        
+        SpriteRenderer reefSpriteRenderer = questionBlobTransform.GetComponent<SpriteRenderer>();
+        reefSpriteRenderer.size = new Vector2(DEADLY_COIN_DIAMETER, DEADLY_COIN_DIAMETER);
+
+        CircleCollider2D reefCircleCollider = questionBlobTransform.GetComponent<CircleCollider2D>();
+        reefCircleCollider.radius = DEADLY_COIN_DIAMETER * .5f;
+        
+        QuestionBlob qb = new QuestionBlob(questionBlobTransform);
         questionBlobList.Add(qb);
     }
     

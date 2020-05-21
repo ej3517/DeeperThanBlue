@@ -292,7 +292,6 @@ public class Level : MonoBehaviour
 
     private void HandleSpeedRingSpawning()
     {
-        bool canSpawnHere = false; 
         speedRingSpawnTimer -= Time.deltaTime; 
         if (speedRingSpawnTimer < 0)
         {
