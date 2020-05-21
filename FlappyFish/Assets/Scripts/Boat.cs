@@ -8,7 +8,6 @@ public class Boat : MonoBehaviour
     // SPEED
     private float boatSpeed;
     private float relativeSpeedOfBoatWrtFish;
-    private float boatSpeedMultiplier = 1.1f;
     // GLOBAL VAR
     private Rigidbody2D boatRigidBody2D;
     private Transform boatTransform;

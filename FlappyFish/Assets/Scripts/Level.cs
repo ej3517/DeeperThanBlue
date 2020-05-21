@@ -65,6 +65,7 @@ public class Level : MonoBehaviour
     public float birdSpeed;
     
     Bird birdScript;
+
     public enum Difficulty
     {
         Easy,
@@ -87,6 +88,7 @@ public class Level : MonoBehaviour
         birdSpeed = 30f;
         // pipe
         pipeList = new List<HandlePipe.Pipe>();
+        gapSize = 33f;
         // waterSurface
         waterSurfaceList = new List<HandleWaterSurface.WaterSurface>();
         HandleWaterSurface.CreateInitialWaterSurface(CAMERA_ORTHO_SIZE, waterSurfaceList);
@@ -98,7 +100,6 @@ public class Level : MonoBehaviour
         // garbage obstacles
         garbageList = new List<HandleObstacles.Garbage>();
         //difficulty
-
         SetDifficulty(Difficulty.Easy);
         state = State.WaitingToStart;
 
@@ -110,7 +111,6 @@ public class Level : MonoBehaviour
     {
         birdScript = GameObject.Find("Bird").GetComponent<Bird>(); 
         birdScript.speedPoints = 0;
-         
         Bird.GetInstance().OnDied += Bird_OnDied;
         Bird.GetInstance().OnStartedPlaying += Bird_OnStartedPlaying;
     }
@@ -164,28 +164,24 @@ public class Level : MonoBehaviour
         switch (difficulty)
         {
             case Difficulty.Easy:
-                gapSize = 50f;
                 pipeSpawnTimerMax = 0.8f;
                 speedRingSpawnTimerMax = 3.0f; 
-                garbageSpawnTimerMax = 3.0f; 
+                garbageSpawnTimerMax = 3.0f;
                 break;
             case Difficulty.Medium:
-                gapSize = 40f;
                 pipeSpawnTimerMax = 1f;
                 speedRingSpawnTimerMax = 3.0f; 
-                garbageSpawnTimerMax = 2.5f; 
+                garbageSpawnTimerMax = 2.5f;
                 break;
             case Difficulty.Hard:
-                gapSize = 33f;
                 pipeSpawnTimerMax = 1.1f;
                 speedRingSpawnTimerMax = 3.0f;
-                garbageSpawnTimerMax = 2.0f;  
+                garbageSpawnTimerMax = 2.0f;
                 break;
             case Difficulty.Impossible:
-                gapSize = 24f;
                 pipeSpawnTimerMax = 1.2f;
                 speedRingSpawnTimerMax = 3.0f;
-                garbageSpawnTimerMax = 1.5f;  
+                garbageSpawnTimerMax = 1.5f;
                 break;
         }
     }
