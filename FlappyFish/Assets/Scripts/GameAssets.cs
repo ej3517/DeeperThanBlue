@@ -24,8 +24,6 @@ public class GameAssets : MonoBehaviour
     public Transform pfSpeedRing;
     // Question Blob;
     public Transform pfQuestionBlob;
-    // WaterSurface
-    public Transform pfWaterSurface;
     // Ground
     public Transform[] pfReefArray;
 

@@ -43,9 +43,7 @@ public class Level : MonoBehaviour
     // Questions
     private List<HandleQuestionBlob.QuestionBlob> questionBlobList;
     private static QuestionWindow questionWindow;
-
-    // WaterSurface
-    private List<HandleWaterSurface.WaterSurface> waterSurfaceList;
+    
     // CoralReef
     private List<HandleReef.Reef> reefList;
     // Structures and data for speed ring 
@@ -89,9 +87,6 @@ public class Level : MonoBehaviour
         // pipe
         pipeList = new List<HandlePipe.Pipe>();
         gapSize = 33f;
-        // waterSurface
-        waterSurfaceList = new List<HandleWaterSurface.WaterSurface>();
-        HandleWaterSurface.CreateInitialWaterSurface(CAMERA_ORTHO_SIZE, waterSurfaceList);
         // speed diamond
         speedRingList = new List<HandleSpeedRing.SpeedRing>();
         // coral reef
@@ -138,10 +133,6 @@ public class Level : MonoBehaviour
             // SPEED DIAMONDS
             HandleSpeedRingMovement();
             HandleSpeedRingSpawning();
-
-            // WATERSURFACE
-            HandleWaterSurfaceMovement();
-            HandleWaterSurfaceSpawning();
 
             // REEF
             HandleReefMovement();
@@ -303,23 +294,6 @@ public class Level : MonoBehaviour
 
     }
 
-    /******************************************* WATER SURFACE MOVEMENT *******************************************/
-
-    private void HandleWaterSurfaceMovement()
-    {
-        for (int i = 0; i < waterSurfaceList.Count; i++)
-        {
-            HandleWaterSurface.WaterSurface waterSurface = waterSurfaceList[i];
-            waterSurface.Move(birdSpeed);
-            if (waterSurface.GetXPosition() < WATERSURFACE_DESTROY_X_POSITION)
-            {
-                waterSurface.DestroySelf();
-                waterSurfaceList.Remove(waterSurface);
-                i--;
-            }
-        }
-    }
-    
     /************************************ QUESTION MOVEMENT ************************************/
     private void HandleQuestionMovement()
     {
@@ -342,16 +316,6 @@ public class Level : MonoBehaviour
                 questionBlobList.Remove(question);
                 i--;
             }
-        }
-    }
-
-    private void HandleWaterSurfaceSpawning()
-    {
-        // Spawn a new water surface after the last one);
-        float lastWaterSurfaceXPosition = waterSurfaceList[waterSurfaceList.Count - 1].GetXPosition();
-        if (lastWaterSurfaceXPosition < WATERSURFACE_SPAWN_X_POSITION - WATERSURFACE_WIDTH + 1)
-        {
-            HandleWaterSurface.CreateWaterSurface(WATERSURFACE_SPAWN_X_POSITION, CAMERA_ORTHO_SIZE, waterSurfaceList);
         }
     }
     
