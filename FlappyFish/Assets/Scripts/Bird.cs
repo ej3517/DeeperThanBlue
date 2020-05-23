@@ -61,6 +61,7 @@ public class Bird : MonoBehaviour
                     birdrigidbody2D.bodyType = RigidbodyType2D.Dynamic;
                     if (OnStartedPlaying!= null) OnStartedPlaying(this, EventArgs.Empty);
                     Jump(isGravityToGround);
+                    // Start Background Scrolling
                 }
                 break;
             case State.Playing:

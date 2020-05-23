@@ -2,69 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="60884b82-83d6-468b-a134-8eabc3e9fcf8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Materials/Background2.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Materials/Background2.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/BackgroundScroll.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Textures/Background2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Textures/Background2.png.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Assets.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Assets.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Assets.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Assets/White_1x1.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Assets/White_1x1.mat.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Assets/White_1x1.psd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Assets/White_1x1.psd.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/CMDebug.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/CMDebug.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/MonoBehaviours.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/MonoBehaviours/CameraFollow.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/MonoBehaviours/CameraFollow.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/MonoBehaviours/CameraFollowSetup.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/MonoBehaviours/CameraFollowSetup.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/MonoBehaviours/ComponentActions.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/MonoBehaviours/ComponentActions.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/MonoBehaviours/PositionRendererSorter.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/MonoBehaviours/PositionRendererSorter.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/README.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/README.txt.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Resources.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Resources/CodeMonkeyAssets.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Resources/CodeMonkeyAssets.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Utils.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Utils/Button_Sprite.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Utils/Button_Sprite.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Utils/Button_UI.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Utils/Button_UI.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Utils/FunctionPeriodic.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Utils/FunctionPeriodic.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Utils/FunctionTimer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Utils/FunctionTimer.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Utils/FunctionUpdater.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Utils/FunctionUpdater.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Utils/UI_Bar.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Utils/UI_Bar.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Utils/UI_BarMultiple.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Utils/UI_BarMultiple.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Utils/UI_Sprite.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Utils/UI_Sprite.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Utils/UI_TextComplex.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Utils/UI_TextComplex.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Utils/UtilsClass.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Utils/UtilsClass.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Utils/World_Bar.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Utils/World_Bar.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Utils/World_Mesh.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Utils/World_Mesh.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Utils/World_Sprite.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/CodeMonkey/Utils/World_Sprite.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameAssets.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameAssets.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HandleWaterSurface.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HandleWaterSurface.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Background.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Background.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Background.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Background.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/WaterBackground.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/WaterBackground.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/WaterSurface.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/WaterSurface.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Scroll.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Scroll.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Bird.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Bird.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/Background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/Background.png.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,6 +32,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Bird.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Loader.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/HandleObstacles.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/BackgroundScroll.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameOverWindow.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ButtonHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameHandler.cs" root0="FORCE_HIGHLIGHTING" />
@@ -130,6 +81,7 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Level.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameAssets.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Bird.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/BackgroundScroll.cs" />
       </list>
     </option>
   </component>
