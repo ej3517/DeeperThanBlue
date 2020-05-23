@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class HandleSpeedRing : MonoBehaviour
 {
-    private const float CAMERA_ORTHO_SIZE = 50f;
     // private Vector2 screenBounds;
     public static void CreateSpeedRing (float xPosition, List<SpeedRing> speedRingList)
     {
@@ -16,7 +15,7 @@ public class HandleSpeedRing : MonoBehaviour
         while (!canSpawnHere)
         {
             // yPosition = Random.Range(-screenBounds.y, screenBounds.y); 
-            yPosition = Random.Range(-CAMERA_ORTHO_SIZE + 10, +CAMERA_ORTHO_SIZE - 10);
+            yPosition = Random.Range(MyGlobals.MAX_HEIGHT_GROUND, MyGlobals.SURFACE_POSITION);
 
             
             speedRingTransform.position = new Vector3(xPosition - 20f, yPosition); 

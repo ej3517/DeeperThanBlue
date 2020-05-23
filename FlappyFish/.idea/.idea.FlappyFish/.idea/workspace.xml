@@ -2,40 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="60884b82-83d6-468b-a134-8eabc3e9fcf8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/MyGlobals.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/MyGlobals.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_1.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_1.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_10.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_10.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_11.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_11.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_12.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_12.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_13.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_13.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_14.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_14.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_15.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_15.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_16.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_16.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_17.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_17.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_18.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_18.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_19.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_19.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_2.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_2.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_20.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_20.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_21.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_21.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_22.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_22.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_23.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_23.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_24.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_24.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_25.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_25.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_27.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_27.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_28.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_28.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_29.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_29.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_3.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_3.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_30.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_30.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_31.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_31.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_32.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_32.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_4.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_4.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_5.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_5.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_6.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_6.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_7.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_7.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_8.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_8.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_9.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Reef/Reef_9.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Garbage/pfCup.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Garbage/pfCup.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Garbage/pfGlass.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Garbage/pfGlass.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/pfWaterSurface.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/pfWaterSurface.prefab.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HandleObstacles.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HandleObstacles.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HandlePipe.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HandlePipe.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HandleReef.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HandleReef.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HandleSpeedRing.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HandleSpeedRing.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/Garbage/cup.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Garbage/cup.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/Garbage/environment.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Garbage/environment.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/Garbage/food.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Garbage/food.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/Garbage/healthy.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Garbage/healthy.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/shapes.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/shapes.png.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +34,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Boat.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/FollowFish.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SoundManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/MyGlobals.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameAssets.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Bird.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Loader.cs" root0="FORCE_HIGHLIGHTING" />
@@ -86,14 +72,10 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/GameOverWindow.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ReefManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Reef.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/HandlePipe.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HandleWaterSurface.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/HandleReef.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/TriggerDiamond.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Pipe.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/HandleObstacles.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/QuestionBlob.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/HandleSpeedRing.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SwitchGravity.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HandleQuestionBlob.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ScoreWindow.cs" />
@@ -102,6 +84,11 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/GameAssets.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Bird.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BackgroundScroll.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/HandleSpeedRing.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MyGlobals.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/HandleReef.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/HandlePipe.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/HandleObstacles.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Level.cs" />
       </list>
     </option>

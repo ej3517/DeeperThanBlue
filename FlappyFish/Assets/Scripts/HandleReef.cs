@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class HandleReef : MonoBehaviour
 {
-    private const float REEF_DIMENSION = 12f;
-    private const float REEF_DESTROY_X_POSITION = -120f;
-    private const float REEF_SPAWN_X_POSITION = 120f;
     
     public static void CreateInitialReef(float yPosition, List<Reef> reefList)
     {
-        float leftMostReef = REEF_SPAWN_X_POSITION;
+        float leftMostReef = MyGlobals.SPAWN_X_POSITION;
         //Creation of the initial reef line
-        while (leftMostReef > REEF_DESTROY_X_POSITION)
+        while (leftMostReef > MyGlobals.DESTROY_X_POSITION)
         {
             Transform[] reefTransformsArray = GameAssets.GetInstance().pfReefArray;
             Transform reefTransform = Instantiate(reefTransformsArray[Random.Range(0, reefTransformsArray.Length)]);
@@ -20,16 +17,16 @@ public class HandleReef : MonoBehaviour
             reefTransform.position = new Vector3(leftMostReef, yPosition);
             
             SpriteRenderer reefSpriteRenderer = reefTransform.GetComponent<SpriteRenderer>();
-            reefSpriteRenderer.size = new Vector2(REEF_DIMENSION, REEF_DIMENSION);
+            reefSpriteRenderer.size = new Vector2(MyGlobals.REEF_DIMENSION, MyGlobals.REEF_DIMENSION);
         
             CircleCollider2D reefCircleCollider = reefTransform.GetComponent<CircleCollider2D>();
-            reefCircleCollider.radius = REEF_DIMENSION * .4f;
+            reefCircleCollider.radius = MyGlobals.REEF_DIMENSION * .4f;
 
             Transform[] reefArray = {reefTransform};
             Reef reef = new Reef(reefArray);
             reefList.Add(reef);
 
-            leftMostReef -= REEF_DIMENSION * 0.75f;
+            leftMostReef -= MyGlobals.REEF_DIMENSION * 0.75f;
         }
     }
     
@@ -41,13 +38,13 @@ public class HandleReef : MonoBehaviour
         for (int i = 0; i < pipeHeight; i++)
         {
             Transform reefTransform = Instantiate(reefTransformsArray[Random.Range(0, reefTransformsArray.Length)]);
-            reefTransform.position = new Vector3(xPosition, yPosition + i * REEF_DIMENSION * .75f);
+            reefTransform.position = new Vector3(xPosition, yPosition + i * MyGlobals.REEF_DIMENSION * .75f);
 
             SpriteRenderer reefSpriteRenderer = reefTransform.GetComponent<SpriteRenderer>();
-            reefSpriteRenderer.size = new Vector2(REEF_DIMENSION, REEF_DIMENSION);
+            reefSpriteRenderer.size = new Vector2(MyGlobals.REEF_DIMENSION, MyGlobals.REEF_DIMENSION);
 
             CircleCollider2D reefCircleCollider = reefTransform.GetComponent<CircleCollider2D>();
-            reefCircleCollider.radius = REEF_DIMENSION * .4f;
+            reefCircleCollider.radius = MyGlobals.REEF_DIMENSION * .4f;
 
             reefPipeArray[i] = reefTransform;
         }

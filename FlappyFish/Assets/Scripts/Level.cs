@@ -6,21 +6,9 @@ using UnityEngine.UI;
 public class Level : MonoBehaviour
 {
     // Constants for camera 
-    private const float CAMERA_ORTHO_SIZE = 50f;
 
     private Vector2 screenBounds;
-
-    // PIPE
-    private const float PIPE_DESTROY_X_POSITION = -100f;
-    private const float PIPE_SPAWN_X_POSITION = 120f;
-    // WATER SURFACE
-    private const float WATERSURFACE_WIDTH = 20f;
-    private const float WATERSURFACE_DESTROY_X_POSITION = -120f;
-    private const float WATERSURFACE_SPAWN_X_POSITION = 120f;
-    // REEF
-    private const float REEF_DIMENSION = 14f;
-    private const float REEF_DESTROY_X_POSITION = -120f;
-    private const float REEF_SPAWN_X_POSITION = 120f;
+    
     private const int REEF_PIPE_MAX_HEIGHT = 5;
     // BIRD
     private const float BIRD_X_POSITION = 0;
@@ -36,7 +24,6 @@ public class Level : MonoBehaviour
     private List<HandlePipe.Pipe> pipeList;
     public int pipesPassedCount;
     private int pipesSpawned;
-    private float gapSize;
     private float pipeSpawnTimer;
     private float pipeSpawnTimerMax;
 
@@ -86,12 +73,11 @@ public class Level : MonoBehaviour
         birdSpeed = 30f;
         // pipe
         pipeList = new List<HandlePipe.Pipe>();
-        gapSize = 50f;
         // speed diamond
         speedRingList = new List<HandleSpeedRing.SpeedRing>();
         // coral reef
         reefList = new List<HandleReef.Reef>();
-        HandleReef.CreateInitialReef(-CAMERA_ORTHO_SIZE, reefList);
+        HandleReef.CreateInitialReef(-MyGlobals.CAMERA_ORTHO_SIZE, reefList);
         // garbage obstacles
         garbageList = new List<HandleObstacles.Garbage>();
         //difficulty
@@ -200,7 +186,7 @@ public class Level : MonoBehaviour
                 SoundManager.PlaySound(SoundManager.Sound.Score);
                 pipesPassedCount++;
             }
-            if (pipe.GetXPosition() < PIPE_DESTROY_X_POSITION + birdScript.transform.position.x)
+            if (pipe.GetXPosition() < MyGlobals.DESTROY_X_POSITION + birdScript.transform.position.x)
             {
                 // Destroy Pipe
                 pipe.DestroySelf();
@@ -219,30 +205,27 @@ public class Level : MonoBehaviour
         {
             // Time to spawn another Pipe
             pipeSpawnTimer = pipeSpawnTimerMax;
+            
+            float minHeight = 10f;
+            float maxHeight = 40f;
 
-            float heightEdgeLimit = 10f;
-            float minHeight = gapSize * .5f + heightEdgeLimit;
-            float totalHeight = CAMERA_ORTHO_SIZE * 2f;
-            float maxHeight = totalHeight - gapSize * .5f - heightEdgeLimit;
-
-            float height = UnityEngine.Random.Range(minHeight, maxHeight);
-            CreateGapPipes(height, gapSize, PIPE_SPAWN_X_POSITION);
+            float height = Random.Range(minHeight, maxHeight);
+            CreateGapPipes(height, MyGlobals.SPAWN_X_POSITION);
 
             questionGap -= 1;
             if (questionGap == 0)
             {
-                questionGap = UnityEngine.Random.Range(2, 5);         // TODO: Move constants
-                //SpawnQuestion(height/2- gapSize/2, PIPE_SPAWN_X_POSITION);
-                HandleQuestionBlob.SpawnQuestion(height/2 - gapSize/2 , PIPE_SPAWN_X_POSITION, questionBlobList);
+                questionGap = Random.Range(2, 5);         // TODO: Move constants
+                HandleQuestionBlob.SpawnQuestion(height/2 , MyGlobals.SPAWN_X_POSITION, questionBlobList);
                
             }
-            CreateGapPipes(height, gapSize, PIPE_SPAWN_X_POSITION + birdScript.transform.position.x);
+            CreateGapPipes(height, MyGlobals.SPAWN_X_POSITION + birdScript.transform.position.x);
         }
     }
     
-    private void CreateGapPipes(float gapY, float gapSize, float xPosition)
+    private void CreateGapPipes(float gapY, float xPosition)
     {
-        HandlePipe.CreatePipe(gapY - gapSize * .5f, xPosition, pipeList);
+        HandlePipe.CreatePipe(gapY, xPosition, pipeList);
         pipesSpawned++;
         SetDifficulty(GetDifficulty());
     }
@@ -270,7 +253,7 @@ public class Level : MonoBehaviour
                 {
                     // Fish passed inside ring 
                 }
-                if (sr.getXPosition() < PIPE_DESTROY_X_POSITION + birdScript.transform.position.x)
+                if (sr.getXPosition() < MyGlobals.DESTROY_X_POSITION + birdScript.transform.position.x)
                 {
                     // Destroy ring 
                     sr.destroySelf(); 
@@ -289,7 +272,7 @@ public class Level : MonoBehaviour
         
             // Randomly time to generate another ring 
             speedRingSpawnTimer = speedRingSpawnTimerMax + Random.Range(-2,2); 
-            HandleSpeedRing.CreateSpeedRing(PIPE_SPAWN_X_POSITION + birdScript.transform.position.x, speedRingList); 
+            HandleSpeedRing.CreateSpeedRing(MyGlobals.SPAWN_X_POSITION + birdScript.transform.position.x, speedRingList); 
         }
 
     }
@@ -310,7 +293,7 @@ public class Level : MonoBehaviour
             }
             
             //Out of range
-            if (question.getXPosition() < PIPE_DESTROY_X_POSITION)
+            if (question.getXPosition() < MyGlobals.DESTROY_X_POSITION)
             {
                 question.destroySelf();
                 questionBlobList.Remove(question);
@@ -327,7 +310,7 @@ public class Level : MonoBehaviour
         {
             HandleReef.Reef reef = reefList[i];
             reef.Move(birdSpeed);
-            if (reef.GetXPosition() < REEF_DESTROY_X_POSITION)
+            if (reef.GetXPosition() < MyGlobals.DESTROY_X_POSITION)
             {
                 reef.DestroySelf();
                 reefList.Remove(reef);
@@ -339,10 +322,10 @@ public class Level : MonoBehaviour
     private void HandleReefSpawning()
     {
         float lastReefXPosition = reefList[reefList.Count - 1].GetXPosition();
-        if (lastReefXPosition < REEF_SPAWN_X_POSITION - REEF_DIMENSION * 0.75)
+        if (lastReefXPosition < MyGlobals.SPAWN_X_POSITION - MyGlobals.REEF_DIMENSION * 0.75)
         {
             int randomReefPipeHeight = Random.Range(1, REEF_PIPE_MAX_HEIGHT + 1);
-            HandleReef.CreateReef(REEF_SPAWN_X_POSITION, -CAMERA_ORTHO_SIZE, reefList, randomReefPipeHeight);
+            HandleReef.CreateReef(MyGlobals.SPAWN_X_POSITION, -MyGlobals.CAMERA_ORTHO_SIZE, reefList, randomReefPipeHeight);
         }
     }
 
@@ -357,7 +340,7 @@ public class Level : MonoBehaviour
             if (garbage != null)
             {
                 garbage.Move(birdSpeed);
-                if (garbage.GetXPosition() < REEF_DESTROY_X_POSITION)
+                if (garbage.GetXPosition() < MyGlobals.DESTROY_X_POSITION)
                 {
                     garbage.DestroySelf(); 
                     garbageList.Remove(garbage); 
@@ -373,7 +356,7 @@ public class Level : MonoBehaviour
         if (garbageSpawnTimer < 0)
         {
             // Randomly time to generate another ring 
-            garbageSpawnTimer = garbageSpawnTimerMax + UnityEngine.Random.Range(0,1); 
+            garbageSpawnTimer = garbageSpawnTimerMax + Random.Range(0,1); 
             HandleObstacles.CreateGarbage(garbageList); 
         }
     }
