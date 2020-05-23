@@ -2008,13 +2008,14 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -12.18084, y: -9.200211}
-  - {x: -12.22496, y: -12.711529}
-  - {x: 10.360313, y: -12.756718}
-  - {x: 16.734917, y: -4.198082}
-  - {x: 16.762169, y: -2.3099518}
-  - {x: 15.340244, y: -2.2890282}
-  - {x: 7.7997894, y: 10.865009}
+  - {x: -12.802177, y: -9.377737}
+  - {x: -10.272179, y: -7.8295765}
+  - {x: -10.026062, y: -9.560436}
+  - {x: 8.496292, y: -9.6500225}
+  - {x: 13.805748, y: -3.3104553}
+  - {x: 13.921757, y: -1.8661385}
+  - {x: 12.943649, y: -1.7564545}
+  - {x: 12.23793, y: -0.8516731}
 --- !u!114 &1202729855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2072,7 +2073,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 34, y: 26}
+  m_Size: {x: 28, y: 20}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2387,6 +2388,28 @@ MonoBehaviour:
   - {fileID: 3228869125502735068, guid: 995ad06c19c744ff0bcabb05233aba09, type: 3}
   - {fileID: 1885980896317321637, guid: 0416d133d734146649e37f633fdcbe5e, type: 3}
   - {fileID: 8985809393253343289, guid: 86e80d39f982a4d808042067ea5c7a55, type: 3}
+  - {fileID: 1512435445420391961, guid: 78c84a72e5c21403aa79845e99ef3f06, type: 3}
+  - {fileID: 7977830742205053772, guid: 502faed425f064f51ae7f7863cafc9fd, type: 3}
+  - {fileID: 2279824558254836733, guid: b0542086d4cca4058847621d09d2a89c, type: 3}
+  - {fileID: 6501935715749695670, guid: 29d85843cfdd346138a60a06cc6619fe, type: 3}
+  - {fileID: 8296278603642142942, guid: 360f8a5216af44bb68c2f7c844f93fb3, type: 3}
+  - {fileID: 390475408249161714, guid: 425104af446df452aa326615b0de6fd7, type: 3}
+  - {fileID: 1138020646677269486, guid: 2ebae893bce404c7eb3076d51da92fcf, type: 3}
+  - {fileID: 203817293296431053, guid: 47081b7ff2f5c430a8d693d043ceb787, type: 3}
+  - {fileID: 479322605362897777, guid: c90041515c4b1405789ac960c9295932, type: 3}
+  - {fileID: 2459258234322876528, guid: f37e65e0b0c5c44f999b753636babc92, type: 3}
+  - {fileID: 6800617943192977283, guid: 32c7ec2d22f6c4b2ca7bafe2b47e424c, type: 3}
+  - {fileID: 2141971585812545292, guid: 1e5d103ba974944b0819e2c9d904ee5c, type: 3}
+  - {fileID: 1942168400333377254, guid: 16748afe0736e4e96b14e3eb6cf81c2f, type: 3}
+  - {fileID: 7170262852171520645, guid: 361b2548ebefe4f4a8367ae937c24dd3, type: 3}
+  - {fileID: 5890635376944614711, guid: 3771a27948dba48d0af82a84d9e1e424, type: 3}
+  - {fileID: 5457602767740973179, guid: 98a5242e06ad74e41820d3f528a2bfdb, type: 3}
+  - {fileID: 6233900272702310265, guid: d25101576772344d98ebeb5b320521e5, type: 3}
+  - {fileID: 6712317664935293066, guid: b3c48c0a8f84d4f22ab636caf305a2d1, type: 3}
+  - {fileID: 5453062079187750690, guid: 99b73b89fe196496a8e551131389a109, type: 3}
+  - {fileID: 8250105595655785901, guid: 6cbd75582c78d4ca182d89ef7eb96870, type: 3}
+  - {fileID: 8979750897080551612, guid: d458b46744225485694b0eaec91c6dc9, type: 3}
+  - {fileID: 6684419400426919682, guid: 2f5e1fb85ffc844f884c162f7abdf4c0, type: 3}
   pfCup: {fileID: 4596575315677717620, guid: ce9e30308a4644f60baba578ebb1aa86, type: 3}
   pfGlass: {fileID: 6945569842607345777, guid: 70b6d8a3742054a668187e06c2b94f64, type: 3}
   pfPlastic: {fileID: 6937572813574618563, guid: 3f1e1322ef2134817b9f1f319eb62c04,

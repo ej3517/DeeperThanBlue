@@ -86,7 +86,7 @@ public class Level : MonoBehaviour
         birdSpeed = 30f;
         // pipe
         pipeList = new List<HandlePipe.Pipe>();
-        gapSize = 33f;
+        gapSize = 50f;
         // speed diamond
         speedRingList = new List<HandleSpeedRing.SpeedRing>();
         // coral reef

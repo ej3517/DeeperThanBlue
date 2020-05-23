@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HandleReef : MonoBehaviour
 {
-    private const float REEF_DIMENSION = 14f;
+    private const float REEF_DIMENSION = 12f;
     private const float REEF_DESTROY_X_POSITION = -120f;
     private const float REEF_SPAWN_X_POSITION = 120f;
     
@@ -23,7 +23,7 @@ public class HandleReef : MonoBehaviour
             reefSpriteRenderer.size = new Vector2(REEF_DIMENSION, REEF_DIMENSION);
         
             CircleCollider2D reefCircleCollider = reefTransform.GetComponent<CircleCollider2D>();
-            reefCircleCollider.radius = REEF_DIMENSION * .5f;
+            reefCircleCollider.radius = REEF_DIMENSION * .4f;
 
             Transform[] reefArray = {reefTransform};
             Reef reef = new Reef(reefArray);
@@ -47,7 +47,7 @@ public class HandleReef : MonoBehaviour
             reefSpriteRenderer.size = new Vector2(REEF_DIMENSION, REEF_DIMENSION);
 
             CircleCollider2D reefCircleCollider = reefTransform.GetComponent<CircleCollider2D>();
-            reefCircleCollider.radius = REEF_DIMENSION * .5f;
+            reefCircleCollider.radius = REEF_DIMENSION * .4f;
 
             reefPipeArray[i] = reefTransform;
         }
