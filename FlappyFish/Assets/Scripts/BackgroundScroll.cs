@@ -7,7 +7,7 @@ public class BackgroundScroll : MonoBehaviour
 {
     Material material;
     Vector2 offset;
-    private float xVelocity = 0.06f;
+    private const float X_VELOCITY = 0.02f;
     
     private void Awake()
     {
@@ -16,7 +16,7 @@ public class BackgroundScroll : MonoBehaviour
     
     void Start()
     {
-        offset = new Vector2(xVelocity, 0);
+        offset = new Vector2(X_VELOCITY, 0);
     }
 
     void Update()
