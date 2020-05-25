@@ -33,7 +33,7 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
 
     public virtual void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.LogWarning("Begin drag");
+        //Debug.LogWarning("Begin drag");
         canvasGroup.blocksRaycasts = false;
     }
 
@@ -99,12 +99,6 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
         }
     }
 
-    public virtual void Traverse()
-    {
-        //Traverse Tree. Has to be overloaded
-        throw new System.NotImplementedException();
-    }
-
     public void SetAbove(Block _aboveBlock)
     {
         aboveBlock = _aboveBlock;
@@ -115,5 +109,25 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
     {
         belowBlock = _belowBlock;
     }
+
+    public virtual IEnumerator Traverse(Transform Button)
+    {
+        //Traverse Tree. Has to be overloaded
+        throw new System.NotImplementedException();
+    }
+
+    public virtual bool Validate()
+    {
+        //Call the next Node to check if a valid structure
+        if(belowBlock==null)
+        {
+            return true;
+        }
+        else
+        {
+            return belowBlock.Validate();
+        }
+    }
+
 
 }

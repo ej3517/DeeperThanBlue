@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ public class GameAreaGrid : MonoBehaviour
     {
         Empty,
         Block,
-        Boat,
+        Fish,
         End
     };
 
@@ -22,9 +23,13 @@ public class GameAreaGrid : MonoBehaviour
     // Start is called before the first frame update
     public Transform gridTransform;
     public Transform block;
+    public Transform fish;
     private RectTransform rectTransform;
     private GridStruct[,] map;
     private int gridSize;
+
+    public Transform codingAreaTransform;
+    private CodingArea codingArea;
 
     void Awake()
     {
@@ -79,14 +84,14 @@ public class GameAreaGrid : MonoBehaviour
             {
                 //Create
                 Transform instance= Instantiate(gridTransform);
-                instance.parent = transform;
+                instance.SetParent(transform);
                 
                 //Scale
                 SpriteRenderer sr = instance.GetComponent<SpriteRenderer>();
                 instance.localScale = new Vector3(ratio/ sr.size.x, ratio/ sr.size.y, 1);
 
                 //Postion
-                instance.localPosition = new Vector3(w* ratio+ x_offset, h* ratio+ y_offset, 0);
+                instance.localPosition = new Vector3(w* ratio+ x_offset, -h* ratio-y_offset, 0);
                 
                 map[w, h].grid = instance;
                 map[w, h].type = Type.Empty;
@@ -103,16 +108,33 @@ public class GameAreaGrid : MonoBehaviour
                     map[w, h].content = _block;
                     map[w, h].type = Type.Block;
                 }
+                if (_map[w, h] == 's')
+                {
+                    Transform _fish = Instantiate(fish);
+                    SpriteRenderer srBlock = _fish.GetComponent<SpriteRenderer>();
+                    float _scale = 1f;
+                    _fish.localScale = new Vector3(ratio * _scale / srBlock.size.x, ratio * _scale / srBlock.size.y, 1);
+                    _fish.parent = instance;
+                    _fish.localPosition = new Vector3(0, 0, 0);
+                    map[w, h].content = _fish;
+                    map[w, h].type = Type.Fish;
+                }
 
             }
         }
         Debug.LogError("Done creating grid");
 
+
+        codingArea = codingAreaTransform.GetComponent<CodingArea>();
+        codingArea.OnButtonStart += CodingArea_OnButtonStart;
     }
 
 
-    // Update positions on events?
-
+    // Update positions on events? Place the events class in the grid GameArea bject
+    private void CodingArea_OnButtonStart(object sender, EventArgs e)
+    {
+        Debug.LogError("ButtonPressed");
+    }
 
 
 }
