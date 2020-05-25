@@ -4,16 +4,12 @@ using UnityEngine;
 
 public class HandleObstacles : MonoBehaviour
 {
-    private const float GARBAGE_SPAWN_X_POSITION = 120f;
-    private static Transform garbageTransform; 
-    static System.Random random; 
-    private static Vector2 screenBounds;
+    private static Transform garbageTransform;
     private static List<Garbage> garbageList; 
     private static LayerMask m_LayerMask;
     // Start is called before the first frame update
     void Start()
     {
-        random = new System.Random();  
         m_LayerMask = LayerMask.GetMask("Objects"); 
     }
 
@@ -29,9 +25,8 @@ public class HandleObstacles : MonoBehaviour
         float yPosition; 
         bool canSpawnHere = false; 
         // set up new garbage element 
-       
-       
-        switch (UnityEngine.Random.Range(0,4))
+
+        switch (Random.Range(0,4))
         {
             case 0: garbageTransform = Instantiate(GameAssets.GetInstance().pfCup); break; 
             case 1: garbageTransform = Instantiate(GameAssets.GetInstance().pfGlass); break;
@@ -39,28 +34,21 @@ public class HandleObstacles : MonoBehaviour
             case 3: garbageTransform = Instantiate(GameAssets.GetInstance().pfBottle); break;
             default: Debug.Log("Impossible"); break;
         }
-            
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z)); 
-
+       
         while(!canSpawnHere)
         {
             
-            yPosition = UnityEngine.Random.Range(-screenBounds.y, screenBounds.y);
-            garbageTransform.position = new Vector3(GARBAGE_SPAWN_X_POSITION - 20f, yPosition);
+            // yPosition = Random.Range(-screenBounds.y, screenBounds.y);
+            yPosition = Random.Range(MyGlobals.MAX_HEIGHT_GROUND, MyGlobals.SURFACE_POSITION);
+            garbageTransform.position = new Vector3(MyGlobals.SPAWN_X_POSITION - 20f, yPosition);
             garbageTransform.rotation = Quaternion.Euler(0, 0, UnityEngine.Random.Range(0f, 360f)); 
-
-
-            //SpriteRenderer garbageSpriteRenderer = garbageTransform.GetComponent<SpriteRenderer>();
-            //garbageSpriteRenderer.size = new Vector2(30, 30);
-
+            
             Garbage garbage = new Garbage(garbageTransform); 
             
             canSpawnHere = PreventSpawnOverlap(garbageTransform); 
        
             if (canSpawnHere)
             {
-                Debug.Log("Created Trash");
-                
                 listGarbage.Add(garbage); 
                 break;
             } 
@@ -71,15 +59,13 @@ public class HandleObstacles : MonoBehaviour
     private static bool PreventSpawnOverlap(Transform tmpTransform)
     { 
         Collider2D colliders;  
-        colliders = Physics2D.OverlapBox(tmpTransform.position, tmpTransform.localScale, 0f, m_LayerMask); 
-        Debug.Log(tmpTransform.localScale);
+        colliders = Physics2D.OverlapBox(tmpTransform.position, tmpTransform.localScale, 0f, m_LayerMask);
         if (colliders == null)
         {
             return true; 
         }
         else
         {
-            Debug.Log("Can't spawn");
             return false; 
         }
     }
@@ -98,21 +84,16 @@ public class HandleObstacles : MonoBehaviour
             garbageTransform.position += new Vector3(-1, 0, 0) * speed * Time.deltaTime; 
         }
 
-        public float getXPosition()
+        public float GetXPosition()
         {
             return garbageTransform.position.x; 
         }
 
-        public void destroySelf()
+        public void DestroySelf()
         {
             Destroy(garbageTransform.gameObject); 
         }
-
-        public void size(float x)
-        {
-            Vector3 vec = new Vector3(x, 1, 0); 
-            garbageTransform.localScale = vec; 
-        }
+        
     }
     
 }
