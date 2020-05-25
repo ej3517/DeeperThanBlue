@@ -21,6 +21,14 @@ public class CodingArea : MonoBehaviour
         return instance;
     }
 
+    public void Restart()
+    {
+        Button.SetParent(transform);
+        Button.localPosition = new Vector3(-200, 290, -1);
+
+        // TODO: Event restart to grid
+    }
+
     public void ButtonStart()
     {
         if(!Start.GetComponent<Block>().Validate())

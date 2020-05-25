@@ -25,5 +25,9 @@ public class BlockTurn : Block
         {
             StartCoroutine(belowBlock.Traverse(Button));
         }
+        else
+        {
+            Button.GetComponent<StartButton>().Restart();
+        }
     }
 }

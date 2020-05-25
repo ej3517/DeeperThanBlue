@@ -192,7 +192,7 @@ public class Level : MonoBehaviour
 
     /********************************************* PIPE MOVEMENT / SCORE *********************************************/
     
-    private void HandlePipeMovement()co
+    private void HandlePipeMovement()
     {
         for (int i = 0; i<pipeList.Count; i++)
         {

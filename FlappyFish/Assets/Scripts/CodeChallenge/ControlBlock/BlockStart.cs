@@ -26,7 +26,6 @@ public class BlockStart : Block
     public override IEnumerator Traverse(Transform Button)
     {
         yield return new WaitForSeconds(0);
-        Debug.LogError("No wait for start");
         if (belowBlock!=null)
         {
             StartCoroutine(belowBlock.Traverse(Button));

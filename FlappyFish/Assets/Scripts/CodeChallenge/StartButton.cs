@@ -23,4 +23,9 @@ public class StartButton: MonoBehaviour
             // clickable = false;
         }
     }
+
+    public void Restart()
+    {
+        codingArea.Restart();
+    }
 }

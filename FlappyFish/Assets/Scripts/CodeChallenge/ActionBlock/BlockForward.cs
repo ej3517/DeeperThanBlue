@@ -25,6 +25,10 @@ public class BlockForward : Block
         {
             StartCoroutine(belowBlock.Traverse(Button));
         }
+        else
+        {
+            Button.GetComponent<StartButton>().Restart();
+        }
     }
 
 }
