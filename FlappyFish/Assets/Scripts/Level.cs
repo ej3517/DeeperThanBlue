@@ -66,11 +66,13 @@ public class Level : MonoBehaviour
         // List of objects
         pipeList = new List<HandlePipe.Pipe>();
         reefList = new List<HandleReef.Reef>();
+
         HandleReef.CreateInitialReef(-MyGlobals.CAMERA_ORTHO_SIZE, reefList);
         speedRingList = new List<HandleSpeedRing.SpeedRing>();
         garbageList = new List<HandleObstacles.Garbage>();
         questionBlobList = new List<HandleQuestionBlob.QuestionBlob>();
         questionWindow = QuestionWindow.getInstance();
+
         //difficulty
         SetDifficulty(Difficulty.Easy);
         state = State.WaitingToStart;
@@ -105,7 +107,7 @@ public class Level : MonoBehaviour
             HandlePipeSpawning();
             HandleReefMovement();
             HandleReefSpawning();
-            
+
             // FLOATING OBJECTS SPAWNING
             HandleFloatingObjectSpawning();
             // FLOATING OBJECTS MOVEMENT 
