@@ -9,7 +9,6 @@
           <e p="Bird.cs" t="Include" />
           <e p="Boat.cs" t="Include" />
           <e p="ButtonHandler.cs" t="Include" />
-          <e p="FollowFish.cs" t="Include" />
           <e p="GameAssets.cs" t="Include" />
           <e p="GameHandler.cs" t="Include" />
           <e p="GameOverWindow.cs" t="Include" />
