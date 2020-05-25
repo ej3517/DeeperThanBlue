@@ -1,18 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 using UnityEngine.UI; 
 
 public class Level : MonoBehaviour
 {
-    // Constants for camera 
-
-    private Vector2 screenBounds;
-    
     private const int REEF_PIPE_MAX_HEIGHT = 5;
-    // BIRD
     private const float BIRD_X_POSITION = 0;
-    // SPEED DIAMOND
     private static Level instance;
 
     public static Level GetInstance()
@@ -20,31 +15,28 @@ public class Level : MonoBehaviour
         return instance;
     }
     
+    /*********** GROUND *********/
     // Pipe 
     private List<HandlePipe.Pipe> pipeList;
     public int pipesPassedCount;
     private int pipesSpawned;
     private float pipeSpawnTimer;
     private float pipeSpawnTimerMax;
-
-    // Questions
-    private List<HandleQuestionBlob.QuestionBlob> questionBlobList;
-    private static QuestionWindow questionWindow;
-    
     // CoralReef
     private List<HandleReef.Reef> reefList;
-    // Structures and data for speed ring 
-    private List<HandleSpeedRing.SpeedRing> speedRingList; 
-    private float speedRingSpawnTimer; 
-    private float speedRingSpawnTimerMax;
     
-    // Garbage 
-    private List<HandleObstacles.Garbage> garbageList; 
-    private float garbageSpawnTimer; 
-    private float garbageSpawnTimerMax;
-
+    /*********** FLOATING OBJECTS : QUESTION/SPEED_RING/GARBAGE *********/
+    // Timer
+    private float spawnFloatingTimer;
+    private float spawnFloatingTimerMax;
+    private float randomSelector;
+    // List of floating objects
+    private List<HandleQuestionBlob.QuestionBlob> questionBlobList;
+    private static QuestionWindow questionWindow;
+    private List<HandleSpeedRing.SpeedRing> speedRingList;
+    private List<HandleObstacles.Garbage> garbageList;
+    
     // State
-
     private State state;
     // SPEED
     public float birdSpeed;
@@ -71,21 +63,17 @@ public class Level : MonoBehaviour
         instance = this;
         // speed
         birdSpeed = 30f;
-        // pipe
+        // List of objects
         pipeList = new List<HandlePipe.Pipe>();
-        // speed diamond
-        speedRingList = new List<HandleSpeedRing.SpeedRing>();
-        // coral reef
         reefList = new List<HandleReef.Reef>();
         HandleReef.CreateInitialReef(-MyGlobals.CAMERA_ORTHO_SIZE, reefList);
-        // garbage obstacles
+        speedRingList = new List<HandleSpeedRing.SpeedRing>();
         garbageList = new List<HandleObstacles.Garbage>();
+        questionBlobList = new List<HandleQuestionBlob.QuestionBlob>();
+        questionWindow = QuestionWindow.getInstance();
         //difficulty
         SetDifficulty(Difficulty.Easy);
         state = State.WaitingToStart;
-
-        questionBlobList = new List<HandleQuestionBlob.QuestionBlob>();
-        questionWindow = QuestionWindow.getInstance();
     }
 
     private void Start()
@@ -112,25 +100,18 @@ public class Level : MonoBehaviour
     {
         if (state == State.Playing)
         {
-            // PIPE
+            // PIPE AND REEF
             HandlePipeMovement();
             HandlePipeSpawning();
-
-            // SPEED DIAMONDS
-            HandleSpeedRingMovement();
-            HandleSpeedRingSpawning();
-
-            // REEF
             HandleReefMovement();
             HandleReefSpawning();
             
-            // OBSTACLES
-            HandleObstaclesMovement(); 
-            HandleObstaclesSpawning(); 
-            
-            // QUESTIONS
+            // FLOATING OBJECTS SPAWNING
+            HandleFloatingObjectSpawning();
+            // FLOATING OBJECTS MOVEMENT 
+            HandleSpeedRingMovement();
+            HandleObstaclesMovement();
             HandleQuestionMovement();
-            HandlePopupQuestion();
         }
     }
     
@@ -142,24 +123,16 @@ public class Level : MonoBehaviour
         {
             case Difficulty.Easy:
                 pipeSpawnTimerMax = 0.8f;
-                speedRingSpawnTimerMax = 3.0f; 
-                garbageSpawnTimerMax = 3.0f;
-                break;
+                spawnFloatingTimerMax = 0.8f; break;
             case Difficulty.Medium:
                 pipeSpawnTimerMax = 1f;
-                speedRingSpawnTimerMax = 3.0f; 
-                garbageSpawnTimerMax = 2.5f;
-                break;
+                spawnFloatingTimerMax = 0.7f; break;
             case Difficulty.Hard:
                 pipeSpawnTimerMax = 1.1f;
-                speedRingSpawnTimerMax = 3.0f;
-                garbageSpawnTimerMax = 2.0f;
-                break;
+                spawnFloatingTimerMax = 0.6f;break;
             case Difficulty.Impossible:
                 pipeSpawnTimerMax = 1.2f;
-                speedRingSpawnTimerMax = 3.0f;
-                garbageSpawnTimerMax = 1.5f;
-                break;
+                spawnFloatingTimerMax = 0.5f;break;
         }
     }
 
@@ -169,6 +142,50 @@ public class Level : MonoBehaviour
         if (pipesSpawned >= 20) return Difficulty.Hard;
         if (pipesSpawned >= 10) return Difficulty.Medium;
         return Difficulty.Easy;
+    }
+    
+    /********************************************* OBJECTS SPAWNING *********************************************/
+    
+    private void HandleFloatingObjectSpawning()
+    {
+        spawnFloatingTimer -= Time.deltaTime;
+        if (spawnFloatingTimer < 0)
+        {
+            spawnFloatingTimer = spawnFloatingTimerMax + Random.Range(-0.2f, 0.2f);
+            randomSelector = Random.Range(0f, 1f);
+            if (0f <= randomSelector && randomSelector < 0.70f) // Trash
+            {
+                HandleObstacles.CreateGarbage(garbageList);
+            }
+            else if (0.70f <= randomSelector && randomSelector < 0.95f) // Speed Ring
+            {
+                HandleSpeedRing.CreateSpeedRing(MyGlobals.SPAWN_X_POSITION + birdScript.transform.position.x, speedRingList);
+            }
+            else // Deadly Question
+            {
+                float minHeight = 10f;
+                float maxHeight = 40f;
+                float height = Random.Range(minHeight, maxHeight);
+                HandleQuestionBlob.SpawnQuestion(height/2 , MyGlobals.SPAWN_X_POSITION, questionBlobList);
+            }
+        }
+    }
+    
+    private void HandlePipeSpawning()
+    {
+        pipeSpawnTimer -= Time.deltaTime;
+        if (pipeSpawnTimer < 0)
+        {
+            pipeSpawnTimer = pipeSpawnTimerMax;
+            
+            float minHeight = 10f;
+            float maxHeight = 40f;
+
+            float height = Random.Range(minHeight, maxHeight);
+            CreateGapPipes(height, MyGlobals.SPAWN_X_POSITION);
+            
+            CreateGapPipes(height, MyGlobals.SPAWN_X_POSITION + birdScript.transform.position.x);
+        }
     }
 
     /********************************************* PIPE MOVEMENT / SCORE *********************************************/
@@ -196,33 +213,6 @@ public class Level : MonoBehaviour
         }
     }
 
-    
-    private int questionGap = 1;
-    private void HandlePipeSpawning()
-    {
-        pipeSpawnTimer -= Time.deltaTime;
-        if (pipeSpawnTimer < 0)
-        {
-            // Time to spawn another Pipe
-            pipeSpawnTimer = pipeSpawnTimerMax;
-            
-            float minHeight = 10f;
-            float maxHeight = 40f;
-
-            float height = Random.Range(minHeight, maxHeight);
-            CreateGapPipes(height, MyGlobals.SPAWN_X_POSITION);
-
-            questionGap -= 1;
-            if (questionGap == 0)
-            {
-                questionGap = Random.Range(2, 5);         // TODO: Move constants
-                HandleQuestionBlob.SpawnQuestion(height/2 , MyGlobals.SPAWN_X_POSITION, questionBlobList);
-               
-            }
-            CreateGapPipes(height, MyGlobals.SPAWN_X_POSITION + birdScript.transform.position.x);
-        }
-    }
-    
     private void CreateGapPipes(float gapY, float xPosition)
     {
         HandlePipe.CreatePipe(gapY, xPosition, pipeList);
@@ -262,19 +252,6 @@ public class Level : MonoBehaviour
                 }
             }
         }
-    }
-
-    private void HandleSpeedRingSpawning()
-    {
-        speedRingSpawnTimer -= Time.deltaTime; 
-        if (speedRingSpawnTimer < 0)
-        {
-        
-            // Randomly time to generate another ring 
-            speedRingSpawnTimer = speedRingSpawnTimerMax + Random.Range(-2,2); 
-            HandleSpeedRing.CreateSpeedRing(MyGlobals.SPAWN_X_POSITION + birdScript.transform.position.x, speedRingList); 
-        }
-
     }
 
     /************************************ QUESTION MOVEMENT ************************************/
@@ -350,17 +327,6 @@ public class Level : MonoBehaviour
         }
     }
 
-    private void HandleObstaclesSpawning()
-    {    
-        garbageSpawnTimer -= Time.deltaTime; 
-        if (garbageSpawnTimer < 0)
-        {
-            // Randomly time to generate another ring 
-            garbageSpawnTimer = garbageSpawnTimerMax + Random.Range(0,1); 
-            HandleObstacles.CreateGarbage(garbageList); 
-        }
-    }
-    
     /********************************************************************** Creation of the QuestionBlob *********************************************************/
 
     private float displaytime = 1f;

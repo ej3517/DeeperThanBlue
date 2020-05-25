@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bird : MonoBehaviour
 {
-    private const float JUMP_AMOUNT = 50f;
+    private const float JUMP_AMOUNT = 20f;
     public float speedRingBoost;
     public float speedObstacleReduction;
     private bool isGravityToGround;

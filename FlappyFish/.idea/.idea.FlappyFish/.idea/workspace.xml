@@ -2,25 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="60884b82-83d6-468b-a134-8eabc3e9fcf8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/MyGlobals.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/MyGlobals.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Garbage/pfCup.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Garbage/pfCup.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Garbage/pfGlass.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Garbage/pfGlass.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/pfWaterSurface.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/pfWaterSurface.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HandleObstacles.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HandleObstacles.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HandlePipe.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HandlePipe.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HandleReef.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HandleReef.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HandleSpeedRing.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HandleSpeedRing.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Bird.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Bird.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Garbage/cup.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Garbage/cup.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Garbage/environment.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Garbage/environment.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Garbage/food.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Garbage/food.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Garbage/healthy.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Garbage/healthy.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/shapes.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/shapes.png.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,13 +66,13 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Boat.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Scroll.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameAssets.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Bird.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BackgroundScroll.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HandleSpeedRing.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MyGlobals.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HandleReef.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HandlePipe.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HandleObstacles.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Bird.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Level.cs" />
       </list>
     </option>
