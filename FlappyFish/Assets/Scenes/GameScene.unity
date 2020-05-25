@@ -920,7 +920,7 @@ GameObject:
   - component: {fileID: 478960638}
   - component: {fileID: 478960637}
   m_Layer: 0
-  m_Name: Quad
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1112,9 +1112,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10fbaeddfa7cd46eaa10090d6a7904e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetTransform: {fileID: 0}
-  tempVec3: {x: 0, y: 0, z: 0}
-  diff: 0
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
