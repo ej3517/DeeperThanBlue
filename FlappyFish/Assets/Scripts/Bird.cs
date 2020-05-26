@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Bird : MonoBehaviour
 {
-    private const float JUMP_AMOUNT = 100f;
-
+    private const float JUMP_AMOUNT = 20f;
+    public float speedRingBoost;
+    public float speedObstacleReduction;
+    private bool isGravityToGround;
     private static Bird instance;
 
     public static Bird GetInstance()
@@ -15,19 +17,16 @@ public class Bird : MonoBehaviour
 
     public event EventHandler OnDied;
     public event EventHandler OnStartedPlaying;
-    
+
     private Rigidbody2D birdrigidbody2D;
     private State state;
-
-
-    Level levelScript; 
+    
+    Level levelScript;
 
     // Variables for application of speed boost 
-    public Vector2 diamondForce; 
     private Vector2 m_startForce; 
 
     public int speedPoints; 
- 
     
     private enum State
     {
@@ -42,9 +41,11 @@ public class Bird : MonoBehaviour
         birdrigidbody2D = GetComponent<Rigidbody2D>();
         birdrigidbody2D.bodyType = RigidbodyType2D.Static;
         state = State.WaitingToStart;
-        speedPoints = 0; 
-
-        levelScript = GameObject.Find("Level").GetComponent<Level>(); 
+        speedPoints = 0;
+        speedRingBoost = 5f;
+        speedObstacleReduction = 5f;
+        isGravityToGround = true;
+        levelScript = GameObject.Find("Level").GetComponent<Level>();
     }
 
     private void Update()
@@ -59,21 +60,14 @@ public class Bird : MonoBehaviour
                     state = State.Playing;
                     birdrigidbody2D.bodyType = RigidbodyType2D.Dynamic;
                     if (OnStartedPlaying!= null) OnStartedPlaying(this, EventArgs.Empty);
-                    Jump();
+                    Jump(isGravityToGround);
+                    // Start Background Scrolling
                 }
                 break;
             case State.Playing:
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetKey(KeyCode.Space))
                 {
-                    if (levelScript.birdSpeed > 30){
-                        levelScript.birdSpeed -= 0.5f; 
-                    }
-                    else if (levelScript.birdSpeed < 30){
-                        levelScript.birdSpeed += 0.5f; 
-                    }
-    
-                    Debug.Log("Playing"); 
-                    Jump();
+                    Jump(isGravityToGround);
                 }
                 break;
             case State.Dead:
@@ -86,33 +80,50 @@ public class Bird : MonoBehaviour
         }
     }
 
-    private void Jump()
+    private void Jump(bool toGround)
     {
         SoundManager.PlaySound(SoundManager.Sound.FishSwim);
-        birdrigidbody2D.velocity = Vector2.up * JUMP_AMOUNT;
+        if (toGround)
+        {
+            birdrigidbody2D.velocity = Vector2.up * JUMP_AMOUNT;
+        }
+        else
+        {
+            birdrigidbody2D.velocity = Vector2.down * JUMP_AMOUNT;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("SpeedRing"))
         {
-            collider.gameObject.active = false; 
-            levelScript.birdSpeed = 60; 
+            collider.gameObject.SetActive(false); 
+            levelScript.birdSpeed += speedRingBoost; 
             speedPoints++;
         }
         else if (collider.gameObject.CompareTag("Reef")||collider.gameObject.CompareTag("Pipe"))
         {
-            Jump();
+            // Repel from ground
+            Jump(true);
+        }
+        else if (collider.gameObject.CompareTag("WaterSurface"))
+        {
+            // Repel from surface
+            Jump(false);
         }
         else if (collider.gameObject.CompareTag("Obstacles"))
         {
-            collider.gameObject.active = false; 
-            levelScript.birdSpeed = 20; 
+            collider.gameObject.SetActive(false);
+            levelScript.birdSpeed -= speedObstacleReduction;
+            // switch gravity 
+            birdrigidbody2D.gravityScale *= -1;
+            isGravityToGround = !isGravityToGround;
         }
-        else {
+        else{
             birdrigidbody2D.bodyType = RigidbodyType2D.Static;
             SoundManager.PlaySound(SoundManager.Sound.Lose);
             if (OnDied != null) OnDied(this, EventArgs.Empty);
+            state = State.Dead;
         }
 
     }

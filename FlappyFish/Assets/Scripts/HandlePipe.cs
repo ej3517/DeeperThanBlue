@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class HandlePipe : MonoBehaviour
 {
-    private const float CAMERA_ORTHO_SIZE = 50f;
     private const float PIPE_WIDTH = 7.8f;
     private const float PIPE_HEAD_HEIGHT = 3.75f;
     
@@ -13,14 +12,14 @@ public class HandlePipe : MonoBehaviour
         // set up pipe head
         Transform pipeHead = Instantiate(GameAssets.GetInstance().pfPipeHead);
         float pipeHeadYPosition;
-        pipeHeadYPosition = -CAMERA_ORTHO_SIZE + height - PIPE_HEAD_HEIGHT * .5f;
+        pipeHeadYPosition = -MyGlobals.CAMERA_ORTHO_SIZE + height - PIPE_HEAD_HEIGHT * .5f;
         pipeHead.position = new Vector3(xPosition, pipeHeadYPosition);
 
         // set up pipe body
         Transform pipeBody = Instantiate(GameAssets.GetInstance().pfPipeBody);
 
         float PipeBodyYPosition;
-        PipeBodyYPosition = -CAMERA_ORTHO_SIZE;
+        PipeBodyYPosition = -MyGlobals.CAMERA_ORTHO_SIZE;
      
         pipeBody.position = new Vector3(xPosition, PipeBodyYPosition);
 
