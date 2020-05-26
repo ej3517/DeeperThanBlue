@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            DB Tutorial 
+        </title>
+        <meta name="viewport" content="user-scalable=no, width=devide-width"/>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css"> 
+        <script type="text/javascript" src="jquery.js"></script>    
+    </head>
+
+    <body style="margin: 30px;">
+        <div class="container"></div>
+        <div class="row"></div>
+
+        <form>
+            <fieldset>
+                <legend>Item Name</legend>
+                <input type="text" class="form-control" name="" id="item">
+
+                <legend>Quantity</legend>
+                <input type="number" class="form-control" id="quantity" name="">
+
+                <br>
+                <br>
+                <button type="button" id="insert" class="btn btn-sucess">Insert</button>
+                <button type="button" id="create" class="btn btn-sucess">Create Table</button>
+                <button type="button" id="remove" class="btn btn-danger">Delete Table</button>
+                <button type="button" id="list" class="btn btn-sucess">Fetch Table</button>
+            </fieldset>
+        </form>
+
+        <hr>
+        <h4>Record</h4>
+        <table class="table table-bordered table-hover"></table>
+
+        <script type="text/javascript">
+        
+        var db = openDatabase("itemDB", "1.0", "itemDB", 65535); 
+        $(function(){
+
+            $("#create").click(function(){
+                db.transaction(function(transaction){
+                    var sql="CREATE TABLE items "+"(id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,"+"item VARCHAR(100) NOT NULL,"+"quantity INT(5) NOT NULL)";
+                    transaction.executeSql(sql, undefined, function(){
+                        alert("Data is created successfully"); 
+                    }, function(){
+                        alert("Table is already being created"); 
+                    })
+                })    
+            });
+        });
+
+        </script>
+
+    </body>
+</html>
