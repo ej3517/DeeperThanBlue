@@ -5,13 +5,14 @@ using UnityEngine;
 
 public class CodingArea : MonoBehaviour
 {
-    public Transform Start;
+    public Transform StartBlock;
     public Transform Button;
 
     public event EventHandler OnButtonStart;
 
     CodingArea instance;
-    private void Awake()
+    
+    CodingArea()
     {
         instance = this;
     }
@@ -31,14 +32,14 @@ public class CodingArea : MonoBehaviour
 
     public void ButtonStart()
     {
-        if(!Start.GetComponent<Block>().Validate())
+        if(!StartBlock.GetComponent<Block>().Validate())
         {
             Debug.LogError("Invalid Structure");
             return;
         }
 
         //Move start to first object
-        Block _start = Start.GetComponent<Block>();
+        Block _start = StartBlock.GetComponent<Block>();
         StartCoroutine(_start.Traverse(Button));
 
         OnButtonStart?.Invoke(this, EventArgs.Empty);

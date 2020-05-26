@@ -11,7 +11,7 @@ public class Menu : MonoBehaviour, IPointerDownHandler
 
     private void Awake()
     {
-        Debug.LogWarning("Button start");
+        ;// Debug.LogWarning("Button start");
     }
 
     public void OnPointerDown(PointerEventData eventData)

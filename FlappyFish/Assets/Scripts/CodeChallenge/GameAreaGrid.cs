@@ -22,15 +22,18 @@ public class GameAreaGrid : MonoBehaviour
 
     // Start is called before the first frame update
     public Transform gridTransform;
-    public Transform block;
     public Transform fish;
+    public Transform goal;
+
     private RectTransform rectTransform;
     private GridStruct[,] map;
     private int gridSize;
 
-    public Transform codingAreaTransform;
+    public Transform codingAreaReferenceTransform;
     private CodingArea codingArea;
 
+    public Transform[] pfReefArray;
+    
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -99,9 +102,9 @@ public class GameAreaGrid : MonoBehaviour
                 if (_map[w, h] == 'x')
                 {
                     //Summon block
-                    Transform _block = Instantiate(block);
+                    Transform _block = Instantiate(pfReefArray[UnityEngine.Random.Range(0, pfReefArray.Length)]);
                     SpriteRenderer srBlock = _block.GetComponent<SpriteRenderer>();
-                    float _scale = 0.5f;
+                    float _scale = 0.9f;
                     _block.localScale = new Vector3(ratio * _scale / srBlock.size.x, ratio* _scale / srBlock.size.y, 1);
                     _block.parent = instance;
                     _block.localPosition = new Vector3(0, 0, 0);
@@ -125,7 +128,7 @@ public class GameAreaGrid : MonoBehaviour
         Debug.LogError("Done creating grid");
 
 
-        codingArea = codingAreaTransform.GetComponent<CodingArea>();
+        codingArea = codingAreaReferenceTransform.GetComponent<CodingArea>();
         codingArea.OnButtonStart += CodingArea_OnButtonStart;
     }
 
@@ -133,7 +136,7 @@ public class GameAreaGrid : MonoBehaviour
     // Update positions on events? Place the events class in the grid GameArea bject
     private void CodingArea_OnButtonStart(object sender, EventArgs e)
     {
-        Debug.LogError("ButtonPressed");
+        //Debug.LogError("ButtonPressed");
     }
 
 

@@ -16,7 +16,7 @@ public class Drop : MonoBehaviour, IDropHandler
             Block blockClass = eventData.pointerDrag.GetComponent<Block>();
             block.transform.SetParent(currentObj);
             eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = /*GetComponent<RectTransform>().anchoredPosition - */ new Vector3(0, -70,0); //TODO make size dynamic
-            Debug.LogError(blockClass.type.ToString());
+            //Debug.LogError(blockClass.type.ToString());
         }
         
         

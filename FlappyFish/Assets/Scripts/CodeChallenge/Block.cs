@@ -8,7 +8,7 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
 {
     [SerializeField] protected Canvas canvas;
 
-    public string type;         // Make this protected
+    protected string type;         // Make this protected
 
     protected RectTransform rectTransform;
     protected CanvasGroup canvasGroup;

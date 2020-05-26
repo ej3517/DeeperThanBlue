@@ -9,7 +9,6 @@ public class BlockTurn : Block
     {
         type = "Turn";
         rectTransform = GetComponent<RectTransform>();
-        Debug.LogWarning("Start, " + rectTransform.name);
         canvasGroup = GetComponent<CanvasGroup>();
     }
 
@@ -20,7 +19,7 @@ public class BlockTurn : Block
         Button.localPosition = new Vector3(-200, 6);
 
         yield return new WaitForSeconds(1);
-        Debug.LogError("Turn after wait");
+        //Debug.LogError("Turn after wait");
         if (belowBlock != null)
         {
             StartCoroutine(belowBlock.Traverse(Button));

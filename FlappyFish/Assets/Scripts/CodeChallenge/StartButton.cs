@@ -8,7 +8,7 @@ public class StartButton: MonoBehaviour
     CodingArea codingArea;
     bool clickable;
 
-    private void Awake()
+    public void Awake()
     {
         Transform ca = transform.parent;
         codingArea = ca.GetComponent<CodingArea>().GetInstance();
@@ -17,10 +17,11 @@ public class StartButton: MonoBehaviour
 
     public void OnMouseDown()
     {
+
         if(clickable)
         {
             codingArea.ButtonStart();
-            // clickable = false;
+            //clickable = false;
         }
     }
 
