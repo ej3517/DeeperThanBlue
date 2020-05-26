@@ -9,7 +9,6 @@
           <e p="Bird.cs" t="Include" />
           <e p="Boat.cs" t="Include" />
           <e p="ButtonHandler.cs" t="Include" />
-          <e p="FollowFish.cs" t="Include" />
           <e p="GameAssets.cs" t="Include" />
           <e p="GameHandler.cs" t="Include" />
           <e p="GameOverWindow.cs" t="Include" />
@@ -22,6 +21,7 @@
           <e p="Loader.cs" t="Include" />
           <e p="LoaderUpdate.cs" t="Include" />
           <e p="MyGlobals.cs" t="Include" />
+          <e p="QuestionTimer.cs" t="Include" />
           <e p="QuestionWindow.cs" t="Include" />
           <e p="Score.cs" t="Include" />
           <e p="ScoreWindow.cs" t="Include" />

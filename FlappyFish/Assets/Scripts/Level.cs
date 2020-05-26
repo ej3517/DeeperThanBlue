@@ -32,7 +32,7 @@ public class Level : MonoBehaviour
     private float randomSelector;
     // List of floating objects
     private List<HandleQuestionBlob.QuestionBlob> questionBlobList;
-    private static QuestionWindow questionWindow;
+    private QuestionWindow questionWindow;
     private List<HandleSpeedRing.SpeedRing> speedRingList;
     private List<HandleObstacles.Garbage> garbageList;
     
@@ -71,8 +71,8 @@ public class Level : MonoBehaviour
         speedRingList = new List<HandleSpeedRing.SpeedRing>();
         garbageList = new List<HandleObstacles.Garbage>();
         questionBlobList = new List<HandleQuestionBlob.QuestionBlob>();
-        questionWindow = QuestionWindow.getInstance();
-
+        questionWindow = QuestionWindow.GetInstance();
+        
         //difficulty
         SetDifficulty(Difficulty.Easy);
         state = State.WaitingToStart;
@@ -155,11 +155,11 @@ public class Level : MonoBehaviour
         {
             spawnFloatingTimer = spawnFloatingTimerMax + Random.Range(-0.2f, 0.2f);
             randomSelector = Random.Range(0f, 1f);
-            if (0f <= randomSelector && randomSelector < 0.70f) // Trash
+            if (0f <= randomSelector && randomSelector < 0.60f) // Trash
             {
                 HandleObstacles.CreateGarbage(garbageList);
             }
-            else if (0.70f <= randomSelector && randomSelector < 0.95f) // Speed Ring
+            else if (0.60f <= randomSelector && randomSelector < 0.80f) // Speed Ring
             {
                 HandleSpeedRing.CreateSpeedRing(MyGlobals.SPAWN_X_POSITION + birdScript.transform.position.x, speedRingList);
             }
@@ -257,22 +257,15 @@ public class Level : MonoBehaviour
     }
 
     /************************************ QUESTION MOVEMENT ************************************/
+    
     private void HandleQuestionMovement()
     {
         for (int i = 0; i < questionBlobList.Count; i++)
         {
             HandleQuestionBlob.QuestionBlob question = questionBlobList[i];
             question.Move(birdSpeed);
-            if(question.getDistance(Bird.GetInstance().getPosition()) < 9)
-            {
-                SoundManager.PlaySound(SoundManager.Sound.Question); //TODO: Add sound
-                question.Hide();
-                i--;
-                PopoupQuestion();
-            }
             
-            //Out of range
-            if (question.getXPosition() < MyGlobals.DESTROY_X_POSITION)
+            if (question.getXPosition() < MyGlobals.DESTROY_X_POSITION) //Out of range
             {
                 question.destroySelf();
                 questionBlobList.Remove(question);
@@ -328,32 +321,6 @@ public class Level : MonoBehaviour
             }          
         }
     }
-
-    /********************************************************************** Creation of the QuestionBlob *********************************************************/
-
-    private float displaytime = 1f;
-
-    private void PopoupQuestion()
-    {
-        // TODO: Get question with answer from server
-
-        // Create a textbox
-        questionWindow.displayQuestion();
-        displaytime = 1f;
-    }
-
-    private void HandlePopupQuestion()
-    {
-        if (displaytime > 0)
-        {
-            displaytime -= Time.deltaTime;
-            if (displaytime <= 0)
-            {
-                questionWindow.Hide();
-            }
-        }
-    }
-    
 }
 
 

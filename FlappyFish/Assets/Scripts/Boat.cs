@@ -11,12 +11,6 @@ public class Boat : MonoBehaviour
     // GLOBAL VAR
     private Rigidbody2D boatRigidBody2D;
     private Transform boatTransform;
-    private static Boat instance;
-
-    public static Boat GetInstance()
-    {
-        return instance;
-    }
     
     // State
     private State state;
@@ -88,9 +82,9 @@ public class Boat : MonoBehaviour
         }
     }
     
-    private void OnTriggerEnter2D(Collider2D collider)
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        if (collider.gameObject.CompareTag("Bird"))
+        if (col.gameObject.CompareTag("Bird"))
         {
             boatRigidBody2D.bodyType = RigidbodyType2D.Static;
             state = State.BirdDied;

@@ -12,4 +12,6 @@ public static class MyGlobals
     public const float MAX_HEIGHT_GROUND = -8f;
     // REEF 
     public const float REEF_DIMENSION = 12f;
+    // QUESTION
+    public static float durationQuestionPopUp = 3f;
 }
