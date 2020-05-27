@@ -130,4 +130,13 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
     }
 
 
+    public virtual void DestroySelf()
+    {
+        if(belowBlock != null)
+        {
+            belowBlock.DestroySelf();
+        }
+        Destroy(transform.gameObject);
+    }
+
 }
