@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class QuestionTimer : MonoBehaviour
 {
     private Text timer;
+    private float currentTime;
+    public float timerSpeed = 1f;
 
     void Start()
     {
@@ -14,6 +16,7 @@ public class QuestionTimer : MonoBehaviour
 
     void Update()
     {
-        timer.text = "test";
+        currentTime += Time.deltaTime;
+        timer.text = (currentTime%60).ToString("0.0");
     }
 }

@@ -14,7 +14,7 @@ public class QuestionWindow : MonoBehaviour
     private int questionNumber;
 
     private void Awake()
-   {
+    {
        Hide();
        questionText = transform.Find("QuestionText").GetComponent<Text>();
        questionList = new List<string>();
@@ -34,8 +34,8 @@ public class QuestionWindow : MonoBehaviour
        {
             Debug.LogWarning("Could not read Questions.txt: " + e.Message);
        }
-   }
-
+    }
+    
     public QuestionWindow()
     {
         instance = this;
