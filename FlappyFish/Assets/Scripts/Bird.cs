@@ -12,7 +12,6 @@ public class Bird : MonoBehaviour
     private bool lastBoundTouchedIsSurface;
     // Question
     private QuestionWindow questionWindow;
-    
     private static Bird instance;
 
     public static Bird GetInstance()
@@ -37,6 +36,7 @@ public class Bird : MonoBehaviour
     {
         WaitingToStart,
         Playing,
+        WaitingAnswer,
         Dead,
     }
 
@@ -75,6 +75,8 @@ public class Bird : MonoBehaviour
                     Jump(lastBoundTouchedIsSurface);
                 }
                 break;
+            case State.WaitingAnswer:
+                break;
             case State.Dead:
                 questionWindow.Hide();
                 break;
@@ -98,7 +100,7 @@ public class Bird : MonoBehaviour
     {
         if (col.gameObject.CompareTag("SpeedRing"))
         {
-            col.gameObject.SetActive(false); 
+            col.gameObject.SetActive(false);
             questionWindow.timer = MyGlobals.DURATION_EASY_QUESTION;
             questionWindow.DisplayQuestion();
             levelScript.birdSpeed += speedRingBoost; 

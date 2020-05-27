@@ -55,6 +55,7 @@ public class Level : MonoBehaviour
     {
         WaitingToStart,
         Playing,
+        WaitingAnswer,
         BirdDead,
     }
 
