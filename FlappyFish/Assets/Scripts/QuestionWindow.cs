@@ -8,11 +8,8 @@ using UnityEngine.UIElements;
 
 public class QuestionWindow : MonoBehaviour
 {
-    private Text questionText;
-    private List<string> questionList;
     private static QuestionWindow instance;
-    private int questionNumber;
-    
+
     // Countdown Timer
     private Text timerText;
     public float timer;
@@ -26,24 +23,6 @@ public class QuestionWindow : MonoBehaviour
        timerText = transform.Find("QuestionTimer").GetComponent<Text>();
        canCount = true;
        doOnce = false;
-       //Import questions
-       questionText = transform.Find("QuestionText").GetComponent<Text>();
-       questionList = new List<string>();
-       try
-       {
-            using (StreamReader sr = new StreamReader("Questions.txt"))
-            {
-                string line;
-                while ((line = sr.ReadLine()) != null)
-                {
-                    questionList.Add(line);
-                }
-            }
-       }
-       catch (IOException e)
-       {
-            Debug.LogWarning("Could not read Questions.txt: " + e.Message);
-       }
     }
     
     void Update()
@@ -76,11 +55,8 @@ public class QuestionWindow : MonoBehaviour
 
     public void DisplayQuestion()
     {
-        // timer = MyGlobals.DURATION_EASY_QUESTION;
         canCount = true;
         doOnce = false;
-        questionNumber = UnityEngine.Random.Range(0, questionList.Count);
-        questionText.text = questionList[questionNumber];
         Show();
     }
 

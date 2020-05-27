@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class MyGlobals 
+public class MyGlobals 
 {
     public const float CAMERA_ORTHO_SIZE = 50f;
     public const float DESTROY_X_POSITION = -120f;
