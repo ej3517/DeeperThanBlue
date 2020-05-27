@@ -41,7 +41,6 @@ public class QuestionWindow : MonoBehaviour
         instance = this;
     }
 
-
     public static QuestionWindow GetInstance()
     {
         return instance;
