@@ -21,7 +21,6 @@
           <e p="Loader.cs" t="Include" />
           <e p="LoaderUpdate.cs" t="Include" />
           <e p="MyGlobals.cs" t="Include" />
-          <e p="QuestionTimer.cs" t="Include" />
           <e p="QuestionWindow.cs" t="Include" />
           <e p="Score.cs" t="Include" />
           <e p="ScoreWindow.cs" t="Include" />

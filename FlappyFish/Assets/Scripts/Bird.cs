@@ -98,8 +98,9 @@ public class Bird : MonoBehaviour
     {
         if (col.gameObject.CompareTag("SpeedRing"))
         {
-            questionWindow.DisplayQuestion();
             col.gameObject.SetActive(false); 
+            questionWindow.timer = MyGlobals.DURATION_EASY_QUESTION;
+            questionWindow.DisplayQuestion();
             levelScript.birdSpeed += speedRingBoost; 
             speedPoints++;
         }
@@ -127,6 +128,7 @@ public class Bird : MonoBehaviour
         else if (col.gameObject.CompareTag("QuestionBlob"))
         {
             col.gameObject.SetActive(false);
+            questionWindow.timer = MyGlobals.DURATION_HARD_QUESTION;
             questionWindow.DisplayQuestion();
         }
         else{
@@ -136,10 +138,5 @@ public class Bird : MonoBehaviour
             state = State.Dead;
         }
 
-    }
-
-    public Vector3 getPosition()
-    {
-        return birdrigidbody2D.position;
     }
 }

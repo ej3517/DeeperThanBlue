@@ -13,5 +13,6 @@ public static class MyGlobals
     // REEF 
     public const float REEF_DIMENSION = 12f;
     // QUESTION
-    public static float durationQuestionPopUp = 3f;
+    public const float DURATION_EASY_QUESTION = 5f;
+    public const float DURATION_HARD_QUESTION = 10f;
 }
