@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class QuizGameController : MonoBehaviour
 {
     public Text questionDisplayText;
-    public Text scoreDisplayText;
+
     public SimpleObjectPool answerButtonObjectPool;
     public Transform answerButtonParent;
 
@@ -59,5 +59,4 @@ public class QuizGameController : MonoBehaviour
             answerButtonGameObjects.RemoveAt(0);
         }
     }
-    
 }

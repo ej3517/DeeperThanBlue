@@ -1713,8 +1713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea6df4d42b8694fc59891f45858d0d63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questionDisplayText: {fileID: 0}
-  scoreDisplayText: {fileID: 0}
+  questionDisplayText: {fileID: 42097045}
   answerButtonObjectPool: {fileID: 114626886}
   answerButtonParent: {fileID: 1516669707}
 --- !u!1 &928633487
