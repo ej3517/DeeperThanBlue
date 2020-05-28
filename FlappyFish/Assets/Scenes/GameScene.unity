@@ -592,7 +592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2389653ad2b1f45648dfdeab25b33757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4923559028559596412, guid: 67fe765576acf473aa7f27ff024ac40e, type: 3}
+  prefab: {fileID: 6989012761783543010, guid: 67fe765576acf473aa7f27ff024ac40e, type: 3}
 --- !u!1 &139561851
 GameObject:
   m_ObjectHideFlags: 0
@@ -1259,7 +1259,6 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
-  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1275,18 +1274,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
---- !u!114 &519420030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10fbaeddfa7cd46eaa10090d6a7904e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1714,8 +1701,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questionDisplayText: {fileID: 42097045}
+  scoreDisplayText: {fileID: 1743807964}
   answerButtonObjectPool: {fileID: 114626886}
   answerButtonParent: {fileID: 1516669707}
+  questionDisplay: {fileID: 41126658}
+  roundEndDisplay: {fileID: 285018461}
 --- !u!1 &928633487
 GameObject:
   m_ObjectHideFlags: 0
@@ -2854,10 +2844,10 @@ RectTransform:
   m_Father: {fileID: 41126657}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000030517578, y: -157.5}
-  m_SizeDelta: {x: -99.99997, y: -395.82593}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 0.000030517578, y: -157.49994}
+  m_SizeDelta: {x: -100, y: 204.17407}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1516669708
 MonoBehaviour:
@@ -2877,13 +2867,13 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 1
+  m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
   m_ChildControlHeight: 1
-  m_ChildScaleWidth: 1
-  m_ChildScaleHeight: 1
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
 --- !u!222 &1516669709
 CanvasRenderer:
   m_ObjectHideFlags: 0

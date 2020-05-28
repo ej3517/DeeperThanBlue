@@ -20,4 +20,9 @@ public class AnswerButton : MonoBehaviour
         answerData = data;
         answerText.text = answerData.answerText;
     }
+
+    public void HandleClick()
+    {
+        quizGameController.AnswerButtonClicked (answerData.isCorrect);
+    }
 }

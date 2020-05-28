@@ -7,9 +7,11 @@ using UnityEngine.SceneManagement;
 public class QuizGameController : MonoBehaviour
 {
     public Text questionDisplayText;
-
+    public Text scoreDisplayText;
     public SimpleObjectPool answerButtonObjectPool;
     public Transform answerButtonParent;
+    public QuestionWindow questionDisplay;
+    public GameOverWindow roundEndDisplay;
 
     private DataController dataController;
     private RoundData currentRoundData;
@@ -42,12 +44,15 @@ public class QuizGameController : MonoBehaviour
 
         for (int i = 0; i < questionData.answers.Length; i++)
         {
-            GameObject answerButtonGameObject = answerButtonObjectPool.GetObject(); // Maybe Here
-            answerButtonGameObject.transform.SetParent(answerButtonParent);
-            answerButtonGameObjects.Add(answerButtonGameObject);
-
+            GameObject answerButtonGameObject = answerButtonObjectPool.GetObject();
+            
             AnswerButton answerButton = answerButtonGameObject.GetComponent<AnswerButton>();
             answerButton.SetUp(questionData.answers[i]);
+
+            answerButtonGameObject.transform.SetParent(answerButtonParent, false); // worldPositionStays argument set to false -> This will retain local orientation and scale
+            answerButtonGameObjects.Add(answerButtonGameObject);
+            
+            Debug.Log(questionData.answers[i].answerText);
         }
     }
 
@@ -58,5 +63,31 @@ public class QuizGameController : MonoBehaviour
             answerButtonObjectPool.ReturnObject(answerButtonGameObjects[0]);
             answerButtonGameObjects.RemoveAt(0);
         }
+    }
+
+    public void AnswerButtonClicked(bool isCorrect)
+    {
+        if (isCorrect)
+        {
+            playerScore += currentRoundData.pointsAddedForCorrectAnswer;
+            scoreDisplayText.text = playerScore.ToString();
+        }
+
+        if (questionPool.Length > questionIndex + 1)
+        {
+            questionIndex ++;
+            ShowQuestion();
+        }
+        else
+        {
+            EndRound();
+        }
+    }
+
+    public void EndRound()
+    {
+        isRoundActive = false;
+        questionDisplay.Hide();
+        roundEndDisplay.Show();
     }
 }

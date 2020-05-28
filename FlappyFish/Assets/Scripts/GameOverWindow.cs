@@ -37,11 +37,11 @@ public class GameOverWindow : MonoBehaviour
         Show();
     }
 
-    private void Hide()
+    public void Hide()
     {
         gameObject.transform.localScale = new Vector3(0,0,0);
     }
-    private void Show()
+    public void Show()
     {
         gameObject.transform.localScale = new Vector3(1,1,1);
     }

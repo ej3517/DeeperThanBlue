@@ -26,7 +26,7 @@ public class ScoreWindow : MonoBehaviour
         {
             scoreText.text = Level.GetInstance().GetPipesPassedCount().ToString();
         }
-        catch (Exception e)         // Just to hide the errors when they're not needed
+        catch (Exception)         // Just to hide the errors when they're not needed
         {; }
     }
 }

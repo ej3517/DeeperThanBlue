@@ -2,8 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="60884b82-83d6-468b-a134-8eabc3e9fcf8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AnswerButton.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AnswerButton.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AnswerButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AnswerButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameOverWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameOverWindow.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MyGlobals.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MyGlobals.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/QuizGameController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/QuizGameController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ScoreWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ScoreWindow.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SimpleObjectPool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SimpleObjectPool.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,9 +75,7 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/QuestionBlob.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SwitchGravity.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HandleQuestionBlob.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/ScoreWindow.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Scroll.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameAssets.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BackgroundScroll.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HandleSpeedRing.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HandleReef.cs" />
@@ -76,23 +83,25 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/HandleObstacles.cs" />
         <option value="$PROJECT_DIR$/ProjectSettings/TagManager.asset" />
         <option value="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameOverWindow.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/FollowFish.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Boat.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/QuestionTimer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Level.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Bird.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Quiz/AnswerData.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/QuestionData.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/MyGlobals.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AnswerData.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/RoundData.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ButtonHandler.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/QuestionWindow.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/AnswerButton.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/DataController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SimpleObjectPool.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameAssets.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ScoreWindow.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/QuestionWindow.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Bird.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/QuestionData.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameOverWindow.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/QuizGameController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AnswerButton.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MyGlobals.cs" />
       </list>
     </option>
   </component>
@@ -154,7 +163,8 @@
       <workItem from="1588924426570" duration="4825000" />
       <workItem from="1589182817209" duration="18125000" />
       <workItem from="1589526875402" duration="450000" />
-      <workItem from="1590420340733" duration="31386000" />
+      <workItem from="1590420340733" duration="31656000" />
+      <workItem from="1590650269347" duration="5891000" />
     </task>
     <servers />
   </component>
