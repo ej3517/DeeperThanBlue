@@ -15,4 +15,10 @@ public class ButtonHandler : MonoBehaviour
         SoundManager.PlaySound(SoundManager.Sound.ButtonClick);
         Loader.Load(Loader.Scene.MainMenu);
     }
+
+    public void profileButton()
+    {
+        SoundManager.PlaySound(SoundManager.Sound.ButtonClick);
+        Loader.Load(Loader.Scene.MainMenu);
+    }
 }
