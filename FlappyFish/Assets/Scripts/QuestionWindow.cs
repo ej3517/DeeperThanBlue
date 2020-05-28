@@ -8,65 +8,55 @@ using UnityEngine.UIElements;
 
 public class QuestionWindow : MonoBehaviour
 {
-    private static QuestionWindow instance;
-
     // Countdown Timer
-    private Text timerText;
-    public float timer;
+    public Text timeRemainingDisplayText;
+    
+    private float timeRemaining;
     private bool canCount;
     private bool doOnce;
 
     private void Awake()
     {
        Hide();
-       // Countdown Timer
-       timerText = transform.Find("QuestionTimer").GetComponent<Text>();
        canCount = true;
        doOnce = false;
     }
     
-    void Update()
+    private void UpdateTimeRemainingDisplay()
     {
-        if (timer >= 0.0f && canCount)
-        {
-            timer -= Time.deltaTime;
-            timerText.text = timer.ToString("F");
-        }
-
-        if (timer < 0.0f && !doOnce)
-        {
-            canCount = false;
-            doOnce = true;
-            timerText.text = "0.00";
-            timer = 0.0f;
-            Hide();
-        }
+        timeRemainingDisplayText.text = timeRemaining.ToString("f");
     }
 
-    public QuestionWindow()
+    private void ResetQuestionTimer()
     {
-        instance = this;
-    }
-
-    public static QuestionWindow GetInstance()
-    {
-        return instance;
-    }
-
-    public void DisplayQuestion()
-    {
-        canCount = true;
-        doOnce = false;
-        Show();
+        timeRemaining = MyGlobals.DURATION_EASY_QUESTION;
     }
 
     public void Hide()
     {
         gameObject.transform.localScale = new Vector3(0, 0, 0);
     }
-    private void Show()
+    public void Show()
     {
+        ResetQuestionTimer();
+        canCount = true;
+        doOnce = false;
         gameObject.transform.localScale = new Vector3(1, 1, 1);
     }
+    
+    void Update()
+    {
+        if (timeRemaining >= 0.0f && canCount)
+        {
+            timeRemaining -= Time.deltaTime;
+            UpdateTimeRemainingDisplay();
+        }
 
+        if (timeRemaining < 0.0f && !doOnce)
+        {
+            canCount = false;
+            doOnce = true;
+            Hide();
+        }
+    }
 }

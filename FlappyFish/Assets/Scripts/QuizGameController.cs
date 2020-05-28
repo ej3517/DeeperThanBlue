@@ -10,14 +10,13 @@ public class QuizGameController : MonoBehaviour
     public Text scoreDisplayText;
     public SimpleObjectPool answerButtonObjectPool;
     public Transform answerButtonParent;
-    public QuestionWindow questionDisplay;
+    public QuestionWindow questionWindow;
     public GameOverWindow roundEndDisplay;
 
     private DataController dataController;
     private RoundData currentRoundData;
     private QuestionData[] questionPool;
     
-    private bool isRoundActive;
     private int questionIndex;
     private int playerScore;
     private List<GameObject> answerButtonGameObjects = new List<GameObject>();
@@ -33,7 +32,6 @@ public class QuizGameController : MonoBehaviour
         questionIndex = 0;
 
         ShowQuestion();
-        isRoundActive = true;
     }
 
     private void ShowQuestion()
@@ -41,7 +39,7 @@ public class QuizGameController : MonoBehaviour
         RemoveAnswerButton();
         QuestionData questionData = questionPool [questionIndex];
         questionDisplayText.text = questionData.questionText;
-
+        
         for (int i = 0; i < questionData.answers.Length; i++)
         {
             GameObject answerButtonGameObject = answerButtonObjectPool.GetObject();
@@ -71,6 +69,7 @@ public class QuizGameController : MonoBehaviour
         {
             playerScore += currentRoundData.pointsAddedForCorrectAnswer;
             scoreDisplayText.text = playerScore.ToString();
+            questionWindow.Hide();
         }
 
         if (questionPool.Length > questionIndex + 1)
@@ -83,11 +82,10 @@ public class QuizGameController : MonoBehaviour
             EndRound();
         }
     }
-
-    public void EndRound()
+    
+    private void EndRound()
     {
-        isRoundActive = false;
-        questionDisplay.Hide();
+        questionWindow.Hide();
         roundEndDisplay.Show();
     }
 }

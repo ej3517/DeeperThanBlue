@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Bird : MonoBehaviour
 {
+    // public 
+    public QuestionWindow questionWindow;
+    // private
     private const float JUMP_AMOUNT = 28f;
     // Variation of speed with SPEED RING
     public float speedRingBoost;
     public float speedObstacleReduction;
-    // Gravity direction
-    private bool lastBoundTouchedIsSurface;
     // Question
-    private QuestionWindow questionWindow;
     private static Bird instance;
 
     public static Bird GetInstance()
@@ -26,11 +26,6 @@ public class Bird : MonoBehaviour
     private State state;
     
     Level levelScript;
-
-    // Variables for application of speed boost 
-    private Vector2 m_startForce; 
-
-    public int speedPoints; 
     
     private enum State
     {
@@ -46,12 +41,9 @@ public class Bird : MonoBehaviour
         birdrigidbody2D = GetComponent<Rigidbody2D>();
         birdrigidbody2D.bodyType = RigidbodyType2D.Static;
         state = State.WaitingToStart;
-        speedPoints = 0;
         speedRingBoost = 5f;
         speedObstacleReduction = 5f;
-        lastBoundTouchedIsSurface = false;
         levelScript = GameObject.Find("Level").GetComponent<Level>();
-        questionWindow = QuestionWindow.GetInstance();
     }
 
     private void Update()
@@ -61,18 +53,16 @@ public class Bird : MonoBehaviour
             case State.WaitingToStart:
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    speedPoints = 0; 
-                    
                     state = State.Playing;
                     birdrigidbody2D.bodyType = RigidbodyType2D.Dynamic;
                     if (OnStartedPlaying!= null) OnStartedPlaying(this, EventArgs.Empty);
-                    Jump(lastBoundTouchedIsSurface);
+                    Jump();
                 }
                 break;
             case State.Playing:
                 if (Input.GetKey(KeyCode.Space))
                 {
-                    Jump(lastBoundTouchedIsSurface);
+                    Jump();
                 }
                 break;
             case State.WaitingAnswer:
@@ -83,17 +73,11 @@ public class Bird : MonoBehaviour
         }
     }
 
-    private void Jump(bool jumpDown)
+    private void Jump ()
     {
         SoundManager.PlaySound(SoundManager.Sound.FishSwim);
-        if (jumpDown)
-        {
-            birdrigidbody2D.velocity = Vector2.down * JUMP_AMOUNT;
-        }
-        else
-        {
-            birdrigidbody2D.velocity = Vector2.up * JUMP_AMOUNT;
-        }
+        birdrigidbody2D.velocity = Vector2.up * JUMP_AMOUNT;
+
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -101,39 +85,23 @@ public class Bird : MonoBehaviour
         if (col.gameObject.CompareTag("SpeedRing"))
         {
             col.gameObject.SetActive(false);
-            questionWindow.timer = MyGlobals.DURATION_EASY_QUESTION;
-            questionWindow.DisplayQuestion();
-            levelScript.birdSpeed += speedRingBoost; 
-            speedPoints++;
+            levelScript.birdSpeed += speedRingBoost;
         }
-        else if (col.gameObject.CompareTag("Reef")||col.gameObject.CompareTag("Pipe"))
+        else if (col.gameObject.CompareTag("QuestionBlob"))
         {
-            Jump(false); // JUMP UP
+            col.gameObject.SetActive(false);
+            questionWindow.Show();
         }
-        else if (col.gameObject.CompareTag("Ground"))
+        else if (col.gameObject.CompareTag("Reef"))
         {
-            if (!lastBoundTouchedIsSurface) {
-                birdrigidbody2D.gravityScale *= -1;
-                lastBoundTouchedIsSurface = true; }
-        }
-        else if (col.gameObject.CompareTag("WaterSurface"))
-        {
-            if (lastBoundTouchedIsSurface) {
-                birdrigidbody2D.gravityScale *= -1;
-                lastBoundTouchedIsSurface = false; }
+            Jump();
         }
         else if (col.gameObject.CompareTag("Obstacles"))
         {
             col.gameObject.SetActive(false);
             levelScript.birdSpeed -= speedObstacleReduction;
         }
-        else if (col.gameObject.CompareTag("QuestionBlob"))
-        {
-            col.gameObject.SetActive(false);
-            questionWindow.timer = MyGlobals.DURATION_HARD_QUESTION;
-            questionWindow.DisplayQuestion();
-        }
-        else{
+        else if (col.gameObject.CompareTag("Boat")){
             birdrigidbody2D.bodyType = RigidbodyType2D.Static;
             SoundManager.PlaySound(SoundManager.Sound.Lose);
             if (OnDied != null) OnDied(this, EventArgs.Empty);

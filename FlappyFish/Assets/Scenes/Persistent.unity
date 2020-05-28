@@ -152,7 +152,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allRoundData:
   - title: RoundZero
-    timeLimitInSeconds: 30
+    timeInSecondsEasyQuestion: 5
+    timeInSecondsHardQuestion: 10
     pointsAddedForCorrectAnswer: 10
     questions:
     - questionText: Are lions carnivores ?

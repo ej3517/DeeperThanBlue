@@ -8,11 +8,8 @@ TagManager:
   - SpeedRing
   - Obstacles
   - Boat
-  - Pipe
   - QuestionBlob
   - Bird
-  - WaterSurface
-  - Ground
   layers:
   - Default
   - TransparentFX

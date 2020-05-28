@@ -32,7 +32,6 @@ public class Level : MonoBehaviour
     private float randomSelector;
     // List of floating objects
     private List<HandleQuestionBlob.QuestionBlob> questionBlobList;
-    private QuestionWindow questionWindow;
     private List<HandleSpeedRing.SpeedRing> speedRingList;
     private List<HandleObstacles.Garbage> garbageList;
     
@@ -72,8 +71,7 @@ public class Level : MonoBehaviour
         speedRingList = new List<HandleSpeedRing.SpeedRing>();
         garbageList = new List<HandleObstacles.Garbage>();
         questionBlobList = new List<HandleQuestionBlob.QuestionBlob>();
-        questionWindow = QuestionWindow.GetInstance();
-        
+
         //difficulty
         SetDifficulty(Difficulty.Easy);
         state = State.WaitingToStart;
@@ -81,8 +79,7 @@ public class Level : MonoBehaviour
 
     private void Start()
     {
-        birdScript = GameObject.Find("Bird").GetComponent<Bird>(); 
-        birdScript.speedPoints = 0;
+        birdScript = GameObject.Find("Bird").GetComponent<Bird>();
         Bird.GetInstance().OnDied += Bird_OnDied;
         Bird.GetInstance().OnStartedPlaying += Bird_OnStartedPlaying;
     }
@@ -95,8 +92,6 @@ public class Level : MonoBehaviour
     private void Bird_OnDied(object sender, System.EventArgs e)
     {
         state = State.BirdDead;
-        questionWindow.Hide();
-        //TODO: Delete question tokens?
     }
 
     private void Update()

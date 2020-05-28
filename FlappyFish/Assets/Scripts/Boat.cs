@@ -37,6 +37,13 @@ public class Boat : MonoBehaviour
     private void Start(){     
         // Different Event
         Bird.GetInstance().OnStartedPlaying += Bird_OnStartedPlaying;
+        Bird.GetInstance().OnDied += Bird_OnDied;
+    }
+
+    private void Bird_OnDied(object sender, EventArgs e)
+    {
+        state = State.BirdDied;
+        boatRigidBody2D.bodyType = RigidbodyType2D.Static;
     }
 
     private void Bird_OnStartedPlaying(object sender, EventArgs e)
@@ -79,15 +86,6 @@ public class Boat : MonoBehaviour
         {
             state = State.Waiting;
             boatRigidBody2D.bodyType = RigidbodyType2D.Static;
-        }
-    }
-    
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        if (col.gameObject.CompareTag("Bird"))
-        {
-            boatRigidBody2D.bodyType = RigidbodyType2D.Static;
-            state = State.BirdDied;
         }
     }
 }
