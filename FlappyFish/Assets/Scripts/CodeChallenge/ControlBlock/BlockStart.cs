@@ -32,6 +32,14 @@ public class BlockStart : Block
         }
     }
 
+    public override void DestroySelf()
+    {
+        if (belowBlock != null)
+        {
+            belowBlock.DestroySelf();
+        }
+        //Destroy(transform.gameObject);    //Don't destroy start
+    }
 
 
 

@@ -8,7 +8,9 @@ public class Bin : MonoBehaviour, IDropHandler, IPointerDownHandler
 {
     //private Transform currentObj;
 
-    public Transform popupWindowPF;
+    public Transform popupWindow;
+    public Transform codingArea;
+
     bool clickable = true;
 
     public void OnDrop(PointerEventData eventData)
@@ -25,17 +27,48 @@ public class Bin : MonoBehaviour, IDropHandler, IPointerDownHandler
         }
     }
 
+    private Transform oldParent;
     public void OnPointerDown(PointerEventData eventData)
     {
         if(clickable)
         {
             Debug.LogError("Clicked Item");
-            Transform popupWindow = Instantiate(popupWindowPF);
+            //Transform popupWindow = Instantiate(popupWindowPF);
+            oldParent = popupWindow.parent;
             popupWindow.SetParent(transform);
             popupWindow.localPosition = new Vector3(-14, 20, -50);
             Text t = popupWindow.Find("Text").GetComponent<Text>();
             t.text = "Are you sure you would like to delete all blocks?";
         }
+    }
+
+    public void ConfirmTrue()
+    {
+        Debug.LogWarning("ConfirmTrue");
+        resetQuestion();
+        
+        foreach (Transform child in codingArea)
+        {
+            if(child.tag != "CodingArea")
+            {
+                Block c = child.GetComponent<Block>();
+                c.DestroySelf();
+            }
+        }
+
+
+    }
+    public void ConfrimFalse()
+    {
+        Debug.LogWarning("ConfirmFalse");
+        resetQuestion();
+    }
+
+    private void resetQuestion()
+    {
+        popupWindow.SetParent(oldParent);
+        popupWindow.localPosition = new Vector3(-2000, 0, -100);
+        clickable = true;
     }
 
     // public void OnMouseDown()
