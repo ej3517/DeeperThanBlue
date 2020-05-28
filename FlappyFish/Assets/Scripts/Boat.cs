@@ -6,19 +6,20 @@ using UnityEngine;
 public class Boat : MonoBehaviour
 {
     // SPEED
-    private float boatSpeed;
+    public float boatSpeed;
     private float relativeSpeedOfBoatWrtFish;
     // GLOBAL VAR
     private Rigidbody2D boatRigidBody2D;
     private Transform boatTransform;
     
     // State
-    private State state;
-    private enum State
+    public State state;
+    public enum State
     {
         WaitingToStart,
         Moving,
         Waiting,
+        WaitingAnswer,
         BirdDied
     }
 
@@ -69,6 +70,8 @@ public class Boat : MonoBehaviour
                     Move(relativeSpeedOfBoatWrtFish);
                     state = State.Moving;
                 }
+                break;
+            case State.WaitingAnswer:
                 break;
             case State.BirdDied:
                 break;

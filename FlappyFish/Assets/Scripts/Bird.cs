@@ -25,7 +25,9 @@ public class Bird : MonoBehaviour
     private Rigidbody2D birdrigidbody2D;
     private State state;
     
-    Level levelScript;
+    private Level levelScript;
+    private Boat boatScript;
+    
     
     private enum State
     {
@@ -44,6 +46,7 @@ public class Bird : MonoBehaviour
         speedRingBoost = 5f;
         speedObstacleReduction = 5f;
         levelScript = GameObject.Find("Level").GetComponent<Level>();
+        boatScript = GameObject.Find("Boat").GetComponent<Boat>();
     }
 
     private void Update()
@@ -85,11 +88,20 @@ public class Bird : MonoBehaviour
         if (col.gameObject.CompareTag("SpeedRing"))
         {
             col.gameObject.SetActive(false);
+            birdrigidbody2D.bodyType = RigidbodyType2D.Static;
             levelScript.birdSpeed += speedRingBoost;
+            state = State.WaitingAnswer;
+            levelScript.state = Level.State.WaitingAnswer;
+            boatScript.state = Boat.State.WaitingAnswer;
+            questionWindow.Show();
         }
         else if (col.gameObject.CompareTag("QuestionBlob"))
         {
             col.gameObject.SetActive(false);
+            birdrigidbody2D.bodyType = RigidbodyType2D.Static;
+            state = State.WaitingAnswer;
+            boatScript.state = Boat.State.WaitingAnswer;
+            levelScript.state = Level.State.WaitingAnswer;
             questionWindow.Show();
         }
         else if (col.gameObject.CompareTag("Reef"))

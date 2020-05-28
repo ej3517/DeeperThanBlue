@@ -36,7 +36,7 @@ public class Level : MonoBehaviour
     private List<HandleObstacles.Garbage> garbageList;
     
     // State
-    private State state;
+    public State state;
     // SPEED
     public float birdSpeed;
     
@@ -50,7 +50,7 @@ public class Level : MonoBehaviour
         Impossible
     }
 
-    private enum State
+    public enum State
     {
         WaitingToStart,
         Playing,
