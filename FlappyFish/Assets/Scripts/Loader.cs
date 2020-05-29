@@ -10,6 +10,7 @@ public static class Loader
         GameScene,
         Loading,
         MainMenu,
+        ProfileScene,
     }
 
     private static Scene targetScene;
