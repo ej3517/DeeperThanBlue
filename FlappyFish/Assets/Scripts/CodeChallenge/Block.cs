@@ -17,6 +17,7 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
     protected Block aboveBlock = null;
     protected Block belowBlock = null;     //Maybe not needed?
 
+    protected float sizeHeight = 70;
 
     private void Awake()
     {
@@ -45,7 +46,7 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
             //Detach and set as top layer
             Transform currentTransform = GetComponent<Transform>();
             currentTransform.transform.SetParent(GetParent());
-            aboveBlock.SetBelow(null);
+            aboveBlock.SetBelow(null, this);
             aboveBlock = null;
         }
         topLayer = true;
@@ -61,7 +62,7 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
         //Debug.LogWarning("OnPointerDown");
     }
 
-    public void OnDrop(PointerEventData eventData)
+    public virtual void OnDrop(PointerEventData eventData)
     {
         //Debug.LogError("Dropped in box");
         if ((eventData.pointerDrag != null) && (eventData.pointerDrag.GetComponent<Block>().type != "Start") )      // Weird bug where start can be dragged onto itself...
@@ -74,8 +75,9 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
 
                 belowBlock = eventData.pointerDrag.GetComponent<Block>();
                 belowBlock.SetAbove(this);
+                float _belowHeight = belowBlock.GetSizeHeight();
                 block.transform.SetParent(currentTransform);
-                eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = /*GetComponent<RectTransform>().anchoredPosition - */ new Vector3(0, -70, 0); //TODO make size dynamic
+                eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = /*GetComponent<RectTransform>().anchoredPosition - */ new Vector3(0, -(_belowHeight+sizeHeight)/2, 0); //TODO make size dynamic
                                                                                                                                                                      //Debug.LogError(blockClass.type.ToString());
             }
             else
@@ -105,7 +107,7 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
         topLayer = false;
     }
 
-    public void SetBelow(Block _belowBlock)
+    public virtual void SetBelow(Block _belowBlock, Block self)
     {
         belowBlock = _belowBlock;
     }
@@ -138,5 +140,9 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
         }
         Destroy(transform.gameObject);
     }
-
+    
+    public float GetSizeHeight()
+    {
+        return sizeHeight;
+    }
 }
