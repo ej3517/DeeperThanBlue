@@ -17,7 +17,7 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
     protected Block aboveBlock = null;
     protected Block belowBlock = null;     //Maybe not needed?
 
-    protected float sizeHeight = 70;
+    protected float sizeHeight = 70;       // TODO: Make this dynamic
 
     private void Awake()
     {
@@ -144,5 +144,27 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
     public float GetSizeHeight()
     {
         return sizeHeight;
+    }
+
+    public virtual float GetSizeBelow()
+    {
+        if(belowBlock == null)
+        {
+            return sizeHeight;
+        }
+        else
+        {
+            return sizeHeight + belowBlock.GetSizeBelow();
+        }
+
+    }
+
+    public virtual void UpdatePosition(float verticleDistance)
+    {
+        transform.position = transform.position + new Vector3(0, verticleDistance, 0);
+        if(belowBlock != null)
+        {
+            belowBlock.UpdatePosition(verticleDistance);
+        }
     }
 }

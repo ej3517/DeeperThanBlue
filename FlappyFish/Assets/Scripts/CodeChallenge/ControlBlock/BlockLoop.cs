@@ -9,22 +9,21 @@ public class BlockLoop : Block
     private Block loopNext = null;
     private Block loopCond = null;
 
-    //Transform start;
-    //Transform end;
+    Transform boxStart;
+    Transform boxEnd;
+    Transform boxConnect;
 
-
-    //public Transform boxStart;
-    //public Transform boxEnd;
 
     private void Awake()
     {
         type = "Loop";
-        sizeHeight = 100;
+        sizeHeight = 110;
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
 
-        //start = GameObject.Find("Start").GetComponent<Transform>();
-        //end = GameObject.Find("End").GetComponent<Transform>();
+        boxStart = GameObject.Find("BoxStart").GetComponent<Transform>();
+        boxEnd = GameObject.Find("BoxEnd").GetComponent<Transform>();
+        boxConnect = GameObject.Find("BoxConnect").GetComponent<Transform>();
     }
 
     RaycastHit hit;
@@ -51,9 +50,14 @@ public class BlockLoop : Block
             {
                 lastState = Loopblock.End;
             }
+            else
+            {
+                lastState = Loopblock.Default;
+            }
         }
     }
 
+    private float loopContentSize = 10;
     public override void OnDrop(PointerEventData eventData)
     //void Update()
     {
@@ -63,20 +67,36 @@ public class BlockLoop : Block
             Transform block = eventData.pointerDrag.GetComponent<Transform>();
             if(lastState == Loopblock.Start)
             {
-                if(loopNext == null)
+                float _shift = 0;
+                if (loopNext == null)
                 {
                     loopNext = eventData.pointerDrag.GetComponent<Block>();
                     loopNext.SetAbove(this);
                     float _belowHeight = loopNext.GetSizeHeight();
                     block.transform.SetParent(currentTransform);
-                    eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = /*GetComponent<RectTransform>().anchoredPosition - */ new Vector3(0, -( sizeHeight) / 2, 0); //TODO make size dynamic
+                    eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = /*GetComponent<RectTransform>().anchoredPosition - */ new Vector3(0, -25, 0); //TODO make size dynamic
+                    _shift = loopContentSize;
                 }
                 else
                 {
                     loopNext.OnDrop(eventData);
                 }
+
+                //Get code size
+                float sizeBelow = loopNext.GetSizeBelow();
+                float moveAmount = sizeBelow - loopContentSize;
+
+                //Move everything below down                                                                                                                                                                           //Debug.LogError(blockClass.type.ToString());
+                if (belowBlock != null)
+                {
+                    belowBlock.UpdatePosition(-moveAmount+_shift);
+                }
+                //Move the end down
+                boxEnd.position = boxEnd.position + new Vector3(0, -moveAmount+ _shift, 0);
+
+
             }
-            else if(lastState == Loopblock.End)
+            else if(lastState == Loopblock.End || lastState == Loopblock.Default)       //Move Default to select where block goes by default
             {
                 //Same as Block.cs
                 if (belowBlock == null)
@@ -86,7 +106,6 @@ public class BlockLoop : Block
                     float _belowHeight = belowBlock.GetSizeHeight();
                     block.transform.SetParent(currentTransform);
                     eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = /*GetComponent<RectTransform>().anchoredPosition - */ new Vector3(0, -(_belowHeight + sizeHeight) / 2, 0); //TODO make size dynamic
-                                                                                                                                                                                                      //Debug.LogError(blockClass.type.ToString());
                 }
                 else
                 {
@@ -98,7 +117,7 @@ public class BlockLoop : Block
                 Debug.LogError("LoopBlock Default state - Should never happen");
             }
         }
-        Debug.Log("OnDrop");// throw new System.NotImplementedException();
+        Debug.Log("OnDrop " + lastState);// throw new System.NotImplementedException();
     }
 
     public override IEnumerator Traverse(Transform Button)
@@ -121,19 +140,24 @@ public class BlockLoop : Block
 
     public override bool Validate()
     {
-        //Call the next Node to check if a valid structure
+        bool cond, inside, below;
+        
         if (loopCond == null)
-        {
-            return false;       //TODO Update to check if LoopCond is valid;
-        }
-        else if(belowBlock == null)
-        {
-            return true;
-        }
+            return false;
         else
-        {
-            return belowBlock.Validate();
-        }
+            cond = loopCond.Validate();
+
+        if (loopNext == null)
+            inside = true;      //Change to disallow empty scopes
+        else
+            inside = loopNext.Validate();
+
+        if (belowBlock == null)
+            below =  true;
+        else
+            below = belowBlock.Validate();
+
+        return cond && inside && below;
     }
 
     public override void SetBelow(Block _belowBlock, Block self)
