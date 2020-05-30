@@ -11,66 +11,53 @@ public class Bird : MonoBehaviour
     // Variation of speed with SPEED RING
     public float speedRingBoost;
     public float speedObstacleReduction;
-    // Question
+
     private static Bird instance;
 
     public static Bird GetInstance()
     {
         return instance;
     }
-
-    public event EventHandler OnDied;
-    public event EventHandler OnStartedPlaying;
-
+    
     private Rigidbody2D birdrigidbody2D;
-    private State state;
-    
-    private Level levelScript;
-    private Boat boatScript;
-    
-    
-    private enum State
-    {
-        WaitingToStart,
-        Playing,
-        WaitingAnswer,
-        Dead,
-    }
 
+    private Level levelScript;
+    private StateController stateControllerScript;
+    
     private void Awake()
     {
         instance = this;
         birdrigidbody2D = GetComponent<Rigidbody2D>();
         birdrigidbody2D.bodyType = RigidbodyType2D.Static;
-        state = State.WaitingToStart;
         speedRingBoost = 5f;
         speedObstacleReduction = 5f;
         levelScript = GameObject.Find("Level").GetComponent<Level>();
-        boatScript = GameObject.Find("Boat").GetComponent<Boat>();
+        stateControllerScript = GameObject.Find("StateController").GetComponent<StateController>(); //
     }
 
     private void Update()
     {
-        switch (state)
+        switch (stateControllerScript.currentState)
         {
-            case State.WaitingToStart:
+            case StateController.State.WaitingToStart:
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    state = State.Playing;
+                    stateControllerScript.currentState = StateController.State.Playing;
                     birdrigidbody2D.bodyType = RigidbodyType2D.Dynamic;
-                    if (OnStartedPlaying!= null) OnStartedPlaying(this, EventArgs.Empty);
                     Jump();
                 }
                 break;
-            case State.Playing:
+            case StateController.State.Playing:
+                birdrigidbody2D.bodyType = RigidbodyType2D.Dynamic;
                 if (Input.GetKey(KeyCode.Space))
                 {
                     Jump();
                 }
                 break;
-            case State.WaitingAnswer:
+            case StateController.State.WaitingAnswer:
+                birdrigidbody2D.bodyType = RigidbodyType2D.Static;
                 break;
-            case State.Dead:
+            case StateController.State.Dead:
                 questionWindow.Hide();
                 break;
         }
@@ -80,28 +67,21 @@ public class Bird : MonoBehaviour
     {
         SoundManager.PlaySound(SoundManager.Sound.FishSwim);
         birdrigidbody2D.velocity = Vector2.up * JUMP_AMOUNT;
-
     }
-
+    
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("SpeedRing"))
         {
             col.gameObject.SetActive(false);
-            birdrigidbody2D.bodyType = RigidbodyType2D.Static;
-            levelScript.birdSpeed += speedRingBoost;
-            state = State.WaitingAnswer;
-            levelScript.state = Level.State.WaitingAnswer;
-            boatScript.state = Boat.State.WaitingAnswer;
+            stateControllerScript.currentState = StateController.State.WaitingAnswer;
             questionWindow.Show();
+            levelScript.birdSpeed += speedRingBoost;
         }
         else if (col.gameObject.CompareTag("QuestionBlob"))
         {
             col.gameObject.SetActive(false);
-            birdrigidbody2D.bodyType = RigidbodyType2D.Static;
-            state = State.WaitingAnswer;
-            boatScript.state = Boat.State.WaitingAnswer;
-            levelScript.state = Level.State.WaitingAnswer;
+            stateControllerScript.currentState = StateController.State.WaitingAnswer;
             questionWindow.Show();
         }
         else if (col.gameObject.CompareTag("Reef"))
@@ -114,10 +94,9 @@ public class Bird : MonoBehaviour
             levelScript.birdSpeed -= speedObstacleReduction;
         }
         else if (col.gameObject.CompareTag("Boat")){
+            stateControllerScript.currentState = StateController.State.Dead;
             birdrigidbody2D.bodyType = RigidbodyType2D.Static;
             SoundManager.PlaySound(SoundManager.Sound.Lose);
-            if (OnDied != null) OnDied(this, EventArgs.Empty);
-            state = State.Dead;
         }
 
     }

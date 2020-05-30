@@ -7,7 +7,6 @@ public class AnswerButton : MonoBehaviour
 {
     public Text answerText;
     private AnswerData answerData;
-
     private QuizGameController quizGameController;
     // Start is called before the first frame update
     void Start()
@@ -23,6 +22,8 @@ public class AnswerButton : MonoBehaviour
 
     public void HandleClick()
     {
+        
         quizGameController.AnswerButtonClicked (answerData.isCorrect);
+        
     }
 }

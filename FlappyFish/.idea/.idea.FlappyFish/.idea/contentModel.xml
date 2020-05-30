@@ -29,9 +29,9 @@
           <e p="QuizGameController.cs" t="Include" />
           <e p="RoundData.cs" t="Include" />
           <e p="Score.cs" t="Include" />
-          <e p="ScoreWindow.cs" t="Include" />
           <e p="SimpleObjectPool.cs" t="Include" />
           <e p="SoundManager.cs" t="Include" />
+          <e p="StateController.cs" t="Include" />
         </e>
       </e>
       <e p="FlappyFish.sln" t="IncludeFlat" />

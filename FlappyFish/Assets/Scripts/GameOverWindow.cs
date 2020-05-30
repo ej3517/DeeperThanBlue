@@ -5,38 +5,42 @@ using UnityEngine.UI;
 
 public class GameOverWindow : MonoBehaviour
 {
+    
     private Text scoreText;
     private Text highScoreText;
-
-    private void Awake()
+    private StateController stateControllerScript;
+    private QuizGameController quizGameControllerScript;
+    
+    private void Start()
     {
         scoreText = transform.Find("scoreText").GetComponent<Text>();
         highScoreText = transform.Find("highScoreText").GetComponent<Text>();
+        stateControllerScript = GameObject.Find("StateController").GetComponent<StateController>();
+        quizGameControllerScript = GameObject.Find("QuizGameController").GetComponent<QuizGameController>();
         Hide();
     }
 
-    private void Start()
+    private void Update()
     {
-        Bird.GetInstance().OnDied += Bird_OnDied;
+        switch (stateControllerScript.currentState)
+        {
+            case StateController.State.Dead:
+                scoreText.text = quizGameControllerScript.playerScore.ToString();
+                /*if (Score.TrySetNewHighScore(Level.GetInstance().GetPipesPassedCount()))
+                {
+                    // New highscore
+                    highScoreText.text = "NEW HIGHSCORE";
+                }
+                else
+                {
+                    highScoreText.text = "HIGHSCORE " + Score.GetHighScore().ToString();
+                }*/
+                
+                Show();
+                break;
+        }
     }
     
-
-    private void Bird_OnDied(object sender, EventArgs e)
-    {
-        scoreText.text = Level.GetInstance().GetPipesPassedCount().ToString();
-        if (Score.TrySetNewHighScore(Level.GetInstance().GetPipesPassedCount()))
-        {
-            // New highscore
-            highScoreText.text = "NEW HIGHSCORE";
-        }
-        else
-        {
-            highScoreText.text = "HIGHSCORE " + Score.GetHighScore().ToString();
-        }
-
-        Show();
-    }
-
     public void Hide()
     {
         gameObject.transform.localScale = new Vector3(0,0,0);

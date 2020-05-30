@@ -35,10 +35,11 @@ public class Level : MonoBehaviour
     private List<HandleSpeedRing.SpeedRing> speedRingList;
     private List<HandleObstacles.Garbage> garbageList;
     
-    // State
-    public State state;
     // SPEED
     public float birdSpeed;
+    
+    // STATE 
+    private StateController stateControllerScript;
     
     Bird birdScript;
 
@@ -48,14 +49,6 @@ public class Level : MonoBehaviour
         Medium,
         Hard,
         Impossible
-    }
-
-    public enum State
-    {
-        WaitingToStart,
-        Playing,
-        WaitingAnswer,
-        BirdDead,
     }
 
     private void Awake()
@@ -71,32 +64,18 @@ public class Level : MonoBehaviour
         speedRingList = new List<HandleSpeedRing.SpeedRing>();
         garbageList = new List<HandleObstacles.Garbage>();
         questionBlobList = new List<HandleQuestionBlob.QuestionBlob>();
-
+        
         //difficulty
         SetDifficulty(Difficulty.Easy);
-        state = State.WaitingToStart;
-    }
 
-    private void Start()
-    {
+        // state
+        stateControllerScript = GameObject.Find("StateController").GetComponent<StateController>();
         birdScript = GameObject.Find("Bird").GetComponent<Bird>();
-        Bird.GetInstance().OnDied += Bird_OnDied;
-        Bird.GetInstance().OnStartedPlaying += Bird_OnStartedPlaying;
     }
-
-    private void Bird_OnStartedPlaying(object sender, System.EventArgs e)
-    {
-        state = State.Playing;
-    }
-
-    private void Bird_OnDied(object sender, System.EventArgs e)
-    {
-        state = State.BirdDead;
-    }
-
+    
     private void Update()
     {
-        if (state == State.Playing)
+        if (stateControllerScript.currentState == StateController.State.Playing)
         {
             // PIPE AND REEF
             HandlePipeMovement();
@@ -155,7 +134,7 @@ public class Level : MonoBehaviour
             {
                 HandleObstacles.CreateGarbage(garbageList);
             }
-            else if (0.60f <= randomSelector && randomSelector < 0.80f) // Speed Ring
+            else if (0.60f <= randomSelector && randomSelector < 0.86f) // Speed Ring
             {
                 HandleSpeedRing.CreateSpeedRing(MyGlobals.SPAWN_X_POSITION + birdScript.transform.position.x, speedRingList);
             }

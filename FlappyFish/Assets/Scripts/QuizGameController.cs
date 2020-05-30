@@ -11,27 +11,33 @@ public class QuizGameController : MonoBehaviour
     public SimpleObjectPool answerButtonObjectPool;
     public Transform answerButtonParent;
     public QuestionWindow questionWindow;
-    public GameOverWindow roundEndDisplay;
 
     private DataController dataController;
     private RoundData currentRoundData;
     private QuestionData[] questionPool;
+    private StateController stateControllerScript;
     
     private int questionIndex;
-    private int playerScore;
+    public int playerScore;
     private List<GameObject> answerButtonGameObjects = new List<GameObject>();
-
-        // Start is called before the first frame update
+    private bool doOnce;
+    
+    // Start is called before the first frame update
     void Start()
     {
         dataController = FindObjectOfType<DataController>();
         currentRoundData = dataController.GetCurrentRoundData();
         questionPool = currentRoundData.questions;
 
+        stateControllerScript = GameObject.Find("StateController").GetComponent<StateController>();
+
         playerScore = 0;
+        scoreDisplayText.text = playerScore.ToString();
         questionIndex = 0;
 
         ShowQuestion();
+
+        doOnce = false;
     }
 
     private void ShowQuestion()
@@ -39,7 +45,7 @@ public class QuizGameController : MonoBehaviour
         RemoveAnswerButton();
         QuestionData questionData = questionPool [questionIndex];
         questionDisplayText.text = questionData.questionText;
-        
+
         for (int i = 0; i < questionData.answers.Length; i++)
         {
             GameObject answerButtonGameObject = answerButtonObjectPool.GetObject();
@@ -49,8 +55,6 @@ public class QuizGameController : MonoBehaviour
 
             answerButtonGameObject.transform.SetParent(answerButtonParent, false); // worldPositionStays argument set to false -> This will retain local orientation and scale
             answerButtonGameObjects.Add(answerButtonGameObject);
-            
-            Debug.Log(questionData.answers[i].answerText);
         }
     }
 
@@ -65,27 +69,36 @@ public class QuizGameController : MonoBehaviour
 
     public void AnswerButtonClicked(bool isCorrect)
     {
-        if (isCorrect)
+        if (!doOnce)
         {
-            playerScore += currentRoundData.pointsAddedForCorrectAnswer;
-            scoreDisplayText.text = playerScore.ToString();
-            questionWindow.Hide();
-        }
+            doOnce = true;
+            if (isCorrect)
+            {
+                playerScore += currentRoundData.pointsAddedForCorrectAnswer;
+                scoreDisplayText.text = playerScore.ToString();
+            }
 
-        if (questionPool.Length > questionIndex + 1)
-        {
-            questionIndex ++;
-            ShowQuestion();
-        }
-        else
-        {
-            EndRound();
+            if (questionPool.Length > questionIndex + 1)
+            {
+                questionIndex++;
+                ShowQuestion();
+                stateControllerScript.currentState = StateController.State.Playing;
+                questionWindow.Hide();
+            }
+            else
+            {
+                //End of quetionnaire : For now let's just keep playing !!!
+                stateControllerScript.currentState = StateController.State.Playing;
+                questionWindow.Hide();
+            }
         }
     }
-    
-    private void EndRound()
+
+    void Update()
     {
-        questionWindow.Hide();
-        roundEndDisplay.Show();
+        if (stateControllerScript.currentState == StateController.State.WaitingAnswer)
+        {
+            doOnce = false;
+        }
     }
 }
