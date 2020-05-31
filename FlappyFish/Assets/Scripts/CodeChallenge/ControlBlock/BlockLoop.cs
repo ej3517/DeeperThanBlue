@@ -9,8 +9,8 @@ public class BlockLoop : Block
     private Block loopNext = null;
     private Block loopCond = null;
 
-    Transform boxStart;
-    Transform boxEnd;
+    Transform loopTop;
+    Transform loopBottom;
     Transform boxConnect;
 
 
@@ -21,8 +21,8 @@ public class BlockLoop : Block
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
 
-        boxStart = GameObject.Find("BoxStart").GetComponent<Transform>();
-        boxEnd = GameObject.Find("BoxEnd").GetComponent<Transform>();
+        loopTop = GameObject.Find("LoopTop").GetComponent<Transform>();
+        loopBottom = GameObject.Find("LoopBottom").GetComponent<Transform>();
         boxConnect = GameObject.Find("BoxConnect").GetComponent<Transform>();
     }
 
@@ -73,8 +73,8 @@ public class BlockLoop : Block
                     loopNext = eventData.pointerDrag.GetComponent<Block>();
                     loopNext.SetAbove(this);
                     float _belowHeight = loopNext.GetSizeHeight();
-                    block.transform.SetParent(currentTransform);
-                    eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = /*GetComponent<RectTransform>().anchoredPosition - */ new Vector3(0, -25, 0); //TODO make size dynamic
+                    block.transform.SetParent(loopTop);
+                    eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -30, 0); //TODO make size dynamic
                     _shift = loopContentSize;
                 }
                 else
@@ -92,7 +92,7 @@ public class BlockLoop : Block
                     belowBlock.UpdatePosition(-moveAmount+_shift);
                 }
                 //Move the end down
-                boxEnd.position = boxEnd.position + new Vector3(0, -moveAmount+ _shift, 0);
+                loopBottom.position = loopBottom.position + new Vector3(0, -moveAmount+ _shift, 0);
 
 
             }
@@ -104,7 +104,7 @@ public class BlockLoop : Block
                     belowBlock = eventData.pointerDrag.GetComponent<Block>();
                     belowBlock.SetAbove(this);
                     float _belowHeight = belowBlock.GetSizeHeight();
-                    block.transform.SetParent(currentTransform);
+                    block.transform.SetParent(loopBottom);
                     eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = /*GetComponent<RectTransform>().anchoredPosition - */ new Vector3(0, -(_belowHeight + sizeHeight) / 2, 0); //TODO make size dynamic
                 }
                 else
