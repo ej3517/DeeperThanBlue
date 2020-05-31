@@ -1,6 +1,8 @@
-﻿using System;
+﻿using IBM.Cloud.SDK;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -67,15 +69,15 @@ public class BlockLoop : Block
             Transform block = eventData.pointerDrag.GetComponent<Transform>();
             if(lastState == Loopblock.Start)
             {
-                float _shift = 0;
+                float shift = 0;
                 if (loopNext == null)
                 {
                     loopNext = eventData.pointerDrag.GetComponent<Block>();
                     loopNext.SetAbove(this);
-                    float _belowHeight = loopNext.GetSizeHeight();
+                    float blockHeight = loopNext.GetSizeHeight();
                     block.transform.SetParent(loopTop);
-                    eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -30, 0); //TODO make size dynamic
-                    _shift = loopContentSize;
+                    eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = new Vector3(75, -(50+blockHeight)/2, 0); //TODO make size dynamic
+                    shift = loopContentSize;
                 }
                 else
                 {
@@ -83,16 +85,16 @@ public class BlockLoop : Block
                 }
 
                 //Get code size
-                float sizeBelow = loopNext.GetSizeBelow();
-                float moveAmount = sizeBelow - loopContentSize;
+                float moveAmount = -loopNext.GetSizeHeightBelow()+loopContentSize;
+                loopContentSize = loopNext.GetSizeHeightBelow();
 
                 //Move everything below down                                                                                                                                                                           //Debug.LogError(blockClass.type.ToString());
                 if (belowBlock != null)
                 {
-                    belowBlock.UpdatePosition(-moveAmount+_shift);
+                    belowBlock.UpdatePosition(moveAmount);
                 }
                 //Move the end down
-                loopBottom.position = loopBottom.position + new Vector3(0, -moveAmount+ _shift, 0);
+                loopBottom.position = loopBottom.position + new Vector3(0, moveAmount, 0);
 
 
             }
@@ -103,9 +105,9 @@ public class BlockLoop : Block
                 {
                     belowBlock = eventData.pointerDrag.GetComponent<Block>();
                     belowBlock.SetAbove(this);
-                    float _belowHeight = belowBlock.GetSizeHeight();
+                    float blockHeight = belowBlock.GetSizeHeight();
                     block.transform.SetParent(loopBottom);
-                    eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = /*GetComponent<RectTransform>().anchoredPosition - */ new Vector3(0, -(_belowHeight + sizeHeight) / 2, 0); //TODO make size dynamic
+                    eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -(50 + blockHeight) / 2, 0); //TODO make size dynamic
                 }
                 else
                 {
@@ -174,5 +176,19 @@ public class BlockLoop : Block
         {
             Debug.LogError("Unexpected SetBelow call - debug from loop");
         }
+    }
+
+    public override void BroadcastSize(float size, Block self)
+    {
+        if(self == loopCond)
+        {
+            return; // Ignore, not possible
+        }
+        if(loopNext != null && self == loopNext)
+        {
+            belowBlock?.UpdatePosition(-size);
+            loopBottom.position = loopBottom.position + new Vector3(0, -size, 0);
+        }
+        aboveBlock?.BroadcastSize(size, this);
     }
 }

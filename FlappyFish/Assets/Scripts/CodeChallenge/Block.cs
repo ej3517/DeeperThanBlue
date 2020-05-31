@@ -8,7 +8,7 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
 {
     [SerializeField] protected Canvas canvas;
 
-    protected string type;         // Make this protected
+    public string type;         // Make this protected
 
     protected RectTransform rectTransform;
     protected CanvasGroup canvasGroup;
@@ -19,9 +19,13 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
 
     protected float sizeHeight = 70;       // TODO: Make this dynamic
 
+   /* protected Block instance;
+    public Block()
+    {
+        instance = this;
+    }*/
     private void Awake()
     {
-        
     }
     
     //public defaultAwake()
@@ -36,20 +40,23 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
     {
         //Debug.LogWarning("Begin drag");
         canvasGroup.blocksRaycasts = false;
+
+        if (!topLayer)
+        {
+            //Detach and set as top layer
+            Transform currentTransform = GetComponent<Transform>();
+            currentTransform.transform.SetParent(GetParent());
+            aboveBlock.BroadcastSize(-GetSizeHeightBelow(), this);
+            aboveBlock.SetBelow(null, this);
+            aboveBlock = null;
+        }
+        topLayer = true;
     }
 
     public virtual void OnDrag(PointerEventData eventData)
     {
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
-        if(!topLayer)
-        {
-            //Detach and set as top layer
-            Transform currentTransform = GetComponent<Transform>();
-            currentTransform.transform.SetParent(GetParent());
-            aboveBlock.SetBelow(null, this);
-            aboveBlock = null;
-        }
-        topLayer = true;
+
     }
 
     public virtual void OnEndDrag(PointerEventData eventData)
@@ -75,10 +82,11 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
 
                 belowBlock = eventData.pointerDrag.GetComponent<Block>();
                 belowBlock.SetAbove(this);
-                float _belowHeight = belowBlock.GetSizeHeight();
+                float blockHeight = belowBlock.GetSizeHeight();
                 block.transform.SetParent(currentTransform);
-                eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = /*GetComponent<RectTransform>().anchoredPosition - */ new Vector3(0, -(_belowHeight+sizeHeight)/2, 0); //TODO make size dynamic
-                                                                                                                                                                     //Debug.LogError(blockClass.type.ToString());
+                eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -(blockHeight + sizeHeight)/2, 0); //TODO make size dynamic
+                                                                                                                                         //Debug.LogError(blockClass.type.ToString());
+                BroadcastSize(belowBlock.GetSizeHeightBelow(), this);       //Make sure loops and statements increment size
             }
             else
             {
@@ -146,7 +154,7 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
         return sizeHeight;
     }
 
-    public virtual float GetSizeBelow()
+    public virtual float GetSizeHeightBelow()
     {
         if(belowBlock == null)
         {
@@ -154,7 +162,7 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
         }
         else
         {
-            return sizeHeight + belowBlock.GetSizeBelow();
+            return sizeHeight + belowBlock.GetSizeHeightBelow();
         }
 
     }
@@ -166,5 +174,10 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
         {
             belowBlock.UpdatePosition(verticleDistance);
         }
+    }
+
+    public virtual void BroadcastSize(float size, Block self)
+    {
+        aboveBlock?.BroadcastSize(size, this);
     }
 }
