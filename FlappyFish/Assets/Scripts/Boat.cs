@@ -6,31 +6,18 @@ using UnityEngine;
 public class Boat : MonoBehaviour
 {
     // SPEED
-    private float boatSpeed;
+    public float boatSpeed;
     private float relativeSpeedOfBoatWrtFish;
+    private bool isWaiting;
     // GLOBAL VAR
     private Rigidbody2D boatRigidBody2D;
     private Transform boatTransform;
-    private static Boat instance;
-
-    public static Boat GetInstance()
-    {
-        return instance;
-    }
     
     // State
-    private State state;
-    private enum State
-    {
-        WaitingToStart,
-        Moving,
-        Waiting,
-        BirdDied
-    }
+    private StateController stateControllerScript;
 
     private void Awake()
     {
-        state = State.WaitingToStart;
         // RigidBody
         boatRigidBody2D = GetComponent<Rigidbody2D>();
         boatRigidBody2D.bodyType = RigidbodyType2D.Static;
@@ -38,38 +25,33 @@ public class Boat : MonoBehaviour
         boatTransform = GetComponent<Transform>();
         // Speed
         boatSpeed = 35f;
+        isWaiting = false;
+        stateControllerScript = GameObject.Find("StateController").GetComponent<StateController>();
     }
     
-    private void Start(){     
-        // Different Event
-        Bird.GetInstance().OnStartedPlaying += Bird_OnStartedPlaying;
-    }
-
-    private void Bird_OnStartedPlaying(object sender, EventArgs e)
-    {
-        state = State.Moving;
-        boatRigidBody2D.bodyType = RigidbodyType2D.Dynamic;
-    }
-
     private void Update()
     {
-        switch (state)
+        switch (stateControllerScript.currentState)
         {
-            case State.Moving:
-                HandleBoatSpeed();
+            case StateController.State.Playing:
                 relativeSpeedOfBoatWrtFish = boatSpeed - Level.GetInstance().birdSpeed;
-                Move(relativeSpeedOfBoatWrtFish);
-                break;
-            case State.Waiting:
-                relativeSpeedOfBoatWrtFish = boatSpeed - Level.GetInstance().birdSpeed;
-                if (relativeSpeedOfBoatWrtFish > 0)
+                HandleBoatWait();
+                if (!isWaiting)
+                {
+                    boatRigidBody2D.bodyType = RigidbodyType2D.Dynamic; 
+                    Move(relativeSpeedOfBoatWrtFish);
+                }
+                else if (isWaiting && relativeSpeedOfBoatWrtFish > 0)
                 {
                     boatRigidBody2D.bodyType = RigidbodyType2D.Dynamic;
                     Move(relativeSpeedOfBoatWrtFish);
-                    state = State.Moving;
+                    isWaiting = false;
                 }
                 break;
-            case State.BirdDied:
+            case StateController.State.WaitingAnswer:
+                boatRigidBody2D.bodyType = RigidbodyType2D.Static;
+                break;
+            case StateController.State.Dead:
                 break;
         }
     }
@@ -79,21 +61,12 @@ public class Boat : MonoBehaviour
         boatRigidBody2D.velocity = Vector2.right * speed;
     }
 
-    private void HandleBoatSpeed()
+    private void HandleBoatWait()
     {
         if (boatTransform.position.x < -110f)
         {
-            state = State.Waiting;
-            boatRigidBody2D.bodyType = RigidbodyType2D.Static;
-        }
-    }
-    
-    private void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (collider.gameObject.CompareTag("Bird"))
-        {
-            boatRigidBody2D.bodyType = RigidbodyType2D.Static;
-            state = State.BirdDied;
+            isWaiting = true;
+            boatRigidBody2D.bodyType = RigidbodyType2D.Static; 
         }
     }
 }
