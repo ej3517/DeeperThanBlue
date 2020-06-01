@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class MyGlobals 
+public class MyGlobals 
 {
     public const float CAMERA_ORTHO_SIZE = 50f;
     public const float DESTROY_X_POSITION = -120f;
@@ -12,4 +12,7 @@ public static class MyGlobals
     public const float MAX_HEIGHT_GROUND = -8f;
     // REEF 
     public const float REEF_DIMENSION = 12f;
+    // QUESTION
+    public const float DURATION_EASY_QUESTION = 10f;
+    public const float DURATION_HARD_QUESTION = 10f;
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7925393861487258194}
   m_Layer: 8
   m_Name: pfPipeHead
-  m_TagString: Pipe
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class ButtonHandler : MonoBehaviour
 {
-    public void playButton()
+    public void PlayButton()
     {
         SoundManager.PlaySound(SoundManager.Sound.ButtonClick);
         Loader.Load(Loader.Scene.GameScene);
     }
     
-    public void mainMenuButton()
+    public void MainMenuButton()
     {
         SoundManager.PlaySound(SoundManager.Sound.ButtonClick);
         Loader.Load(Loader.Scene.MainMenu);
     }
+    
 }
