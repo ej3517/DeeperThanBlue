@@ -196,6 +196,21 @@ public class BlockLoop : Block
         aboveBlock?.BroadcastSize(size, this);
     }
 
+    public override float GetSizeHeightBelow()
+    {
+        float belowHeight = 0, loopHeight = 0;
+        if (belowBlock != null)
+        {
+            belowHeight = belowBlock.GetSizeHeightBelow();
+        }
+        if (loopNext != null)
+        {
+            loopHeight = loopNext.GetSizeHeightBelow();
+        }
+        return belowHeight + loopHeight + sizeHeight;
+
+    }
+
     private void updateBoxConnect()
     {
         float height = loopTop.position.y - loopBottom.position.y;
@@ -208,6 +223,8 @@ public class BlockLoop : Block
         Debug.LogWarning("height " + temp);
         
     }
+
+
 }
 
 
