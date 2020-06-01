@@ -11,8 +11,9 @@ public class BlockLoop : Block
     private Block loopNext = null;
     private Block loopCond = null;
 
-    Transform loopTop;
-    Transform loopBottom;
+    Transform loopTop = null;
+    Transform loopBottom = null;
+
     Transform boxConnect;
 
 
@@ -23,9 +24,9 @@ public class BlockLoop : Block
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
 
-        loopTop = GameObject.Find("LoopTop").GetComponent<Transform>();
-        loopBottom = GameObject.Find("LoopBottom").GetComponent<Transform>();
-        boxConnect = GameObject.Find("BoxConnect").GetComponent<Transform>();
+        loopTop = transform.Find("LoopTop").GetComponent<Transform>();
+        loopBottom = transform.Find("LoopBottom").GetComponent<Transform>();
+        boxConnect = transform.Find("BoxConnect").GetComponent<Transform>();
     }
 
     RaycastHit hit;
@@ -37,7 +38,7 @@ public class BlockLoop : Block
         Default
     };
 
-    static Loopblock lastState = Loopblock.Default;
+    Loopblock lastState = Loopblock.Default;
     private void Update()
     {
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -57,7 +58,11 @@ public class BlockLoop : Block
                 lastState = Loopblock.Default;
             }
         }
-        //Debug.Log("OnDrop " + lastState);// throw new System.NotImplementedException();
+        else
+        {
+            lastState = Loopblock.Default;
+        }
+        //Debug.Log("OnDrop " + lastState);         -- Left for debug purposes
     }
 
     private float loopContentSize = 10;
@@ -224,6 +229,13 @@ public class BlockLoop : Block
         
     }
 
+    public override void blockRays(bool state)
+    {
+        canvasGroup.blocksRaycasts = state;
+        loopTop.GetComponent<CanvasGroup>().blocksRaycasts = state;
+        loopBottom.GetComponent<CanvasGroup>().blocksRaycasts = state;
+        boxConnect.GetComponent<CanvasGroup>().blocksRaycasts = state;
+    }
 
 }
 

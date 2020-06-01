@@ -19,11 +19,11 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
 
     protected float sizeHeight = 70;       // TODO: Make this dynamic
 
-   /* protected Block instance;
-    public Block()
-    {
-        instance = this;
-    }*/
+    /* protected Block instance;
+     public Block()
+     {
+         instance = this;
+     }*/
     private void Awake()
     {
     }
@@ -39,7 +39,7 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
     public virtual void OnBeginDrag(PointerEventData eventData)
     {
         //Debug.LogWarning("Begin drag");
-        canvasGroup.blocksRaycasts = false;
+        blockRays(false);
 
         if (!topLayer)
         {
@@ -53,6 +53,7 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
         topLayer = true;
     }
 
+
     public virtual void OnDrag(PointerEventData eventData)
     {
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
@@ -61,8 +62,14 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
 
     public virtual void OnEndDrag(PointerEventData eventData)
     {
-        canvasGroup.blocksRaycasts = true;
+        blockRays(true);
     }
+
+    public virtual void blockRays(bool state)
+    {
+        canvasGroup.blocksRaycasts = state;
+    }
+
 
     public virtual void OnPointerDown(PointerEventData eventData)
     {
