@@ -57,6 +57,7 @@ public class BlockLoop : Block
                 lastState = Loopblock.Default;
             }
         }
+        //Debug.Log("OnDrop " + lastState);// throw new System.NotImplementedException();
     }
 
     private float loopContentSize = 10;
@@ -88,13 +89,9 @@ public class BlockLoop : Block
                 float moveAmount = -loopNext.GetSizeHeightBelow()+loopContentSize;
                 loopContentSize = loopNext.GetSizeHeightBelow();
 
-                //Move everything below down                                                                                                                                                                           //Debug.LogError(blockClass.type.ToString());
-                if (belowBlock != null)
-                {
-                    belowBlock.UpdatePosition(moveAmount);
-                }
                 //Move the end down
                 loopBottom.position = loopBottom.position + new Vector3(0, moveAmount, 0);
+                updateBoxConnect();
 
 
             }
@@ -119,7 +116,6 @@ public class BlockLoop : Block
                 Debug.LogError("LoopBlock Default state - Should never happen");
             }
         }
-        Debug.Log("OnDrop " + lastState);// throw new System.NotImplementedException();
     }
 
     public override IEnumerator Traverse(Transform Button)
@@ -186,9 +182,32 @@ public class BlockLoop : Block
         }
         if(loopNext != null && self == loopNext)
         {
-            belowBlock?.UpdatePosition(-size);
+            loopContentSize += size;
+            if(loopContentSize == 0)
+            {
+                loopContentSize = 10;
+                size += 10;
+            }
             loopBottom.position = loopBottom.position + new Vector3(0, -size, 0);
+            updateBoxConnect();
+
+
         }
         aboveBlock?.BroadcastSize(size, this);
     }
+
+    private void updateBoxConnect()
+    {
+        float height = loopTop.position.y - loopBottom.position.y;
+        boxConnect.GetComponent<RectTransform>().sizeDelta = new Vector3(50,height);
+        //boxConnect.GetComponent<RectTransform>().localScale = new Vector3(50,height);
+        boxConnect.localScale = new Vector3(50, height, 1);
+        boxConnect.localPosition = new Vector3(-125,- height/2+25,-1);
+        Debug.LogWarning(boxConnect.localPosition);
+        Vector2 temp = boxConnect.GetComponent<RectTransform>().sizeDelta;
+        Debug.LogWarning("height " + temp);
+        
+    }
 }
+
+

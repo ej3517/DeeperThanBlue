@@ -97,7 +97,7 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
 
     private Transform GetParent()
     {
-        if (!topLayer)
+        if (aboveBlock!= null)
         {
             //Debug.LogError(type);
             return aboveBlock.GetParent();
@@ -181,3 +181,4 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
         aboveBlock?.BroadcastSize(size, this);
     }
 }
+

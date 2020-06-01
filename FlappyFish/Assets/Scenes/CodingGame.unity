@@ -1327,6 +1327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 1300194782}
+  type: 
 --- !u!225 &815669818
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1769,6 +1770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 1300194782}
+  type: 
 --- !u!225 &1111521254
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1924,6 +1926,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 1300194782}
+  type: 
 --- !u!225 &1194124500
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2656,7 +2659,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -125, y: 2.5}
-  m_SizeDelta: {x: 50, y: 105}
+  m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!65 &1393738441
 BoxCollider:
@@ -3110,6 +3113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 1300194782}
+  type: 
 --- !u!225 &1872645323
 CanvasGroup:
   m_ObjectHideFlags: 0
