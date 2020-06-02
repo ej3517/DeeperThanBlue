@@ -57,7 +57,7 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
     public virtual void OnDrag(PointerEventData eventData)
     {
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
-
+        //Maybe move the object forward so doesn't overlap
     }
 
     public virtual void OnEndDrag(PointerEventData eventData)
@@ -156,13 +156,14 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
         Destroy(transform.gameObject);
     }
     
-    public float GetSizeHeight()
+    public virtual float GetSizeHeight()
     {
         return sizeHeight;
     }
 
     public virtual float GetSizeHeightBelow()
     {
+        //float loopSize
         if(belowBlock == null)
         {
             return sizeHeight;

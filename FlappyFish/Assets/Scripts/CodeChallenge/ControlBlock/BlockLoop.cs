@@ -20,7 +20,7 @@ public class BlockLoop : Block
     private void Awake()
     {
         type = "Loop";
-        sizeHeight = 110;
+        sizeHeight = 100;
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
 
@@ -181,10 +181,10 @@ public class BlockLoop : Block
 
     public override void BroadcastSize(float size, Block self)
     {
-        if(self == loopCond)
-        {
-            return; // Ignore, not possible
-        }
+        //if(self == loopCond)
+        //{
+        //    
+        //}
         if(loopNext != null && self == loopNext)
         {
             loopContentSize += size;
@@ -201,9 +201,19 @@ public class BlockLoop : Block
         aboveBlock?.BroadcastSize(size, this);
     }
 
+    //public override float GetSizeHeight()
+    //{
+    //    float loopHeight = 10;
+    //    if (loopNext != null)
+    //    {
+    //        loopHeight = loopNext.GetSizeHeightBelow();
+    //    }
+    //    return sizeHeight + loopHeight;
+    //}
+
     public override float GetSizeHeightBelow()
     {
-        float belowHeight = 0, loopHeight = 0;
+        float belowHeight = 0, loopHeight = 10;
         if (belowBlock != null)
         {
             belowHeight = belowBlock.GetSizeHeightBelow();
@@ -223,10 +233,7 @@ public class BlockLoop : Block
         //boxConnect.GetComponent<RectTransform>().localScale = new Vector3(50,height);
         boxConnect.localScale = new Vector3(50, height, 1);
         boxConnect.localPosition = new Vector3(-125,- height/2+25,-1);
-        Debug.LogWarning(boxConnect.localPosition);
-        Vector2 temp = boxConnect.GetComponent<RectTransform>().sizeDelta;
-        Debug.LogWarning("height " + temp);
-        
+        Vector2 temp = boxConnect.GetComponent<RectTransform>().sizeDelta;        
     }
 
     public override void blockRays(bool state)
