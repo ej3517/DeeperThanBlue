@@ -62,7 +62,7 @@ public class BlockLoop : Block
         {
             lastState = Loopblock.Default;
         }
-        //Debug.Log("OnDrop " + lastState);         -- Left for debug purposes
+        //Debug.Log("OnDrop " + lastState);         // Left for debug purposes
     }
 
     private float loopContentSize = 10;
@@ -83,7 +83,8 @@ public class BlockLoop : Block
                     float blockHeight = loopNext.GetSizeHeight();
                     block.transform.SetParent(loopTop);
                     eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = new Vector3(75, -(50+blockHeight)/2, 0); //TODO make size dynamic
-                    shift = loopContentSize;
+                    shift = 10;
+                    aboveBlock?.BroadcastSize(loopNext.GetSizeHeightBelow(), this);
                 }
                 else
                 {
@@ -110,6 +111,7 @@ public class BlockLoop : Block
                     float blockHeight = belowBlock.GetSizeHeight();
                     block.transform.SetParent(loopBottom);
                     eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -(50 + blockHeight) / 2, 0); //TODO make size dynamic
+                    aboveBlock?.BroadcastSize(belowBlock.GetSizeHeightBelow(), this);
                 }
                 else
                 {
@@ -201,15 +203,15 @@ public class BlockLoop : Block
         aboveBlock?.BroadcastSize(size, this);
     }
 
-    //public override float GetSizeHeight()
-    //{
-    //    float loopHeight = 10;
-    //    if (loopNext != null)
-    //    {
-    //        loopHeight = loopNext.GetSizeHeightBelow();
-    //    }
-    //    return sizeHeight + loopHeight;
-    //}
+   //public override float GetSizeHeight()
+   //{
+   //    float loopHeight = 10;
+   //    if (loopNext != null)
+   //    {
+   //        loopHeight = loopNext.GetSizeHeightBelow();
+   //    }
+   //    return sizeHeight + loopHeight;
+   //}
 
     public override float GetSizeHeightBelow()
     {
@@ -233,7 +235,6 @@ public class BlockLoop : Block
         //boxConnect.GetComponent<RectTransform>().localScale = new Vector3(50,height);
         boxConnect.localScale = new Vector3(50, height, 1);
         boxConnect.localPosition = new Vector3(-125,- height/2+25,-1);
-        Vector2 temp = boxConnect.GetComponent<RectTransform>().sizeDelta;        
     }
 
     public override void blockRays(bool state)
