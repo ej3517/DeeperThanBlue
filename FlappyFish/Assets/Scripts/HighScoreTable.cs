@@ -7,30 +7,134 @@ public class HighScoreTable : MonoBehaviour
 {
     public Transform entryTemplate;
     public Transform entryContainer;
+    private List<HighscoreEntry> highscoreEntryList;
+    private List<Transform> highscoreEntryTransformList;
 
     private void Awake(){
 
         entryTemplate.gameObject.SetActive(false);
 
-        float templateHeight = 30f;
-        for(int i = 0; i < 10; i++){
-            Transform entryTransform = Instantiate(entryTemplate, entryContainer);
-            RectTransform entryRectTransform = entryTransform.GetComponent<RectTransform>();
-            entryRectTransform.anchoredPosition = new Vector2(0, -templateHeight*i);
-            entryTransform.gameObject.SetActive(true);
-            
-            int rank = i+1;
-            string rankString;
-            switch(rank){
-                default: rankString = rank + "th"; break;
-                case 1: rankString = "1st"; break;
-                case 2: rankString = "2nd"; break;
-                case 3: rankString = "3rd"; break;
-            }
-            entryTransform.Find("posText").GetComponent<Text>().text = rankString;
-            entryTransform.Find("scoreText").GetComponent<Text>().text = "00";
-            entryTransform.Find("dateText").GetComponent<Text>().text = "00/00/00 00:00";
+        //highscoreEntryList = new List<HighscoreEntry>(); //CREATE IT THE FIRST TIME!!
+        //AddTohighscoreEntryList(highscoreEntryList, 12, "11 december 2040 12:30");
 
+        //Add_highscore(122, "ciao");
+
+        string jsonString = PlayerPrefs.GetString("highscoreTable");
+        Highscores highscores = JsonUtility.FromJson<Highscores>(jsonString);
+
+        highscoreEntryTransformList = new List<Transform>();
+        foreach(HighscoreEntry highscoreEntry in highscores.highscoreEntryList){
+            CreateHighscoreEntryTransform(highscoreEntry, entryContainer, highscoreEntryTransformList);
         }
+
+    }
+
+    private void CreateHighscoreEntryTransform(HighscoreEntry highscoreEntry, Transform container, List<Transform> transformList){
+        
+        float templateHeight = 30f;
+
+        Transform entryTransform = Instantiate(entryTemplate, container);
+        RectTransform entryRectTransform = entryTransform.GetComponent<RectTransform>();
+        entryRectTransform.anchoredPosition = new Vector2(0, -templateHeight * transformList.Count);
+        entryTransform.gameObject.SetActive(true);
+        
+        int rank = transformList.Count + 1;
+        string rankString;
+        switch(rank){
+            default: rankString = rank + "th"; break;
+            case 1: rankString = "1st"; break;
+            case 2: rankString = "2nd"; break;
+            case 3: rankString = "3rd"; break;
+        }
+        entryTransform.Find("posText").GetComponent<Text>().text = rankString;
+
+        entryTransform.Find("scoreText").GetComponent<Text>().text = highscoreEntry.score.ToString();
+        entryTransform.Find("dateText").GetComponent<Text>().text = highscoreEntry.date;
+
+        transformList.Add(entryTransform);
+
+    }
+
+    private void AddTohighscoreEntryList (List<HighscoreEntry> highscoreEntryList, int scoreIn, string dateIn){
+        
+        // don't add if the score is not in the top 10
+        if (highscoreEntryList.Count >= 10 && scoreIn < highscoreEntryList[highscoreEntryList.Count-1].score){
+            return;  
+        }
+
+        //if the list has less then 10 scores, add it
+        if (highscoreEntryList.Count < 10){
+            HighscoreEntry newEntry = new HighscoreEntry{score = scoreIn, date = dateIn};
+            highscoreEntryList.Add(newEntry);
+        }
+
+        //new high score, replace the lowest
+        else{
+        highscoreEntryList[highscoreEntryList.Count-1].score = scoreIn;
+        highscoreEntryList[highscoreEntryList.Count-1].date = dateIn;
+        }
+
+        // order list
+        for (int i=0; i < highscoreEntryList.Count; i++){
+            for(int j = i+1; j < highscoreEntryList.Count; j++){
+                if(highscoreEntryList[j].score >= highscoreEntryList[i].score){
+                    HighscoreEntry tmp = highscoreEntryList[i];
+                    highscoreEntryList[i] = highscoreEntryList[j];
+                    highscoreEntryList[j] = tmp;
+                }
+            }
+        }
+
+    }
+
+    private void Add_highscore(int scoreIn, string dateIn){
+
+        // ** Load saved highscores
+        string jsonString = PlayerPrefs.GetString("highscoreTable");
+        Highscores highscores = JsonUtility.FromJson<Highscores>(jsonString);
+
+        // ** Add new entry
+        // don't add if the score is not in the top 10
+        if (highscores.highscoreEntryList.Count >= 10 && scoreIn < highscores.highscoreEntryList[highscores.highscoreEntryList.Count-1].score){
+            return;  
+        }
+
+        //if the list has less then 10 scores, add it
+        if (highscores.highscoreEntryList.Count < 10){
+            HighscoreEntry newEntry = new HighscoreEntry{score = scoreIn, date = dateIn};
+            highscores.highscoreEntryList.Add(newEntry);
+        }
+
+        //new high score, replace the lowest
+        else{
+        highscores.highscoreEntryList[highscores.highscoreEntryList.Count-1].score = scoreIn;
+        highscores.highscoreEntryList[highscores.highscoreEntryList.Count-1].date = dateIn;
+        }
+
+        // order list
+        for (int i=0; i < highscores.highscoreEntryList.Count; i++){
+            for(int j = i+1; j < highscores.highscoreEntryList.Count; j++){
+                if(highscores.highscoreEntryList[j].score > highscores.highscoreEntryList[i].score){
+                    HighscoreEntry tmp = highscores.highscoreEntryList[i];
+                    highscores.highscoreEntryList[i] = highscores.highscoreEntryList[j];
+                    highscores.highscoreEntryList[j] = tmp;
+                }
+            }
+        }
+
+        // **  Save updated highscores
+        string json = JsonUtility.ToJson(highscores);
+        PlayerPrefs.SetString("highscoreTable", json);
+        PlayerPrefs.Save();
+    }
+
+    private class Highscores{
+        public List<HighscoreEntry> highscoreEntryList;
+    }
+
+    [System.Serializable]
+    private class HighscoreEntry{
+        public int score;
+        public string date;
     }
 }
