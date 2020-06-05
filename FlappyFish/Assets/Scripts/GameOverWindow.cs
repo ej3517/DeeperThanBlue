@@ -35,6 +35,11 @@ public class GameOverWindow : MonoBehaviour
         }
 
         Show();
+
+        int newscore = Level.GetInstance().GetPipesPassedCount();
+        HighScoreTable.Add_highscore(newscore);
+        HighScoreTable.Add_highscore(1000);
+
     }
 
     private void Hide()

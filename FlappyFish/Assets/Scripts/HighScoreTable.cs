@@ -17,7 +17,7 @@ public class HighScoreTable : MonoBehaviour
         //highscoreEntryList = new List<HighscoreEntry>(); //CREATE IT THE FIRST TIME!!
         //AddTohighscoreEntryList(highscoreEntryList, 12, "11 december 2040 12:30");
 
-        //Add_highscore(122, "ciao");
+        //Add_highscore(300);
 
         string jsonString = PlayerPrefs.GetString("highscoreTable");
         Highscores highscores = JsonUtility.FromJson<Highscores>(jsonString);
@@ -87,7 +87,7 @@ public class HighScoreTable : MonoBehaviour
 
     }
 
-    private void Add_highscore(int scoreIn, string dateIn){
+    public static void Add_highscore(int scoreIn){
 
         // ** Load saved highscores
         string jsonString = PlayerPrefs.GetString("highscoreTable");
@@ -98,6 +98,10 @@ public class HighScoreTable : MonoBehaviour
         if (highscores.highscoreEntryList.Count >= 10 && scoreIn < highscores.highscoreEntryList[highscores.highscoreEntryList.Count-1].score){
             return;  
         }
+
+        string theTime = System.DateTime.Now.ToString("hh:mm");
+        string theDate = System.DateTime.Now.ToString("dd/MM/yyyy");
+        string dateIn = theDate + " " + theTime;
 
         //if the list has less then 10 scores, add it
         if (highscores.highscoreEntryList.Count < 10){

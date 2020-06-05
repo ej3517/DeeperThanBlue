@@ -9,59 +9,86 @@ public class profileButtonHandler : MonoBehaviour
     public GameObject ProfileCanvas_wrong_questions;
     public GameObject ProfileCanvas_statistics;
 
-    int counter1 = 0;
-    int counter2 = 0;
-    int counter3 = 0;
+    private static int counter1;
+    private static int counter2;
+    private static int counter3;
     private void Awake() {
         ProfileCanvas_highest_scores.SetActive(false);
         ProfileCanvas_wrong_questions.SetActive(false);
         ProfileCanvas_statistics.SetActive(false);
+        counter1 = 0;
+        counter2 = 0;
+        counter3 = 0;
     }
 
-    public void highest_scoresButton()
-    {
+    public void highest_scoresButton(){
+        
         //SoundManager.PlaySound(SoundManager.Sound.ButtonClick);
+        
         counter1++;
-        //Loader.Load(Loader.Scene.ProfileScene);
         if(counter1%2 == 0){
             ProfileCanvas_highest_scores.SetActive(false);
         }
         else {
+            if(ProfileCanvas_statistics.activeSelf){
+                counter2++;
+                ProfileCanvas_statistics.SetActive(false);
+            }
+            if(ProfileCanvas_wrong_questions.activeSelf){
+                counter3++;
+                ProfileCanvas_wrong_questions.SetActive(false);
+            }
             ProfileCanvas_highest_scores.SetActive(true);
-            //if one is active th others need to be closed + COUNTER
         }
     }
 
-    public void statisticsButton()
-    {
+    public void statisticsButton(){
+
         //SoundManager.PlaySound(SoundManager.Sound.ButtonClick);
+
         counter2++;
-        //Loader.Load(Loader.Scene.ProfileScene);
         if(counter2%2 == 0){
             ProfileCanvas_statistics.SetActive(false);
         }
         else {
+            if(ProfileCanvas_highest_scores.activeSelf){
+                counter1++;
+                ProfileCanvas_highest_scores.SetActive(false);
+            }
+            if(ProfileCanvas_wrong_questions.activeSelf){
+                counter3++;
+                ProfileCanvas_wrong_questions.SetActive(false);
+            }
             ProfileCanvas_statistics.SetActive(true);
-            //if one is active th others need to be closed + COUNTER
         }
     }
 
-        public void wrong_questionsButton()
-    {
+    public void wrong_questionsButton(){
+
         //SoundManager.PlaySound(SoundManager.Sound.ButtonClick);
+
         counter3++;
-        //Loader.Load(Loader.Scene.ProfileScene);
         if(counter3%2 == 0){
             ProfileCanvas_wrong_questions.SetActive(false);
         }
         else {
+            if(ProfileCanvas_highest_scores.activeSelf){
+                counter1++;
+                ProfileCanvas_highest_scores.SetActive(false);
+            }
+            if(ProfileCanvas_statistics.activeSelf){
+                counter2++;
+                ProfileCanvas_statistics.SetActive(false);
+            }
             ProfileCanvas_wrong_questions.SetActive(true);
-            //if one is active th others need to be closed
         }
+
     }
 
-    //theTime = System.DateTime.Now.ToString("hh:mm:ss");
-    //theDate = System.DateTime.Now.ToString("MM/dd/yyyy");
-    //theMonth = System.DateTime.Now.get_Month();
-    //theDay = System.DateTime.Now.get_Day();
+    public void tomenuButton(){
+
+        //SoundManager.PlaySound(SoundManager.Sound.ButtonClick);
+        Loader.Load(Loader.Scene.MainMenu);
+        
+    }
 }
