@@ -39,6 +39,7 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
     public virtual void OnBeginDrag(PointerEventData eventData)
     {
         //Debug.LogWarning("Begin drag");
+        transform.position = transform.position + new Vector3(0,0,0.5f);
         blockRays(false);
 
         if (!topLayer)
@@ -62,6 +63,7 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
 
     public virtual void OnEndDrag(PointerEventData eventData)
     {
+        transform.position = transform.position - new Vector3(0, 0, 0.5f);
         blockRays(true);
     }
 
@@ -158,6 +160,7 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
     
     public virtual float GetSizeHeight()
     {
+        Debug.Log("returning height " + sizeHeight);
         return sizeHeight;
     }
 

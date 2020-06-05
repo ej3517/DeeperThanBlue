@@ -20,7 +20,7 @@ public class BlockLoop : Block
     private void Awake()
     {
         type = "Loop";
-        sizeHeight = 100;
+        sizeHeight = 110;
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
 
@@ -75,7 +75,6 @@ public class BlockLoop : Block
             Transform block = eventData.pointerDrag.GetComponent<Transform>();
             if(lastState == Loopblock.Start)
             {
-                float shift = 0;
                 if (loopNext == null)
                 {
                     loopNext = eventData.pointerDrag.GetComponent<Block>();
@@ -83,8 +82,7 @@ public class BlockLoop : Block
                     float blockHeight = loopNext.GetSizeHeight();
                     block.transform.SetParent(loopTop);
                     eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = new Vector3(75, -(50+blockHeight)/2, 0); //TODO make size dynamic
-                    shift = 10;
-                    aboveBlock?.BroadcastSize(loopNext.GetSizeHeightBelow(), this);
+                    aboveBlock?.BroadcastSize(loopNext.GetSizeHeightBelow() - loopContentSize, this);
                 }
                 else
                 {
