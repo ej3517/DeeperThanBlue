@@ -11,21 +11,24 @@ public class HighScoreTable : MonoBehaviour
     private List<Transform> highscoreEntryTransformList;
 
     private void Awake(){
-
         entryTemplate.gameObject.SetActive(false);
 
-        //highscoreEntryList = new List<HighscoreEntry>(); //CREATE IT THE FIRST TIME!!
-        //AddTohighscoreEntryList(highscoreEntryList, 12, "11 december 2040 12:30");
-
-        //Add_highscore(300);
+        //Add_highscore(2);
 
         string jsonString = PlayerPrefs.GetString("highscoreTable");
         Highscores highscores = JsonUtility.FromJson<Highscores>(jsonString);
+
+        if(highscores == null){
+            return;
+        }
 
         highscoreEntryTransformList = new List<Transform>();
         foreach(HighscoreEntry highscoreEntry in highscores.highscoreEntryList){
             CreateHighscoreEntryTransform(highscoreEntry, entryContainer, highscoreEntryTransformList);
         }
+    }
+
+    public void ShowTable(){
 
     }
 
@@ -55,20 +58,25 @@ public class HighScoreTable : MonoBehaviour
 
     }
 
-    private void AddTohighscoreEntryList (List<HighscoreEntry> highscoreEntryList, int scoreIn, string dateIn){
+    private void AddTohighscoreEntryList (ref List<HighscoreEntry> highscoreEntryList, int scoreIn, string dateIn){
         
+        if (highscoreEntryList == null){
+            Debug.Log("sono qua");
+            highscoreEntryList = new List<HighscoreEntry>();
+        }
+
         // don't add if the score is not in the top 10
         if (highscoreEntryList.Count >= 10 && scoreIn < highscoreEntryList[highscoreEntryList.Count-1].score){
             return;  
         }
 
-        //if the list has less then 10 scores, add it
+        // if the list has less then 10 scores, add it
         if (highscoreEntryList.Count < 10){
             HighscoreEntry newEntry = new HighscoreEntry{score = scoreIn, date = dateIn};
             highscoreEntryList.Add(newEntry);
         }
 
-        //new high score, replace the lowest
+        // new high score, replace the lowest
         else{
         highscoreEntryList[highscoreEntryList.Count-1].score = scoreIn;
         highscoreEntryList[highscoreEntryList.Count-1].date = dateIn;
@@ -93,6 +101,11 @@ public class HighScoreTable : MonoBehaviour
         string jsonString = PlayerPrefs.GetString("highscoreTable");
         Highscores highscores = JsonUtility.FromJson<Highscores>(jsonString);
 
+        if (highscores == null){
+            List<HighscoreEntry> highscoreEntryList = new List<HighscoreEntry>();
+            highscores = new Highscores {highscoreEntryList = highscoreEntryList};
+        }
+
         // ** Add new entry
         // don't add if the score is not in the top 10
         if (highscores.highscoreEntryList.Count >= 10 && scoreIn < highscores.highscoreEntryList[highscores.highscoreEntryList.Count-1].score){
@@ -103,13 +116,13 @@ public class HighScoreTable : MonoBehaviour
         string theDate = System.DateTime.Now.ToString("dd/MM/yyyy");
         string dateIn = theDate + " " + theTime;
 
-        //if the list has less then 10 scores, add it
+        // if the list has less then 10 scores, add it
         if (highscores.highscoreEntryList.Count < 10){
             HighscoreEntry newEntry = new HighscoreEntry{score = scoreIn, date = dateIn};
             highscores.highscoreEntryList.Add(newEntry);
         }
 
-        //new high score, replace the lowest
+        // new high score, replace the lowest
         else{
         highscores.highscoreEntryList[highscores.highscoreEntryList.Count-1].score = scoreIn;
         highscores.highscoreEntryList[highscores.highscoreEntryList.Count-1].date = dateIn;

@@ -13,7 +13,7 @@ public class profileButtonHandler : MonoBehaviour
     private static int counter2;
     private static int counter3;
     private void Awake() {
-        ProfileCanvas_highest_scores.SetActive(false);
+        ProfileCanvas_highest_scores.SetActive(true);
         ProfileCanvas_wrong_questions.SetActive(false);
         ProfileCanvas_statistics.SetActive(false);
         counter1 = 0;
@@ -25,21 +25,34 @@ public class profileButtonHandler : MonoBehaviour
         
         //SoundManager.PlaySound(SoundManager.Sound.ButtonClick);
         
-        counter1++;
+        /*counter1++;
         if(counter1%2 == 0){
             ProfileCanvas_highest_scores.SetActive(false);
-        }
-        else {
+        }*/
+        //else {
             if(ProfileCanvas_statistics.activeSelf){
                 counter2++;
                 ProfileCanvas_statistics.SetActive(false);
             }
+
             if(ProfileCanvas_wrong_questions.activeSelf){
                 counter3++;
                 ProfileCanvas_wrong_questions.SetActive(false);
             }
-            ProfileCanvas_highest_scores.SetActive(true);
-        }
+
+            if(ProfileCanvas_highest_scores.activeSelf){
+                ProfileCanvas_highest_scores.SetActive(true);
+                // wait;
+                //System.Threading.Thread.Sleep(10000);
+
+                //ProfileCanvas_highest_scores.SetActive(true);
+            }
+            else {
+                counter2++;
+                ProfileCanvas_highest_scores.SetActive(true);
+            }
+            //ProfileCanvas_highest_scores.SetActive(true);
+        //}
     }
 
     public void statisticsButton(){
@@ -65,7 +78,7 @@ public class profileButtonHandler : MonoBehaviour
 
     public void wrong_questionsButton(){
 
-        //SoundManager.PlaySound(SoundManager.Sound.ButtonClick);
+        // SoundManager.PlaySound(SoundManager.Sound.ButtonClick);
 
         counter3++;
         if(counter3%2 == 0){
@@ -86,9 +99,13 @@ public class profileButtonHandler : MonoBehaviour
     }
 
     public void tomenuButton(){
-
-        //SoundManager.PlaySound(SoundManager.Sound.ButtonClick);
+        // SoundManager.PlaySound(SoundManager.Sound.ButtonClick);
         Loader.Load(Loader.Scene.MainMenu);
-        
+    }
+
+    public void resetHighscoresButton(){
+        // SoundManager.PlaySound(SoundManager.Sound.ButtonClick);
+        PlayerPrefs.DeleteAll();
+        Loader.Load(Loader.Scene.ProfileScene);
     }
 }
