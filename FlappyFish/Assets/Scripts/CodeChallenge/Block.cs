@@ -7,6 +7,10 @@ using UnityEngine.EventSystems;
 public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
 {
     [SerializeField] protected Canvas canvas;
+    public void setCanvas(Canvas _canvas)
+    {
+        canvas = _canvas;
+    }
 
     public string type;         // Make this protected
 
@@ -18,6 +22,12 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
     protected Block belowBlock = null;     //Maybe not needed?
 
     protected float sizeHeight = 70;       // TODO: Make this dynamic
+
+    private bool capArea = false;
+    public void SetCapArea(bool state)
+    {
+        capArea = state;
+    }
 
     /* protected Block instance;
      public Block()
@@ -58,6 +68,13 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
     public virtual void OnDrag(PointerEventData eventData)
     {
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+        if(capArea)
+        {
+            if(transform.position.x < 776)
+            {
+                transform.position = new Vector3(776, transform.position.y, transform.position.z);
+            }
+        }
         //Maybe move the object forward so doesn't overlap
     }
 
@@ -160,7 +177,7 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
     
     public virtual float GetSizeHeight()
     {
-        Debug.Log("returning height " + sizeHeight);
+        //Debug.Log("returning height " + sizeHeight);
         return sizeHeight;
     }
 

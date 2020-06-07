@@ -125,7 +125,7 @@ public class GameAreaGrid : MonoBehaviour
 
             }
         }
-        Debug.LogError("Done creating grid");
+        Debug.Log("Created grid...");
 
 
         codingArea = codingAreaReferenceTransform.GetComponent<CodingArea>();

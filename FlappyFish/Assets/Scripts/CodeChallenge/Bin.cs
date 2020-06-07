@@ -17,7 +17,7 @@ public class Bin : MonoBehaviour, IDropHandler, IPointerDownHandler
     {
         if (eventData.pointerDrag != null)
         {
-            Debug.LogError("Delted Item");
+            Debug.Log("Delted Item");
             //currentObj = GetComponent<Transform>();
             Transform block = eventData.pointerDrag.GetComponent<Transform>();
             Block blockClass = eventData.pointerDrag.GetComponent<Block>();
@@ -32,7 +32,6 @@ public class Bin : MonoBehaviour, IDropHandler, IPointerDownHandler
     {
         if(clickable)
         {
-            Debug.LogError("Clicked Item");
             //Transform popupWindow = Instantiate(popupWindowPF);
             oldParent = popupWindow.parent;
             popupWindow.SetParent(transform);
@@ -44,7 +43,7 @@ public class Bin : MonoBehaviour, IDropHandler, IPointerDownHandler
 
     public void ConfirmTrue()
     {
-        Debug.LogWarning("ConfirmTrue");
+        Debug.Log("Delete - ConfirmTrue");
         resetQuestion();
         
         foreach (Transform child in codingArea)
@@ -60,7 +59,7 @@ public class Bin : MonoBehaviour, IDropHandler, IPointerDownHandler
     }
     public void ConfrimFalse()
     {
-        Debug.LogWarning("ConfirmFalse");
+        Debug.Log("Delete - ConfirmFalse");
         resetQuestion();
     }
 
