@@ -533,7 +533,7 @@ namespace IBM.Cloud.SDK.Connection
 #if UNITY_2017_2_OR_NEWER
                 unityWebRequest.SendWebRequest();
 #else
-                www.Send();
+                //www.Send();           -- Using Unity 2019
 #endif
 #if ENABLE_DEBUGGING
                 Log.Debug("RESTConnector", "URL: {0}", url);
