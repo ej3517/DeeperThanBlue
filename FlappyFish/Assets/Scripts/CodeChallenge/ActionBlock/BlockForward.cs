@@ -18,6 +18,8 @@ public class BlockForward : Block
         Button.SetParent(transform);        // Maybe not needed
         Button.localPosition = new Vector3(-200, 6);
 
+        Button.GetComponent<StartButton>().Forward();
+
         yield return new WaitForSeconds(1);
         if (belowBlock != null)
         {

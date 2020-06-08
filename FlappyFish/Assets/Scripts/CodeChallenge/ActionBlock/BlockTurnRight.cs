@@ -18,6 +18,8 @@ public class BlockTurnRight : Block
         Button.SetParent(transform);        // Maybe not needed
         Button.localPosition = new Vector3(-200, 6);
 
+        Button.GetComponent<StartButton>().TurnRight();
+
         yield return new WaitForSeconds(1);
         //Debug.LogError("Turn after wait");
         if (belowBlock != null)

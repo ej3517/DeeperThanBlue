@@ -11,9 +11,22 @@ public class CodingArea : MonoBehaviour
     public Transform popupWindowError;
 
     public event EventHandler OnButtonStart;
+    public event EventHandler<CodingArgs> ActionEvent;
 
     private CodingArea instance;
     private StartButton startButton;
+
+    public enum BlockCommand
+    {
+        Forward,
+        TurnLeft,
+        TurnRight,
+    };
+
+    public class CodingArgs : EventArgs
+    {
+        public BlockCommand instructionType;
+    }
 
     public void Awake()
     {
@@ -41,7 +54,7 @@ public class CodingArea : MonoBehaviour
     Vector3 oldWindowPosition;
     public void ButtonStart()
     {
-        if(!StartBlock.GetComponent<Block>().Validate())
+        if (!StartBlock.GetComponent<Block>().Validate())
         {
             Debug.LogError("Invalid Structure");
             oldWindowPosition = popupWindowError.position;
@@ -66,8 +79,8 @@ public class CodingArea : MonoBehaviour
         Restart();
     }
 
-    public void ControlCommand()       //Add type as arg
+    public void ControlCommand(BlockCommand _instructionType)       //Add type as arg
     {
-        ;
+        ActionEvent?.Invoke(this, new CodingArgs { instructionType = _instructionType });
     }
 }

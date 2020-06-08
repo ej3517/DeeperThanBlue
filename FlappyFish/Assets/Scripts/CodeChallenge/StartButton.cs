@@ -34,4 +34,19 @@ public class StartButton: MonoBehaviour
     {
         codingArea.Restart();
     }
+
+    public void Forward()
+    {
+        codingArea.ControlCommand(CodingArea.BlockCommand.Forward);
+    }
+    
+    public void TurnLeft()
+    {
+        codingArea.ControlCommand(CodingArea.BlockCommand.TurnLeft);
+    }
+
+    public void TurnRight()
+    {
+        codingArea.ControlCommand(CodingArea.BlockCommand.TurnRight);
+    }
 }
