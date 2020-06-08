@@ -36,8 +36,29 @@ public class GameOverWindow : MonoBehaviour
 
         Show();
 
+        // PERSONAL HIGHSCORES
         int newscore = Level.GetInstance().GetPipesPassedCount();
         HighScoreTable.Add_highscore(newscore);
+
+        // STATISTICS - TIMES WON/LOST
+        // ** get saved values
+        string strWon = PlayerPrefs.GetString("timesWon");
+        string strLost = PlayerPrefs.GetString("timesLost");
+
+        int tmpWon = Int32.Parse(strWon);
+        int tmpLost = Int32.Parse(strLost);
+
+        if (newscore > 50){
+            tmpWon++;
+        }
+        else {
+            tmpLost++;
+        }
+        // ** save updated values
+        PlayerPrefs.SetString("timesWon", tmpWon.ToString());
+        PlayerPrefs.Save();
+        PlayerPrefs.SetString("timesLost", tmpLost.ToString());
+        PlayerPrefs.Save();
 
     }
 
