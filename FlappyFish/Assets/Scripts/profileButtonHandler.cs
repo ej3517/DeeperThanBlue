@@ -93,7 +93,12 @@ public class profileButtonHandler : MonoBehaviour
         PlayerPrefs.Save();
         PlayerPrefs.SetString("timesLost", 0.ToString());
         PlayerPrefs.Save();
-        
+
+        PlayerPrefs.SetString("timesRight", 0.ToString());
+        PlayerPrefs.Save();
+        PlayerPrefs.SetString("timesWrong", 0.ToString());
+        PlayerPrefs.Save();
+
         Loader.Load(Loader.Scene.ProfileScene);
     }
 }

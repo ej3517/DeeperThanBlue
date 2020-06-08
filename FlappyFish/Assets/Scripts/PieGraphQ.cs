@@ -7,7 +7,7 @@ using System;
 public class PieGraphQ : MonoBehaviour
 {
     public Color[] wedgeColorsQ;
-    public Image wedgePrefab;
+    public Image wedgePrefabQ;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +15,7 @@ public class PieGraphQ : MonoBehaviour
     }
 
     void MakeGraphQ(){
-        int[] valuesQ = new int[2];
+        float[] valuesQ = new float[2];
 
         // ** save values - for testing
         PlayerPrefs.SetString("timesRight", 1.ToString());
@@ -39,19 +39,19 @@ public class PieGraphQ : MonoBehaviour
         }
 
         // ** build pie chart
-        int total = 0;
+        float total = 0f;
         float zRotation = 0f;
         for(int i = 0; i < valuesQ.Length; i++){
             total += valuesQ[i];
         }
 
         for(int i = 0; i < valuesQ.Length; i++){
-            Image newWadge = Instantiate(wedgePrefab) as Image;
-            newWadge.transform.SetParent(transform, false);
-            newWadge.color = wedgeColorsQ[i]; // get color
-            newWadge.fillAmount = valuesQ[i]/total; // get percentage for fill amount
-            newWadge.transform.rotation = Quaternion.Euler(new Vector3(0f,0f,zRotation)); // set rotation
-            zRotation -= newWadge.fillAmount * 360f; // update next rotation
+            Image newWadgeQ = Instantiate(wedgePrefabQ) as Image;
+            newWadgeQ.transform.SetParent(transform, false);
+            newWadgeQ.color = wedgeColorsQ[i]; // get color
+            newWadgeQ.fillAmount = valuesQ[i]/total; // get percentage for fill amount
+            newWadgeQ.transform.rotation = Quaternion.Euler(new Vector3(0f,0f,zRotation)); // set rotation
+            zRotation -= newWadgeQ.fillAmount * 360f; // update next rotation
         }
     }
 
