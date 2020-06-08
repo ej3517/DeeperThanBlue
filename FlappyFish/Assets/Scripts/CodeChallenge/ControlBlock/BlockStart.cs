@@ -8,7 +8,7 @@ public class BlockStart : Block
 
     private void Awake()
     {
-        type = "Start";
+        SetType("Start");
     }
 
     public override bool Validate()

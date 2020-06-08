@@ -18,7 +18,7 @@ public class BlockLoop : Block
 
     private void Awake()
     {
-        type = "Loop";
+        SetType("Loop");
         sizeHeight = 110;
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();

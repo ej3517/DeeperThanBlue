@@ -5,13 +5,21 @@ using UnityEngine.EventSystems;
 
 public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
 {
-    [SerializeField] protected Canvas canvas;
+    private Canvas canvas;
     public void setCanvas(Canvas _canvas)
     {
         canvas = _canvas;
     }
 
-    public string type;         // Make this protected
+    private string type;         // Make this protected
+    protected void SetType(string _type)
+    {
+        type = _type;
+    }
+    public string GetType()
+    {
+        return type;
+    }
 
     protected RectTransform rectTransform;
     protected CanvasGroup canvasGroup;

@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockTurn : Block
+public class BlockTurnRight : Block
 {
     private void Awake()
     {
-        type = "Turn";
+        SetType("TurnRight");
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
     }

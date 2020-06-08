@@ -77,7 +77,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Turn
+  m_Text: Turn Left
 --- !u!1 &2141031820273738894
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,9 +88,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2141031820273738881}
   - component: {fileID: 2141031820273738883}
-  - component: {fileID: 2141031820273738880}
+  - component: {fileID: 5394092116288260752}
   m_Layer: 0
-  m_Name: ACTION_ Turn
+  m_Name: ACTION_ TurnLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,7 +128,7 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &2141031820273738880
+--- !u!114 &5394092116288260752
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -137,11 +137,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2141031820273738894}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46ae6e173e3f96e4d926ac7edaa7831d, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b79cd8fd0de1f342b03e92a1e292027, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
-  type: 
 --- !u!1 &2141031820748061909
 GameObject:
   m_ObjectHideFlags: 0

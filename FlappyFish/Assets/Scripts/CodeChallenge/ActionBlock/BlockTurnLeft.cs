@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockForward : Block
+public class BlockTurnLeft : Block
 {
     private void Awake()
     {
-        SetType("Forward");
+        SetType("TurnLeft");
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
     }
@@ -19,6 +19,7 @@ public class BlockForward : Block
         Button.localPosition = new Vector3(-200, 6);
 
         yield return new WaitForSeconds(1);
+        //Debug.LogError("Turn after wait");
         if (belowBlock != null)
         {
             StartCoroutine(belowBlock.Traverse(Button));
@@ -28,5 +29,4 @@ public class BlockForward : Block
             Button.GetComponent<StartButton>().Restart();
         }
     }
-
 }

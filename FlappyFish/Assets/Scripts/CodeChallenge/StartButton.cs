@@ -7,6 +7,11 @@ public class StartButton: MonoBehaviour
 {
     CodingArea codingArea;
     bool clickable;
+    public void setClick(bool _in)
+    {
+        clickable = _in;
+    }
+
 
     public void Awake()
     {
@@ -21,7 +26,7 @@ public class StartButton: MonoBehaviour
         if(clickable)
         {
             codingArea.ButtonStart();
-            //clickable = false;
+            clickable = false;
         }
     }
 
