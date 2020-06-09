@@ -8,33 +8,32 @@ public class PieGraphQ : MonoBehaviour
 {
     public Color[] wedgeColorsQ;
     public Image wedgePrefabQ;
-    // Start is called before the first frame update
-    void Start()
+    public GameObject nodataTextQ;
+    private void Awake()
     {
         MakeGraphQ();
     }
 
     void MakeGraphQ(){
+        nodataTextQ.SetActive(false);
         float[] valuesQ = new float[2];
 
         // ** save values - for testing
-        PlayerPrefs.SetString("timesRight", 1.ToString());
+        /*PlayerPrefs.SetString("timesRight", 1.ToString());
         PlayerPrefs.Save();
         PlayerPrefs.SetString("timesWrong", 1.ToString());
-        PlayerPrefs.Save();
+        PlayerPrefs.Save();*/
 
         // ** get saved values
         string strRight = PlayerPrefs.GetString("timesRight");
         string strWrong = PlayerPrefs.GetString("timesWrong");
 
-        //valuesQ[0] = Int32.Parse(strRight);
-        //valuesQ[1] = Int32.Parse(strWrong);
-
-        valuesQ[0] = 100;
-        valuesQ[1] = 200;
+        valuesQ[0] = Int32.Parse(strRight);
+        valuesQ[1] = Int32.Parse(strWrong);
 
         // ** if both are 0, no pie chart
         if(valuesQ[0] == 0 && valuesQ[1] == 0){
+            nodataTextQ.SetActive(true);
             return;
         }
 

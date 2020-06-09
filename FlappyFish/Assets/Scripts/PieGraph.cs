@@ -8,20 +8,22 @@ public class PieGraph : MonoBehaviour
 {
     public Color[] wedgeColors;
     public Image wedgePrefab;
+    public GameObject nodataText;
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         MakeGraph();
     }
 
     void MakeGraph(){
+        nodataText.SetActive(false);
         float[] values = new float[2];
 
         // ** save values - for testing
-        PlayerPrefs.SetString("timesWon", 2.ToString());
+        /*PlayerPrefs.SetString("timesWon", 2.ToString());
         PlayerPrefs.Save();
         PlayerPrefs.SetString("timesLost", 2.ToString());
-        PlayerPrefs.Save();
+        PlayerPrefs.Save();*/
 
         // ** get saved values
         string strWon = PlayerPrefs.GetString("timesWon");
@@ -32,6 +34,7 @@ public class PieGraph : MonoBehaviour
 
         // ** if both are 0, no pie chart
         if(values[0] == 0 && values[1] == 0){
+            nodataText.SetActive(true);
             return;
         }
 

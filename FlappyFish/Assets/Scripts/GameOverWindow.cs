@@ -48,7 +48,7 @@ public class GameOverWindow : MonoBehaviour
         int tmpWon = Int32.Parse(strWon);
         int tmpLost = Int32.Parse(strLost);
 
-        if (newscore > 50){
+        if (newscore >= 50){
             tmpWon++;
         }
         else {
