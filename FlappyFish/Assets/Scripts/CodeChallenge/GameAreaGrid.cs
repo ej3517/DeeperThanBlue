@@ -108,7 +108,7 @@ public class GameAreaGrid : MonoBehaviour
         rectTransform = GetComponent<RectTransform>();
         //Load Map --- Ratio 16:9
 
-        string[] lines = System.IO.File.ReadAllLines("game1.map");
+        string[] lines = System.IO.File.ReadAllLines("game2.map");
         if (lines == null)
             throw new System.InvalidOperationException("Could not load game map");
         map_height = lines.Length;
@@ -193,6 +193,18 @@ public class GameAreaGrid : MonoBehaviour
                     startPosition = new Vector2Int(w, h);
                     fishDirection = new Direction();
                 }
+                if (_map[w, h] == 'e')
+                {
+                    Transform _end = Instantiate(goal);
+                    SpriteRenderer srBlock = _end.GetComponent<SpriteRenderer>();
+                    float _scale = 0.7f;
+                    _end.localScale = new Vector3(ratio * _scale / srBlock.size.x, ratio * _scale / srBlock.size.y, 1);
+                    _end.parent = map[w, h].grid;
+                    _end.localPosition = new Vector3(0, 0, 0);
+                    map[w, h].content = _end;
+                    map[w, h].type = Type.End;
+
+                }
             }
         }
 
@@ -224,6 +236,10 @@ public class GameAreaGrid : MonoBehaviour
                 if (map[blockInFront.x, blockInFront.y].type == Type.Block)
                 {
                     Debug.LogError("Invalid movement");
+                }
+                else if (map[blockInFront.x, blockInFront.y].type == Type.Block)
+                {
+                    Debug.Log("Reached target");
                 }
                 else
                 {
