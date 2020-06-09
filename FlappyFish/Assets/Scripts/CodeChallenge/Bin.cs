@@ -30,7 +30,7 @@ public class Bin : MonoBehaviour, IDropHandler, IPointerDownHandler
     private Transform oldParent;
     public void OnPointerDown(PointerEventData eventData)
     {
-        if(clickable)
+        if (clickable)
         {
             //Transform popupWindow = Instantiate(popupWindowPF);
             oldParent = popupWindow.parent;
@@ -45,10 +45,10 @@ public class Bin : MonoBehaviour, IDropHandler, IPointerDownHandler
     {
         Debug.Log("Delete - ConfirmTrue");
         resetQuestion();
-        
+
         foreach (Transform child in codingArea)
         {
-            if(child.tag != "CodingArea")
+            if (child.tag != "CodingArea")
             {
                 Block c = child.GetComponent<Block>();
                 c.DestroySelf();

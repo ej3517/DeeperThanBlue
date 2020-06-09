@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class ClampBlock : MonoBehaviour
 {
     ScrollRect scroll;
-    
+
     private void Awake()
     {
         scroll = GetComponent<ScrollRect>();
@@ -15,7 +15,7 @@ public class ClampBlock : MonoBehaviour
     private void Update()
     {
         //Debug.Log(transform.position.x);
-        if(transform.position.x>250)
+        if (transform.position.x > 250)
         {
             scroll.inertia = false;
             scroll.StopMovement();

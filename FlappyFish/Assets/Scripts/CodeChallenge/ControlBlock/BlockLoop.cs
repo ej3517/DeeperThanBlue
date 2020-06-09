@@ -44,11 +44,11 @@ public class BlockLoop : Block
         if (Physics.Raycast(ray, out hit))
         {
             //Debug.Log(hit.collider.name + " " + (hit.collider.name == "BoxStart") + " " + (hit.collider.name == "BoxEnd"));
-            if(hit.collider.name == "BoxStart")
+            if (hit.collider.name == "BoxStart")
             {
                 lastState = Loopblock.Start;
             }
-            else if(hit.collider.name == "BoxEnd")
+            else if (hit.collider.name == "BoxEnd")
             {
                 lastState = Loopblock.End;
             }
@@ -72,7 +72,7 @@ public class BlockLoop : Block
         {
             Transform currentTransform = GetComponent<Transform>();
             Transform block = eventData.pointerDrag.GetComponent<Transform>();
-            if(lastState == Loopblock.Start)
+            if (lastState == Loopblock.Start)
             {
                 if (loopNext == null)
                 {
@@ -80,7 +80,7 @@ public class BlockLoop : Block
                     loopNext.SetAbove(this);
                     float blockHeight = loopNext.GetSizeHeight();
                     block.transform.SetParent(loopTop);
-                    eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = new Vector3(75, -(50+blockHeight)/2, 0); //TODO make size dynamic
+                    eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = new Vector3(75, -(50 + blockHeight) / 2, 0); //TODO make size dynamic
                     aboveBlock?.BroadcastSize(loopNext.GetSizeHeightBelow() - loopContentSize, this);
                 }
                 else
@@ -89,7 +89,7 @@ public class BlockLoop : Block
                 }
 
                 //Get code size
-                float moveAmount = -loopNext.GetSizeHeightBelow()+loopContentSize;
+                float moveAmount = -loopNext.GetSizeHeightBelow() + loopContentSize;
                 loopContentSize = loopNext.GetSizeHeightBelow();
 
                 //Move the end down
@@ -98,7 +98,7 @@ public class BlockLoop : Block
 
 
             }
-            else if(lastState == Loopblock.End || lastState == Loopblock.Default)       //Move Default to select where block goes by default
+            else if (lastState == Loopblock.End || lastState == Loopblock.Default)       //Move Default to select where block goes by default
             {
                 //Same as Block.cs
                 if (belowBlock == null)
@@ -143,7 +143,7 @@ public class BlockLoop : Block
     public override bool Validate()
     {
         bool cond, inside, below;
-        
+
         if (loopCond == null)
             return false;
         else
@@ -155,7 +155,7 @@ public class BlockLoop : Block
             inside = loopNext.Validate();
 
         if (belowBlock == null)
-            below =  true;
+            below = true;
         else
             below = belowBlock.Validate();
 
@@ -164,11 +164,11 @@ public class BlockLoop : Block
 
     public override void SetBelow(Block _belowBlock, Block self)
     {
-        if(self == belowBlock)
+        if (self == belowBlock)
         {
             belowBlock = _belowBlock;
         }
-        else if( self == loopNext)
+        else if (self == loopNext)
         {
             loopNext = _belowBlock;
         }
@@ -184,10 +184,10 @@ public class BlockLoop : Block
         //{
         //    
         //}
-        if(loopNext != null && self == loopNext)
+        if (loopNext != null && self == loopNext)
         {
             loopContentSize += size;
-            if(loopContentSize == 0)
+            if (loopContentSize == 0)
             {
                 loopContentSize = 10;
                 size += 10;
@@ -200,15 +200,15 @@ public class BlockLoop : Block
         aboveBlock?.BroadcastSize(size, this);
     }
 
-   //public override float GetSizeHeight()
-   //{
-   //    float loopHeight = 10;
-   //    if (loopNext != null)
-   //    {
-   //        loopHeight = loopNext.GetSizeHeightBelow();
-   //    }
-   //    return sizeHeight + loopHeight;
-   //}
+    //public override float GetSizeHeight()
+    //{
+    //    float loopHeight = 10;
+    //    if (loopNext != null)
+    //    {
+    //        loopHeight = loopNext.GetSizeHeightBelow();
+    //    }
+    //    return sizeHeight + loopHeight;
+    //}
 
     public override float GetSizeHeightBelow()
     {
@@ -228,10 +228,10 @@ public class BlockLoop : Block
     private void updateBoxConnect()
     {
         float height = loopTop.position.y - loopBottom.position.y;
-        boxConnect.GetComponent<RectTransform>().sizeDelta = new Vector3(50,height);
+        boxConnect.GetComponent<RectTransform>().sizeDelta = new Vector3(50, height);
         //boxConnect.GetComponent<RectTransform>().localScale = new Vector3(50,height);
         boxConnect.localScale = new Vector3(50, height, 1);
-        boxConnect.localPosition = new Vector3(-125,- height/2+25,-1);
+        boxConnect.localPosition = new Vector3(-125, -height / 2 + 25, -1);
     }
 
     public override void blockRays(bool state)

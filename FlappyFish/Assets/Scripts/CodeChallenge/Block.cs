@@ -44,7 +44,7 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
     private void Awake()
     {
     }
-    
+
     //public defaultAwake()
     //{
     //    rectTransform = GetComponent<RectTransform>();
@@ -56,7 +56,7 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
     public virtual void OnBeginDrag(PointerEventData eventData)
     {
         //Debug.LogWarning("Begin drag");
-        transform.position = transform.position + new Vector3(0,0,0.5f);
+        transform.position = transform.position + new Vector3(0, 0, 0.5f);
         blockRays(false);
 
         if (!topLayer)
@@ -75,9 +75,9 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
     public virtual void OnDrag(PointerEventData eventData)
     {
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
-        if(capArea)
+        if (capArea)
         {
-            if(transform.position.x < 776)
+            if (transform.position.x < 776)
             {
                 transform.position = new Vector3(776, transform.position.y, transform.position.z);
             }
@@ -105,7 +105,7 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
     public virtual void OnDrop(PointerEventData eventData)
     {
         //Debug.LogError("Dropped in box");
-        if ((eventData.pointerDrag != null) && (eventData.pointerDrag.GetComponent<Block>().type != "Start") )      // Weird bug where start can be dragged onto itself...
+        if ((eventData.pointerDrag != null) && (eventData.pointerDrag.GetComponent<Block>().type != "Start"))      // Weird bug where start can be dragged onto itself...
         {
             if (belowBlock == null)
             {
@@ -117,8 +117,8 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
                 belowBlock.SetAbove(this);
                 float blockHeight = belowBlock.GetSizeHeight();
                 block.transform.SetParent(currentTransform);
-                eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -(blockHeight + sizeHeight)/2, 0); //TODO make size dynamic
-                                                                                                                                         //Debug.LogError(blockClass.type.ToString());
+                eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, -(blockHeight + sizeHeight) / 2, 0); //TODO make size dynamic
+                                                                                                                                           //Debug.LogError(blockClass.type.ToString());
                 BroadcastSize(belowBlock.GetSizeHeightBelow(), this);       //Make sure loops and statements increment size
             }
             else
@@ -130,7 +130,7 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
 
     private Transform GetParent()
     {
-        if (aboveBlock!= null)
+        if (aboveBlock != null)
         {
             //Debug.LogError(type);
             return aboveBlock.GetParent();
@@ -162,7 +162,7 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
     public virtual bool Validate()
     {
         //Call the next Node to check if a valid structure
-        if(belowBlock==null)
+        if (belowBlock == null)
         {
             return true;
         }
@@ -175,13 +175,13 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
 
     public virtual void DestroySelf()
     {
-        if(belowBlock != null)
+        if (belowBlock != null)
         {
             belowBlock.DestroySelf();
         }
         Destroy(transform.gameObject);
     }
-    
+
     public virtual float GetSizeHeight()
     {
         //Debug.Log("returning height " + sizeHeight);
@@ -191,7 +191,7 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
     public virtual float GetSizeHeightBelow()
     {
         //float loopSize
-        if(belowBlock == null)
+        if (belowBlock == null)
         {
             return sizeHeight;
         }
@@ -205,7 +205,7 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
     public virtual void UpdatePosition(float verticleDistance)
     {
         transform.position = transform.position + new Vector3(0, verticleDistance, 0);
-        if(belowBlock != null)
+        if (belowBlock != null)
         {
             belowBlock.UpdatePosition(verticleDistance);
         }

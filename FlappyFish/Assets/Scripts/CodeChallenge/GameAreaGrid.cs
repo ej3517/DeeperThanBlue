@@ -65,7 +65,6 @@ public class GameAreaGrid : MonoBehaviour
         }
         public float getAngle()
         {
-            Debug.Log("Direction " + dir);
             switch (dir)
             {
                 case 0:
@@ -226,13 +225,11 @@ public class GameAreaGrid : MonoBehaviour
 
     private void CodingArea_ActionEvent(object sender, CodingArea.CodingArgs arg)
     {
-        Debug.LogWarning("Test" + arg.instructionType);
         switch (arg.instructionType)
         {
             case CodingArea.BlockCommand.Forward:
                 //Check if block in front is Air
                 Vector2Int blockInFront = fishPosition + fishDirection.getDirection();
-                Debug.LogWarning("Check cell " + blockInFront);
                 if (map[blockInFront.x, blockInFront.y].type == Type.Block)
                 {
                     Debug.LogError("Invalid movement");
@@ -259,12 +256,11 @@ public class GameAreaGrid : MonoBehaviour
                 break;
             case CodingArea.BlockCommand.TurnLeft:
                 fishDirection.rotateLeft();
-                map[fishPosition.x, fishPosition.y].content.localRotation = Quaternion.Euler(0, 0, fishDirection.getAngle()); Debug.LogError("Direction " + fishDirection.getDirection());
+                map[fishPosition.x, fishPosition.y].content.localRotation = Quaternion.Euler(0, 0, fishDirection.getAngle());
                 break;
             case CodingArea.BlockCommand.TurnRight:
                 fishDirection.rotateRight();
                 map[fishPosition.x, fishPosition.y].content.localRotation = Quaternion.Euler(0, 0, fishDirection.getAngle());
-                Debug.LogError("Direction " + fishDirection.getDirection());
                 break;
             default:
                 Debug.LogError("Invalid event type");

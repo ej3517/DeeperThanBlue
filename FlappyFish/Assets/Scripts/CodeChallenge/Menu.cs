@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UIElements;
 
 public class Menu : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerUpHandler
 {
@@ -49,7 +48,7 @@ public class Menu : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndD
 
     public void OnDrag(PointerEventData eventData)
     {
-        if(block.position.x > 630)
+        if (block.position.x > 630)
         {
             block.SetParent(codingArea);
             block.GetComponent<Block>().SetCapArea(true);

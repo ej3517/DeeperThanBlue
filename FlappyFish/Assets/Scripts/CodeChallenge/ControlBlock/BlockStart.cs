@@ -26,7 +26,7 @@ public class BlockStart : Block
     public override IEnumerator Traverse(Transform Button)
     {
         yield return new WaitForSeconds(0);
-        if (belowBlock!=null)
+        if (belowBlock != null)
         {
             StartCoroutine(belowBlock.Traverse(Button));
         }
@@ -44,9 +44,9 @@ public class BlockStart : Block
 
 
     //OVERRIDES 
-    public override void OnBeginDrag(PointerEventData eventData) {;}
-    public override void OnDrag(PointerEventData eventData) {;}
-    public override void OnEndDrag(PointerEventData eventData) {;}
-    public override void BroadcastSize(float size, Block self) {;}
+    public override void OnBeginDrag(PointerEventData eventData) {; }
+    public override void OnDrag(PointerEventData eventData) {; }
+    public override void OnEndDrag(PointerEventData eventData) {; }
+    public override void BroadcastSize(float size, Block self) {; }
 
 }

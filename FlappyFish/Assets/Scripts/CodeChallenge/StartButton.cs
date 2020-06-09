@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class StartButton: MonoBehaviour
+public class StartButton : MonoBehaviour
 {
     CodingArea codingArea;
     bool clickable;
@@ -23,7 +23,7 @@ public class StartButton: MonoBehaviour
     public void OnMouseDown()
     {
 
-        if(clickable)
+        if (clickable)
         {
             codingArea.ButtonStart();
             clickable = false;
@@ -39,7 +39,7 @@ public class StartButton: MonoBehaviour
     {
         codingArea.ControlCommand(CodingArea.BlockCommand.Forward);
     }
-    
+
     public void TurnLeft()
     {
         codingArea.ControlCommand(CodingArea.BlockCommand.TurnLeft);
