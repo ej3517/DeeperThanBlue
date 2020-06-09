@@ -11,6 +11,7 @@ public class CodingArea : MonoBehaviour
     public Transform popupWindowError;
 
     public event EventHandler OnButtonStart;
+    public event EventHandler ResetEvent;
     public event EventHandler<CodingArgs> ActionEvent;
 
     private CodingArea instance;
@@ -49,6 +50,7 @@ public class CodingArea : MonoBehaviour
         Button.localPosition = new Vector3(-200, 290, -1);
         startButton.setClick(true);
         // TODO: Event restart to grid
+        ResetEvent?.Invoke(this, EventArgs.Empty);
     }
 
     Vector3 oldWindowPosition;
@@ -83,4 +85,5 @@ public class CodingArea : MonoBehaviour
     {
         ActionEvent?.Invoke(this, new CodingArgs { instructionType = _instructionType });
     }
+
 }

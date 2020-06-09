@@ -36,30 +36,36 @@ public class GameAreaGrid : MonoBehaviour
     public Transform[] pfReefArray;
 
     Vector2Int fishPosition;
-    
+    Vector2Int startPosition;
+
     class Direction
     {
         private float dir = 0;
+        public void setAngle(float _dir)
+        {
+            dir = _dir;
+        }
 
         public Vector2Int getDirection()
         {
-            switch(dir)
+            switch (dir)
             {
                 case 0:
                     return new Vector2Int(1, 0);
                 case 1:
-                    return new Vector2Int(0, 1);
+                    return new Vector2Int(0, -1);
                 case 2:
                     return new Vector2Int(-1, 0);
                 case 3:
-                    return new Vector2Int(0, -1);
+                    return new Vector2Int(0, 1);
                 default:
                     //Should not happen
                     return new Vector2Int(-1, -1);
-             }
+            }
         }
         public float getAngle()
         {
+            Debug.Log("Direction " + dir);
             switch (dir)
             {
                 case 0:
@@ -78,7 +84,7 @@ public class GameAreaGrid : MonoBehaviour
         public void rotateLeft()
         {
             dir += 1;
-            if(dir >3)
+            if (dir > 3)
             {
                 dir -= 4;
             }
@@ -95,14 +101,16 @@ public class GameAreaGrid : MonoBehaviour
     }
     Direction fishDirection;
 
+    int map_width, map_height;
+    float ratio;
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         //Load Map --- Ratio 16:9
-        int map_width, map_height;
+
         string[] lines = System.IO.File.ReadAllLines("game1.map");
         if (lines == null)
-            throw new System.InvalidOperationException("Could not load game1.map");
+            throw new System.InvalidOperationException("Could not load game map");
         map_height = lines.Length;
         map_width = lines[0].Length;
         char[,] _map;
@@ -122,7 +130,7 @@ public class GameAreaGrid : MonoBehaviour
 
 
         // Scale gridsize
-        float ratio = rectTransform.sizeDelta.x / map_width;
+        ratio = rectTransform.sizeDelta.x / map_width;
         float deltaSize_y = rectTransform.sizeDelta.y - (ratio * map_height);
         float deltaSize_x = 0;
         if (deltaSize_y >= 0)
@@ -141,7 +149,7 @@ public class GameAreaGrid : MonoBehaviour
         float x_offset = (-rectTransform.sizeDelta.x + deltaSize_x + ratio) * 0.5f;
         float y_offset = (-rectTransform.sizeDelta.y + deltaSize_y + ratio) * 0.5f;
 
-        // Load Map onto Grid
+        // Draw Grid
         for (int h = 0; h < map_height; h++)
         {
             for (int w = 0; w < map_width; w++)
@@ -159,7 +167,6 @@ public class GameAreaGrid : MonoBehaviour
 
                 map[w, h].grid = instance;
                 map[w, h].type = Type.Empty;
-
                 if (_map[w, h] == 'x')
                 {
                     //Summon block
@@ -167,7 +174,7 @@ public class GameAreaGrid : MonoBehaviour
                     SpriteRenderer srBlock = _block.GetComponent<SpriteRenderer>();
                     float _scale = 0.9f;
                     _block.localScale = new Vector3(ratio * _scale / srBlock.size.x, ratio * _scale / srBlock.size.y, 1);
-                    _block.parent = instance;
+                    _block.parent = map[w, h].grid;
                     _block.localPosition = new Vector3(0, 0, 0);
                     map[w, h].content = _block;
                     map[w, h].type = Type.Block;
@@ -178,22 +185,24 @@ public class GameAreaGrid : MonoBehaviour
                     SpriteRenderer srBlock = _fish.GetComponent<SpriteRenderer>();
                     float _scale = 1f;
                     _fish.localScale = new Vector3(ratio * _scale / srBlock.size.x, ratio * _scale / srBlock.size.y, 1);
-                    _fish.parent = instance;
+                    _fish.parent = map[w, h].grid;
                     _fish.localPosition = new Vector3(0, 0, 0);
                     map[w, h].content = _fish;
                     map[w, h].type = Type.Fish;
                     fishPosition = new Vector2Int(w, h);
+                    startPosition = new Vector2Int(w, h);
                     fishDirection = new Direction();
                 }
-
             }
         }
+
         Debug.Log("Created grid...");
 
 
         codingArea = codingAreaReferenceTransform.GetComponent<CodingArea>();
         codingArea.OnButtonStart += CodingArea_OnButtonStart;
         codingArea.ActionEvent += CodingArea_ActionEvent;
+        codingArea.ResetEvent += CodingArea_ResetEvent;
     }
 
 
@@ -211,8 +220,8 @@ public class GameAreaGrid : MonoBehaviour
             case CodingArea.BlockCommand.Forward:
                 //Check if block in front is Air
                 Vector2Int blockInFront = fishPosition + fishDirection.getDirection();
-                    Debug.LogWarning("Check cell " + blockInFront);
-                if(map[blockInFront.x,blockInFront.y].type == Type.Block)
+                Debug.LogWarning("Check cell " + blockInFront);
+                if (map[blockInFront.x, blockInFront.y].type == Type.Block)
                 {
                     Debug.LogError("Invalid movement");
                 }
@@ -234,10 +243,12 @@ public class GameAreaGrid : MonoBehaviour
                 break;
             case CodingArea.BlockCommand.TurnLeft:
                 fishDirection.rotateLeft();
-                Debug.LogError("Direction " + fishDirection.getDirection());
+                map[fishPosition.x, fishPosition.y].content.localRotation = Quaternion.Euler(0, 0, fishDirection.getAngle()); Debug.LogError("Direction " + fishDirection.getDirection());
                 break;
             case CodingArea.BlockCommand.TurnRight:
                 fishDirection.rotateRight();
+                map[fishPosition.x, fishPosition.y].content.localRotation = Quaternion.Euler(0, 0, fishDirection.getAngle());
+                Debug.LogError("Direction " + fishDirection.getDirection());
                 break;
             default:
                 Debug.LogError("Invalid event type");
@@ -246,5 +257,18 @@ public class GameAreaGrid : MonoBehaviour
         }
     }
 
+    private void CodingArea_ResetEvent(object sender, EventArgs e)
+    {
+        Transform _fish = map[fishPosition.x, fishPosition.y].content;
+        map[fishPosition.x, fishPosition.y].type = Type.Empty;
+        map[fishPosition.x, fishPosition.y].content = null;
+        _fish.SetParent(map[startPosition.x, startPosition.y].grid);
+        _fish.localPosition = new Vector3(0, 0, 0);
+        fishDirection.setAngle(0);
+        _fish.localRotation = Quaternion.Euler(0, 0, fishDirection.getAngle());
+        map[startPosition.x, startPosition.y].content = _fish;
+        map[startPosition.x, startPosition.y].type = Type.Fish;
+        fishPosition = startPosition;
 
+    }
 }

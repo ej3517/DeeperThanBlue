@@ -20,7 +20,7 @@ public class BlockForward : Block
 
         Button.GetComponent<StartButton>().Forward();
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(Globals.CodeChallengeSpeed);
         if (belowBlock != null)
         {
             StartCoroutine(belowBlock.Traverse(Button));

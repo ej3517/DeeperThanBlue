@@ -20,7 +20,7 @@ public class BlockTurnRight : Block
 
         Button.GetComponent<StartButton>().TurnRight();
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(Globals.CodeChallengeSpeed);
         //Debug.LogError("Turn after wait");
         if (belowBlock != null)
         {
