@@ -25,17 +25,7 @@ public class WinningWindow : MonoBehaviour
         switch (stateControllerScript.currentState)
         {
             case StateController.State.Won:
-                scoreText.text = "You have reached 100 in" + currentRoundData.module;
-                /*if (Score.TrySetNewHighScore(Level.GetInstance().GetPipesPassedCount()))
-                {
-                    // New highscore
-                    highScoreText.text = "NEW HIGHSCORE";
-                }
-                else
-                {
-                    highScoreText.text = "HIGHSCORE " + Score.GetHighScore().ToString();
-                }*/
-                
+                scoreText.text = "You have reached 100 in " + currentRoundData.module;
                 Show();
                 break;
         }

@@ -29,6 +29,7 @@ public class Level : MonoBehaviour
     
     /*********** FLOATING OBJECTS : QUESTION/SPEED_RING/GARBAGE *********/
     // Timer
+    private bool hasJustStarted;
     private float spawnFloatingTimer;
     private float spawnFloatingTimerMax;
     private float randomSelector;
@@ -66,6 +67,7 @@ public class Level : MonoBehaviour
         speedRingList = new List<HandleSpeedRing.SpeedRing>();
         garbageList = new List<HandleObstacles.Garbage>();
         questionBlobList = new List<HandleQuestionBlob.QuestionBlob>();
+        hasJustStarted = true;
         
         //difficulty
         SetDifficulty(Difficulty.Easy);
@@ -129,11 +131,16 @@ public class Level : MonoBehaviour
         {
             spawnFloatingTimer = spawnFloatingTimerMax + Random.Range(-0.2f, 0.2f);
             randomSelector = Random.Range(0f, 1f);
-            if (0f <= randomSelector && randomSelector < 0.60f) // Trash
+            if (hasJustStarted)
+            {
+                HandleSpeedRing.CreateSpeedRing(MyGlobals.SPAWN_X_POSITION + birdScript.transform.position.x, speedRingList); // first object must be a speed ring
+                hasJustStarted = false;
+            }
+            else if (0f <= randomSelector && randomSelector < 0.80f) // Trash
             {
                 HandleObstacles.CreateGarbage(garbageList);
             }
-            else if (0.60f <= randomSelector && randomSelector < 0.86f) // Speed Ring
+            else if (0.80f <= randomSelector && randomSelector < 0.90f) // Speed Ring
             {
                 HandleSpeedRing.CreateSpeedRing(MyGlobals.SPAWN_X_POSITION + birdScript.transform.position.x, speedRingList);
             }
@@ -184,8 +191,8 @@ public class Level : MonoBehaviour
                 pipeList.Remove(pipe);
                 i--;
             }
-            if (pipesPassedCount == 2) {
-                quizGameController.playerScore += 5;
+            if (pipesPassedCount == 5) {
+                quizGameController.playerScore += MyGlobals.POINTS_FOR_PASSED_PIPES;
                 pipesPassedCount = 0;
             }
         }

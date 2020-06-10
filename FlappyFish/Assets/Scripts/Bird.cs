@@ -56,6 +56,9 @@ public class Bird : MonoBehaviour
             case StateController.State.Dead:
                 questionWindow.Hide();
                 break;
+            case StateController.State.Won:
+                questionWindow.Hide();
+                break;
         }
     }
 

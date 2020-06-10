@@ -11,6 +11,7 @@ public class QuizGameController : MonoBehaviour
     public SimpleObjectPool answerButtonObjectPool;
     public Transform answerButtonParent;
     public QuestionWindow questionWindow;
+    public WinningWindow winningWindow;
     public Level levelScript;
 
     private DataController dataController;
@@ -82,42 +83,40 @@ public class QuizGameController : MonoBehaviour
 
     public void AnswerButtonClicked(bool isCorrect)
     {
-        if (currentlyHard)
+        if (!doOnce)
         {
-            if (!doOnce)
+            doOnce = true;
+            if (currentlyHard)
             {
-                doOnce = true;
                 if (isCorrect)
                 {
                     playerScore += MyGlobals.POINTS_HARD_QUESTION;
-                }
-
-                if (questionPoolHard.Length > questionIndexHard + 1)
-                {
-                    questionIndexHard++;
-                    ShowQuestion();
-                    stateControllerScript.currentState = StateController.State.Playing;
-                    questionWindow.Hide();
+                    if (questionPoolHard.Length > questionIndexHard + 1)
+                    {
+                        questionIndexHard++;
+                        ShowQuestion();
+                        stateControllerScript.currentState = StateController.State.Playing;
+                        questionWindow.Hide();
+                    }
+                    else
+                    {
+                        stateControllerScript.currentState = StateController.State.Playing;
+                        questionWindow.Hide();
+                        questionIndexHard = 0; // start to first question
+                    }
                 }
                 else
                 {
-                    stateControllerScript.currentState = StateController.State.Playing;
-                    questionWindow.Hide();
-                    questionIndexHard = 0; // start to first question
+                    stateControllerScript.currentState = StateController.State.Dead;
                 }
             }
-        }
-        else
-        {
-            if (!doOnce)
+            else
             {
-                doOnce = true;
                 if (isCorrect)
                 {
                     playerScore += MyGlobals.POINTS_EASY_QUESTION;
                     levelScript.birdSpeed += MyGlobals.SPEED_RING_BOOST;
                 }
-
                 if (questionPoolEasy.Length > questionIndexEasy + 1)
                 {
                     questionIndexEasy++;
@@ -149,6 +148,11 @@ public class QuizGameController : MonoBehaviour
     
     void Update()
     {
+        if (playerScore >= MyGlobals.WINNING_THRESHOLD)
+        {
+            winningWindow.Show();
+            stateControllerScript.currentState = StateController.State.Won;
+        }
         scoreDisplayText.text = playerScore.ToString();
         if (stateControllerScript.currentState == StateController.State.WaitingAnswer)
         {

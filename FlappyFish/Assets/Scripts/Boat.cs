@@ -53,6 +53,8 @@ public class Boat : MonoBehaviour
                 break;
             case StateController.State.Dead:
                 break;
+            case StateController.State.Won:
+                break;
         }
     }
 
