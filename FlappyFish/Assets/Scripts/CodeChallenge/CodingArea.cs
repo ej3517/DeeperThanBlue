@@ -15,7 +15,7 @@ public class CodingArea : MonoBehaviour
 
     public event EventHandler OnButtonStart;
     public event EventHandler ResetEvent;
-    public event EventHandler<CodingArgs> ActionEvent;
+    //public event EventHandler<CodingArgs> ActionEvent;
 
     private CodingArea instance;
     private StartButton startButton;
@@ -85,9 +85,9 @@ public class CodingArea : MonoBehaviour
         Restart();
     }
 
-    public void ControlCommand(BlockCommand _instructionType)       //Add type as arg
+    public bool ControlCommand(BlockCommand _instructionType)       //Add type as arg
     {
-        ActionEvent?.Invoke(this, new CodingArgs { instructionType = _instructionType });
+        return grid.CodingAreaInstruction(_instructionType);
     }
 
 }

@@ -212,7 +212,7 @@ public class GameAreaGrid : MonoBehaviour
 
         codingArea = codingAreaReferenceTransform.GetComponent<CodingArea>();
         codingArea.OnButtonStart += CodingArea_OnButtonStart;
-        codingArea.ActionEvent += CodingArea_ActionEvent;
+        //codingArea.ActionEvent += CodingArea_ActionEvent;
         codingArea.ResetEvent += CodingArea_ResetEvent;
     }
 
@@ -223,10 +223,10 @@ public class GameAreaGrid : MonoBehaviour
         Debug.Log("Start button pressed");
     }
 
-    private void CodingArea_ActionEvent(object sender, CodingArea.CodingArgs arg)
+    public bool CodingAreaInstruction(CodingArea.BlockCommand instructionType)
     {
         bool validMove = true;
-        switch (arg.instructionType)
+        switch (instructionType)
         {
             case CodingArea.BlockCommand.Forward:
                 //Check if block in front is Air
@@ -269,7 +269,7 @@ public class GameAreaGrid : MonoBehaviour
                 break;
 
         }
-        //return validMove;
+        return validMove;
     }
 
     private void CodingArea_ResetEvent(object sender, EventArgs e)
