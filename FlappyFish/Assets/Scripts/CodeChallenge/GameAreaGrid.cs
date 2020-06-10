@@ -225,6 +225,7 @@ public class GameAreaGrid : MonoBehaviour
 
     private void CodingArea_ActionEvent(object sender, CodingArea.CodingArgs arg)
     {
+        bool validMove = true;
         switch (arg.instructionType)
         {
             case CodingArea.BlockCommand.Forward:
@@ -233,6 +234,7 @@ public class GameAreaGrid : MonoBehaviour
                 if (map[blockInFront.x, blockInFront.y].type == Type.Block)
                 {
                     Debug.LogError("Invalid movement");
+                    validMove = false;
                 }
                 else if (map[blockInFront.x, blockInFront.y].type == Type.Block)
                 {
@@ -267,6 +269,7 @@ public class GameAreaGrid : MonoBehaviour
                 break;
 
         }
+        //return validMove;
     }
 
     private void CodingArea_ResetEvent(object sender, EventArgs e)
@@ -281,6 +284,7 @@ public class GameAreaGrid : MonoBehaviour
         map[startPosition.x, startPosition.y].content = _fish;
         map[startPosition.x, startPosition.y].type = Type.Fish;
         fishPosition = startPosition;
+
 
     }
 }

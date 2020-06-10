@@ -10,6 +10,9 @@ public class CodingArea : MonoBehaviour
     public Transform Button;
     public Transform popupWindowError;
 
+    public Transform gameAreaGrid;
+    private GameAreaGrid grid;
+
     public event EventHandler OnButtonStart;
     public event EventHandler ResetEvent;
     public event EventHandler<CodingArgs> ActionEvent;
@@ -32,6 +35,7 @@ public class CodingArea : MonoBehaviour
     public void Awake()
     {
         startButton = Button.GetComponent<StartButton>();
+        grid = gameAreaGrid.GetComponent<GameAreaGrid>();
     }
 
     CodingArea()
