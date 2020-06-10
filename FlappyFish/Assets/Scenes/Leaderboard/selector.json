@@ -1,0 +1,7 @@
+{
+    "selector": {
+      "school": {
+        "$eq": "ICL"
+      }
+    }
+}
