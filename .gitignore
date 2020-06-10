@@ -4,11 +4,8 @@ watson/.vs/
 .gitattributes
 
 UnityGame2D/Logs/
-UnityGame2D/Build/
 UnityGameServer/bin/
 UnityGameServer/.vs/
-
-
 
 
 ###
