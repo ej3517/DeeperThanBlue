@@ -15,4 +15,6 @@ public class MyGlobals
     // QUESTION
     public const float DURATION_EASY_QUESTION = 10f;
     public const float DURATION_HARD_QUESTION = 10f;
+    public const int POINTS_EASY_QUESTION = 5;
+    public const int POINTS_HARD_QUESTION = 10;
 }

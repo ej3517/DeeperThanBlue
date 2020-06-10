@@ -14,11 +14,14 @@ public class QuizGameController : MonoBehaviour
 
     private DataController dataController;
     private RoundData currentRoundData;
-    private QuestionData[] questionPool;
+    private QuestionData[] questionPoolEasy;
+    private QuestionData[] questionPoolHard;
     private StateController stateControllerScript;
     
-    private int questionIndex;
+    private int questionIndexEasy;
+    private int questionIndexHard;
     public int playerScore;
+    public bool currentlyHard;
     private List<GameObject> answerButtonGameObjects = new List<GameObject>();
     private bool doOnce;
     
@@ -27,14 +30,17 @@ public class QuizGameController : MonoBehaviour
     {
         dataController = FindObjectOfType<DataController>();
         currentRoundData = dataController.GetCurrentRoundData();
-        questionPool = currentRoundData.questions;
+        questionPoolEasy = currentRoundData.GetEasyQuestion().questions;
+        questionPoolHard = currentRoundData.GetHardQuestion().questions;
+        questionIndexEasy = 0;
+        questionIndexHard = 0;
 
         stateControllerScript = GameObject.Find("StateController").GetComponent<StateController>();
 
         playerScore = 0;
         scoreDisplayText.text = playerScore.ToString();
-        questionIndex = 0;
 
+        currentlyHard = true;
         ShowQuestion();
 
         doOnce = false;
@@ -43,7 +49,13 @@ public class QuizGameController : MonoBehaviour
     private void ShowQuestion()
     {
         RemoveAnswerButton();
-        QuestionData questionData = questionPool [questionIndex];
+        QuestionData questionData;
+        if (currentlyHard) {
+            questionData = questionPoolHard[questionIndexHard]; // select the hard questions 
+        }
+        else {
+            questionData = questionPoolEasy[questionIndexEasy]; // select the easy questions
+        }
         questionDisplayText.text = questionData.questionText;
 
         for (int i = 0; i < questionData.answers.Length; i++)
@@ -69,31 +81,72 @@ public class QuizGameController : MonoBehaviour
 
     public void AnswerButtonClicked(bool isCorrect)
     {
-        if (!doOnce)
+        if (currentlyHard)
         {
-            doOnce = true;
-            if (isCorrect)
+            if (!doOnce)
             {
-                playerScore += currentRoundData.pointsAddedForCorrectAnswer;
-                scoreDisplayText.text = playerScore.ToString();
-            }
+                doOnce = true;
+                if (isCorrect)
+                {
+                    playerScore += MyGlobals.POINTS_HARD_QUESTION;
+                    scoreDisplayText.text = playerScore.ToString();
+                }
 
-            if (questionPool.Length > questionIndex + 1)
-            {
-                questionIndex++;
-                ShowQuestion();
-                stateControllerScript.currentState = StateController.State.Playing;
-                questionWindow.Hide();
+                if (questionPoolHard.Length > questionIndexHard + 1)
+                {
+                    questionIndexHard++;
+                    ShowQuestion();
+                    stateControllerScript.currentState = StateController.State.Playing;
+                    questionWindow.Hide();
+                }
+                else
+                {
+                    //End of quetionnaire : For now let's just keep playing !!!
+                    stateControllerScript.currentState = StateController.State.Playing;
+                    questionWindow.Hide();
+                }
             }
-            else
+        }
+        else
+        {
+            if (!doOnce)
             {
-                //End of quetionnaire : For now let's just keep playing !!!
-                stateControllerScript.currentState = StateController.State.Playing;
-                questionWindow.Hide();
+                doOnce = true;
+                if (isCorrect)
+                {
+                    playerScore += MyGlobals.POINTS_EASY_QUESTION;
+                    scoreDisplayText.text = playerScore.ToString();
+                }
+
+                if (questionPoolEasy.Length > questionIndexEasy + 1)
+                {
+                    questionIndexEasy++;
+                    ShowQuestion();
+                    stateControllerScript.currentState = StateController.State.Playing;
+                    questionWindow.Hide();
+                }
+                else
+                {
+                    //End of quetionnaire : For now let's just keep playing !!!
+                    stateControllerScript.currentState = StateController.State.Playing;
+                    questionWindow.Hide();
+                }
             }
         }
     }
 
+    public void GetHardQuestion()
+    {
+        currentlyHard = true;
+        ShowQuestion();
+    }
+    
+    public void GetEasyQuestion()
+    {
+        currentlyHard = false;
+        ShowQuestion();
+    }
+    
     void Update()
     {
         if (stateControllerScript.currentState == StateController.State.WaitingAnswer)

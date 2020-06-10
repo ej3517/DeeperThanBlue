@@ -5,7 +5,16 @@ using UnityEngine;
 [System.Serializable]
 public class RoundData
 {
-    public string title;
-    public int pointsAddedForCorrectAnswer;
-    public QuestionData[] questions;
+    public string module;
+    public DifficultyData[] hardOrEasy;
+
+    public DifficultyData GetHardQuestion()
+    {
+        return hardOrEasy[0];
+    }
+    
+    public DifficultyData GetEasyQuestion()
+    {
+        return hardOrEasy[1];
+    }
 }

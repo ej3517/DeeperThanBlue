@@ -22,8 +22,6 @@ public class AnswerButton : MonoBehaviour
 
     public void HandleClick()
     {
-        
         quizGameController.AnswerButtonClicked (answerData.isCorrect);
-        
     }
 }
