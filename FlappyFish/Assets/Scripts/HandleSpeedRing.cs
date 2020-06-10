@@ -59,7 +59,7 @@ public class HandleSpeedRing : MonoBehaviour
             speedRingTransform.position += new Vector3(-1, 0, 0) * speed * Time.deltaTime; 
         }
 
-        public float getXPosition()
+        public float GetXPosition()
         {
             return speedRingTransform.position.x; 
         }

@@ -9,9 +9,6 @@ public class Bird : MonoBehaviour
     public QuizGameController quizGameController;
     // private
     private const float JUMP_AMOUNT = 28f;
-    // Variation of speed with SPEED RING
-    public float speedRingBoost = 5f;
-    public float speedObstacleReduction = 5f;
 
     private static Bird instance;
 
@@ -92,7 +89,7 @@ public class Bird : MonoBehaviour
         else if (col.gameObject.CompareTag("Obstacles"))
         {
             col.gameObject.SetActive(false);
-            levelScript.birdSpeed -= speedObstacleReduction;
+            levelScript.birdSpeed -= MyGlobals.SPEED_OBSTACLE_REDUCTION;
         }
         else if (col.gameObject.CompareTag("Boat")){
             stateControllerScript.currentState = StateController.State.Dead;

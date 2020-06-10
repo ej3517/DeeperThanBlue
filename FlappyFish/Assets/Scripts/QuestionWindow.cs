@@ -10,6 +10,8 @@ public class QuestionWindow : MonoBehaviour
 {
     // Countdown Timer
     public Text timeRemainingDisplayText;
+    public QuizGameController quizGameController;
+    public StateController stateControllerScript;
     
     private float timeRemaining;
     private bool canCount;
@@ -29,7 +31,12 @@ public class QuestionWindow : MonoBehaviour
 
     private void ResetQuestionTimer()
     {
-        timeRemaining = MyGlobals.DURATION_EASY_QUESTION;
+        if (quizGameController.currentlyHard) {
+            timeRemaining = MyGlobals.DURATION_HARD_QUESTION;
+        }
+        else {
+            timeRemaining = MyGlobals.DURATION_EASY_QUESTION;
+        }
     }
 
     public void Hide()
@@ -46,17 +53,21 @@ public class QuestionWindow : MonoBehaviour
     
     void Update()
     {
-        if (timeRemaining >= 0.0f && canCount)
+        if (stateControllerScript.currentState == StateController.State.WaitingAnswer)
         {
-            timeRemaining -= Time.deltaTime;
-            UpdateTimeRemainingDisplay();
-        }
+            if (timeRemaining >= 0.0f && canCount)
+            {
+                timeRemaining -= Time.deltaTime;
+                UpdateTimeRemainingDisplay();
+            }
 
-        if (timeRemaining < 0.0f && !doOnce)
-        {
-            canCount = false;
-            doOnce = true;
-            Hide();
+            if (timeRemaining < 0.0f && !doOnce)
+            {
+                canCount = false;
+                doOnce = true;
+                stateControllerScript.currentState = StateController.State.Playing;
+                Hide();
+            }
         }
     }
 }

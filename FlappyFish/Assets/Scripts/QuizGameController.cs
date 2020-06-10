@@ -11,6 +11,7 @@ public class QuizGameController : MonoBehaviour
     public SimpleObjectPool answerButtonObjectPool;
     public Transform answerButtonParent;
     public QuestionWindow questionWindow;
+    public Level levelScript;
 
     private DataController dataController;
     private RoundData currentRoundData;
@@ -89,7 +90,6 @@ public class QuizGameController : MonoBehaviour
                 if (isCorrect)
                 {
                     playerScore += MyGlobals.POINTS_HARD_QUESTION;
-                    scoreDisplayText.text = playerScore.ToString();
                 }
 
                 if (questionPoolHard.Length > questionIndexHard + 1)
@@ -101,9 +101,9 @@ public class QuizGameController : MonoBehaviour
                 }
                 else
                 {
-                    //End of quetionnaire : For now let's just keep playing !!!
                     stateControllerScript.currentState = StateController.State.Playing;
                     questionWindow.Hide();
+                    questionIndexHard = 0; // start to first question
                 }
             }
         }
@@ -115,7 +115,7 @@ public class QuizGameController : MonoBehaviour
                 if (isCorrect)
                 {
                     playerScore += MyGlobals.POINTS_EASY_QUESTION;
-                    scoreDisplayText.text = playerScore.ToString();
+                    levelScript.birdSpeed += MyGlobals.SPEED_RING_BOOST;
                 }
 
                 if (questionPoolEasy.Length > questionIndexEasy + 1)
@@ -127,9 +127,9 @@ public class QuizGameController : MonoBehaviour
                 }
                 else
                 {
-                    //End of quetionnaire : For now let's just keep playing !!!
                     stateControllerScript.currentState = StateController.State.Playing;
                     questionWindow.Hide();
+                    questionIndexEasy = 0; //start to last question
                 }
             }
         }
@@ -149,6 +149,7 @@ public class QuizGameController : MonoBehaviour
     
     void Update()
     {
+        scoreDisplayText.text = playerScore.ToString();
         if (stateControllerScript.currentState == StateController.State.WaitingAnswer)
         {
             doOnce = false;

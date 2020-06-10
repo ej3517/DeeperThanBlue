@@ -10,6 +10,8 @@ public class Level : MonoBehaviour
     private const float BIRD_X_POSITION = 0;
     private static Level instance;
 
+    public QuizGameController quizGameController;
+
     public static Level GetInstance()
     {
         return instance;
@@ -67,6 +69,7 @@ public class Level : MonoBehaviour
         
         //difficulty
         SetDifficulty(Difficulty.Easy);
+        pipeSpawnTimerMax = 1.2f;
 
         // state
         stateControllerScript = GameObject.Find("StateController").GetComponent<StateController>();
@@ -99,17 +102,13 @@ public class Level : MonoBehaviour
         switch (difficulty)
         {
             case Difficulty.Easy:
-                pipeSpawnTimerMax = 0.8f;
-                spawnFloatingTimerMax = 0.8f; break;
+                spawnFloatingTimerMax = 0.6f; break;
             case Difficulty.Medium:
-                pipeSpawnTimerMax = 1f;
-                spawnFloatingTimerMax = 0.7f; break;
+                spawnFloatingTimerMax = 0.5f; break;
             case Difficulty.Hard:
-                pipeSpawnTimerMax = 1.1f;
-                spawnFloatingTimerMax = 0.6f;break;
+                spawnFloatingTimerMax = 0.45f;break;
             case Difficulty.Impossible:
-                pipeSpawnTimerMax = 1.2f;
-                spawnFloatingTimerMax = 0.5f;break;
+                spawnFloatingTimerMax = 0.4f;break;
         }
     }
 
@@ -174,18 +173,20 @@ public class Level : MonoBehaviour
             HandlePipe.Pipe pipe = pipeList[i];
             bool isRightToTheBird = pipe.GetXPosition() > BIRD_X_POSITION;
             pipe.Move(birdSpeed);
-            if (isRightToTheBird && pipe.GetXPosition() <= BIRD_X_POSITION)
-            {
+            if (isRightToTheBird && pipe.GetXPosition() <= BIRD_X_POSITION) {
                 // Pipe passed Bird
                 SoundManager.PlaySound(SoundManager.Sound.Score);
                 pipesPassedCount++;
             }
-            if (pipe.GetXPosition() < MyGlobals.DESTROY_X_POSITION + birdScript.transform.position.x)
-            {
+            if (pipe.GetXPosition() < MyGlobals.DESTROY_X_POSITION + birdScript.transform.position.x) {
                 // Destroy Pipe
                 pipe.DestroySelf();
                 pipeList.Remove(pipe);
                 i--;
+            }
+            if (pipesPassedCount == 2) {
+                quizGameController.playerScore += 5;
+                pipesPassedCount = 0;
             }
         }
     }
@@ -197,11 +198,6 @@ public class Level : MonoBehaviour
         SetDifficulty(GetDifficulty());
     }
 
-    public int GetPipesPassedCount()
-    {
-        return pipesPassedCount;
-    }
-
     /************************************************   Speed Diamonds Movement ************************************************/
     
     private void HandleSpeedRingMovement()
@@ -211,16 +207,16 @@ public class Level : MonoBehaviour
             HandleSpeedRing.SpeedRing sr = speedRingList[i];  
             if (sr != null)
             {
-                bool isRightToTheBird = sr.getXPosition() > BIRD_X_POSITION; 
+                bool isRightToTheBird = sr.GetXPosition() > BIRD_X_POSITION; 
 
                 // bool to check whether fish touched rigid body in ring 
                 bool passedRing = true; 
                 sr.Move(birdSpeed);
-                if (isRightToTheBird && sr.getXPosition() <= BIRD_X_POSITION && passedRing)
+                if (isRightToTheBird && sr.GetXPosition() <= BIRD_X_POSITION && passedRing)
                 {
                     // Fish passed inside ring 
                 }
-                if (sr.getXPosition() < MyGlobals.DESTROY_X_POSITION + birdScript.transform.position.x)
+                if (sr.GetXPosition() < MyGlobals.DESTROY_X_POSITION + birdScript.transform.position.x)
                 {
                     // Destroy ring 
                     sr.destroySelf(); 
@@ -240,7 +236,7 @@ public class Level : MonoBehaviour
             HandleQuestionBlob.QuestionBlob question = questionBlobList[i];
             question.Move(birdSpeed);
             
-            if (question.getXPosition() < MyGlobals.DESTROY_X_POSITION) //Out of range
+            if (question.GetXPosition() < MyGlobals.DESTROY_X_POSITION) //Out of range
             {
                 question.destroySelf();
                 questionBlobList.Remove(question);

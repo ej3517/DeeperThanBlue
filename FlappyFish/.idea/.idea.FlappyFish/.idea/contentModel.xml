@@ -33,6 +33,7 @@
           <e p="SimpleObjectPool.cs" t="Include" />
           <e p="SoundManager.cs" t="Include" />
           <e p="StateController.cs" t="Include" />
+          <e p="WinningWindow.cs" t="Include" />
         </e>
       </e>
       <e p="FlappyFish.sln" t="IncludeFlat" />

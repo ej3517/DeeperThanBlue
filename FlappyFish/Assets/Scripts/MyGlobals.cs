@@ -13,8 +13,13 @@ public class MyGlobals
     // REEF 
     public const float REEF_DIMENSION = 12f;
     // QUESTION
-    public const float DURATION_EASY_QUESTION = 10f;
+    public const float DURATION_EASY_QUESTION = 5f;
     public const float DURATION_HARD_QUESTION = 10f;
     public const int POINTS_EASY_QUESTION = 5;
     public const int POINTS_HARD_QUESTION = 10;
+    // Variation of speed with SPEED RING
+    public const float SPEED_RING_BOOST = 5f;
+    public const float SPEED_OBSTACLE_REDUCTION = 5f;
+    //
+    public const int WINNING_THRESHOLD = 20;
 }
