@@ -6,11 +6,9 @@ public class Bird : MonoBehaviour
 {
     // public 
     public QuestionWindow questionWindow;
+    public QuizGameController quizGameController;
     // private
     private const float JUMP_AMOUNT = 28f;
-    // Variation of speed with SPEED RING
-    public float speedRingBoost;
-    public float speedObstacleReduction;
 
     private static Bird instance;
 
@@ -29,10 +27,8 @@ public class Bird : MonoBehaviour
         instance = this;
         birdrigidbody2D = GetComponent<Rigidbody2D>();
         birdrigidbody2D.bodyType = RigidbodyType2D.Static;
-        speedRingBoost = 5f;
-        speedObstacleReduction = 5f;
         levelScript = GameObject.Find("Level").GetComponent<Level>();
-        stateControllerScript = GameObject.Find("StateController").GetComponent<StateController>(); //
+        stateControllerScript = GameObject.Find("StateController").GetComponent<StateController>();
     }
 
     private void Update()
@@ -60,6 +56,9 @@ public class Bird : MonoBehaviour
             case StateController.State.Dead:
                 questionWindow.Hide();
                 break;
+            case StateController.State.Won:
+                questionWindow.Hide();
+                break;
         }
     }
 
@@ -75,12 +74,14 @@ public class Bird : MonoBehaviour
         {
             col.gameObject.SetActive(false);
             stateControllerScript.currentState = StateController.State.WaitingAnswer;
+            quizGameController.GetEasyQuestion();
             questionWindow.Show();
-            levelScript.birdSpeed += speedRingBoost;
+            // levelScript.birdSpeed += speedRingBoost;
         }
         else if (col.gameObject.CompareTag("QuestionBlob"))
         {
             col.gameObject.SetActive(false);
+            quizGameController.GetHardQuestion();
             stateControllerScript.currentState = StateController.State.WaitingAnswer;
             questionWindow.Show();
         }
@@ -91,7 +92,7 @@ public class Bird : MonoBehaviour
         else if (col.gameObject.CompareTag("Obstacles"))
         {
             col.gameObject.SetActive(false);
-            levelScript.birdSpeed -= speedObstacleReduction;
+            levelScript.birdSpeed -= MyGlobals.SPEED_OBSTACLE_REDUCTION;
         }
         else if (col.gameObject.CompareTag("Boat")){
             stateControllerScript.currentState = StateController.State.Dead;

@@ -12,6 +12,7 @@
           <e p="Boat.cs" t="Include" />
           <e p="ButtonHandler.cs" t="Include" />
           <e p="DataController.cs" t="Include" />
+          <e p="DifficultyData.cs" t="Include" />
           <e p="GameAssets.cs" t="Include" />
           <e p="GameHandler.cs" t="Include" />
           <e p="GameOverWindow.cs" t="Include" />
@@ -32,6 +33,7 @@
           <e p="SimpleObjectPool.cs" t="Include" />
           <e p="SoundManager.cs" t="Include" />
           <e p="StateController.cs" t="Include" />
+          <e p="WinningWindow.cs" t="Include" />
         </e>
       </e>
       <e p="FlappyFish.sln" t="IncludeFlat" />

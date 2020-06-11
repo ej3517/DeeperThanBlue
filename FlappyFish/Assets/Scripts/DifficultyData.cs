@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class QuestionData
+public class DifficultyData
 {
-  public string questionText;
-  public AnswerData[] answers;
+    public bool isHard;
+    public QuestionData[] questions;
 }
