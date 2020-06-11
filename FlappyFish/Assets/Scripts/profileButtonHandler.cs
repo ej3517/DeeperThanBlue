@@ -90,10 +90,10 @@ public class profileButtonHandler : MonoBehaviour
         Loader.Load(Loader.Scene.MainMenu);
     }
 
-    public void resetHighscoresButton(){
+    public void resetHighscoresButton(){   
 
         // SoundManager.PlaySound(SoundManager.Sound.ButtonClick);
-        ProfileCanvas_reset.SetActive(true);
+        ProfileCanvas_reset.SetActive(true); // check
 
     }
 
