@@ -50,30 +50,40 @@ namespace CloudantInterface
         }
 
         // Query User Classmates Scores 
-        public static async Task<string> GetUserLeaderboard(string module = null) {
+        // Returns json with users signed up to the module and corresponding scores 
+        public async Task<string> GetLeaderboard(string module = null, string school = null) {
         
-            string payload; 
+            // Set boolean logic
+            bool hasModule = true, hasSchool = true;  
+           
+            if (module == null) hasModule = false;
+            if (school == null) hasSchool = false; 
+    
+            string payload = ""; 
 
             // Set header authorization 
             client.DefaultRequestHeaders.Accept.Clear();
             //client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", "NWEzOTVkNDktZmJlMy00ZDdkLWE5OTktMjlhMTQ2MzkzMmYxLWJsdWVtaXg6NjFlYTc2M2Y0YzIzNDc0YjYzMjgyNTlkZjI0ZmY3NGU2YWE4MmZmMTU0OTFhZWQ4M2U5ZGE5YWI5OWEzMjU4NQ==");
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));//ACCEPT header
-            
-            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", "NWEzOTVkNDktZmJlMy00ZDdkLWE5OTktMjlhMTQ2MzkzMmYxLWJsdWVtaXg6NjFlYTc2M2Y0YzIzNDc0YjYzMjgyNTlkZjI0ZmY3NGU2YWE4MmZmMTU0OTFhZWQ4M2U5ZGE5YWI5OWEzMjU4NQ==");
-
-            // Define query object 
-            string username = PlayerPrefs.GetString("username");
 
             // Get every module data score or not
-            if (module != null) {payload = "{\"selector\":{\"_id\":{\"$eq\":\"" + username +  "\"}, \"classTag\":{\"$eq\":\"" + module +  "\"}}}";}
-            else {payload = "{\"selector\":{\"_id\":{\"$eq\":\"" + username +  "\"}}}";}
+            if (hasModule & hasSchool)
+            {
+                payload = "{\"selector\":{\"type\":{\"$eq\":\"user\"},\"school\":{\"$elemMatch\":{\"$eq\":\"" + school +  "\"}},\"classTag\":{\"$elemMatch\":{\"$eq\":\"" + module +  "\"}}},\"fields\":[\"score\",\"_id\",\"classTag\"]}";
+            } else if (!hasModule & hasSchool) 
+            {
+                payload = "{\"selector\":{\"type\":{\"$eq\":\"user\"},\"school\":{\"$eq\":\"" + school +  "\"}},\"fields\":[\"score\",\"_id\"]}";
+            } else if (hasModule & !hasSchool) 
+            {
+                payload = "{\"selector\":{\"type\":{\"$eq\":\"user\"},\"classTag\":{\"$eq\":\"" + module +  "\"}},\"fields\":[\"score\",\"_id\"]}";
+            } else if (!hasSchool & !hasModule) 
+            {
+                payload = "{\"selector\":{\"type\":{\"$eq\":\"user\"}},\"fields\":[\"score\",\"_id\"]}";
+            }
 
-            //string payload = "{\"selector\":{\"school\":{\"$eq\":\"ICL\"}, \"_id\":{\"$eq\":\"" + username +  "\"}}}";
-            
-            //var payload = jsonFile; 
+
             // Feed it as content
-            Debug.Log(payload);
             HttpContent content = new StringContent(payload, Encoding.UTF8, "application/json");
 
             Debug.Log(content); 
@@ -84,49 +94,57 @@ namespace CloudantInterface
                 HttpResponseMessage response = await client.PostAsync("https://5a395d49-fbe3-4d7d-a999-29a1463932f1-bluemix.cloudant.com/mydb/_find", content);
                 response.EnsureSuccessStatusCode();
                 string responseBody = await response.Content.ReadAsStringAsync();
-                // Above three lines can be replaced with new helper method below
-                // string responseBody = await client.GetStringAsync(uri);
 
-                Debug.Log("New" + responseBody);
+        
                 return responseBody; 
             }
             catch(HttpRequestException e)
             {
                 Debug.Log("\nException Caught!");	
                 Debug.Log("Message : " + e.Message);
-                return e.Message;
+                return ("Error is:" +e.Message).ToString();
             }
         }
 
 
-        // Insert data into DB 
-        /*public async Task<string> Score() {
 
-            // Fetch User Prefs 
-        }*/
-
-
-        /*public async void GetQuestions() {
+        public async Task<string> GetQuestions(string module = null, string school = null) {
 
             
+                    
+            // Set boolean logic
+            bool hasModule = true, hasSchool = true;  
+           
+            if (module == null) hasModule = false;
+            if (school == null) hasSchool = false; 
+    
+            string payload = ""; 
+
             // Set header authorization 
             client.DefaultRequestHeaders.Accept.Clear();
             //client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.MediaTypeWithQualityHeaderValue("application/json"));
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", "NWEzOTVkNDktZmJlMy00ZDdkLWE5OTktMjlhMTQ2MzkzMmYxLWJsdWVtaXg6NjFlYTc2M2Y0YzIzNDc0YjYzMjgyNTlkZjI0ZmY3NGU2YWE4MmZmMTU0OTFhZWQ4M2U5ZGE5YWI5OWEzMjU4NQ==");
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));//ACCEPT header
-            
-            //client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", "NWEzOTVkNDktZmJlMy00ZDdkLWE5OTktMjlhMTQ2MzkzMmYxLWJsdWVtaXg6NjFlYTc2M2Y0YzIzNDc0YjYzMjgyNTlkZjI0ZmY3NGU2YWE4MmZmMTU0OTFhZWQ4M2U5ZGE5YWI5OWEzMjU4NQ==");
 
-            // Define query object 
-            string username = PlayerPrefs.GetString("username");
-            //string payload = "{\"selector\":{\"school\":{\"$eq\":\"ICL\"}, \"_id\":{\"$eq\":\"" + username +  "\"}}}";
-            string payload = "{\"selector\":{\"_id\":{\"$eq\":\"" + username +  "\"}}}";
-            //var payload = jsonFile; 
+            // Get every module data score or not
+            if (hasModule & hasSchool)
+            {
+                payload = "{\"selector\":{\"type\":{\"$eq\":\"question\"},\"school\":{\"$eq\":\"" + school +  "\"},\"module\":{\"$eq\":\"" + module +  "\"}},\"fields\":[\"question\",\"answer\",\"wrong1\",\"wrong2\",\"wrong3\",\"wrong4\",\"difficulty\",\"week\"]}";
+            } else if (!hasModule & hasSchool) 
+            {
+                payload = "{\"selector\":{\"type\":{\"$eq\":\"question\"},\"school\":{\"$eq\":\"" + school +  "\"}},\"fields\":[\"score\",\"_id\"]}";
+            } else if (hasModule & !hasSchool) 
+            {
+                payload = "{\"selector\":{\"type\":{\"$eq\":\"question\"},\"classTag\":{\"$eq\":\"" + module +  "\"}},\"fields\":[\"score\",\"_id\"]}";
+            } else if (!hasSchool & !hasModule) 
+            {
+                payload = "{\"selector\":{\"type\":{\"$eq\":\"question\"}},\"fields\":[\"score\",\"_id\"]}";
+            }
+
+
             // Feed it as content
-            Debug.Log(payload);
             HttpContent content = new StringContent(payload, Encoding.UTF8, "application/json");
 
-            Debug.Log(content); 
 
             // Call asynchronous network methods in a try/catch block to handle exceptions.
             try	
@@ -134,19 +152,16 @@ namespace CloudantInterface
                 HttpResponseMessage response = await client.PostAsync("https://5a395d49-fbe3-4d7d-a999-29a1463932f1-bluemix.cloudant.com/mydb/_find", content);
                 response.EnsureSuccessStatusCode();
                 string responseBody = await response.Content.ReadAsStringAsync();
-                // Above three lines can be replaced with new helper method below
-                // string responseBody = await client.GetStringAsync(uri);
 
-                Debug.Log("New" + responseBody);
                 return responseBody; 
             }
             catch(HttpRequestException e)
             {
                 Debug.Log("\nException Caught!");	
                 Debug.Log("Message : " + e.Message);
-                return e.Message;
+                return ("Error is:" +e.Message).ToString();
             }
-        }*/
+        }
 
         public async Task<string> GetSignUpClasses(string username) 
         {
@@ -158,7 +173,7 @@ namespace CloudantInterface
 
 
             // queries classes signed up by user and schools 
-            string payload = "{\"selector\": {\"type\": {\"$eq\": \"" + username + "\"}},\"fields\": [\"classTag\", \"school\"]}"; 
+            string payload = "{\"selector\":{\"_id\":{\"$eq\":\"" + username + "\"},\"type\":{\"$eq\":\"user\"}},\"fields\": [\"classTag\", \"school\"]}"; 
             HttpContent content = new StringContent(payload, Encoding.UTF8, "application/json");
 
             // Call asynchronous network methods in a try/catch block to handle exceptions.
@@ -173,7 +188,7 @@ namespace CloudantInterface
             {
                 Debug.Log("\nException Caught!");	
                 Debug.Log("Message : " + e.Message);
-                return e.Message;
+                return ("Message : " + e.Message).ToString();
             }
         }
     }
