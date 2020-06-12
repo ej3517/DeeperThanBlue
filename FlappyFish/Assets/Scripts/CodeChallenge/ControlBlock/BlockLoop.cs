@@ -1,14 +1,28 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class BlockLoop : Block
 {
     private Block loopNext = null;
     private Block loopCond = null;
+
+    public Transform dropDown;
+    /*
+        //find your dropdown object
+    //get the selected index
+    int menuIndex = dropDown.GetComponent<Dropdown>().value;
+
+    //get all options available within this dropdown menu
+    List<Dropdown.OptionData> menuOptions = dropDown.GetComponent<Dropdown>().options;
+
+    //get the string value of the selected index
+    string value = menuOptions[menuIndex].text;
+        Debug.Log(value);*/
+
 
     Transform loopTop = null;
     Transform loopBottom = null;
@@ -62,7 +76,10 @@ public class BlockLoop : Block
             lastState = Loopblock.Default;
         }
         //Debug.Log("OnDrop " + lastState);         // Left for debug purposes
-    }
+
+
+
+}
 
     private float loopContentSize = 10;
     public override void OnDrop(PointerEventData eventData)
@@ -80,7 +97,7 @@ public class BlockLoop : Block
                     loopNext.SetAbove(this);
                     float blockHeight = loopNext.GetSizeHeight();
                     block.transform.SetParent(loopTop);
-                    eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = new Vector3(75, -(50 + blockHeight) / 2, 0); //TODO make size dynamic
+                    eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = new Vector3(50, -(50 + blockHeight) / 2, 0); //TODO make size dynamic
                     aboveBlock?.BroadcastSize(loopNext.GetSizeHeightBelow() - loopContentSize, this);
                 }
                 else
