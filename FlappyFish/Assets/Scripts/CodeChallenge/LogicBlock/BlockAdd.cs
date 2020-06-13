@@ -3,11 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockVariable : Block
+public class BlockAdd : Block
 {
     private void Awake()
     {
-        SetType("Variable");
         SetType("Variable");
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
