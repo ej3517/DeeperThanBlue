@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class DifficultyData
+public class AnswersList
 {
-    public bool isHard;
-    public QuestionsList[] questions;
+    public string answer;
+    public bool isTrue;
+
 }
-
-
 

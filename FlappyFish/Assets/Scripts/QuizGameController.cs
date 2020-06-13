@@ -16,8 +16,8 @@ public class QuizGameController : MonoBehaviour
 
     private DataController dataController;
     private RoundData currentRoundData;
-    private QuestionData[] questionPoolEasy;
-    private QuestionData[] questionPoolHard;
+    private QuestionsList[] questionPoolEasy;
+    private QuestionsList[] questionPoolHard;
     private StateController stateControllerScript;
     
     private int questionIndexEasy;
@@ -51,14 +51,14 @@ public class QuizGameController : MonoBehaviour
     private void ShowQuestion()
     {
         RemoveAnswerButton();
-        QuestionData questionData;
+        QuestionsList questionData;
         if (currentlyHard) {
             questionData = questionPoolHard[questionIndexHard]; // select the hard questions 
         }
         else {
             questionData = questionPoolEasy[questionIndexEasy]; // select the easy questions
         }
-        questionDisplayText.text = questionData.questionText;
+        questionDisplayText.text = questionData.question;
 
         for (int i = 0; i < questionData.answers.Length; i++)
         {

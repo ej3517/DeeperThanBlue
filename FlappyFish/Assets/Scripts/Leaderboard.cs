@@ -6,13 +6,13 @@ using UnityEngine;
 public class Leaderboard 
 {
 
-    public IList<UserScores> docs { get; set; }
+    public List<UserScores> docs { get; set; }
 
 }
 
 public class UserScores 
 {
-    public IList<string> classTag { get; set; }
-    public IList<string> score { get; set; }
+    public List<string> classTag { get; set; }
+    public List<string> score { get; set; }
     public string _id { get; set; }
 }
