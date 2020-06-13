@@ -271,7 +271,7 @@ public class DataController : MonoBehaviour
 
     public RoundData GetCurrentRoundData()
     {
-        return allRoundData[0];
+        return questionSet[0];
     }
 
 
