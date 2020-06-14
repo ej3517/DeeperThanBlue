@@ -86,7 +86,6 @@ public class QuizGameController : MonoBehaviour
     {
         if (!doOnce)
         {
-            Debug.Log("Answered");
             doOnce = true;
             if (currentlyHard)
             {

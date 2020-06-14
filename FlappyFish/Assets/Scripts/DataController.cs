@@ -18,6 +18,7 @@ public class DataController : MonoBehaviour
 
     // List of questions for Elliot 
     public RoundData[] questionSet;
+    private RoundData questionSetWanted;
 
     // Start is called before the first frame update
     async void Start()
@@ -143,6 +144,7 @@ public class DataController : MonoBehaviour
 
         Loader.Load(Loader.Scene.MainMenu);
 
+        questionSetWanted = questionSet[0];
     }
 
     private int[] GetEasyNumber(List<Question> questionList)
@@ -303,7 +305,17 @@ public class DataController : MonoBehaviour
 
     public RoundData GetCurrentRoundData()
     {
-        return questionSet[0];
+        return questionSetWanted;
+    }
+
+    public void NewQuestionSetWanted( RoundData newQuestionSet)
+    {
+        questionSetWanted = newQuestionSet;
+    }
+
+    public RoundData[] GetCurrentAllRounds()
+    {
+        return questionSet;
     }
 
 
