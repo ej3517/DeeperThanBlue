@@ -69,6 +69,7 @@ public class CodingArea : MonoBehaviour
         Button.localPosition = new Vector3(-200, 290, -1);
         startButton.setClick(true);
         // TODO: Event restart to grid
+        CreateVarDict();
         ResetEvent?.Invoke(this, EventArgs.Empty);
     }
 
@@ -102,7 +103,12 @@ public class CodingArea : MonoBehaviour
 
     public bool ControlCommand(BlockCommand _instructionType)       //Add type as arg
     {
-        return grid.CodingAreaInstruction(_instructionType);
+        bool temp = grid.CodingAreaInstruction(_instructionType);
+        if(!temp)
+        {
+            Restart();
+        }
+        return temp;
     }
 
     public int GetVar(string var)

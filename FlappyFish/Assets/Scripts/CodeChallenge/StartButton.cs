@@ -52,9 +52,9 @@ public class StartButton : MonoBehaviour
         }
     }
 
-    public void Forward()
+    public bool Forward()
     {
-        codingArea.ControlCommand(CodingArea.BlockCommand.Forward);
+        return codingArea.ControlCommand(CodingArea.BlockCommand.Forward);
     }
 
     public void TurnLeft()
