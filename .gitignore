@@ -5,6 +5,8 @@ watson/.vs/
 .gitattributes
 
 UnityGame2D/Logs/
+UnityGameServer/bin/
+UnityGameServer/.vs/
 
 
 ###
@@ -48,4 +50,3 @@ sysinfo.txt
 Icon?
 ehthumbs.db
 Thumbs.db
-

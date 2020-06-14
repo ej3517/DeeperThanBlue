@@ -73,7 +73,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/HandlePipe.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HandleObstacles.cs" />
         <option value="$PROJECT_DIR$/ProjectSettings/TagManager.asset" />
-        <option value="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" />
         <option value="$PROJECT_DIR$/Assets/Scripts/FollowFish.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/QuestionTimer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Quiz/AnswerData.cs" />
@@ -103,6 +102,8 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/ModuleButton.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/DataController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ModuleController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Level.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" />
       </list>
     </option>
   </component>
@@ -172,6 +173,8 @@
       <workItem from="1592125474968" duration="922000" />
       <workItem from="1592128324952" duration="146000" />
       <workItem from="1592129022014" duration="6764000" />
+      <workItem from="1591000529115" duration="1703000" />
+      <workItem from="1591005561944" duration="70000" />
     </task>
     <servers />
   </component>
