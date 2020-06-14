@@ -49,4 +49,13 @@ public class StartButton : MonoBehaviour
     {
         codingArea.ControlCommand(CodingArea.BlockCommand.TurnRight);
     }
+
+    public int GetVar(string s)
+    {
+        return codingArea.GetVar(s);
+    }
+    public void SetVar(string s, int val)
+    {
+        codingArea.SetVar(s, val);
+    }
 }

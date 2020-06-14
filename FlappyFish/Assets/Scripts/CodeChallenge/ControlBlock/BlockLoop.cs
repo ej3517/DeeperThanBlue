@@ -8,15 +8,10 @@ using UnityEngine.UI;
 public class BlockLoop : Block
 {
     private Block loopNext = null;
-    private Block loopCond = null;
 
     public Transform dropDown;
     /*
-        //find your dropdown object
-    //get the selected index
     int menuIndex = dropDown.GetComponent<Dropdown>().value;
-
-    //get all options available within this dropdown menu
     List<Dropdown.OptionData> menuOptions = dropDown.GetComponent<Dropdown>().options;
 
     //get the string value of the selected index
@@ -141,33 +136,49 @@ public class BlockLoop : Block
 
     public override IEnumerator Traverse(Transform Button)
     {
-        //Sett button as child
-        Button.SetParent(transform);        // Maybe not needed
-        Button.localPosition = new Vector3(-200, 6);
 
-        yield return new WaitForSeconds(1);
-        //Debug.LogError("Turn after wait");
-        if (belowBlock != null)
+        //Set child of Start
+        Button.SetParent(loopTop);
+        Button.localPosition = new Vector3(Button.localPosition.x, 0);
+
+        int val = Button.GetComponent<StartButton>().GetVar(GetDDVar());
+        //TODO: Display variable value
+
+        yield return new WaitForSeconds(Globals.CodeChallengeSpeed);
+        //Move check if variable is larger than 0
+        if (val > 0)
         {
-            StartCoroutine(belowBlock.Traverse(Button));
+            StartCoroutine(loopNext.Traverse(Button));
         }
         else
         {
-            Button.GetComponent<StartButton>().Restart();
+            Button.SetParent(loopBottom);
+            Button.localPosition = new Vector3(Button.localPosition.x, 0);
+            yield return new WaitForSeconds(Globals.CodeChallengeSpeed);
+
+            if (belowBlock != null)
+            {
+                StartCoroutine(belowBlock.Traverse(Button));
+            }
+            else
+            {
+                Button.GetComponent<StartButton>().Restart();
+            }
         }
+
+        //Sett button as child
+
+        
+        //Debug.LogError("Turn after wait");
+
     }
 
     public override bool Validate()
     {
-        bool cond, inside, below;
-
-        if (loopCond == null)
-            return false;
-        else
-            cond = loopCond.Validate();
+        bool inside, below;
 
         if (loopNext == null)
-            inside = true;      //Change to disallow empty scopes
+            inside = false;      //Change to allow empty scopes
         else
             inside = loopNext.Validate();
 
@@ -176,7 +187,7 @@ public class BlockLoop : Block
         else
             below = belowBlock.Validate();
 
-        return cond && inside && below;
+        return inside && below;
     }
 
     public override void SetBelow(Block _belowBlock, Block self)
@@ -229,7 +240,7 @@ public class BlockLoop : Block
 
     public override float GetSizeHeightBelow()
     {
-        float belowHeight = 0, loopHeight = 10;
+        float belowHeight = 0, loopHeight = 10, sizeHeight = 100;
         if (belowBlock != null)
         {
             belowHeight = belowBlock.GetSizeHeightBelow();
@@ -257,6 +268,12 @@ public class BlockLoop : Block
         loopTop.GetComponent<CanvasGroup>().blocksRaycasts = state;
         loopBottom.GetComponent<CanvasGroup>().blocksRaycasts = state;
         boxConnect.GetComponent<CanvasGroup>().blocksRaycasts = state;
+    }
+    private string GetDDVar()
+    {
+        int menuIndex = dropDown.GetComponent<Dropdown>().value;
+        List<Dropdown.OptionData> menuOptions = dropDown.GetComponent<Dropdown>().options;
+        return menuOptions[menuIndex].text;
     }
 
 }

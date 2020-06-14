@@ -20,6 +20,10 @@ public class CodingArea : MonoBehaviour
     private CodingArea instance;
     private StartButton startButton;
 
+    private Dictionary<string, int> variables;
+
+    //private Stack<Transform> scopeReturns;
+
     public enum BlockCommand
     {
         Forward,
@@ -36,6 +40,15 @@ public class CodingArea : MonoBehaviour
     {
         startButton = Button.GetComponent<StartButton>();
         grid = gameAreaGrid.GetComponent<GameAreaGrid>();
+
+        CreateVarDict();
+    }
+    private void CreateVarDict()
+    {
+        variables = new Dictionary<string, int>();
+        variables.Add("X", 0);
+        variables.Add("Y", 0);
+        variables.Add("Z", 0);
     }
 
     CodingArea()
@@ -90,4 +103,33 @@ public class CodingArea : MonoBehaviour
         return grid.CodingAreaInstruction(_instructionType);
     }
 
+    public int GetVar(string var)
+    {
+        if (variables.ContainsKey(var))
+        {
+            return variables[var];
+        }
+        Debug.LogError($"Invalid variable lookup. Looked up variable {var}, which does not exist in the variable map.");
+        throw new System.InvalidOperationException("Invalid variable lookup");
+    }
+    public void SetVar(string var, int val)
+    {
+        if (variables.ContainsKey(var))
+        {
+            // TODO: Check if value is larger than 99?
+            if (val > 99)
+            {
+                Debug.Log($"Limiting {val} to 99");
+                val = 99;
+            }
+            if (val < 0)
+            {
+                Debug.Log($"Limiting {val} to 0");
+                val = 0;
+            }
+            variables[var] = val;
+        }
+        Debug.LogError($"Invalid variable lookup. Looked up variable {var}, which does not exist in the variable map.");
+        throw new System.InvalidOperationException("Invalid variable lookup");
+    }
 }
