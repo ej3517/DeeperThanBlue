@@ -11,6 +11,7 @@ public static class Loader
         Loading,
         MainMenu,
         ProfileScene,
+        LoginScene,
     }
 
     private static Scene targetScene;
