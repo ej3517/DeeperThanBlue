@@ -138,9 +138,9 @@ public class BlockLoop : Block
     {
         //Set child of Start
         Button.SetParent(loopTop);
-        Button.localPosition = new Vector3(Button.localPosition.x, 0);
+        Button.localPosition = new Vector3(Button.localPosition.x, 6);
 
-        int val = Button.GetComponent<StartButton>().GetVar(GetDDVar());
+        int val = Button.GetComponent<StartButton>().GetVar(GetDDVar(dropDown));
         //TODO: Display variable value
 
         yield return new WaitForSeconds(Globals.CodeChallengeSpeed);
@@ -269,13 +269,6 @@ public class BlockLoop : Block
         loopBottom.GetComponent<CanvasGroup>().blocksRaycasts = state;
         boxConnect.GetComponent<CanvasGroup>().blocksRaycasts = state;
     }
-    private string GetDDVar()
-    {
-        int menuIndex = dropDown.GetComponent<Dropdown>().value;
-        List<Dropdown.OptionData> menuOptions = dropDown.GetComponent<Dropdown>().options;
-        return menuOptions[menuIndex].text;
-    }
-
 }
 
 

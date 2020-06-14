@@ -49,7 +49,7 @@ public class CodingArea : MonoBehaviour
     {
         variables = new Dictionary<string, int>();
         variables.Add("X", 0);
-        variables.Add("Y", 1);
+        variables.Add("Y", 0);
         variables.Add("Z", 0);
     }
 
@@ -131,8 +131,11 @@ public class CodingArea : MonoBehaviour
             }
             variables[var] = val;
         }
-        Debug.LogError($"Invalid variable lookup. Looked up variable {var}, which does not exist in the variable map.");
-        throw new System.InvalidOperationException("Invalid variable lookup");
+        else
+        {
+            Debug.LogError($"Invalid variable lookup. Looked up variable {var}, which does not exist in the variable map.");
+            throw new System.InvalidOperationException("Invalid variable lookup");
+        }
     }
 
     public void AddReturn(Transform t)
