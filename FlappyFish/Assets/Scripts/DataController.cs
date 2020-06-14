@@ -9,11 +9,9 @@ using System.Threading;
 
 public class DataController : MonoBehaviour
 {
-    public RoundData[] allRoundData;
     public Interface interfaceLink; 
 
-    public List<Leaderboard> leaderboardList = new List<Leaderboard>(); 
-
+    public List<Leaderboard> leaderboardList = new List<Leaderboard>();
 
     // List of question before formatting 
     public List<QuestionStructure> questionList = new List<QuestionStructure>(); 
@@ -70,16 +68,12 @@ public class DataController : MonoBehaviour
 
         }
         
- 
         
-        
-
         // Size of RoundData array 
         int moduleSize = questionList.Count; 
 
 
         // Initialize RoundData for Elliot and Array of set 
-
 
         questionSet = new RoundData[moduleSize]; 
 
@@ -109,8 +103,6 @@ public class DataController : MonoBehaviour
             
             for (int j = 0; j < questionList[i].docs.Count; j++)
             {
-
-
                 // Check number of options for question 
                 int numberAnswers = GetNumberAnswers(questionList[i].docs[j]); 
 
@@ -146,14 +138,7 @@ public class DataController : MonoBehaviour
 
 
         }
-
-
-
         
-        
-
-        
-
         // Fetch questions from each signed up module 
 
         Loader.Load(Loader.Scene.MainMenu);
@@ -177,7 +162,6 @@ public class DataController : MonoBehaviour
             }
         }
 
-        
         returnValue[0] = hardCount;
         returnValue[1] = easyCount;
         return returnValue;
