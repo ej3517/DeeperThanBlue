@@ -44,21 +44,19 @@ public class Bird : MonoBehaviour
                     stateControllerScript.currentState = StateController.State.Playing;
                     birdrigidbody2D.bodyType = RigidbodyType2D.Dynamic;
                     Jump();
-                    animator.SetBool("birdMoving", birdMoving);
                 }
                 break;
             case StateController.State.Playing:
                 birdrigidbody2D.bodyType = RigidbodyType2D.Dynamic;
+                animator.SetBool("birdMoving", birdMoving);
                 if (Input.GetKey(KeyCode.Space))
                 {
                     Jump();
-                    animator.SetBool("birdMoving", birdMoving);
-                    animator.SetBool("jumping", jumping);
+                    animator.SetFloat("velocityUp", birdrigidbody2D.velocity[1]);
                 }
                 else
                 {
-                    animator.SetBool("birdMoving", birdMoving);
-                    animator.SetBool("jumping", !jumping);
+                    animator.SetFloat("velocityUp", birdrigidbody2D.velocity[1]);
                 }
                 break;
             case StateController.State.WaitingAnswer:
@@ -80,6 +78,7 @@ public class Bird : MonoBehaviour
     {
         SoundManager.PlaySound(SoundManager.Sound.FishSwim);
         birdrigidbody2D.velocity = Vector2.up * JUMP_AMOUNT;
+        Debug.Log(birdrigidbody2D.velocity.ToString());
     }
     
     private void OnTriggerEnter2D(Collider2D col)

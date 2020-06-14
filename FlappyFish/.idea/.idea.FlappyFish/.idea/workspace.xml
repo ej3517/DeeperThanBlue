@@ -2,27 +2,50 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="60884b82-83d6-468b-a134-8eabc3e9fcf8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Animation.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Animation/Bird.controller" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Animation/Bird.controller.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Animation/Bird_idle.anim" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Animation/Bird_idle.anim.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Animation/Bird_jump.anim" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Animation/Bird_jump.anim.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Animation/Bird_waiting.anim" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Animation/Bird_waiting.anim.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/contentModel.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/Background.controller" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/Background.controller.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/pfBottle.controller" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/pfBottle.controller.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/pfCup.controller" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/pfCup.controller.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/pfGlass.controller" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/pfGlass.controller.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/pfPlastic.controller" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/pfPlastic.controller.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/pfQuestionBlob.controller" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/pfQuestionBlob.controller.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/pfSpeedRing.controller" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/pfSpeedRing.controller.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/plasticBag_idle.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/plasticBag_idle.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/plasticBottle_idle.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/plasticBottle_idle.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/plasticCup_idle.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/plasticCup_idle.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/plasticGlass_idle.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/plasticGlass_idle.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/skull_idle.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/skull_idle.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/speedring_idle.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Animation/speedring_idle.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Materials/circle.mat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Materials/circle.mat.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Textures/shell.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Textures/shell.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Textures/skull.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Textures/skull.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Textures/wind5.controller" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Textures/wind5.controller.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/Bird.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/Bird.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Garbage/pfBottle.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Garbage/pfBottle.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Garbage/pfCup.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Garbage/pfCup.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Garbage/pfGlass.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Garbage/pfGlass.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Garbage/pfPlastic.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Garbage/pfPlastic.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/pfQuestionBlob.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/pfQuestionBlob.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/pfSpeedRing.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/pfSpeedRing.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AnswerData.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AnswerData.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Bird.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Bird.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/DataController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DataController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/QuestionData.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/QuestionData.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/QuizGameController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/QuizGameController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SocketIO/WebsocketSharp/websocket-sharp.csproj.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Fish.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Fish.png.meta" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,6 +210,8 @@
       <workItem from="1591775653755" duration="13712000" />
       <workItem from="1592115598596" duration="5071000" />
       <workItem from="1592125474968" duration="922000" />
+      <workItem from="1592128324952" duration="146000" />
+      <workItem from="1592129022014" duration="1312000" />
     </task>
     <servers />
   </component>
