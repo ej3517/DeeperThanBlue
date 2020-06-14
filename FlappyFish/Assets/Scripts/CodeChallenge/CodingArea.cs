@@ -22,7 +22,7 @@ public class CodingArea : MonoBehaviour
 
     private Dictionary<string, int> variables;
 
-    //private Stack<Transform> scopeReturns;
+    private Stack<Transform> scopeReturns;
 
     public enum BlockCommand
     {
@@ -41,13 +41,15 @@ public class CodingArea : MonoBehaviour
         startButton = Button.GetComponent<StartButton>();
         grid = gameAreaGrid.GetComponent<GameAreaGrid>();
 
+        scopeReturns = new Stack<Transform>();
+
         CreateVarDict();
     }
     private void CreateVarDict()
     {
         variables = new Dictionary<string, int>();
         variables.Add("X", 0);
-        variables.Add("Y", 0);
+        variables.Add("Y", 1);
         variables.Add("Z", 0);
     }
 
@@ -131,5 +133,18 @@ public class CodingArea : MonoBehaviour
         }
         Debug.LogError($"Invalid variable lookup. Looked up variable {var}, which does not exist in the variable map.");
         throw new System.InvalidOperationException("Invalid variable lookup");
+    }
+
+    public void AddReturn(Transform t)
+    {
+        scopeReturns.Push(t);
+    }
+
+    public Transform PopReturn()
+    {
+        if (scopeReturns.Count > 0)
+            return scopeReturns.Pop();
+        else
+            throw new Exception();
     }
 }

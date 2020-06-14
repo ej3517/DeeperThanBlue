@@ -28,7 +28,7 @@ public class BlockVariable : Block
         }
         else
         {
-            Button.GetComponent<StartButton>().Restart();
+            Button.GetComponent<StartButton>().End();
         }
     }
 

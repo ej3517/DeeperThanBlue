@@ -27,7 +27,7 @@ public class BlockAdd : Block
         }
         else
         {
-            Button.GetComponent<StartButton>().Restart();
+            Button.GetComponent<StartButton>().End();
         }
     }
 

@@ -28,7 +28,7 @@ public class BlockTurnLeft : Block
         }
         else
         {
-            Button.GetComponent<StartButton>().Restart();
+            Button.GetComponent<StartButton>().End();
         }
     }
 }

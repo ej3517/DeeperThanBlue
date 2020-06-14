@@ -136,7 +136,6 @@ public class BlockLoop : Block
 
     public override IEnumerator Traverse(Transform Button)
     {
-
         //Set child of Start
         Button.SetParent(loopTop);
         Button.localPosition = new Vector3(Button.localPosition.x, 0);
@@ -148,6 +147,7 @@ public class BlockLoop : Block
         //Move check if variable is larger than 0
         if (val > 0)
         {
+            Button.GetComponent<StartButton>().AddReturn(transform);
             StartCoroutine(loopNext.Traverse(Button));
         }
         else
@@ -162,7 +162,7 @@ public class BlockLoop : Block
             }
             else
             {
-                Button.GetComponent<StartButton>().Restart();
+                Button.GetComponent<StartButton>().End();
             }
         }
 

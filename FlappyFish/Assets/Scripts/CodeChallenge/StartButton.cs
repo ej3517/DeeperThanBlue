@@ -35,6 +35,23 @@ public class StartButton : MonoBehaviour
         codingArea.Restart();
     }
 
+    public void AddReturn(Transform t)
+    {
+        codingArea.AddReturn(t);
+    }
+    public void End()
+    {
+        try
+        {
+            Block block = codingArea.PopReturn().GetComponent<Block>();
+            StartCoroutine(block.Traverse(transform));
+        }
+        catch
+        {
+            Restart();
+        }
+    }
+
     public void Forward()
     {
         codingArea.ControlCommand(CodingArea.BlockCommand.Forward);

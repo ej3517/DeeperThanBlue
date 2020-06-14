@@ -27,7 +27,7 @@ public class BlockForward : Block
         }
         else
         {
-            Button.GetComponent<StartButton>().Restart();
+            Button.GetComponent<StartButton>().End();
         }
     }
 
