@@ -32,9 +32,7 @@ public class DataController : MonoBehaviour
         // Get login 
         PlayerPrefs.SetString("username", "jmpb1997");
         string gameUser = PlayerPrefs.GetString("username"); 
-
-
-
+        
         // Fetch class in which participates 
         // Blocked async function
         interfaceLink = new Interface();

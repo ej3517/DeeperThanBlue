@@ -7,6 +7,7 @@ public class Bird : MonoBehaviour
     // public 
     public QuestionWindow questionWindow;
     public QuizGameController quizGameController;
+    public Animator animator;
     // private
     private const float JUMP_AMOUNT = 28f;
 
@@ -21,6 +22,8 @@ public class Bird : MonoBehaviour
 
     private Level levelScript;
     private StateController stateControllerScript;
+    private bool birdMoving = true;
+    private bool jumping = true;
     
     private void Awake()
     {
@@ -41,6 +44,7 @@ public class Bird : MonoBehaviour
                     stateControllerScript.currentState = StateController.State.Playing;
                     birdrigidbody2D.bodyType = RigidbodyType2D.Dynamic;
                     Jump();
+                    animator.SetBool("birdMoving", birdMoving);
                 }
                 break;
             case StateController.State.Playing:
@@ -48,16 +52,26 @@ public class Bird : MonoBehaviour
                 if (Input.GetKey(KeyCode.Space))
                 {
                     Jump();
+                    animator.SetBool("birdMoving", birdMoving);
+                    animator.SetBool("jumping", jumping);
+                }
+                else
+                {
+                    animator.SetBool("birdMoving", birdMoving);
+                    animator.SetBool("jumping", !jumping);
                 }
                 break;
             case StateController.State.WaitingAnswer:
                 birdrigidbody2D.bodyType = RigidbodyType2D.Static;
+                animator.SetBool("birdMoving", !birdMoving);
                 break;
             case StateController.State.Dead:
                 questionWindow.Hide();
+                animator.SetBool("birdMoving", !birdMoving);
                 break;
             case StateController.State.Won:
                 questionWindow.Hide();
+                animator.SetBool("birdMoving", !birdMoving);
                 break;
         }
     }

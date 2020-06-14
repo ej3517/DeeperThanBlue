@@ -52,7 +52,8 @@ public class QuizGameController : MonoBehaviour
     {
         RemoveAnswerButton();
         QuestionsList questionData;
-        if (currentlyHard) {
+        if (currentlyHard)
+        {
             questionData = questionPoolHard[questionIndexHard]; // select the hard questions 
         }
         else {

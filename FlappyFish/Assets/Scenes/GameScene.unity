@@ -146,7 +146,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 19781262}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.6, y: -2.4, z: 0}
+  m_LocalPosition: {x: -0.7, y: -1.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1.4084507}
   m_Children: []
   m_Father: {fileID: 1250702667}
@@ -2148,7 +2148,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 32
+  m_SortingOrder: 28
   m_Sprite: {fileID: -3878289797822314810, guid: 4140d9de73320435f9c1ac95a26eb532,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2541,6 +2541,7 @@ GameObject:
   - component: {fileID: 1250702669}
   - component: {fileID: 1250702672}
   - component: {fileID: 1250702671}
+  - component: {fileID: 1250702673}
   m_Layer: 8
   m_Name: Bird
   m_TagString: Bird
@@ -2605,7 +2606,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1250702665}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -40.904373, y: 7.6599855, z: 5602.9116}
   m_LocalScale: {x: 0.71, y: 0.71, z: 0.71}
   m_Children:
@@ -2667,6 +2668,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questionWindow: {fileID: 41126658}
   quizGameController: {fileID: 848809691}
+  animator: {fileID: 1250702673}
 --- !u!70 &1250702671
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2699,6 +2701,25 @@ CircleCollider2D:
   m_Offset: {x: -0.5, y: 0}
   serializedVersion: 2
   m_Radius: 2.5
+--- !u!95 &1250702673
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1250702665}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c2ed2548d25504bb8942ab50b93bbfff, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1302617107
 GameObject:
   m_ObjectHideFlags: 0
