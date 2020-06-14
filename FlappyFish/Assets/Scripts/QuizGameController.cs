@@ -85,6 +85,7 @@ public class QuizGameController : MonoBehaviour
     {
         if (!doOnce)
         {
+            Debug.Log("Answered");
             doOnce = true;
             if (currentlyHard)
             {
@@ -153,10 +154,17 @@ public class QuizGameController : MonoBehaviour
             winningWindow.Show();
             stateControllerScript.currentState = StateController.State.Won;
         }
+        
         scoreDisplayText.text = playerScore.ToString();
+        
         if (stateControllerScript.currentState == StateController.State.WaitingAnswer)
         {
             doOnce = false;
+        }
+        
+        if (stateControllerScript.currentState == StateController.State.Playing)
+        {
+            doOnce = true;
         }
     }
 }

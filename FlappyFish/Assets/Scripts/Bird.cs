@@ -76,7 +76,6 @@ public class Bird : MonoBehaviour
             stateControllerScript.currentState = StateController.State.WaitingAnswer;
             quizGameController.GetEasyQuestion();
             questionWindow.Show();
-            // levelScript.birdSpeed += speedRingBoost;
         }
         else if (col.gameObject.CompareTag("QuestionBlob"))
         {

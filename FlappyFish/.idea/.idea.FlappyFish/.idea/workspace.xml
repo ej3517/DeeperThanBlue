@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="60884b82-83d6-468b-a134-8eabc3e9fcf8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/AnswerButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/AnswerButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Bird.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Bird.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/QuizGameController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/QuizGameController.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +35,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/WinningWindow.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Score.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AnswerData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scenes/GameScene.unity" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/StateController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/HandleQuestionBlob.cs" root0="FORCE_HIGHLIGHTING" />
@@ -88,17 +91,17 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/DifficultyData.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/QuestionData.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/RoundData.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/AnswerButton.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HandleSpeedRing.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HandleQuestionBlob.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/QuestionWindow.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/StateController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Bird.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Boat.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MyGlobals.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WinningWindow.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Level.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Bird.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/StateController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/QuizGameController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AnswerButton.cs" />
       </list>
     </option>
   </component>
@@ -164,6 +167,7 @@
       <workItem from="1590650269347" duration="11301000" />
       <workItem from="1591000529115" duration="503000" />
       <workItem from="1591775653755" duration="13712000" />
+      <workItem from="1592115598596" duration="2083000" />
     </task>
     <servers />
   </component>
