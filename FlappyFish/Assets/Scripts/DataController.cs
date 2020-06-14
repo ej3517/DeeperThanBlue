@@ -30,7 +30,7 @@ public class DataController : MonoBehaviour
         Loader.Load(Loader.Scene.MainMenu);
 
         // Get login 
-        PlayerPrefs.SetString("username", "jmpb1997");
+        PlayerPrefs.SetString("username", "ej3517");
         string gameUser = PlayerPrefs.GetString("username"); 
 
 
@@ -54,6 +54,7 @@ public class DataController : MonoBehaviour
             Thread.Sleep(1100); 
             Leaderboard leaderboard = JsonConvert.DeserializeObject<Leaderboard>(leaderboardJson); 
             leaderboardList.Add(leaderboard); 
+            Debug.Log(leaderboardJson);
         }
      
 
@@ -186,6 +187,8 @@ public class DataController : MonoBehaviour
 
     private void FillEasyAnswers (int numberAnswers, AnswersList[] answers, int i, int j)
     {
+        int index; 
+        List<int> randSelect;
         
         switch (numberAnswers) 
         {
@@ -197,62 +200,109 @@ public class DataController : MonoBehaviour
                 answers[0].answer = questionList[i].docs[j].answer; 
                 break; 
             case 2: 
-                answers[0] = new AnswersList(); 
-                answers[1] = new AnswersList(); 
+                // Create list for random select
+                randSelect = new List<int>(){0,1};
 
-                answers[0].answer = questionList[i].docs[j].answer; 
-                answers[1].answer = questionList[i].docs[j].wrong1; 
 
-                answers[0].isTrue = true; 
-                answers[1].isTrue = false; 
+                index = Random.Range(0, randSelect.Count);  
+                answers[randSelect[index]] = new AnswersList(); 
+                answers[randSelect[index]].answer = questionList[i].docs[j].answer;
+                answers[randSelect[index]].isTrue = true; 
+                randSelect.RemoveAt(index); 
+            
+                index = Random.Range(0, randSelect.Count);  
+                answers[randSelect[index]] = new AnswersList(); 
+                answers[randSelect[index]].answer = questionList[i].docs[j].wrong1; 
+                answers[randSelect[index]].isTrue = false;
+                randSelect.RemoveAt(index); 
+
                 break; 
             case 3:
-                answers[0] = new AnswersList(); 
-                answers[1] = new AnswersList(); 
-                answers[2] = new AnswersList(); 
+                // Create list for random select
+                randSelect = new List<int>(){0,1,2};
 
-                answers[0].answer = questionList[i].docs[j].answer; 
-                answers[1].answer = questionList[i].docs[j].wrong1; 
-                answers[2].answer = questionList[i].docs[j].wrong2; 
 
-                answers[0].isTrue = true; 
-                answers[1].isTrue = false; 
-                answers[2].isTrue = false; 
+                index = Random.Range(0, randSelect.Count);  
+                answers[randSelect[index]] = new AnswersList(); 
+                answers[randSelect[index]].answer = questionList[i].docs[j].answer;
+                answers[randSelect[index]].isTrue = true; 
+                randSelect.RemoveAt(index); 
+            
+                index = Random.Range(0, randSelect.Count);  
+                answers[randSelect[index]] = new AnswersList(); 
+                answers[randSelect[index]].answer = questionList[i].docs[j].wrong1; 
+                answers[randSelect[index]].isTrue = false;
+                randSelect.RemoveAt(index); 
+
+                index = Random.Range(0, randSelect.Count);  
+                answers[randSelect[index]] = new AnswersList(); 
+                answers[randSelect[index]].answer = questionList[i].docs[j].wrong2; 
+                answers[randSelect[index]].isTrue = false;
+                randSelect.RemoveAt(index); 
                 break;
             case 4:
-                answers[0] = new AnswersList(); 
-                answers[1] = new AnswersList(); 
-                answers[2] = new AnswersList(); 
-                answers[3] = new AnswersList(); 
+                // Create list for random select
+                randSelect = new List<int>(){0,1,2,3};
 
-                answers[0].answer = questionList[i].docs[j].answer; 
-                answers[1].answer = questionList[i].docs[j].wrong1; 
-                answers[2].answer = questionList[i].docs[j].wrong2; 
-                answers[3].answer = questionList[i].docs[j].wrong3; 
 
-                answers[0].isTrue = true; 
-                answers[1].isTrue = false; 
-                answers[2].isTrue = false; 
-                answers[3].isTrue = false; 
+                index = Random.Range(0, randSelect.Count);  
+                answers[randSelect[index]] = new AnswersList(); 
+                answers[randSelect[index]].answer = questionList[i].docs[j].answer;
+                answers[randSelect[index]].isTrue = true; 
+                randSelect.RemoveAt(index); 
+            
+                index = Random.Range(0, randSelect.Count);  
+                answers[randSelect[index]] = new AnswersList(); 
+                answers[randSelect[index]].answer = questionList[i].docs[j].wrong1; 
+                answers[randSelect[index]].isTrue = false;
+                randSelect.RemoveAt(index); 
+
+                index = Random.Range(0, randSelect.Count);  
+                answers[randSelect[index]] = new AnswersList(); 
+                answers[randSelect[index]].answer = questionList[i].docs[j].wrong2; 
+                answers[randSelect[index]].isTrue = false;
+                randSelect.RemoveAt(index); 
+
+                index = Random.Range(0, randSelect.Count);  
+                answers[randSelect[index]] = new AnswersList(); 
+                answers[randSelect[index]].answer = questionList[i].docs[j].wrong3; 
+                answers[randSelect[index]].isTrue = false;
+                randSelect.RemoveAt(index); 
                 break; 
             case 5:
-                answers[0] = new AnswersList(); 
-                answers[1] = new AnswersList(); 
-                answers[2] = new AnswersList(); 
-                answers[3] = new AnswersList(); 
-                answers[4] = new AnswersList(); 
+                // Create list for random select
+                randSelect = new List<int>(){0,1,2,3,4};
 
-                answers[0].answer = questionList[i].docs[j].answer; 
-                answers[1].answer = questionList[i].docs[j].wrong1; 
-                answers[2].answer = questionList[i].docs[j].wrong2; 
-                answers[3].answer = questionList[i].docs[j].wrong3; 
-                answers[4].answer = questionList[i].docs[j].wrong4; 
 
-                answers[0].isTrue = true; 
-                answers[1].isTrue = false; 
-                answers[2].isTrue = false; 
-                answers[3].isTrue = false; 
-                answers[4].isTrue = false; 
+                index = Random.Range(0, randSelect.Count);  
+                answers[randSelect[index]] = new AnswersList(); 
+                answers[randSelect[index]].answer = questionList[i].docs[j].answer;
+                answers[randSelect[index]].isTrue = true; 
+                randSelect.RemoveAt(index); 
+            
+                index = Random.Range(0, randSelect.Count);  
+                answers[randSelect[index]] = new AnswersList(); 
+                answers[randSelect[index]].answer = questionList[i].docs[j].wrong1; 
+                answers[randSelect[index]].isTrue = false;
+                randSelect.RemoveAt(index); 
+
+                index = Random.Range(0, randSelect.Count);  
+                answers[randSelect[index]] = new AnswersList(); 
+                answers[randSelect[index]].answer = questionList[i].docs[j].wrong2; 
+                answers[randSelect[index]].isTrue = false;
+                randSelect.RemoveAt(index); 
+
+                index = Random.Range(0, randSelect.Count);  
+                answers[randSelect[index]] = new AnswersList(); 
+                answers[randSelect[index]].answer = questionList[i].docs[j].wrong3; 
+                answers[randSelect[index]].isTrue = false;
+                randSelect.RemoveAt(index); 
+
+                index = Random.Range(0, randSelect.Count);  
+                answers[randSelect[index]] = new AnswersList(); 
+                answers[randSelect[index]].answer = questionList[i].docs[j].wrong4; 
+                answers[randSelect[index]].isTrue = false;
+                randSelect.RemoveAt(index); 
                 break; 
         }
     }
