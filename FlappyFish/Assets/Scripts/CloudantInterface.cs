@@ -71,7 +71,7 @@ namespace CloudantInterface
             // Get every module data score or not
             if (hasModule & hasSchool)
             {
-                payload = "{\"selector\":{\"type\":{\"$eq\":\"user\"},\"school\":{\"$elemMatch\":{\"$eq\":\"" + school +  "\"}},\"classTag\":{\"$elemMatch\":{\"$eq\":\"" + module +  "\"}}},\"fields\":[\"score\",\"_id\",\"classTag\"]}";
+                payload = "{\"selector\":{\"type\":{\"$eq\":\"user\"},\"school\":{\"$eq\":\"" + school +  "\"},\"classTag\":{\"$elemMatch\":{\"$eq\":\"" + module +  "\"}}},\"fields\":[\"score\",\"_id\",\"classTag\"]}";
             } else if (!hasModule & hasSchool) 
             {
                 payload = "{\"selector\":{\"type\":{\"$eq\":\"user\"},\"school\":{\"$eq\":\"" + school +  "\"}},\"fields\":[\"score\",\"_id\"]}";

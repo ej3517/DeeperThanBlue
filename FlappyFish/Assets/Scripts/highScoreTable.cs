@@ -32,7 +32,7 @@ public class highScoreTable : MonoBehaviour
 
         
         DataController script = GameObject.Find("DataController").GetComponent<DataController>(); 
-        Debug.Log(script.leaderboardList); 
+        //Debug.Log(script.leaderboardList); 
 
         highscoreEntryList = new List<HighscoreEntry>() {
             new HighscoreEntry { score = 124, name = "AAA" }, 

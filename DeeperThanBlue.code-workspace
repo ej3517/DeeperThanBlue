@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "../../../../get-started-node"
+		},
+		{
+			"path": "../../../Tutorials/C++ Optiver"
 		}
 	]
 }

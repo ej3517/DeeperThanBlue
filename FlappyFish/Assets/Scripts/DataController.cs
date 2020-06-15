@@ -11,8 +11,10 @@ public class DataController : MonoBehaviour
 {
     public Interface interfaceLink; 
 
-    public List<Leaderboard> leaderboardList = new List<Leaderboard>();
 
+    public LeaderboardStructure[] leaderboardArray;  
+
+    public List<Leaderboard> leaderboardList; 
     // List of question before formatting 
     public List<QuestionStructure> questionList = new List<QuestionStructure>(); 
 
@@ -45,14 +47,22 @@ public class DataController : MonoBehaviour
 
         // Need to fetch leaderboard for each classTag user is on 
         // At every iteration we pick the score from N entry of score 
+        int z = 0; 
         foreach(string _class in specs.docs[0].classTag) {
             // fetch Leaderboard
             var leaderboardJson = await interfaceLink.GetLeaderboard(_class, specs.docs[0].school); 
             Thread.Sleep(1100); 
-            Leaderboard leaderboard = JsonConvert.DeserializeObject<Leaderboard>(leaderboardJson); 
+
+            Leaderboard leaderboard = new Leaderboard(); 
+            leaderboard = JsonConvert.DeserializeObject<Leaderboard>(leaderboardJson); 
+            
             leaderboardList.Add(leaderboard); 
+            leaderboardList[z].module = _class; 
+            z++; 
             Debug.Log(leaderboardJson);
         }
+
+
      
 
 
@@ -65,7 +75,6 @@ public class DataController : MonoBehaviour
             questionData.module = _class; 
             questionList.Add(questionData); 
             Debug.Log(questionJson); 
-
 
         }
         
@@ -95,7 +104,6 @@ public class DataController : MonoBehaviour
             int[] diffCount = GetEasyNumber(questionList[i].docs); 
          
             // Define number of questions per module 
-            Debug.Log(questionList[i].docs.Count);
             questionSet[i].hardOrEasy[0].questions = new QuestionsList[diffCount[0]]; 
             questionSet[i].hardOrEasy[1].questions = new QuestionsList[diffCount[1]]; 
           
@@ -109,7 +117,7 @@ public class DataController : MonoBehaviour
 
                 // Fill easy questions with difficulty == hard
                 if (questionList[i].docs[j].difficulty == "Hard") {
-                    Debug.Log("Hi mate! ");
+          
                     // Create question instance 
                     questionSet[i].hardOrEasy[0].questions[hardCount] = new QuestionsList(); 
                     // Fill question
@@ -140,13 +148,43 @@ public class DataController : MonoBehaviour
 
         }
         
-        // Fetch questions from each signed up module 
+
 
         Loader.Load(Loader.Scene.MainMenu);
 
         questionSetWanted = questionSet[0];
 
-        specs.docs[0].score[0] = "23"; 
+        // Transform Leaderboard List into Leaderboard Array Object
+
+        // Create Leaderboard Array Object 
+        leaderboardArray = new LeaderboardStructure[specs.docs[0].classTag.Count];
+
+        for (int i = 0; i < specs.docs[0].classTag.Count; i++)
+        {
+            leaderboardArray[i] = new LeaderboardStructure(); 
+            leaderboardArray[i].module = leaderboardList[i].module; 
+            leaderboardArray[i].score = new List<string>();
+            leaderboardArray[i].user = new List<string>(); 
+
+            // Initialize string list 
+            for (int j = 0; j < leaderboardList[i].docs.Count; j++)
+            {
+                // Iterate through users found 
+                // Assign each module its socres and users corresponding 
+                for (int k = 0; k < leaderboardList[i].docs[j].classTag.Count; k++)
+                {
+
+                    if (leaderboardList[i].docs[j].classTag[k] == leaderboardList[i].module)
+                    {
+                        //Debug.Log(leaderboardList[i].docs[j].score[k]);
+                        leaderboardArray[i].score.Add(leaderboardList[i].docs[j].score[k]);
+                        leaderboardArray[i].user.Add(leaderboardList[i].docs[j]._id);   
+                    }
+                }
+                           
+            }
+        }        
+
         var responseMessage = interfaceLink.UpdateHighScore(specs.docs[0]);
     }
 
