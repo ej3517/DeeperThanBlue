@@ -11,13 +11,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: aa4e8a369faa443c98cd5c806a50c29a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/GameScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Loading.unity
     guid: 2273607b89ec548de806813b25f92e43
   - enabled: 1
+    path: Assets/Scenes/CodingGame.unity
+    guid: efdad90add6a94346aa782c359f36436
     path: Assets/Scenes/LeaderboardScene.unity
     guid: 13fe3fcaafd7a440393bd85fe02b85de
   m_configObjects: {}

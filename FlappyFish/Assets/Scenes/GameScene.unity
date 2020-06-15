@@ -1649,10 +1649,14 @@ MonoBehaviour:
   answerButtonObjectPool: {fileID: 114626886}
   answerButtonParent: {fileID: 1516669707}
   questionWindow: {fileID: 41126658}
+
   winningWindow: {fileID: 1715508023}
   levelScript: {fileID: 1783953657}
   playerScore: 0
   currentlyHard: 0
+
+  playerScore: 0
+
 --- !u!1 &928633487
 GameObject:
   m_ObjectHideFlags: 0
