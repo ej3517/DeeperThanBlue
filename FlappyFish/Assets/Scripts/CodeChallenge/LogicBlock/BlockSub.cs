@@ -28,7 +28,10 @@ public class BlockSub : Block
 
         Button.GetComponent<StartButton>().SetVar(left, midVal - right);
 
+        Button.GetComponent<StartButton>().DisplayVariable(left);
         yield return new WaitForSeconds(Globals.CodeChallengeSpeed);
+        Button.GetComponent<StartButton>().HideVariable();
+
         if (belowBlock != null)
         {
             StartCoroutine(belowBlock.Traverse(Button));

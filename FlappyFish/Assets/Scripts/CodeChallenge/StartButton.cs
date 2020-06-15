@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class StartButton : MonoBehaviour
 {
+
+    public Transform variableDisplay;
+
     CodingArea codingArea;
     bool clickable;
     public void setClick(bool _in)
@@ -13,11 +17,14 @@ public class StartButton : MonoBehaviour
     }
 
 
+    private Text varText;
     public void Awake()
     {
         Transform ca = transform.parent;
         codingArea = ca.GetComponent<CodingArea>().GetInstance();
         clickable = true;
+        variableDisplay.localScale = new Vector3(1, 0, 1);
+        varText = variableDisplay.Find("Display").Find("Label").GetComponent<Text>();
     }
 
     public void OnMouseDown()
@@ -76,4 +83,14 @@ public class StartButton : MonoBehaviour
     {
         codingArea.SetVar(s, val);
     }
+    public void DisplayVariable(string var)
+    {
+        variableDisplay.localScale = new Vector3(1, 1, 1);
+        varText.text = $"{var} = {codingArea.GetVar(var)}";
+    }
+    public void HideVariable()
+    {
+        variableDisplay.localScale = new Vector3(1, 0, 1);
+    }
+
 }

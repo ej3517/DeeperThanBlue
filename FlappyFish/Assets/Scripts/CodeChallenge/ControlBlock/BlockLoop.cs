@@ -140,10 +140,12 @@ public class BlockLoop : Block
         Button.SetParent(loopTop);
         Button.localPosition = new Vector3(Button.localPosition.x, 6);
 
-        int val = Button.GetComponent<StartButton>().GetVar(GetDDVar(dropDown));
-        //TODO: Display variable value
+        string var = GetDDVar(dropDown);
+        int val = Button.GetComponent<StartButton>().GetVar(var);
 
+        Button.GetComponent<StartButton>().DisplayVariable(var);
         yield return new WaitForSeconds(Globals.CodeChallengeSpeed);
+        Button.GetComponent<StartButton>().HideVariable();
         //Move check if variable is larger than 0
         if (val > 0)
         {
