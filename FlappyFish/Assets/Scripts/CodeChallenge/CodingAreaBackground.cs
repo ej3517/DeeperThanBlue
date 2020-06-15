@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class CodingAreaBackground : MonoBehaviour
 {
-    public float speed = 0.5f;
-    
+    public float speed = 0.2f;
+
     private Image img;
     void Start()
     {
@@ -14,10 +14,29 @@ public class CodingAreaBackground : MonoBehaviour
     }
 
     float maxRange = 0.3f;
-    float minRange = 0.1f;
+    float minRange = 0.05f;
+    bool up = true;
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(img.color);
+        if (img.color.g > maxRange)
+        {
+            up = false;
+        }
+        else if (img.color.g < minRange)
+        {
+            up = true;
+        }
+
+        float rnd = 0;// UnityEngine.Random.Range(-1, 1);
+        if (up)
+        {
+            img.color = new Color(img.color.r, img.color.g + speed / 1000 + rnd / 100000, img.color.b);
+        }
+        else
+        {
+            img.color = new Color(img.color.r, img.color.g - speed / 1000 + rnd / 100000, img.color.b);
+        }
+
     }
 }
