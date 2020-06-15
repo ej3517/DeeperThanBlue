@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CodingGame.unity
     guid: efdad90add6a94346aa782c359f36436
+  - enabled: 1
+    path: Assets/Scenes/LeaderboardScene.unity
+    guid: 13fe3fcaafd7a440393bd85fe02b85de
   m_configObjects: {}
