@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CodingGame.unity
     guid: efdad90add6a94346aa782c359f36436
+  - enabled: 1
+    path: Assets/Scenes/ProfileScene.unity
+    guid: ca4ab985ae045443cab11c92addf3a88
   m_configObjects: {}

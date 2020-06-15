@@ -101,7 +101,16 @@ public class profileButtonHandler : MonoBehaviour
     public void resetButton(){
 
         // SoundManager.PlaySound(SoundManager.Sound.ButtonClick);
+
+        string usernameString = PlayerPrefs.GetString("username");
+        string passwordString = PlayerPrefs.GetString("password");
+
         PlayerPrefs.DeleteAll();
+
+        PlayerPrefs.SetString("username", usernameString);
+        PlayerPrefs.Save();
+        PlayerPrefs.SetString("password", passwordString);
+        PlayerPrefs.Save();
 
         PlayerPrefs.SetString("timesWon", 0.ToString());
         PlayerPrefs.Save();

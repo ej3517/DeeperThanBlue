@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class QuizGameController : MonoBehaviour
 {
@@ -92,6 +93,13 @@ public class QuizGameController : MonoBehaviour
                 if (isCorrect)
                 {
                     playerScore += MyGlobals.POINTS_HARD_QUESTION;
+
+                    string strRight = PlayerPrefs.GetString("timesRight");
+                    int tmpRight = Int32.Parse(strRight);
+                    tmpRight++;
+                    PlayerPrefs.SetString("timesRight", tmpRight.ToString());
+                    PlayerPrefs.Save();
+
                     if (questionPoolHard.Length > questionIndexHard + 1)
                     {
                         questionIndexHard++;
@@ -108,6 +116,12 @@ public class QuizGameController : MonoBehaviour
                 }
                 else
                 {
+                    string strWrong = PlayerPrefs.GetString("timesWrong");
+                    int tmpWrong = Int32.Parse(strWrong);
+                    tmpWrong++;
+                    PlayerPrefs.SetString("timesWrong", tmpWrong.ToString());
+                    PlayerPrefs.Save();
+
                     stateControllerScript.currentState = StateController.State.Dead;
                 }
             }
@@ -116,7 +130,21 @@ public class QuizGameController : MonoBehaviour
                 if (isCorrect)
                 {
                     playerScore += MyGlobals.POINTS_EASY_QUESTION;
+
+                    string strRight = PlayerPrefs.GetString("timesRight");
+                    int tmpRight = Int32.Parse(strRight);
+                    tmpRight++;
+                    PlayerPrefs.SetString("timesRight", tmpRight.ToString());
+                    PlayerPrefs.Save();
+
                     levelScript.birdSpeed += MyGlobals.SPEED_RING_BOOST;
+                }
+                else {
+                    string strWrong = PlayerPrefs.GetString("timesWrong");
+                    int tmpWrong = Int32.Parse(strWrong);
+                    tmpWrong++;
+                    PlayerPrefs.SetString("timesWrong", tmpWrong.ToString());
+                    PlayerPrefs.Save();
                 }
                 if (questionPoolEasy.Length > questionIndexEasy + 1)
                 {
