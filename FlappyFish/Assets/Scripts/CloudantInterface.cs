@@ -8,6 +8,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.IO;
 using System.Text; 
+using Newtonsoft.Json; 
 
 namespace CloudantInterface
 {
@@ -173,13 +174,44 @@ namespace CloudantInterface
 
 
             // queries classes signed up by user and schools 
-            string payload = "{\"selector\":{\"_id\":{\"$eq\":\"" + username + "\"},\"type\":{\"$eq\":\"user\"}},\"fields\": [\"classTag\", \"school\"]}"; 
+            string payload = "{\"selector\":{\"_id\":{\"$eq\":\"" + username + "\"},\"type\":{\"$eq\":\"user\"}}}"; 
             HttpContent content = new StringContent(payload, Encoding.UTF8, "application/json");
 
             // Call asynchronous network methods in a try/catch block to handle exceptions.
             try	
             {
                 HttpResponseMessage response = await client.PostAsync("https://5a395d49-fbe3-4d7d-a999-29a1463932f1-bluemix.cloudant.com/mydb/_find", content);
+                response.EnsureSuccessStatusCode();
+                string responseBody = await response.Content.ReadAsStringAsync();
+                return responseBody; 
+            }
+            catch(HttpRequestException e)
+            {
+                Debug.Log("\nException Caught!");	
+                Debug.Log("Message : " + e.Message);
+                return ("Message : " + e.Message).ToString();
+            }
+        }
+
+
+        public async Task<string> UpdateHighScore(StudyItem document) {
+            
+            // Set header authorization 
+            client.DefaultRequestHeaders.Accept.Clear();
+            //client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", "NWEzOTVkNDktZmJlMy00ZDdkLWE5OTktMjlhMTQ2MzkzMmYxLWJsdWVtaXg6NjFlYTc2M2Y0YzIzNDc0YjYzMjgyNTlkZjI0ZmY3NGU2YWE4MmZmMTU0OTFhZWQ4M2U5ZGE5YWI5OWEzMjU4NQ==");
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));//ACCEPT header
+
+
+            //string should be serialized of StudyItem 
+            string payload = JsonConvert.SerializeObject(document); 
+            HttpContent content = new StringContent(payload, Encoding.UTF8, "application/json");
+            string uri = "https://5a395d49-fbe3-4d7d-a999-29a1463932f1-bluemix.cloudant.com/mydb/" + document._id.ToString(); 
+            
+            // Call asynchronous network methods in a try/catch block to handle exceptions.
+            try	
+            {
+                HttpResponseMessage response = await client.PutAsync(uri, content);
                 response.EnsureSuccessStatusCode();
                 string responseBody = await response.Content.ReadAsStringAsync();
                 return responseBody; 

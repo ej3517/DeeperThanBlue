@@ -29,7 +29,7 @@ public class DataController : MonoBehaviour
         Loader.Load(Loader.Scene.MainMenu);
 
         // Get login 
-        PlayerPrefs.SetString("username", "ej3517");
+        PlayerPrefs.SetString("username", "jmpb1997");
         string gameUser = PlayerPrefs.GetString("username"); 
         
         // Fetch class in which participates 
@@ -145,6 +145,9 @@ public class DataController : MonoBehaviour
         Loader.Load(Loader.Scene.MainMenu);
 
         questionSetWanted = questionSet[0];
+
+        specs.docs[0].score[0] = "23"; 
+        var responseMessage = interfaceLink.UpdateHighScore(specs.docs[0]);
     }
 
     private int[] GetEasyNumber(List<Question> questionList)
@@ -325,9 +328,5 @@ public class DataController : MonoBehaviour
         public List<StudyItem> docs { get; set; }
     }
 
-    public class StudyItem
-    {
-        public List<string> classTag { get; set; } 
-        public string school { get; set; }
-    }
+
 }
