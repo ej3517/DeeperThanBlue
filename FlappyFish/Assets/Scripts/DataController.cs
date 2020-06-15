@@ -66,16 +66,12 @@ public class DataController : MonoBehaviour
             questionData = JsonConvert.DeserializeObject<QuestionStructure>(questionJson); 
             questionData.module = _class; 
             questionList.Add(questionData); 
-            Debug.Log(questionJson); 
-
-
+            Debug.Log(questionJson);
         }
-        
         
         // Size of RoundData array 
         int moduleSize = questionList.Count; 
-
-
+        
         // Initialize RoundData for Elliot and Array of set 
 
         questionSet = new RoundData[moduleSize]; 
