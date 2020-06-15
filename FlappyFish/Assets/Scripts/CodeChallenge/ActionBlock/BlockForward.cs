@@ -18,9 +18,10 @@ public class BlockForward : Block
         Button.SetParent(transform);        // Maybe not needed
         Button.localPosition = new Vector3(Button.localPosition.x, 6);
 
-        yield return new WaitForSeconds(Globals.CodeChallengeSpeed);
         if(Button.GetComponent<StartButton>().Forward())
         {
+            yield return new WaitForSeconds(Globals.CodeChallengeSpeed);
+            Debug.Log("Forward");
             if (belowBlock != null)
             {
                 StartCoroutine(belowBlock.Traverse(Button));
@@ -30,6 +31,8 @@ public class BlockForward : Block
                 Button.GetComponent<StartButton>().End();
             }
         }
+        yield return new WaitForSeconds(Globals.CodeChallengeSpeed);
+
     }
 
 }

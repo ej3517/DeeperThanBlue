@@ -162,7 +162,7 @@ public class GameAreaGrid : MonoBehaviour
                 instance.localScale = new Vector3(ratio / sr.size.x, ratio / sr.size.y, 1);
 
                 //Postion
-                instance.localPosition = new Vector3(w * ratio + x_offset, -h * ratio - y_offset, 0);
+                instance.localPosition = new Vector3(w * ratio + x_offset, -h * ratio - y_offset, -1);
 
                 map[w, h].grid = instance;
                 map[w, h].type = Type.Empty;
