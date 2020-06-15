@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
 {
@@ -214,6 +215,13 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
     public virtual void BroadcastSize(float size, Block self)
     {
         aboveBlock?.BroadcastSize(size, this);
+    }
+
+    protected string GetDDVar(Transform dropDown)
+    {
+        int menuIndex = dropDown.GetComponent<Dropdown>().value;
+        List<Dropdown.OptionData> menuOptions = dropDown.GetComponent<Dropdown>().options;
+        return menuOptions[menuIndex].text;
     }
 }
 

@@ -3,25 +3,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockTurnLeft : Block
+public class BlockSub : Block
 {
+
+    public Transform leftVar;
+    public Transform midVar;
+    public Transform rightVar;
+
     private void Awake()
     {
-        SetType("TurnLeft");
+        SetType("Variable");
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
     }
 
     public override IEnumerator Traverse(Transform Button)
     {
-        //Sett button as child
-        Button.SetParent(transform);        // Maybe not needed
+        Button.SetParent(transform);
         Button.localPosition = new Vector3(Button.localPosition.x, 6);
 
-        Button.GetComponent<StartButton>().TurnLeft();
+        string left = GetDDVar(leftVar);
+        int midVal = Button.GetComponent<StartButton>().GetVar(GetDDVar(midVar));
+        int right = int.Parse(GetDDVar(rightVar));
+
+        Button.GetComponent<StartButton>().SetVar(left, midVal - right);
 
         yield return new WaitForSeconds(Globals.CodeChallengeSpeed);
-        //Debug.LogError("Turn after wait");
         if (belowBlock != null)
         {
             StartCoroutine(belowBlock.Traverse(Button));
@@ -31,4 +38,5 @@ public class BlockTurnLeft : Block
             Button.GetComponent<StartButton>().End();
         }
     }
+
 }
