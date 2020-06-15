@@ -10,6 +10,8 @@ public static class Loader
         GameScene,
         Loading,
         MainMenu,
+        CodingGame,
+        LeaderboardScene
     }
 
     private static Scene targetScene;
