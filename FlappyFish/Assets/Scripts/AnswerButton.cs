@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class AnswerButton : MonoBehaviour
 {
     public Text answerText;
-    private AnswerData answerData;
+    private AnswersList answerData;
     private QuizGameController quizGameController;
     // Start is called before the first frame update
     void Start()
@@ -14,16 +14,15 @@ public class AnswerButton : MonoBehaviour
         quizGameController = FindObjectOfType<QuizGameController>();
     }
 
-    public void SetUp(AnswerData data)
+    public void SetUp(AnswersList data)
     {
         answerData = data;
-        answerText.text = answerData.answerText;
+        answerText.text = answerData.answer;
     }
 
     public void HandleClick()
     {
-        
-        quizGameController.AnswerButtonClicked (answerData.isCorrect);
-        
+        quizGameController.AnswerButtonClicked(answerData.isTrue);
+        // quizGameController.AnswerButtonClicked (answerData.isCorrect);
     }
 }

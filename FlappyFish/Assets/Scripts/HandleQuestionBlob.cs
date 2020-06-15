@@ -34,7 +34,7 @@ public class HandleQuestionBlob : MonoBehaviour
             questionTransform.position += new Vector3(-1, 0, 0) * speed * Time.deltaTime;   //RENAME MOVESPEED
         }
 
-        public float getXPosition()
+        public float GetXPosition()
         {
             return questionTransform.position.x;
         }

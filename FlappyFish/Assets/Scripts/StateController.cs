@@ -10,6 +10,7 @@ public class StateController : MonoBehaviour
         Playing,
         WaitingAnswer,
         Dead,
+        Won
     }
 
     public State currentState;

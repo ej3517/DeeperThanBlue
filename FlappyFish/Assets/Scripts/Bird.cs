@@ -6,11 +6,10 @@ public class Bird : MonoBehaviour
 {
     // public 
     public QuestionWindow questionWindow;
+    public QuizGameController quizGameController;
+    public Animator animator;
     // private
     private const float JUMP_AMOUNT = 28f;
-    // Variation of speed with SPEED RING
-    public float speedRingBoost;
-    public float speedObstacleReduction;
 
     private static Bird instance;
 
@@ -23,16 +22,16 @@ public class Bird : MonoBehaviour
 
     private Level levelScript;
     private StateController stateControllerScript;
+    private bool birdMoving = true;
+    private bool jumping = true;
     
     private void Awake()
     {
         instance = this;
         birdrigidbody2D = GetComponent<Rigidbody2D>();
         birdrigidbody2D.bodyType = RigidbodyType2D.Static;
-        speedRingBoost = 5f;
-        speedObstacleReduction = 5f;
         levelScript = GameObject.Find("Level").GetComponent<Level>();
-        stateControllerScript = GameObject.Find("StateController").GetComponent<StateController>(); //
+        stateControllerScript = GameObject.Find("StateController").GetComponent<StateController>();
     }
 
     private void Update()
@@ -49,16 +48,28 @@ public class Bird : MonoBehaviour
                 break;
             case StateController.State.Playing:
                 birdrigidbody2D.bodyType = RigidbodyType2D.Dynamic;
+                animator.SetBool("birdMoving", birdMoving);
                 if (Input.GetKey(KeyCode.Space))
                 {
                     Jump();
+                    animator.SetFloat("velocityUp", birdrigidbody2D.velocity[1]);
+                }
+                else
+                {
+                    animator.SetFloat("velocityUp", birdrigidbody2D.velocity[1]);
                 }
                 break;
             case StateController.State.WaitingAnswer:
                 birdrigidbody2D.bodyType = RigidbodyType2D.Static;
+                animator.SetBool("birdMoving", !birdMoving);
                 break;
             case StateController.State.Dead:
                 questionWindow.Hide();
+                animator.SetBool("birdMoving", !birdMoving);
+                break;
+            case StateController.State.Won:
+                questionWindow.Hide();
+                animator.SetBool("birdMoving", !birdMoving);
                 break;
         }
     }
@@ -67,6 +78,7 @@ public class Bird : MonoBehaviour
     {
         SoundManager.PlaySound(SoundManager.Sound.FishSwim);
         birdrigidbody2D.velocity = Vector2.up * JUMP_AMOUNT;
+        Debug.Log(birdrigidbody2D.velocity.ToString());
     }
     
     private void OnTriggerEnter2D(Collider2D col)
@@ -75,12 +87,13 @@ public class Bird : MonoBehaviour
         {
             col.gameObject.SetActive(false);
             stateControllerScript.currentState = StateController.State.WaitingAnswer;
+            quizGameController.GetEasyQuestion();
             questionWindow.Show();
-            levelScript.birdSpeed += speedRingBoost;
         }
         else if (col.gameObject.CompareTag("QuestionBlob"))
         {
             col.gameObject.SetActive(false);
+            quizGameController.GetHardQuestion();
             stateControllerScript.currentState = StateController.State.WaitingAnswer;
             questionWindow.Show();
         }
@@ -91,7 +104,7 @@ public class Bird : MonoBehaviour
         else if (col.gameObject.CompareTag("Obstacles"))
         {
             col.gameObject.SetActive(false);
-            levelScript.birdSpeed -= speedObstacleReduction;
+            levelScript.birdSpeed -= MyGlobals.SPEED_OBSTACLE_REDUCTION;
         }
         else if (col.gameObject.CompareTag("Boat")){
             stateControllerScript.currentState = StateController.State.Dead;

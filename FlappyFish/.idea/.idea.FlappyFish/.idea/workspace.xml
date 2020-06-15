@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="60884b82-83d6-468b-a134-8eabc3e9fcf8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Loader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Loader.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +21,7 @@
     <setting file="file://$PROJECT_DIR$/ProjectSettings/TagManager.asset" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Bird.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Loader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ModuleController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/HandleObstacles.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameOverWindow.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/QuizGameController.cs" root0="FORCE_HIGHLIGHTING" />
@@ -28,10 +29,14 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/GameHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Level.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/LoaderUpdate.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/QuestionData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Prefabs/pfPipeBody.prefab" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/WinningWindow.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/AnswersList.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ModuleButton.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/QuestionsList.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Score.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/AnswerData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/CloudantInterface.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scenes/GameScene.unity" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/StateController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/HandleQuestionBlob.cs" root0="FORCE_HIGHLIGHTING" />
@@ -44,12 +49,13 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AnswerButton.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/HandleSpeedRing.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/HandlePipe.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/highScoreTable.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/DifficultyData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/HandleReef.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/gameManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/RestartButtonHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/RestartButton.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/LoaderUpdate.cs" />
@@ -64,10 +70,8 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/Pipe.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/QuestionBlob.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SwitchGravity.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/HandleQuestionBlob.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Scroll.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BackgroundScroll.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/HandleSpeedRing.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HandleReef.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HandlePipe.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HandleObstacles.cs" />
@@ -76,25 +80,33 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/QuestionTimer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Quiz/AnswerData.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AnswerData.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/ButtonHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SimpleObjectPool.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameAssets.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/MyGlobals.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/QuestionDisplay.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/RoundData.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/QuestionData.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/QuestionWindow.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Loader.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/DataController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/StateController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Boat.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Bird.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ScoreWindow.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/AnswerButton.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameOverWindow.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/DifficultyData.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/RoundData.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/HandleSpeedRing.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/HandleQuestionBlob.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/QuestionWindow.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Boat.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MyGlobals.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WinningWindow.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Level.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/StateController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AnswerButton.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/QuestionData.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Bird.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ModuleButtonObjectPool.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/QuizGameController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ModuleButton.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/DataController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ModuleController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Level.cs" />
         <option value="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ButtonHandler.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Loader.cs" />
       </list>
     </option>
   </component>
@@ -158,6 +170,12 @@
       <workItem from="1589526875402" duration="450000" />
       <workItem from="1590420340733" duration="31656000" />
       <workItem from="1590650269347" duration="11301000" />
+      <workItem from="1591000529115" duration="503000" />
+      <workItem from="1591775653755" duration="13712000" />
+      <workItem from="1592115598596" duration="5071000" />
+      <workItem from="1592125474968" duration="922000" />
+      <workItem from="1592128324952" duration="146000" />
+      <workItem from="1592129022014" duration="6764000" />
       <workItem from="1591000529115" duration="1703000" />
       <workItem from="1591005561944" duration="70000" />
     </task>

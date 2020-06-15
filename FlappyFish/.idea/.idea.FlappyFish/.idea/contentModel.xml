@@ -139,12 +139,37 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="AnswerButton.cs" t="Include" />
-          <e p="AnswerData.cs" t="Include" />
+          <e p="AnswersList.cs" t="Include" />
           <e p="BackgroundScroll.cs" t="Include" />
           <e p="Bird.cs" t="Include" />
           <e p="Boat.cs" t="Include" />
           <e p="ButtonHandler.cs" t="Include" />
+          <e p="CloudantInterface.cs" t="Include" />
+          <e p="CodeChallenge" t="Include">
+            <e p="ActionBlock" t="Include">
+              <e p="BlockForward.cs" t="Include" />
+              <e p="BlockTurnLeft.cs" t="Include" />
+              <e p="BlockTurnRight.cs" t="Include" />
+            </e>
+            <e p="Bin.cs" t="Include" />
+            <e p="Block.cs" t="Include" />
+            <e p="ClampBlock.cs" t="Include" />
+            <e p="ClampCodingArea.cs" t="Include" />
+            <e p="CodingArea.cs" t="Include" />
+            <e p="ControlBlock" t="Include">
+              <e p="BlockLoop.cs" t="Include" />
+              <e p="BlockStart.cs" t="Include" />
+            </e>
+            <e p="Drag.cs" t="Include" />
+            <e p="Drop.cs" t="Include" />
+            <e p="GameAreaGrid.cs" t="Include" />
+            <e p="Globals.cs" t="Include" />
+            <e p="Menu.cs" t="Include" />
+            <e p="MoveBlock.cs" t="Include" />
+            <e p="StartButton.cs" t="Include" />
+          </e>
           <e p="DataController.cs" t="Include" />
+          <e p="DifficultyData.cs" t="Include" />
           <e p="GameAssets.cs" t="Include" />
           <e p="GameHandler.cs" t="Include" />
           <e p="GameOverWindow.cs" t="Include" />
@@ -153,11 +178,16 @@
           <e p="HandleQuestionBlob.cs" t="Include" />
           <e p="HandleReef.cs" t="Include" />
           <e p="HandleSpeedRing.cs" t="Include" />
+          <e p="highScoreTable.cs" t="Include" />
+          <e p="Leaderboard.cs" t="Include" />
           <e p="Level.cs" t="Include" />
           <e p="Loader.cs" t="Include" />
           <e p="LoaderUpdate.cs" t="Include" />
+          <e p="ModuleButton.cs" t="Include" />
+          <e p="ModuleController.cs" t="Include" />
           <e p="MyGlobals.cs" t="Include" />
-          <e p="QuestionData.cs" t="Include" />
+          <e p="QuestionsList.cs" t="Include" />
+          <e p="QuestionStructure.cs" t="Include" />
           <e p="QuestionWindow.cs" t="Include" />
           <e p="QuizGameController.cs" t="Include" />
           <e p="RoundData.cs" t="Include" />
@@ -165,6 +195,7 @@
           <e p="SimpleObjectPool.cs" t="Include" />
           <e p="SoundManager.cs" t="Include" />
           <e p="StateController.cs" t="Include" />
+          <e p="WinningWindow.cs" t="Include" />
         </e>
         <e p="Watson" t="Include">
           <e p="Common" t="Include">
