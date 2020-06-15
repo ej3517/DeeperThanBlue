@@ -9,49 +9,55 @@ public class RoundData
     public DifficultyData[] hardOrEasy;
     
     // in the case or one there are no hard questions or easy questions
-    private AnswersList[] answersList;
-    private QuestionsList[] questionsList;
-    private DifficultyData difficultyData;
+    private AnswersList[] answersList = new AnswersList[1];
+    private QuestionsList[] questionsList = new QuestionsList[1];
+    private DifficultyData difficultyData = new DifficultyData();
 
     // private DifficultyData difficultyData;
 
     public DifficultyData GetHardQuestion()
     {
-        if (hardOrEasy.Length > 0)
+        DifficultyData hardData;
+        if (hardOrEasy[0].questions.Length > 0)
         {
-            return hardOrEasy[0];
+            hardData =  hardOrEasy[0];
         }
         else
         {
-            return QuestionsMissing("easy");
+            hardData = QuestionsMissing("hard");
         }
+        return hardData;
     }
     
     public DifficultyData GetEasyQuestion()
     {
-        if (hardOrEasy.Length > 1)
+        DifficultyData easyData;
+        if (hardOrEasy[1].questions.Length > 0)
         {
-            return hardOrEasy[1];
+            easyData = hardOrEasy[1];
         }
         else
         {
-            return QuestionsMissing("hard");
+            easyData = QuestionsMissing("easy");
         }
+        return easyData;
     }
 
     private DifficultyData QuestionsMissing(string difficulty)
     {
-        // answer
-        answersList[0] = new AnswersList();
-        answersList[0].answer = "Click";
-        answersList[0].isTrue = true;
+        // hardoreasy
+        difficultyData = new DifficultyData();
+        difficultyData.questions = questionsList;
+        difficultyData.isHard = true;
         // question
         questionsList[0] = new QuestionsList();
         questionsList[0].answers = answersList;
         questionsList[0].question = "There are no" + difficulty + " questions";
-        // hardoreasy
-        difficultyData.questions = questionsList;
-        difficultyData.isHard = false;
+        // answer
+        answersList[0] = new AnswersList();
+        answersList[0].answer = "Click";
+        answersList[0].isTrue = true;
+        // return
         return difficultyData;
     }
 }
