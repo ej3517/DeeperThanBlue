@@ -19,6 +19,7 @@ public class DataController : MonoBehaviour
     // List of questions for Elliot 
     public RoundData[] questionSet;
     private RoundData questionSetWanted;
+    public bool isFinishedFetching;
 
     // Start is called before the first frame update
     async void Start()
@@ -26,10 +27,11 @@ public class DataController : MonoBehaviour
         Debug.Log("Start");
 
         DontDestroyOnLoad(gameObject);
+        isFinishedFetching = false;
         Loader.Load(Loader.Scene.MainMenu);
 
         // Get login 
-        PlayerPrefs.SetString("username", "ej3517");
+        PlayerPrefs.SetString("username", "elliot1996");
         string gameUser = PlayerPrefs.GetString("username"); 
         
         // Fetch class in which participates 
@@ -141,10 +143,10 @@ public class DataController : MonoBehaviour
         }
         
         // Fetch questions from each signed up module 
-
-        Loader.Load(Loader.Scene.MainMenu);
-
         questionSetWanted = questionSet[0];
+        
+        // The Fetching is done
+        isFinishedFetching = true;
     }
 
     private int[] GetEasyNumber(List<Question> questionList)
