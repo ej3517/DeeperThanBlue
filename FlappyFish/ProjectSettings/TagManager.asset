@@ -4,9 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Obstacles
-  - Reef
   - SpeedRing
+  - Reef
+  - CodingArea
   layers:
   - Default
   - TransparentFX

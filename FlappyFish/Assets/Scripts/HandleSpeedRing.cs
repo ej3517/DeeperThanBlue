@@ -4,12 +4,47 @@ using UnityEngine;
 
 public class HandleSpeedRing : MonoBehaviour
 {
-    private const float SPEED_RING_DESTROY_X_POSITION = -100f;
-    private const float SPEED_RING_SPAWN_X_POSITION = 100f;
-    private const float RING_HEIGHT = 2f; 
-    private const float RING_WIDTH = 2f;
-    
+    // private Vector2 screenBounds;
+    public static void CreateSpeedRing (float xPosition, List<SpeedRing> speedRingList)
+    {
+        bool canSpawnHere = false;
 
+        // screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z)); 
+        float yPosition; 
+        Transform speedRingTransform = Instantiate(GameAssets.GetInstance().pfSpeedRing);
+        while (!canSpawnHere)
+        {
+            // yPosition = Random.Range(-screenBounds.y, screenBounds.y); 
+            yPosition = Random.Range(MyGlobals.MAX_HEIGHT_GROUND, MyGlobals.SURFACE_POSITION);
+
+            
+            speedRingTransform.position = new Vector3(xPosition - 20f, yPosition); 
+            SpeedRing ring = new SpeedRing(speedRingTransform); 
+            
+            canSpawnHere = PreventSpawnOverlap(ring.speedRingTransform);
+            if (canSpawnHere)
+            {
+                speedRingList.Add(ring); 
+                break;
+            } 
+        }
+    }
+    
+    private static bool PreventSpawnOverlap(Transform tmpTransform)
+    { 
+        Collider2D colliders;  
+        colliders = Physics2D.OverlapBox(tmpTransform.position, tmpTransform.localScale * 2, 0f); 
+
+        if (colliders == null)
+        {
+            return true; 
+        }
+        else
+        {
+            return false; 
+        }
+    }
+    
     public class SpeedRing
     {
         public Transform speedRingTransform;
@@ -24,7 +59,7 @@ public class HandleSpeedRing : MonoBehaviour
             speedRingTransform.position += new Vector3(-1, 0, 0) * speed * Time.deltaTime; 
         }
 
-        public float getXPosition()
+        public float GetXPosition()
         {
             return speedRingTransform.position.x; 
         }

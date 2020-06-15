@@ -8,60 +8,66 @@ using UnityEngine.UIElements;
 
 public class QuestionWindow : MonoBehaviour
 {
-    private static Text questionText;
-    private static QuestionWindow instance;
+    // Countdown Timer
+    public Text timeRemainingDisplayText;
+    public QuizGameController quizGameController;
+    public StateController stateControllerScript;
+    
+    private float timeRemaining;
+    private bool canCount;
+    private bool doOnce;
 
-    private static List<string> questionList;
-
-   private void Awake()
-   {
+    private void Awake()
+    {
        Hide();
-       questionText = transform.Find("QuestionText").GetComponent<Text>();
+       canCount = true;
+       doOnce = false;
+    }
+    
+    private void UpdateTimeRemainingDisplay()
+    {
+        timeRemainingDisplayText.text = timeRemaining.ToString("f");
+    }
 
-        questionList = new List<string>();
-        //Import questions
-        try
-        {
-            using (StreamReader sr = new StreamReader("Questions.txt"))
-            {
-                string line;
-                while ((line = sr.ReadLine()) != null)
-                {
-                    questionList.Add(line);
-                }
-            }
+    private void ResetQuestionTimer()
+    {
+        if (quizGameController.currentlyHard) {
+            timeRemaining = MyGlobals.DURATION_HARD_QUESTION;
         }
-        catch (IOException e)
-        {
-            Debug.LogWarning("Could not read Questions.txt: " + e.Message);
+        else {
+            timeRemaining = MyGlobals.DURATION_EASY_QUESTION;
         }
-    }
-
-    public QuestionWindow()
-    {
-        instance = this;
-    }
-
-
-    public static QuestionWindow getInstance()
-    {
-        return instance;
-    }
-
-    public void displayQuestion()
-    {
-        int questionNumber = UnityEngine.Random.Range(0, questionList.Count);
-        questionText.text = questionList[questionNumber];
-        Show();
     }
 
     public void Hide()
     {
         gameObject.transform.localScale = new Vector3(0, 0, 0);
     }
-    private void Show()
+    public void Show()
     {
+        ResetQuestionTimer();
+        canCount = true;
+        doOnce = false;
         gameObject.transform.localScale = new Vector3(1, 1, 1);
     }
+    
+    void Update()
+    {
+        if (stateControllerScript.currentState == StateController.State.WaitingAnswer)
+        {
+            if (timeRemaining >= 0.0f && canCount)
+            {
+                timeRemaining -= Time.deltaTime;
+                UpdateTimeRemainingDisplay();
+            }
 
+            if (timeRemaining < 0.0f && !doOnce)
+            {
+                canCount = false;
+                doOnce = true;
+                stateControllerScript.currentState = StateController.State.Playing;
+                Hide();
+            }
+        }
+    }
 }

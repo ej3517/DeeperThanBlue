@@ -4,21 +4,34 @@ using UnityEngine;
 
 public class ButtonHandler : MonoBehaviour
 {
-    public void playButton()
+    public void PlayButton()
     {
         SoundManager.PlaySound(SoundManager.Sound.ButtonClick);
         Loader.Load(Loader.Scene.GameScene);
     }
     
-    public void mainMenuButton()
+    public void MainMenuButton()
     {
         SoundManager.PlaySound(SoundManager.Sound.ButtonClick);
         Loader.Load(Loader.Scene.MainMenu);
     }
 
+<<<<<<< HEAD
     public void profileButton()
     {
         SoundManager.PlaySound(SoundManager.Sound.ButtonClick);
         Loader.Load(Loader.Scene.ProfileScene);
+=======
+    public void CodingGameButton()
+    {
+        SoundManager.PlaySound(SoundManager.Sound.ButtonClick);
+        Loader.Load(Loader.Scene.CodingGame);
+    }
+
+    public void LeaderBoardButton()
+    {
+        SoundManager.PlaySound(SoundManager.Sound.ButtonClick);
+        Loader.Load(Loader.Scene.LeaderboardScene);
+>>>>>>> master
     }
 }

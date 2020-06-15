@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6937572813574618563}
   - component: {fileID: 1331972239695017982}
   - component: {fileID: 4359638862785561988}
+  - component: {fileID: 1549431497}
   m_Layer: 8
   m_Name: pfPlastic
   m_TagString: Obstacles
@@ -68,8 +69,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 759398153
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 983e1aea6ea424b6782532532ea60ef7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -108,3 +109,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4, y: 5.12}
   m_EdgeRadius: 0
+--- !u!95 &1549431497
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680464639478612032}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 769678d6126ca4882a6ad4e0aa747b12, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

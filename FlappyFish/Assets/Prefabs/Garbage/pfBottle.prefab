@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7137794823702835172}
   - component: {fileID: 7231968537770606876}
   - component: {fileID: 2293203637230163551}
+  - component: {fileID: 1542731926}
   m_Layer: 8
   m_Name: pfBottle
   m_TagString: Obstacles
@@ -98,3 +99,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2.3
+--- !u!95 &1542731926
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4645117830882179065}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eaf5aea921245459390e4631a2b1d1bc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

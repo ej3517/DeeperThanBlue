@@ -12,6 +12,8 @@ public static class Loader
         MainMenu,
         ProfileScene,
         LoginScene,
+        CodingGame,
+        LeaderboardScene,
     }
 
     private static Scene targetScene;
@@ -19,7 +21,6 @@ public static class Loader
     public static void Load(Scene scene)
     {
         SceneManager.LoadScene(Scene.Loading.ToString());
-
         targetScene = scene;
     }
 
