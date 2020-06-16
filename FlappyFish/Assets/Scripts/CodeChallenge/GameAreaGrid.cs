@@ -26,6 +26,8 @@ public class GameAreaGrid : MonoBehaviour
     public Transform fish;
     public Transform goal;
 
+    public Transform goalWindow;
+
     private RectTransform rectTransform;
     private GridStruct[,] map;
     private int gridSize;
@@ -63,21 +65,21 @@ public class GameAreaGrid : MonoBehaviour
                     return new Vector2Int(-1, -1);
             }
         }
-        public float getAngle()
+        public Quaternion getAngle()
         {
             switch (dir)
             {
                 case 0:
-                    return 0;
+                    return Quaternion.Euler(0,0,0);
                 case 1:
-                    return 90;
+                    return Quaternion.Euler(0, 0, 90);
                 case 2:
-                    return 180;
+                    return Quaternion.Euler(0, 180, 0); ;
                 case 3:
-                    return -90;
+                    return Quaternion.Euler(0, 0, -90);
                 default:
                     //Should not happen
-                    return -1;
+                    return Quaternion.Euler(0, 0, 0);
             }
         }
         public void rotateLeft()
@@ -230,6 +232,7 @@ public class GameAreaGrid : MonoBehaviour
         {
             case CodingArea.BlockCommand.Forward:
                 //Check if block in front is Air
+                bool end = false ;
                 Vector2Int blockInFront = fishPosition + fishDirection.getDirection();
                 if(blockInFront.x < 0 || blockInFront.x >= map_width || blockInFront.y < 0 || blockInFront.y >= map_height)
                 {
@@ -241,9 +244,9 @@ public class GameAreaGrid : MonoBehaviour
                     Debug.LogError("Invalid movement");
                     validMove = false;
                 }
-                else if (map[blockInFront.x, blockInFront.y].type == Type.Block)
+                else if (map[blockInFront.x, blockInFront.y].type == Type.End)
                 {
-                    Debug.Log("Reached target");
+                    end = true;
                 }
                 else
                 {
@@ -255,19 +258,27 @@ public class GameAreaGrid : MonoBehaviour
                     fishPosition = blockInFront;
                     fish.SetParent(map[fishPosition.x, fishPosition.y].grid);
                     fish.localPosition = new Vector3(0, 0, 0);
-                    map[fishPosition.x, fishPosition.y].type = Type.Fish;
                     map[fishPosition.x, fishPosition.y].content = fish;
+                    map[fishPosition.x, fishPosition.y].type = Type.Fish;
                     //Create new fish
                 }
+                if(end)
+                {
+                    Debug.Log("Reached target");
+                    goalWindow.localPosition = new Vector3(0, 0, -100);
+                    validMove = false;
+                }
+                
                 //Move display of fish
                 break;
             case CodingArea.BlockCommand.TurnLeft:
                 fishDirection.rotateLeft();
-                map[fishPosition.x, fishPosition.y].content.localRotation = Quaternion.Euler(0, 0, fishDirection.getAngle());
+
+                map[fishPosition.x, fishPosition.y].content.localRotation = fishDirection.getAngle();
                 break;
             case CodingArea.BlockCommand.TurnRight:
                 fishDirection.rotateRight();
-                map[fishPosition.x, fishPosition.y].content.localRotation = Quaternion.Euler(0, 0, fishDirection.getAngle());
+                map[fishPosition.x, fishPosition.y].content.localRotation = fishDirection.getAngle();
                 break;
             default:
                 Debug.LogError("Invalid event type");
@@ -285,7 +296,7 @@ public class GameAreaGrid : MonoBehaviour
         _fish.SetParent(map[startPosition.x, startPosition.y].grid);
         _fish.localPosition = new Vector3(0, 0, 0);
         fishDirection.setAngle(0);
-        _fish.localRotation = Quaternion.Euler(0, 0, fishDirection.getAngle());
+        _fish.localRotation = fishDirection.getAngle();
         map[startPosition.x, startPosition.y].content = _fish;
         map[startPosition.x, startPosition.y].type = Type.Fish;
         fishPosition = startPosition;
