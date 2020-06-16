@@ -17,13 +17,14 @@ public class highScoreTable : MonoBehaviour
 {
     private Transform entryContainer;
     private Transform entryTemplate; 
-
+    private DataController dataController; 
     private List<HighscoreEntry> highscoreEntryList; 
     private List<Transform> highscoreEntryTransformList;  
 
     private List<Leaderboard> leaderboardContainer; 
     private void Awake()
     {
+        dataController = FindObjectOfType<DataController>();
 
         entryContainer = transform.Find("highScoreContainer");
         entryTemplate = entryContainer.Find("highScoreEntryTemplate");

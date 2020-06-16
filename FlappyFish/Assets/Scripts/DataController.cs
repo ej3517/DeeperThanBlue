@@ -349,6 +349,11 @@ public class DataController : MonoBehaviour
         return questionSetWanted;
     }
 
+    public LeaderboardStructure[] GetLeaderboardData()
+    {
+        return leaderboardArray; 
+    }
+
     public void NewQuestionSetWanted( RoundData newQuestionSet)
     {
         questionSetWanted = newQuestionSet;
