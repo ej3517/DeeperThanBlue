@@ -6,13 +6,11 @@ using UnityEngine.UI;
 public class profileButtonHandler : MonoBehaviour
 {
     public GameObject ProfileCanvas_highest_scores;
-    public GameObject ProfileCanvas_wrong_questions;
     public GameObject ProfileCanvas_statistics;
     public GameObject ProfileCanvas_reset;
 
     private void Awake() {
 
-        ProfileCanvas_wrong_questions.SetActive(false);
         ProfileCanvas_statistics.SetActive(false);
         ProfileCanvas_reset.SetActive(false);
 
@@ -26,10 +24,6 @@ public class profileButtonHandler : MonoBehaviour
         
         if(ProfileCanvas_statistics.activeSelf){
             ProfileCanvas_statistics.SetActive(false);
-        }
-
-        if(ProfileCanvas_wrong_questions.activeSelf){
-            ProfileCanvas_wrong_questions.SetActive(false);
         }
 
         if(ProfileCanvas_highest_scores.activeSelf){
@@ -50,10 +44,6 @@ public class profileButtonHandler : MonoBehaviour
             ProfileCanvas_highest_scores.SetActive(false);
         }
 
-        if(ProfileCanvas_wrong_questions.activeSelf){
-            ProfileCanvas_wrong_questions.SetActive(false);
-        }
-
         if(ProfileCanvas_statistics.activeSelf){
             ProfileCanvas_statistics.SetActive(true);
             // wait;
@@ -61,28 +51,6 @@ public class profileButtonHandler : MonoBehaviour
         else {
             ProfileCanvas_statistics.SetActive(true);
         }
-    }
-
-    public void wrong_questionsButton(){
-
-        // SoundManager.PlaySound(SoundManager.Sound.ButtonClick);
-
-        if(ProfileCanvas_highest_scores.activeSelf){
-            ProfileCanvas_highest_scores.SetActive(false);
-        }
-
-        if(ProfileCanvas_statistics.activeSelf){
-            ProfileCanvas_statistics.SetActive(false);
-        }
-
-        if(ProfileCanvas_wrong_questions.activeSelf){
-            ProfileCanvas_wrong_questions.SetActive(true);
-            // wait;
-        }
-        else {
-            ProfileCanvas_wrong_questions.SetActive(true);
-        }
-
     }
 
     public void tomenuButton(){
@@ -93,7 +61,7 @@ public class profileButtonHandler : MonoBehaviour
     public void resetHighscoresButton(){   
 
         // SoundManager.PlaySound(SoundManager.Sound.ButtonClick);
-        ProfileCanvas_reset.SetActive(true); // check
+        ProfileCanvas_reset.SetActive(true); 
 
     }
 

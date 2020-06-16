@@ -1,78 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="60884b82-83d6-468b-a134-8eabc3e9fcf8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/CodingGame/Blocks/LOGIC_ADD.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/CodingGame/Blocks/LOGIC_ASSIGN.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/CodingGame/Blocks/LOGIC_ASSIGN.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/CodingGame/Blocks/LOGIC_SUB.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/CodingGame/Blocks/LOGIC_SUB.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Wedge.prefab" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Prefabs/Wedge.prefab.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/LoginScene.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/LoginScene.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/ProfileScene.unity" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scenes/ProfileScene.unity.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/ButtonHandler.cs.orig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/ButtonHandler.cs.orig.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CodeChallenge/CodingAreaBackground.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CodeChallenge/CodingAreaBackground.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CodeChallenge/LogicBlock.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CodeChallenge/LogicBlock/BlockAdd.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CodeChallenge/LogicBlock/BlockAdd.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CodeChallenge/LogicBlock/BlockSub.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CodeChallenge/LogicBlock/BlockSub.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CodeChallenge/LogicBlock/BlockVariable.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CodeChallenge/LogicBlock/BlockVariable.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GameOverWindow.cs.orig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/GameOverWindow.cs.orig.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/HighScoreTable.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Loader.cs.orig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Loader.cs.orig.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Login_passwordWindow.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Login_passwordWindow.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Login_usernameWindow.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Login_usernameWindow.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PieGraph.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PieGraph.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PieGraphQ.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PieGraphQ.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/loginButtonHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/loginButtonHandler.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/myHighScoreTable.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/myHighScoreTable.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/profileButtonHandler.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/profileButtonHandler.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Textures/CodingGame/CodingBackground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Textures/CodingGame/CodingBackground.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Textures/CodingGame/WaterBackground.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Textures/CodingGame/WaterBackground.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Textures/circle.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Textures/circle.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/CodingArea/Logic.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/CodingArea/Logic.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/CodingArea/LogicShaded.mat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Materials/CodingArea/LogicShaded.mat.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/CodingGame/Blocks/LOGIC_ADD.prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/CodingGame/Blocks/CONTROL_ Loop.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/CodingGame/Blocks/CONTROL_ Loop.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/CodingGame/Square.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/CodingGame/Square.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/CodingGame.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/CodingGame.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ButtonHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ButtonHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CodeChallenge/ActionBlock/BlockForward.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CodeChallenge/ActionBlock/BlockForward.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CodeChallenge/ActionBlock/BlockTurnLeft.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CodeChallenge/ActionBlock/BlockTurnLeft.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CodeChallenge/ActionBlock/BlockTurnRight.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CodeChallenge/ActionBlock/BlockTurnRight.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CodeChallenge/Block.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CodeChallenge/Block.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CodeChallenge/CodingArea.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CodeChallenge/CodingArea.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CodeChallenge/ControlBlock/BlockLoop.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CodeChallenge/ControlBlock/BlockLoop.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CodeChallenge/GameAreaGrid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CodeChallenge/GameAreaGrid.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CodeChallenge/StartButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CodeChallenge/StartButton.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameOverWindow.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameOverWindow.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Loader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Loader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/QuizGameController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/QuizGameController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-    </list>
+    <list default="true" id="60884b82-83d6-468b-a134-8eabc3e9fcf8" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -103,6 +32,7 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/ModuleButton.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/QuestionsList.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Score.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/loginButtonHandler.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CloudantInterface.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scenes/GameScene.unity" root0="FORCE_HIGHLIGHTING" />
@@ -115,17 +45,15 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/RoundData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/QuestionWindow.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/AnswerButton.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/HighScoreTable.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/HandleSpeedRing.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/HandlePipe.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/DifficultyData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/HandleReef.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/RestartButton.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/MainMenuWindow.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SoundManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GameHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Score.cs" />
@@ -150,7 +78,6 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/GameAssets.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/QuestionDisplay.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ScoreWindow.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameOverWindow.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/DifficultyData.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HandleSpeedRing.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HandleQuestionBlob.cs" />
@@ -163,18 +90,21 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/QuestionData.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Bird.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ModuleButtonObjectPool.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/QuizGameController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/ModuleButton.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ModuleController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Level.cs" />
         <option value="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ButtonHandler.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Loader.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/LoaderUpdate.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/AnswerButton.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/DataController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/RoundData.cs" />
         <option value="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" />
+        <option value="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ModuleButton.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/AnswerButton.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/QuizGameController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/RoundData.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/loginButtonHandler.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/LoaderUpdate.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Loader.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/DataController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameOverWindow.cs" />
       </list>
     </option>
   </component>

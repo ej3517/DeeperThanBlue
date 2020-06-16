@@ -14,14 +14,22 @@ public static class Loader
         LoginScene,
         CodingGame,
         LeaderboardScene,
+        Persistent,
     }
 
     private static Scene targetScene;
 
     public static void Load(Scene scene)
     {
-        SceneManager.LoadScene(Scene.Loading.ToString());
-        targetScene = scene;
+        if (scene == Scene.Persistent)
+        {
+            SceneManager.LoadScene(Scene.Persistent.ToString());
+        }
+        else
+        {
+            SceneManager.LoadScene(Scene.Loading.ToString());
+            targetScene = scene;
+        }
     }
 
     public static void LoadTargetScene()
