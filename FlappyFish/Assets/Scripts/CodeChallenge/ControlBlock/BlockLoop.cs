@@ -1,14 +1,23 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class BlockLoop : Block
 {
     private Block loopNext = null;
-    private Block loopCond = null;
+
+    public Transform dropDown;
+    /*
+    int menuIndex = dropDown.GetComponent<Dropdown>().value;
+    List<Dropdown.OptionData> menuOptions = dropDown.GetComponent<Dropdown>().options;
+
+    //get the string value of the selected index
+    string value = menuOptions[menuIndex].text;
+        Debug.Log(value);*/
+
 
     Transform loopTop = null;
     Transform loopBottom = null;
@@ -62,7 +71,10 @@ public class BlockLoop : Block
             lastState = Loopblock.Default;
         }
         //Debug.Log("OnDrop " + lastState);         // Left for debug purposes
-    }
+
+
+
+}
 
     private float loopContentSize = 10;
     public override void OnDrop(PointerEventData eventData)
@@ -80,7 +92,7 @@ public class BlockLoop : Block
                     loopNext.SetAbove(this);
                     float blockHeight = loopNext.GetSizeHeight();
                     block.transform.SetParent(loopTop);
-                    eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = new Vector3(75, -(50 + blockHeight) / 2, 0); //TODO make size dynamic
+                    eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = new Vector3(50, -(50 + blockHeight) / 2, 0); //TODO make size dynamic
                     aboveBlock?.BroadcastSize(loopNext.GetSizeHeightBelow() - loopContentSize, this);
                 }
                 else
@@ -124,33 +136,51 @@ public class BlockLoop : Block
 
     public override IEnumerator Traverse(Transform Button)
     {
-        //Sett button as child
-        Button.SetParent(transform);        // Maybe not needed
-        Button.localPosition = new Vector3(-200, 6);
+        //Set child of Start
+        Button.SetParent(loopTop);
+        Button.localPosition = new Vector3(Button.localPosition.x, 6);
 
-        yield return new WaitForSeconds(1);
-        //Debug.LogError("Turn after wait");
-        if (belowBlock != null)
+        string var = GetDDVar(dropDown);
+        int val = Button.GetComponent<StartButton>().GetVar(var);
+
+        Button.GetComponent<StartButton>().DisplayVariable(var);
+        yield return new WaitForSeconds(Globals.CodeChallengeSpeed);
+        Button.GetComponent<StartButton>().HideVariable();
+        //Move check if variable is larger than 0
+        if (val > 0)
         {
-            StartCoroutine(belowBlock.Traverse(Button));
+            Button.GetComponent<StartButton>().AddReturn(transform);
+            StartCoroutine(loopNext.Traverse(Button));
         }
         else
         {
-            Button.GetComponent<StartButton>().Restart();
+            Button.SetParent(loopBottom);
+            Button.localPosition = new Vector3(Button.localPosition.x, 0);
+            yield return new WaitForSeconds(Globals.CodeChallengeSpeed);
+
+            if (belowBlock != null)
+            {
+                StartCoroutine(belowBlock.Traverse(Button));
+            }
+            else
+            {
+                Button.GetComponent<StartButton>().End();
+            }
         }
+
+        //Sett button as child
+
+        
+        //Debug.LogError("Turn after wait");
+
     }
 
     public override bool Validate()
     {
-        bool cond, inside, below;
-
-        if (loopCond == null)
-            return false;
-        else
-            cond = loopCond.Validate();
+        bool inside, below;
 
         if (loopNext == null)
-            inside = true;      //Change to disallow empty scopes
+            inside = false;      //Change to allow empty scopes
         else
             inside = loopNext.Validate();
 
@@ -159,7 +189,7 @@ public class BlockLoop : Block
         else
             below = belowBlock.Validate();
 
-        return cond && inside && below;
+        return inside && below;
     }
 
     public override void SetBelow(Block _belowBlock, Block self)
@@ -212,7 +242,7 @@ public class BlockLoop : Block
 
     public override float GetSizeHeightBelow()
     {
-        float belowHeight = 0, loopHeight = 10;
+        float belowHeight = 0, loopHeight = 10, sizeHeight = 100;
         if (belowBlock != null)
         {
             belowHeight = belowBlock.GetSizeHeightBelow();
@@ -241,7 +271,6 @@ public class BlockLoop : Block
         loopBottom.GetComponent<CanvasGroup>().blocksRaycasts = state;
         boxConnect.GetComponent<CanvasGroup>().blocksRaycasts = state;
     }
-
 }
 
 

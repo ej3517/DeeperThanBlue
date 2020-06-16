@@ -16,7 +16,7 @@ public class BlockTurnRight : Block
     {
         //Sett button as child
         Button.SetParent(transform);        // Maybe not needed
-        Button.localPosition = new Vector3(-200, 6);
+        Button.localPosition = new Vector3(Button.localPosition.x, 6);
 
         Button.GetComponent<StartButton>().TurnRight();
 
@@ -28,7 +28,7 @@ public class BlockTurnRight : Block
         }
         else
         {
-            Button.GetComponent<StartButton>().Restart();
+            Button.GetComponent<StartButton>().End();
         }
     }
 }

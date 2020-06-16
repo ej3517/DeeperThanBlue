@@ -16,6 +16,12 @@ public class ButtonHandler : MonoBehaviour
         Loader.Load(Loader.Scene.MainMenu);
     }
 
+    public void profileButton()
+    {
+        SoundManager.PlaySound(SoundManager.Sound.ButtonClick);
+        Loader.Load(Loader.Scene.ProfileScene);
+    }
+
     public void CodingGameButton()
     {
         SoundManager.PlaySound(SoundManager.Sound.ButtonClick);

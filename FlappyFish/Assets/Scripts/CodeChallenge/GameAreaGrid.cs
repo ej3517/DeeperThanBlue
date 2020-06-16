@@ -162,7 +162,7 @@ public class GameAreaGrid : MonoBehaviour
                 instance.localScale = new Vector3(ratio / sr.size.x, ratio / sr.size.y, 1);
 
                 //Postion
-                instance.localPosition = new Vector3(w * ratio + x_offset, -h * ratio - y_offset, 0);
+                instance.localPosition = new Vector3(w * ratio + x_offset, -h * ratio - y_offset, -1);
 
                 map[w, h].grid = instance;
                 map[w, h].type = Type.Empty;
@@ -212,7 +212,7 @@ public class GameAreaGrid : MonoBehaviour
 
         codingArea = codingAreaReferenceTransform.GetComponent<CodingArea>();
         codingArea.OnButtonStart += CodingArea_OnButtonStart;
-        codingArea.ActionEvent += CodingArea_ActionEvent;
+        //codingArea.ActionEvent += CodingArea_ActionEvent;
         codingArea.ResetEvent += CodingArea_ResetEvent;
     }
 
@@ -223,9 +223,10 @@ public class GameAreaGrid : MonoBehaviour
         Debug.Log("Start button pressed");
     }
 
-    private void CodingArea_ActionEvent(object sender, CodingArea.CodingArgs arg)
+    public bool CodingAreaInstruction(CodingArea.BlockCommand instructionType)
     {
-        switch (arg.instructionType)
+        bool validMove = true;
+        switch (instructionType)
         {
             case CodingArea.BlockCommand.Forward:
                 //Check if block in front is Air
@@ -233,6 +234,7 @@ public class GameAreaGrid : MonoBehaviour
                 if (map[blockInFront.x, blockInFront.y].type == Type.Block)
                 {
                     Debug.LogError("Invalid movement");
+                    validMove = false;
                 }
                 else if (map[blockInFront.x, blockInFront.y].type == Type.Block)
                 {
@@ -267,6 +269,7 @@ public class GameAreaGrid : MonoBehaviour
                 break;
 
         }
+        return validMove;
     }
 
     private void CodingArea_ResetEvent(object sender, EventArgs e)
@@ -281,6 +284,7 @@ public class GameAreaGrid : MonoBehaviour
         map[startPosition.x, startPosition.y].content = _fish;
         map[startPosition.x, startPosition.y].type = Type.Fish;
         fishPosition = startPosition;
+
 
     }
 }
