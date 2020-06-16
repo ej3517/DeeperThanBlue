@@ -31,7 +31,7 @@ public class DataController : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
         isFinishedFetching = false;
-        Loader.Load(Loader.Scene.MainMenu);
+        Loader.Load(Loader.Scene.LoginScene);
 
         // Get login 
         PlayerPrefs.SetString("username", "elliott");
@@ -151,7 +151,7 @@ public class DataController : MonoBehaviour
         
 
 
-        Loader.Load(Loader.Scene.MainMenu);
+        Loader.Load(Loader.Scene.LoginScene);
 
         questionSetWanted = questionSet[0];
 
