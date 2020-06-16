@@ -217,7 +217,7 @@ public class Block : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEnd
         aboveBlock?.BroadcastSize(size, this);
     }
 
-    protected string GetDDVar(Transform dropDown)
+    protected static string GetDDVar(Transform dropDown)
     {
         int menuIndex = dropDown.GetComponent<Dropdown>().value;
         List<Dropdown.OptionData> menuOptions = dropDown.GetComponent<Dropdown>().options;
