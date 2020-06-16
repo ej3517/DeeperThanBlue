@@ -168,7 +168,7 @@ public class DataController : MonoBehaviour
 
                     if (leaderboardList[i].docs[j].classTag[k] == leaderboardList[i].module)
                     {
-                        //Debug.Log(leaderboardList[i].docs[j].score[k]);
+
                         leaderboardArray[i].score.Add(leaderboardList[i].docs[j].score[k]);
                         leaderboardArray[i].user.Add(leaderboardList[i].docs[j]._id);   
                     }

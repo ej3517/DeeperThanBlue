@@ -136,11 +136,11 @@ public class Level : MonoBehaviour
                 HandleSpeedRing.CreateSpeedRing(MyGlobals.SPAWN_X_POSITION + birdScript.transform.position.x, speedRingList); // first object must be a speed ring
                 hasJustStarted = false;
             }
-            else if (0f <= randomSelector && randomSelector < 0.80f) // Trash
+            else if (0f <= randomSelector && randomSelector < 0.60f) // Trash
             {
                 HandleObstacles.CreateGarbage(garbageList);
             }
-            else if (0.80f <= randomSelector && randomSelector < 0.90f) // Speed Ring
+            else if (0.60f <= randomSelector && randomSelector < 0.90f) // Speed Ring
             {
                 HandleSpeedRing.CreateSpeedRing(MyGlobals.SPAWN_X_POSITION + birdScript.transform.position.x, speedRingList);
             }
