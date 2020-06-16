@@ -182,7 +182,7 @@ public class GameAreaGrid : MonoBehaviour
                 {
                     Transform _fish = Instantiate(fish);
                     SpriteRenderer srBlock = _fish.GetComponent<SpriteRenderer>();
-                    float _scale = 1f;
+                    float _scale = 0.6f;
                     _fish.localScale = new Vector3(ratio * _scale / srBlock.size.x, ratio * _scale / srBlock.size.y, 1);
                     _fish.parent = map[w, h].grid;
                     _fish.localPosition = new Vector3(0, 0, 0);

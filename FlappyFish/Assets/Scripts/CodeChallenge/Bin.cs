@@ -37,7 +37,7 @@ public class Bin : MonoBehaviour, IDropHandler, IPointerDownHandler
             popupWindow.SetParent(transform);
             popupWindow.localPosition = new Vector3(-14, 20, -50);
             Text t = popupWindow.Find("Text").GetComponent<Text>();
-            t.text = "Are you sure you would like to delete all blocks?";
+            t.text = "Are you sure you would like to delete all the blocks?";
         }
     }
 
