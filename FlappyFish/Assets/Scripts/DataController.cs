@@ -21,6 +21,7 @@ public class DataController : MonoBehaviour
     // List of questions for Elliot 
     public RoundData[] questionSet;
     private RoundData questionSetWanted;
+    public bool isFinishedFetching;
 
     // Start is called before the first frame update
     async void Start()
@@ -28,6 +29,7 @@ public class DataController : MonoBehaviour
         Debug.Log("Start");
 
         DontDestroyOnLoad(gameObject);
+        isFinishedFetching = false;
         Loader.Load(Loader.Scene.MainMenu);
 
         // Get login 
@@ -78,11 +80,9 @@ public class DataController : MonoBehaviour
 
         }
         
-        
         // Size of RoundData array 
         int moduleSize = questionList.Count; 
-
-
+        
         // Initialize RoundData for Elliot and Array of set 
 
         questionSet = new RoundData[moduleSize]; 
@@ -184,7 +184,8 @@ public class DataController : MonoBehaviour
                            
             }
         }        
-
+        // The Fetching is done
+        isFinishedFetching = true;
         var responseMessage = interfaceLink.UpdateHighScore(specs.docs[0]);
     }
 

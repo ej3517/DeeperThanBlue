@@ -4,8 +4,18 @@ using UnityEngine;
 
 public class LoaderUpdate : MonoBehaviour
 {
+    private DataController dataController;
+
+    void Start()
+    {
+        dataController = FindObjectOfType<DataController>();
+    }
+
     private void Update()
     {
-        Loader.LoadTargetScene();
+        if (dataController.isFinishedFetching)
+        {
+            Loader.LoadTargetScene();
+        }
     }
 }
