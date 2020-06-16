@@ -153,6 +153,7 @@
             </e>
             <e p="Bin.cs" t="Include" />
             <e p="Block.cs" t="Include" />
+            <e p="BlockBackground.cs" t="Include" />
             <e p="ClampBlock.cs" t="Include" />
             <e p="ClampCodingArea.cs" t="Include" />
             <e p="CodingArea.cs" t="Include" />
@@ -165,6 +166,7 @@
             <e p="Drop.cs" t="Include" />
             <e p="GameAreaGrid.cs" t="Include" />
             <e p="Globals.cs" t="Include" />
+            <e p="GridBackground.cs" t="Include" />
             <e p="LogicBlock" t="Include">
               <e p="BlockAdd.cs" t="Include" />
               <e p="BlockSub.cs" t="Include" />
@@ -186,6 +188,7 @@
           <e p="HandleSpeedRing.cs" t="Include" />
           <e p="highScoreTable.cs" t="Include" />
           <e p="Leaderboard.cs" t="Include" />
+          <e p="LeaderboardStructure.cs" t="Include" />
           <e p="Level.cs" t="Include" />
           <e p="Loader.cs" t="Include" />
           <e p="LoaderUpdate.cs" t="Include" />
@@ -208,6 +211,7 @@
           <e p="SimpleObjectPool.cs" t="Include" />
           <e p="SoundManager.cs" t="Include" />
           <e p="StateController.cs" t="Include" />
+          <e p="StudyItem.cs" t="Include" />
           <e p="WinningWindow.cs" t="Include" />
         </e>
         <e p="Watson" t="Include">
