@@ -18,4 +18,6 @@ public class LoaderUpdate : MonoBehaviour
             Loader.LoadTargetScene();
         }
     }
+
+    //TODO: Add progress bar (maybe slight animation to the text so that it doens't look like it has frozen)
 }
