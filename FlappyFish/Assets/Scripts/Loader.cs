@@ -14,6 +14,7 @@ public static class Loader
         LoginScene,
         CodingGame,
         LeaderboardScene,
+        Persistent,
     }
 
     private static Scene targetScene;
