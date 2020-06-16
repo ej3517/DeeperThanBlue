@@ -156,6 +156,7 @@
             <e p="ClampBlock.cs" t="Include" />
             <e p="ClampCodingArea.cs" t="Include" />
             <e p="CodingArea.cs" t="Include" />
+            <e p="CodingAreaBackground.cs" t="Include" />
             <e p="ControlBlock" t="Include">
               <e p="BlockLoop.cs" t="Include" />
               <e p="BlockStart.cs" t="Include" />
@@ -164,6 +165,11 @@
             <e p="Drop.cs" t="Include" />
             <e p="GameAreaGrid.cs" t="Include" />
             <e p="Globals.cs" t="Include" />
+            <e p="LogicBlock" t="Include">
+              <e p="BlockAdd.cs" t="Include" />
+              <e p="BlockSub.cs" t="Include" />
+              <e p="BlockVariable.cs" t="Include" />
+            </e>
             <e p="Menu.cs" t="Include" />
             <e p="MoveBlock.cs" t="Include" />
             <e p="StartButton.cs" t="Include" />
@@ -183,9 +189,16 @@
           <e p="Level.cs" t="Include" />
           <e p="Loader.cs" t="Include" />
           <e p="LoaderUpdate.cs" t="Include" />
+          <e p="Login_passwordWindow.cs" t="Include" />
+          <e p="Login_usernameWindow.cs" t="Include" />
+          <e p="loginButtonHandler.cs" t="Include" />
           <e p="ModuleButton.cs" t="Include" />
           <e p="ModuleController.cs" t="Include" />
           <e p="MyGlobals.cs" t="Include" />
+          <e p="myHighScoreTable.cs" t="Include" />
+          <e p="PieGraph.cs" t="Include" />
+          <e p="PieGraphQ.cs" t="Include" />
+          <e p="profileButtonHandler.cs" t="Include" />
           <e p="QuestionsList.cs" t="Include" />
           <e p="QuestionStructure.cs" t="Include" />
           <e p="QuestionWindow.cs" t="Include" />
