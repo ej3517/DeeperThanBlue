@@ -150,26 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f275097bc43424ed5bbafc2788e1d62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allRoundData:
-  - module: Mathematics
-    hardOrEasy:
-    - isHard: 0
-      questions: []
-    - isHard: 0
-      questions: []
-  - module: Culture
-    hardOrEasy:
-    - isHard: 0
-      questions: []
-    - isHard: 0
-      questions: []
-  - module: Culture
-    hardOrEasy:
-    - isHard: 0
-      questions: []
-    - isHard: 0
-      questions: []
-  leaderboardList: []
+  leaderboardArray: []
   questionList: []
   questionSet:
   - module: Mathematics

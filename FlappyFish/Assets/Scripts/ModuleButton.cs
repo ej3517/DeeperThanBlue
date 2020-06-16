@@ -25,4 +25,9 @@ public class ModuleButton : MonoBehaviour
     {
         moduleController.ModuleButtonClicked(roundData);
     }
+
+    public void HandleLeaderboardClick()
+    {
+        Debug.Log("Leaderoboard Click called");
+    }
 }

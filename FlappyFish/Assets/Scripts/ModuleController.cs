@@ -37,6 +37,7 @@ public class ModuleController : MonoBehaviour
             moduleButtonGameObjects.Add(moduleButtonGameObject);
         }
     }
+
     
     private void RemoveModuleButton()
     {
@@ -52,5 +53,11 @@ public class ModuleController : MonoBehaviour
         dataController.NewQuestionSetWanted(roundDataWanted);
         SoundManager.PlaySound(SoundManager.Sound.ButtonClick);
         Loader.Load(Loader.Scene.GameScene);
+    }
+
+    public void LeaderboardButtonClicked()
+    {
+        //dataController.NewQuestionSetWanted(roundDataWanted);
+        SoundManager.PlaySound(SoundManager.Sound.ButtonClick);
     }
 }

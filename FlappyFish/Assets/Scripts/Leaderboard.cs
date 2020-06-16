@@ -7,6 +7,7 @@ public class Leaderboard
 {
 
     public List<UserScores> docs { get; set; }
+    public string module; 
 
 }
 

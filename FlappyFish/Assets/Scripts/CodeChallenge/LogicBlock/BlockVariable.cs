@@ -24,7 +24,10 @@ public class BlockVariable : Block
         int val = int.Parse(GetDDVar(rightInteger));
         Button.GetComponent<StartButton>().SetVar(var, val);
 
+        Button.GetComponent<StartButton>().DisplayVariable(var);
         yield return new WaitForSeconds(Globals.CodeChallengeSpeed);
+        Button.GetComponent<StartButton>().HideVariable();
+        
         if (belowBlock != null)
         {
             StartCoroutine(belowBlock.Traverse(Button));
