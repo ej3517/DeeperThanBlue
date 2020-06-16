@@ -35,9 +35,26 @@ public class StartButton : MonoBehaviour
         codingArea.Restart();
     }
 
-    public void Forward()
+    public void AddReturn(Transform t)
     {
-        codingArea.ControlCommand(CodingArea.BlockCommand.Forward);
+        codingArea.AddReturn(t);
+    }
+    public void End()
+    {
+        try
+        {
+            Block block = codingArea.PopReturn().GetComponent<Block>();
+            StartCoroutine(block.Traverse(transform));
+        }
+        catch
+        {
+            Restart();
+        }
+    }
+
+    public bool Forward()
+    {
+        return codingArea.ControlCommand(CodingArea.BlockCommand.Forward);
     }
 
     public void TurnLeft()
@@ -48,5 +65,14 @@ public class StartButton : MonoBehaviour
     public void TurnRight()
     {
         codingArea.ControlCommand(CodingArea.BlockCommand.TurnRight);
+    }
+
+    public int GetVar(string s)
+    {
+        return codingArea.GetVar(s);
+    }
+    public void SetVar(string s, int val)
+    {
+        codingArea.SetVar(s, val);
     }
 }
