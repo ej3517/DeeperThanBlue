@@ -33,4 +33,9 @@ public class ButtonHandler : MonoBehaviour
         SoundManager.PlaySound(SoundManager.Sound.ButtonClick);
         Loader.Load(Loader.Scene.LeaderboardScene);
     }
+
+    public void ToTheWebsite()
+    {
+        Application.OpenURL("http://flappyfish.eu-gb.cf.appdomain.cloud");
+    }
 }
