@@ -21,6 +21,7 @@ public class DataController : MonoBehaviour
     // List of questions for Elliot 
     public RoundData[] questionSet;
     private RoundData questionSetWanted;
+    private LeaderboardStructure leaderboardWanted; 
     public bool isFinishedFetching;
 
     // Start is called before the first frame update
@@ -33,7 +34,7 @@ public class DataController : MonoBehaviour
         Loader.Load(Loader.Scene.MainMenu);
 
         // Get login 
-        PlayerPrefs.SetString("username", "elliot1996");
+        PlayerPrefs.SetString("username", "elliott");
         string gameUser = PlayerPrefs.GetString("username"); 
         
         // Fetch class in which participates 
@@ -183,7 +184,8 @@ public class DataController : MonoBehaviour
                 }
                            
             }
-        }        
+        }       
+        leaderboardWanted = leaderboardArray[0]; 
         // The Fetching is done
         isFinishedFetching = true;
         var responseMessage = interfaceLink.UpdateHighScore(specs.docs[0]);
@@ -350,9 +352,14 @@ public class DataController : MonoBehaviour
         return questionSetWanted;
     }
 
-    public LeaderboardStructure[] GetLeaderboardData()
+    public LeaderboardStructure GetLeaderboardModuleData()
     {
-        return leaderboardArray; 
+        return leaderboardWanted; 
+    }
+
+    public void NewLeaderboardWanted( LeaderboardStructure newLeaderboardWanted)
+    {
+        leaderboardWanted = newLeaderboardWanted;  
     }
 
     public void NewQuestionSetWanted( RoundData newQuestionSet)
@@ -363,6 +370,11 @@ public class DataController : MonoBehaviour
     public RoundData[] GetCurrentAllRounds()
     {
         return questionSet;
+    }
+
+    public LeaderboardStructure[] GetCurrentAllLeaderboards()
+    {
+        return leaderboardArray;
     }
 
 

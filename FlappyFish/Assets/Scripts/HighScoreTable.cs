@@ -18,6 +18,8 @@ public class highScoreTable : MonoBehaviour
     private Transform entryContainer;
     private Transform entryTemplate; 
 
+    private DataController dataController; 
+    private LeaderboardStructure currentLeaderboard; 
     private List<HighscoreEntry> highscoreEntryList; 
     private List<Transform> highscoreEntryTransformList;  
 
@@ -30,22 +32,18 @@ public class highScoreTable : MonoBehaviour
 
         entryTemplate.gameObject.SetActive(false); 
 
-        
-        DataController script = GameObject.Find("DataController").GetComponent<DataController>(); 
-        Debug.Log(script.leaderboardList); 
+        dataController = FindObjectOfType<DataController>();
+        currentLeaderboard = dataController.GetLeaderboardModuleData();
 
-        highscoreEntryList = new List<HighscoreEntry>() {
-            new HighscoreEntry { score = 124, name = "AAA" }, 
-            new HighscoreEntry { score = 122, name = "AAA" }, 
-            new HighscoreEntry { score = 12, name = "AAA" }, 
-            new HighscoreEntry { score = 124564, name = "AAA" }, 
-            new HighscoreEntry { score = 124, name = "AAA" }, 
-            new HighscoreEntry { score = 124, name = "AAA" }, 
-            new HighscoreEntry { score = 124, name = "AAA" }, 
-            new HighscoreEntry { score = 124, name = "AAA" }, 
-            new HighscoreEntry { score = 124, name = "AAA" }, 
-            new HighscoreEntry { score = 124, name = "AAA" }, 
-        }; 
+        highscoreEntryList = new List<HighscoreEntry>(); 
+        for (int i = 0; i < currentLeaderboard.score.Count; i++)
+        {
+            int scoreParsed; 
+            Int32.TryParse(currentLeaderboard.score[i], out scoreParsed); 
+            HighscoreEntry newEntry = new HighscoreEntry { score = scoreParsed, name = currentLeaderboard.user[i]}; 
+            highscoreEntryList.Add(newEntry); 
+        }
+
 
         // Sort table 
         for (int i = 0; i < highscoreEntryList.Count; i++) {
@@ -61,25 +59,75 @@ public class highScoreTable : MonoBehaviour
 
         highscoreEntryTransformList = new List<Transform>();
 
-        foreach (HighscoreEntry highscoreEntry in highscoreEntryList) {
-            CreateHighscoreEntryTransform(highscoreEntry, entryContainer, highscoreEntryTransformList); 
+
+        for (int i = 0 ; i < 10 && i < highscoreEntryList.Count; i++)
+        {
+            CreateHighscoreEntryTransform(highscoreEntryList[i], entryContainer, highscoreEntryTransformList); 
         }
 
         string json = JsonUtility.ToJson(highscoreEntryList); 
-        PlayerPrefs.SetString("highscoreTable", "100");
 
 
-        // Set example user Player Prefs 
-        PlayerPrefs.SetString("username", "jmpb1997"); 
-        PlayerPrefs.SetString("password", "hello"); 
-        
-        // ** Load saved highscores
-        string username = PlayerPrefs.GetString("username");
-        string password = PlayerPrefs.GetString("password"); 
 
 
     }
 
+    private void Update() {
+        LeaderboardStructure tmp = new LeaderboardStructure();
+        tmp = currentLeaderboard; 
+
+        currentLeaderboard = dataController.GetLeaderboardModuleData();
+
+        if ( tmp != currentLeaderboard )
+        {
+            highscoreEntryList.Clear();
+            EmptyHighScoreEntryTransformList(); 
+            RefillLeaderboard(); 
+        }
+    }
+
+    private void EmptyHighScoreEntryTransformList() 
+    {
+        foreach(RectTransform child in highscoreEntryTransformList)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+    private void RefillLeaderboard()
+    {
+        highscoreEntryList = new List<HighscoreEntry>(); 
+        for (int i = 0; i < currentLeaderboard.score.Count; i++)
+        {
+            int scoreParsed; 
+            Int32.TryParse(currentLeaderboard.score[i], out scoreParsed); 
+            HighscoreEntry newEntry = new HighscoreEntry { score = scoreParsed, name = currentLeaderboard.user[i]}; 
+            highscoreEntryList.Add(newEntry); 
+        }
+
+
+        // Sort table 
+        for (int i = 0; i < highscoreEntryList.Count; i++) {
+            for (int j = 0; j < highscoreEntryList.Count; j++) {
+                if (highscoreEntryList[j].score < highscoreEntryList[i].score) {
+                    // swap 
+                    HighscoreEntry tmp = highscoreEntryList[i];
+                    highscoreEntryList[i] = highscoreEntryList[j]; 
+                    highscoreEntryList[j] = tmp;  
+                }
+            }
+        }
+
+        highscoreEntryTransformList = new List<Transform>();
+
+        /*foreach (HighscoreEntry highscoreEntry in highscoreEntryList) {
+            CreateHighscoreEntryTransform(highscoreEntry, entryContainer, highscoreEntryTransformList); 
+        }*/
+
+        for (int i = 0 ; i < 10 && i < highscoreEntryList.Count; i++)
+        {
+            CreateHighscoreEntryTransform(highscoreEntryList[i], entryContainer, highscoreEntryTransformList); 
+        }
+    }
     
     private void CreateModuleButton(List<Leaderboard> leaderboardList) {
 
