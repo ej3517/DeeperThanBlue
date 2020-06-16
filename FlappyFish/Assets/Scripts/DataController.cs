@@ -33,7 +33,7 @@ public class DataController : MonoBehaviour
         Loader.Load(Loader.Scene.MainMenu);
 
         // Get login 
-        PlayerPrefs.SetString("username", "elliot1996");
+        PlayerPrefs.SetString("username", "ej3517");
         string gameUser = PlayerPrefs.GetString("username"); 
         
         // Fetch class in which participates 

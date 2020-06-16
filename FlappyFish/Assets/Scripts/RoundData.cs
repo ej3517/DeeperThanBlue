@@ -52,7 +52,7 @@ public class RoundData
         // question
         questionsList[0] = new QuestionsList();
         questionsList[0].answers = answersList;
-        questionsList[0].question = "There are no" + difficulty + " questions";
+        questionsList[0].question = "There are no " + difficulty + " questions";
         // answer
         answersList[0] = new AnswersList();
         answersList[0].answer = "Click";
