@@ -94,11 +94,11 @@ public class QuizGameController : MonoBehaviour
                 {
                     playerScore += MyGlobals.POINTS_HARD_QUESTION;
 
-                    string strRight = PlayerPrefs.GetString("timesRight");
-                    int tmpRight = Int32.Parse(strRight);
-                    tmpRight++;
-                    PlayerPrefs.SetString("timesRight", tmpRight.ToString());
-                    PlayerPrefs.Save();
+                    // string strRight = PlayerPrefs.GetString("timesRight");
+                    // int tmpRight = Int32.Parse(strRight);
+                    // tmpRight++;
+                    // PlayerPrefs.SetString("timesRight", tmpRight.ToString());
+                    // PlayerPrefs.Save();
 
                     if (questionPoolHard.Length > questionIndexHard + 1)
                     {
@@ -116,11 +116,11 @@ public class QuizGameController : MonoBehaviour
                 }
                 else
                 {
-                    string strWrong = PlayerPrefs.GetString("timesWrong");
-                    int tmpWrong = Int32.Parse(strWrong);
-                    tmpWrong++;
-                    PlayerPrefs.SetString("timesWrong", tmpWrong.ToString());
-                    PlayerPrefs.Save();
+                    // string strWrong = PlayerPrefs.GetString("timesWrong");
+                    // int tmpWrong = Int32.Parse(strWrong);
+                    // tmpWrong++;
+                    // PlayerPrefs.SetString("timesWrong", tmpWrong.ToString());
+                    // PlayerPrefs.Save();
 
                     stateControllerScript.currentState = StateController.State.Dead;
                 }
@@ -131,21 +131,21 @@ public class QuizGameController : MonoBehaviour
                 {
                     playerScore += MyGlobals.POINTS_EASY_QUESTION;
 
-                    string strRight = PlayerPrefs.GetString("timesRight");
-                    int tmpRight = Int32.Parse(strRight);
-                    tmpRight++;
-                    PlayerPrefs.SetString("timesRight", tmpRight.ToString());
-                    PlayerPrefs.Save();
+                    // string strRight = PlayerPrefs.GetString("timesRight");
+                    // int tmpRight = Int32.Parse(strRight);
+                    // tmpRight++;
+                    // PlayerPrefs.SetString("timesRight", tmpRight.ToString());
+                    // PlayerPrefs.Save();
 
                     levelScript.birdSpeed += MyGlobals.SPEED_RING_BOOST;
                 }
-                else {
-                    string strWrong = PlayerPrefs.GetString("timesWrong");
-                    int tmpWrong = Int32.Parse(strWrong);
-                    tmpWrong++;
-                    PlayerPrefs.SetString("timesWrong", tmpWrong.ToString());
-                    PlayerPrefs.Save();
-                }
+                // else {
+                //     string strWrong = PlayerPrefs.GetString("timesWrong");
+                //     int tmpWrong = Int32.Parse(strWrong);
+                //     tmpWrong++;
+                //     PlayerPrefs.SetString("timesWrong", tmpWrong.ToString());
+                //     PlayerPrefs.Save();
+                // }
                 if (questionPoolEasy.Length > questionIndexEasy + 1)
                 {
                     questionIndexEasy++;
