@@ -2,7 +2,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class GameOverWindow : MonoBehaviour
 {
     
@@ -41,7 +40,7 @@ public class GameOverWindow : MonoBehaviour
                 if(wasAlive){
 
                     // PERSONAL HIGHSCORES
-                    myHighScoreTable.Add_highscore(newscore);
+                    myHighScoreTable.Add_highscore(newscore); 
 
                     // STATISTICS - TIMES WON/LOST
                     // get saved values

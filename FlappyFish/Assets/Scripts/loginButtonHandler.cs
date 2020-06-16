@@ -44,11 +44,11 @@ public class loginButtonHandler : MonoBehaviour
         // CHECK PASSWORD
 
         // Load main menu scene
-        Loader.Load(Loader.Scene.MainMenu);
+        Loader.Load(Loader.Scene.Persistent);
     }
 
     public void tomenuButton(){
         // SoundManager.PlaySound(SoundManager.Sound.ButtonClick);
-        Loader.Load(Loader.Scene.MainMenu);
+        Loader.Load(Loader.Scene.LoginScene);
     }
 }
