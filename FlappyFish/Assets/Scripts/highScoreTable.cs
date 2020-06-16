@@ -17,14 +17,13 @@ public class highScoreTable : MonoBehaviour
 {
     private Transform entryContainer;
     private Transform entryTemplate; 
-    private DataController dataController; 
+
     private List<HighscoreEntry> highscoreEntryList; 
     private List<Transform> highscoreEntryTransformList;  
 
     private List<Leaderboard> leaderboardContainer; 
     private void Awake()
     {
-        dataController = FindObjectOfType<DataController>();
 
         entryContainer = transform.Find("highScoreContainer");
         entryTemplate = entryContainer.Find("highScoreEntryTemplate");
@@ -33,7 +32,7 @@ public class highScoreTable : MonoBehaviour
 
         
         DataController script = GameObject.Find("DataController").GetComponent<DataController>(); 
-        //Debug.Log(script.leaderboardList); 
+        Debug.Log(script.leaderboardList); 
 
         highscoreEntryList = new List<HighscoreEntry>() {
             new HighscoreEntry { score = 124, name = "AAA" }, 
