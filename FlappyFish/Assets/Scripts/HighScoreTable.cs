@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using System; 
 
-public class highScoreTable : MonoBehaviour
+public class HighScoreTable : MonoBehaviour
 {
     private Transform entryContainer;
     private Transform entryTemplate; 
