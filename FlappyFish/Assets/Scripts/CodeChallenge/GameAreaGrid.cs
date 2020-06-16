@@ -107,7 +107,7 @@ public class GameAreaGrid : MonoBehaviour
         rectTransform = GetComponent<RectTransform>();
         //Load Map --- Ratio 16:9
 
-        string[] lines = System.IO.File.ReadAllLines("game2.map");
+        string[] lines = Maps.GetRandomMap(); //System.IO.File.ReadAllLines("game2.map");
         if (lines == null)
             throw new System.InvalidOperationException("Could not load game map");
         map_height = lines.Length;
@@ -182,7 +182,7 @@ public class GameAreaGrid : MonoBehaviour
                 {
                     Transform _fish = Instantiate(fish);
                     SpriteRenderer srBlock = _fish.GetComponent<SpriteRenderer>();
-                    float _scale = 1f;
+                    float _scale = 0.6f;
                     _fish.localScale = new Vector3(ratio * _scale / srBlock.size.x, ratio * _scale / srBlock.size.y, 1);
                     _fish.parent = map[w, h].grid;
                     _fish.localPosition = new Vector3(0, 0, 0);
@@ -231,7 +231,12 @@ public class GameAreaGrid : MonoBehaviour
             case CodingArea.BlockCommand.Forward:
                 //Check if block in front is Air
                 Vector2Int blockInFront = fishPosition + fishDirection.getDirection();
-                if (map[blockInFront.x, blockInFront.y].type == Type.Block)
+                if(blockInFront.x < 0 || blockInFront.x >= map_width || blockInFront.y < 0 || blockInFront.y >= map_height)
+                {
+                    Debug.LogError("Invalid movement");
+                    validMove = false;
+                }
+                else if (map[blockInFront.x, blockInFront.y].type == Type.Block)
                 {
                     Debug.LogError("Invalid movement");
                     validMove = false;
