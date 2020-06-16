@@ -33,7 +33,7 @@ public class DataController : MonoBehaviour
         Loader.Load(Loader.Scene.LoginScene);
 
         // Get login 
-        PlayerPrefs.SetString("username", "ej3517");
+        // PlayerPrefs.SetString("username", "elliott");
         string gameUser = PlayerPrefs.GetString("username"); 
         
         // Fetch class in which participates 
@@ -63,10 +63,6 @@ public class DataController : MonoBehaviour
             z++; 
             Debug.Log(leaderboardJson);
         }
-
-
-     
-
 
         foreach (string _class in specs.docs[0].classTag) {
             // fetch Question
@@ -147,10 +143,6 @@ public class DataController : MonoBehaviour
 
 
         }
-        
-
-
-        Loader.Load(Loader.Scene.LoginScene);
 
         questionSetWanted = questionSet[0];
 
@@ -187,6 +179,7 @@ public class DataController : MonoBehaviour
         // The Fetching is done
         isFinishedFetching = true;
         var responseMessage = interfaceLink.UpdateHighScore(specs.docs[0]);
+        Loader.Load(Loader.Scene.MainMenu);
     }
 
     private int[] GetEasyNumber(List<Question> questionList)
@@ -371,6 +364,10 @@ public class DataController : MonoBehaviour
     {
         public List<StudyItem> docs { get; set; }
     }
-
+    
+    // public void ResetIsFinishedFetching()
+    // {
+    //     isFinishedFetching = false;
+    // }
 
 }

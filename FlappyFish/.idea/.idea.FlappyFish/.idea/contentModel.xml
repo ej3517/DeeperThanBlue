@@ -186,7 +186,6 @@
           <e p="HandleQuestionBlob.cs" t="Include" />
           <e p="HandleReef.cs" t="Include" />
           <e p="HandleSpeedRing.cs" t="Include" />
-          <e p="highScoreTable.cs" t="Include" />
           <e p="Leaderboard.cs" t="Include" />
           <e p="LeaderboardStructure.cs" t="Include" />
           <e p="Level.cs" t="Include" />
