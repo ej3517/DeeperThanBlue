@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
+using IBM.Watson.Examples;
 
 public class QuizGameController : MonoBehaviour
 {
@@ -27,10 +28,14 @@ public class QuizGameController : MonoBehaviour
     public bool currentlyHard;
     private List<GameObject> answerButtonGameObjects = new List<GameObject>();
     private bool doOnce;
-    
+
+    public GameObject T2S;
+    private TextToSpeechV1Custom Text2Speech;
+
     // Start is called before the first frame update
     void Start()
     {
+        Text2Speech = T2S.GetComponent<TextToSpeechV1Custom>();
         dataController = FindObjectOfType<DataController>();
         currentRoundData = dataController.GetCurrentRoundData();
         questionPoolEasy = currentRoundData.GetEasyQuestion().questions;
@@ -60,6 +65,8 @@ public class QuizGameController : MonoBehaviour
         else {
             questionData = questionPoolEasy[questionIndexEasy]; // select the easy questions
         }
+        Text2Speech.TextToSpeech(questionData.question);
+
         questionDisplayText.text = questionData.question;
 
         for (int i = 0; i < questionData.answers.Length; i++)
