@@ -23,4 +23,6 @@ public class MyGlobals
     public const float SPEED_OBSTACLE_REDUCTION = 5f;
     //
     public const int WINNING_THRESHOLD = 100;
+
+    public static bool TEXT_TO_SPEECH = true;
 }

@@ -65,7 +65,10 @@ public class QuizGameController : MonoBehaviour
         else {
             questionData = questionPoolEasy[questionIndexEasy]; // select the easy questions
         }
-        Text2Speech.TextToSpeech(questionData.question);
+        if(MyGlobals.TEXT_TO_SPEECH)
+        {
+            Text2Speech.TextToSpeech(questionData.question);
+        }
 
         questionDisplayText.text = questionData.question;
 

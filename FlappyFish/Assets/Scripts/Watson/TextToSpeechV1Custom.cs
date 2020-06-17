@@ -41,7 +41,7 @@ namespace IBM.Watson.Examples
             //service.SynthesizeUsingWebsockets(text);
            // say = true;
            // text = _text;
-            service.SynthesizeUsingWebsockets(_text);
+            service.SynthesizeUsingWebsockets(_text+"...");
         }
 
         #region PLEASE SET THESE VARIABLES IN THE INSPECTOR
@@ -53,7 +53,7 @@ namespace IBM.Watson.Examples
         [SerializeField]
         private string serviceUrl;
         private TextToSpeechService service;
-        private string allisionVoice = "en-US_AllisonV3Voice";
+        private string allisionVoice = "en-US_EmilyV3Voice";
         private string synthesizeMimeType = "audio/wav";
         private bool _textEntered = false;
         private AudioClip _recording = null;

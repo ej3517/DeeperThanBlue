@@ -40,7 +40,7 @@ namespace IBM.Watson.Examples
         [SerializeField]
         private string serviceUrl;
         private TextToSpeechService service;
-        private string allisionVoice = "en-US_AllisonV3Voice";
+        private string allisionVoice = "en-US_EmilyV3Voice";     //Kevin, Emily
         private string synthesizeText = "Hello, welcome to the Watson Unity SDK!";
         private string placeholderText = "Please type text here and press enter.";
         private string waitingText = "Watson Text to Speech service is synthesizing the audio!";
