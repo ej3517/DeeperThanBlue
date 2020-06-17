@@ -36,6 +36,8 @@ public class Bird : MonoBehaviour
 
     private void Update()
     {
+        
+        
         switch (stateControllerScript.currentState)
         {
             case StateController.State.WaitingToStart:

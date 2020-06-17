@@ -12,6 +12,21 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: HandleLeaderboardClick
       objectReference: {fileID: 0}
+    - target: {fileID: 9079957512955256389, guid: 4392a3b764e9940eba1854667f27902f,
+        type: 3}
+      propertyPath: m_Colors.m_SelectedColor.r
+      value: 0.5660378
+      objectReference: {fileID: 0}
+    - target: {fileID: 9079957512955256389, guid: 4392a3b764e9940eba1854667f27902f,
+        type: 3}
+      propertyPath: m_Colors.m_SelectedColor.g
+      value: 0.5660378
+      objectReference: {fileID: 0}
+    - target: {fileID: 9079957512955256389, guid: 4392a3b764e9940eba1854667f27902f,
+        type: 3}
+      propertyPath: m_Colors.m_SelectedColor.b
+      value: 0.5660378
+      objectReference: {fileID: 0}
     - target: {fileID: 9079957512955256410, guid: 4392a3b764e9940eba1854667f27902f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -120,7 +135,7 @@ PrefabInstance:
     - target: {fileID: 9079957512955256411, guid: 4392a3b764e9940eba1854667f27902f,
         type: 3}
       propertyPath: m_Name
-      value: ModuleButton
+      value: ModuleButton Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4392a3b764e9940eba1854667f27902f, type: 3}

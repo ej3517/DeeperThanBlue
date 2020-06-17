@@ -10,6 +10,7 @@ public class ModuleController : MonoBehaviour
     
     private DataController dataController;
     private RoundData[] allModules;
+    private LeaderboardStructure[] allLeaderboards; 
     // private RoundData currentRoundData;
     
     private List<GameObject> moduleButtonGameObjects = new List<GameObject>();
@@ -19,6 +20,7 @@ public class ModuleController : MonoBehaviour
     {
         dataController = FindObjectOfType<DataController>();
         allModules = dataController.GetCurrentAllRounds();
+        allLeaderboards = dataController.GetCurrentAllLeaderboards(); 
 
         Debug.Log("the number of modules : " + allModules.Length.ToString());
         Debug.Log("the first module is : " + allModules[0].module);
@@ -33,6 +35,7 @@ public class ModuleController : MonoBehaviour
             GameObject moduleButtonGameObject = moduleButtonObjectPool.GetObject();
             ModuleButton moduleButton = moduleButtonGameObject.GetComponent<ModuleButton>();
             moduleButton.SetUp(allModules[i]);
+            moduleButton.SetUpLeaderboard(allLeaderboards[i]); 
             moduleButtonGameObject.transform.SetParent(moduleButtonParent, false);
             moduleButtonGameObjects.Add(moduleButtonGameObject);
         }
@@ -55,9 +58,9 @@ public class ModuleController : MonoBehaviour
         Loader.Load(Loader.Scene.GameScene);
     }
 
-    public void LeaderboardButtonClicked()
+    public void LeaderboardButtonClicked(LeaderboardStructure leaderboardDataWanted)
     {
-        //dataController.NewQuestionSetWanted(roundDataWanted);
+        dataController.NewLeaderboardWanted(leaderboardDataWanted); 
         SoundManager.PlaySound(SoundManager.Sound.ButtonClick);
     }
 }

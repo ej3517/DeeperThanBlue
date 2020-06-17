@@ -3,6 +3,6 @@ using UnityEngine;
 
 class Globals
 {
-    public static float CodeChallengeSpeed = 0.5f;
+    public static float CodeChallengeSpeed = 1f;
 
 }

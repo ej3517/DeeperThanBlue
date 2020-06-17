@@ -186,6 +186,7 @@
           <e p="HandleQuestionBlob.cs" t="Include" />
           <e p="HandleReef.cs" t="Include" />
           <e p="HandleSpeedRing.cs" t="Include" />
+          <e p="HighScoreTable.cs" t="Include" />
           <e p="Leaderboard.cs" t="Include" />
           <e p="LeaderboardStructure.cs" t="Include" />
           <e p="Level.cs" t="Include" />
@@ -211,6 +212,7 @@
           <e p="SoundManager.cs" t="Include" />
           <e p="StateController.cs" t="Include" />
           <e p="StudyItem.cs" t="Include" />
+          <e p="toMainMenuButton.cs" t="Include" />
           <e p="WinningWindow.cs" t="Include" />
         </e>
         <e p="Watson" t="Include">
