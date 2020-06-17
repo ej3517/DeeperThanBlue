@@ -10,7 +10,6 @@ public class EndingMenu : MonoBehaviour
     private Vector3 oldPos = new Vector3(4000, 0, -100);
     public void Close()
     {
-        transform.position = oldPos;
         bin.GetComponent<Bin>().ConfirmTrue();
         codingArea.GetComponent<CodingArea>().Restart();
         transform.localPosition = oldPos;

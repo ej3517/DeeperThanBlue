@@ -9,13 +9,15 @@ public class ReturnMenu : MonoBehaviour
 
     public Transform Menu;
 
-    Vector3 oldPos;
+    Vector3 oldPos = new Vector3(2000,0,-100);
     bool clickable = true;
     public void Clicked()
     {
-        oldPos = Menu.position;
-        Menu.localPosition = new Vector3(0, 0, -100);
-        clickable = false;
+        if(clickable)
+        {
+            Menu.localPosition = new Vector3(0, 0, -100);
+            clickable = false;
+        }
     }
     public void Close()
     {
