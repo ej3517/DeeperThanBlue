@@ -70,8 +70,8 @@ namespace IBM.Watson.Examples
                 if (audioStream != null && audioStream.Length > 0)
                 {
                     Log.Debug("ExampleTextToSpeech", "Audio stream of {0} bytes received!", audioStream.Length.ToString()); // Use audioStream and play audio
-                    // _recording = WaveFile.ParseWAV("myClip", audioStream);
-                    // PlayClip(_recording);
+                    _recording = WaveFile.ParseWAV("myClip", audioStream);
+                    PlayClip(_recording);
                 }
                 textInput.text = placeholderText;
                 audioStream = null;

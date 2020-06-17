@@ -96,6 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -150,8 +151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83ff781e4ff1146729663a093b169fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iamApikey: 
-  serviceUrl: https://stream.watsonplatform.net/text-to-speech/api
+  iamApikey: BxuHkPUNVwfz-1wUZaXcoWnQIJwqyqh9xB1dTD8Fg2hU
+  serviceUrl: https://api.eu-gb.text-to-speech.watson.cloud.ibm.com/instances/c715ec8e-73ad-4a11-a603-0b1dee7b943d
   textInput: {fileID: 1552819768}
 --- !u!224 &275913467
 RectTransform:
@@ -315,6 +316,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -524,6 +526,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0.8, g: 0.8, b: 0.8, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -597,6 +600,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
