@@ -6,7 +6,7 @@ public static class Maps
 { 
     public static string[] GetRandomMap()
     {
-        return debug1;
+        return map6;
         int rnd = Random.Range(1, 5);
         switch(rnd)
         {
@@ -61,6 +61,14 @@ public static class Maps
         "sooxxxooxxox",
         "xxxxxxoxxxox",
         "xxxxxxooooox",
+    };
+
+    static string[] map6 =
+{
+        "sooxoxox",
+        "xxoooxoe",
+        "oooxooox",
+        "xxooxxox",
     };
 
     static string[] debug1 =
