@@ -26,6 +26,7 @@ public class WinningWindow : MonoBehaviour
         {
             case StateController.State.Won:
                 scoreText.text = "You have reached 100 in " + currentRoundData.module;
+                myHighScoreTable.Add_highscore(100);
                 Show();
                 break;
         }
