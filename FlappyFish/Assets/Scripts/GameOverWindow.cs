@@ -44,8 +44,8 @@ public class GameOverWindow : MonoBehaviour
 
                     // STATISTICS - TIMES WON/LOST
                     // get saved values
-                    string strWon = "0"; //PlayerPrefs.GetString("timesWon");
-                    string strLost = "0";// PlayerPrefs.GetString("timesLost");
+                    string strWon = PlayerPrefs.GetString("timesWon");
+                    string strLost = PlayerPrefs.GetString("timesLost");
                     Debug.LogWarning(strWon + " " + strLost);
                     int tmpWon = Int32.Parse(strWon);
                     int tmpLost = Int32.Parse(strLost);

@@ -15,13 +15,11 @@ public class myHighScoreTable : MonoBehaviour
 
     public void Awake()
     {
-        Debug.LogWarning("Awake called");
         entryTemplate.gameObject.SetActive(false);
 
         //Add_highscore(2);
 
         string jsonString = PlayerPrefs.GetString("highscoreTable");
-        Debug.LogWarning("Got the json string" + jsonString);
         Highscores highscores = JsonUtility.FromJson<Highscores>(jsonString);
 
         if (highscores == null)
@@ -118,8 +116,6 @@ public class myHighScoreTable : MonoBehaviour
     {
 
         // ** Load saved highscores
-        Highscores _highscore = new Highscores();
-        PlayerPrefs.SetString("highscoreTable", JsonUtility.ToJson(_highscore));
         string jsonString = PlayerPrefs.GetString("highscoreTable");
         Debug.LogWarning("This" + jsonString);
         Highscores highscores = JsonUtility.FromJson<Highscores>(jsonString);
@@ -173,6 +169,12 @@ public class myHighScoreTable : MonoBehaviour
         // **  Save updated highscores
         string json = JsonUtility.ToJson(highscores);
         PlayerPrefs.SetString("highscoreTable", json);
+        PlayerPrefs.Save();
+    }
+
+    public static void InstantiateHighscores()
+    {
+        PlayerPrefs.SetString("highscoreTable", JsonUtility.ToJson(new myHighScoreTable.Highscores()));
         PlayerPrefs.Save();
     }
 
