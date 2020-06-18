@@ -6,13 +6,14 @@ public class LoaderUpdate : MonoBehaviour
 {
     private DataController dataController;
 
-    void Start()
+    void Awake()
     {
         dataController = FindObjectOfType<DataController>();
     }
 
     private void Update()
     {
+        Debug.LogError(dataController.isFinishedFetching);
         if (dataController.isFinishedFetching)
         {
             Loader.LoadTargetScene();

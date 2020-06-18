@@ -34,7 +34,6 @@ public class DataController : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         isFinishedFetching = false;
         Loader.Load(Loader.Scene.LoginScene);
-
         // Get login 
         // PlayerPrefs.SetString("username", "elliott");
         string gameUser = PlayerPrefs.GetString("username");
@@ -72,6 +71,7 @@ public class DataController : MonoBehaviour
         catch
         {
             Debug.Log("Login failed");
+            Destroy(gameObject);
             SceneManager.LoadScene(Loader.Scene.LoginScene.ToString());
             return;
         }
