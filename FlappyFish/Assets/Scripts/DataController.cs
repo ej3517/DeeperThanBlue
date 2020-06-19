@@ -27,6 +27,7 @@ public class DataController : MonoBehaviour
     // Start is called before the first frame update
     async void Awake()
     {
+        //PlayerPrefs.DeleteAll();
         SetupPlayerPrefs();
 
         Debug.Log("Start");
@@ -37,7 +38,6 @@ public class DataController : MonoBehaviour
         // Get login 
         // PlayerPrefs.SetString("username", "elliott");
         string gameUser = PlayerPrefs.GetString("username");
-
         // Fetch class in which participates 
         // Blocked async function
         interfaceLink = new Interface();
@@ -395,14 +395,17 @@ public class DataController : MonoBehaviour
 
     private void SetupPlayerPrefs()
     {
-        if (PlayerPrefs.GetInt("firstTime") != 1)
+        if (PlayerPrefs.GetInt("firstTime", 0) != 1)
         {
-            Debug.Log("First time user...");
+            Debug.LogWarning("First time user...");
             PlayerPrefs.SetInt("firstTime", 1);
             PlayerPrefs.SetString("timesWon", "0");
             PlayerPrefs.SetString("timesLost", "0");
+            PlayerPrefs.SetString("timesRight", "0");
+            PlayerPrefs.SetString("timesWrong", "0");
             PlayerPrefs.Save();
             myHighScoreTable.InstantiateHighscores();
+
         }
     }
 

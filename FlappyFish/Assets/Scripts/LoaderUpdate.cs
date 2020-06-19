@@ -13,7 +13,6 @@ public class LoaderUpdate : MonoBehaviour
 
     private void Update()
     {
-        Debug.LogError(dataController.isFinishedFetching);
         if (dataController.isFinishedFetching)
         {
             Loader.LoadTargetScene();
