@@ -78,6 +78,7 @@ public class GameOverWindow : MonoBehaviour
     }
     public void Show()
     {
+        SoundManager.PlaySound(SoundManager.Sound.Lose);
         gameObject.transform.localScale = new Vector3(1,1,1);
     }
 

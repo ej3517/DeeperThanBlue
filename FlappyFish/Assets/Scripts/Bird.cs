@@ -78,7 +78,6 @@ public class Bird : MonoBehaviour
 
     private void Jump ()
     {
-        SoundManager.PlaySound(SoundManager.Sound.FishSwim);
         birdrigidbody2D.velocity = Vector2.up * JUMP_AMOUNT;
         //Debug.Log(birdrigidbody2D.velocity.ToString());
     }
@@ -91,6 +90,7 @@ public class Bird : MonoBehaviour
             stateControllerScript.currentState = StateController.State.WaitingAnswer;
             quizGameController.GetEasyQuestion();
             questionWindow.Show();
+            SoundManager.PlaySound(SoundManager.Sound.Question);
         }
         else if (col.gameObject.CompareTag("QuestionBlob"))
         {
@@ -98,6 +98,7 @@ public class Bird : MonoBehaviour
             quizGameController.GetHardQuestion();
             stateControllerScript.currentState = StateController.State.WaitingAnswer;
             questionWindow.Show();
+            SoundManager.PlaySound(SoundManager.Sound.Question);
         }
         else if (col.gameObject.CompareTag("Reef"))
         {
@@ -107,11 +108,11 @@ public class Bird : MonoBehaviour
         {
             col.gameObject.SetActive(false);
             levelScript.birdSpeed -= MyGlobals.SPEED_OBSTACLE_REDUCTION;
+            SoundManager.PlaySound(SoundManager.Sound.Trash);
         }
         else if (col.gameObject.CompareTag("Boat")){
             stateControllerScript.currentState = StateController.State.Dead;
             birdrigidbody2D.bodyType = RigidbodyType2D.Static;
-            SoundManager.PlaySound(SoundManager.Sound.Lose);
         }
 
     }

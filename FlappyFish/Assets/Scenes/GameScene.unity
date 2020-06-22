@@ -3081,16 +3081,16 @@ MonoBehaviour:
   pfBottle: {fileID: 7137794823702835172, guid: 9ed1eb3e3e8124e17840bc91047aa66e,
     type: 3}
   soundAudioClipArray:
-  - sound: 0
-    audioClip: {fileID: 8300000, guid: b0664f294a7284007a1510c7ee06ab8e, type: 3}
-  - sound: 2
-    audioClip: {fileID: 8300000, guid: 21ad0d0f4316b4e99ad6e90d56b0ac1e, type: 3}
-  - sound: 1
-    audioClip: {fileID: 8300000, guid: 17457426560b34a9588daa5f195988a9, type: 3}
-  - sound: 3
-    audioClip: {fileID: 8300000, guid: 468e6113d76db4080a5e1cc8de6f0465, type: 3}
   - sound: 4
-    audioClip: {fileID: 8300000, guid: f70411b063d30174f82a4010d2dbca36, type: 3}
+    audioClip: {fileID: 8300000, guid: d1f1ade1b62f54f37b3eae78e89e6b67, type: 3}
+  - sound: 0
+    audioClip: {fileID: 8300000, guid: 0c26d68e541c94306b3de6f083f66d05, type: 3}
+  - sound: 3
+    audioClip: {fileID: 8300000, guid: d36b9762e32b34331b7caa024e38bc15, type: 3}
+  - sound: 5
+    audioClip: {fileID: 8300000, guid: e435fd7ba8cd3420ba04743225414d49, type: 3}
+  - sound: 1
+    audioClip: {fileID: 8300000, guid: 29e8b7c7ec75c496f8e725543ebe5dbf, type: 3}
 --- !u!1 &1426858830
 GameObject:
   m_ObjectHideFlags: 0

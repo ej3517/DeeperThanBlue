@@ -65,6 +65,7 @@ public class QuestionWindow : MonoBehaviour
             {
                 canCount = false;
                 doOnce = true;
+                SoundManager.StopAudioClip(SoundManager.Sound.Question);
                 stateControllerScript.currentState = StateController.State.Playing;
                 Hide();
             }

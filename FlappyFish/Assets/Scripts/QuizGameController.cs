@@ -88,6 +88,7 @@ public class QuizGameController : MonoBehaviour
         if (!doOnce)
         {
             doOnce = true;
+            SoundManager.StopAudioClip(SoundManager.Sound.Question);
             if (currentlyHard)
             {
                 if (isCorrect)

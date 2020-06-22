@@ -37,6 +37,7 @@ public class WinningWindow : MonoBehaviour
     }
     public void Show()
     {
+        SoundManager.PlaySound(SoundManager.Sound.Win);
         gameObject.transform.localScale = new Vector3(1,1,1);
     }
 }

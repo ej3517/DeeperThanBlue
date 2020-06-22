@@ -182,7 +182,6 @@ public class Level : MonoBehaviour
             pipe.Move(birdSpeed);
             if (isRightToTheBird && pipe.GetXPosition() <= BIRD_X_POSITION) {
                 // Pipe passed Bird
-                SoundManager.PlaySound(SoundManager.Sound.Score);
                 pipesPassedCount++;
             }
             if (pipe.GetXPosition() < MyGlobals.DESTROY_X_POSITION + birdScript.transform.position.x) {
