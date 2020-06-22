@@ -28,7 +28,7 @@ public class Bird : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        instance = this;            // I don't think this will work. The instance needs to be declared in a constructor
         birdrigidbody2D = GetComponent<Rigidbody2D>();
         birdrigidbody2D.bodyType = RigidbodyType2D.Static;
         levelScript = GameObject.Find("Level").GetComponent<Level>();
