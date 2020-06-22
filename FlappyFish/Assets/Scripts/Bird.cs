@@ -8,6 +8,7 @@ public class Bird : MonoBehaviour
     public QuestionWindow questionWindow;
     public QuizGameController quizGameController;
     public Animator animator;
+    public Transform instructionBox;
     // private
     private const float JUMP_AMOUNT = 28f;
 
@@ -17,17 +18,17 @@ public class Bird : MonoBehaviour
     {
         return instance;
     }
-    
+
     private Rigidbody2D birdrigidbody2D;
 
     private Level levelScript;
     private StateController stateControllerScript;
     private bool birdMoving = true;
     private bool jumping = true;
-    
+
     private void Awake()
     {
-        instance = this;
+        instance = this;            // I don't think this will work. The instance needs to be declared in a constructor
         birdrigidbody2D = GetComponent<Rigidbody2D>();
         birdrigidbody2D.bodyType = RigidbodyType2D.Static;
         levelScript = GameObject.Find("Level").GetComponent<Level>();
@@ -36,11 +37,12 @@ public class Bird : MonoBehaviour
 
     private void Update()
     {
-        
-        
+
+
         switch (stateControllerScript.currentState)
         {
             case StateController.State.WaitingToStart:
+                instructionBox.localScale = new Vector3(1, 1, 1);
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
                     stateControllerScript.currentState = StateController.State.Playing;
@@ -49,6 +51,7 @@ public class Bird : MonoBehaviour
                 }
                 break;
             case StateController.State.Playing:
+                instructionBox.localScale = new Vector3(0, 0, 0);
                 birdrigidbody2D.bodyType = RigidbodyType2D.Dynamic;
                 animator.SetBool("birdMoving", birdMoving);
                 if (Input.GetKey(KeyCode.Space))
@@ -76,13 +79,13 @@ public class Bird : MonoBehaviour
         }
     }
 
-    private void Jump ()
+    private void Jump()
     {
         SoundManager.PlaySound(SoundManager.Sound.FishSwim);
         birdrigidbody2D.velocity = Vector2.up * JUMP_AMOUNT;
         //Debug.Log(birdrigidbody2D.velocity.ToString());
     }
-    
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.CompareTag("SpeedRing"))
@@ -108,7 +111,8 @@ public class Bird : MonoBehaviour
             col.gameObject.SetActive(false);
             levelScript.birdSpeed -= MyGlobals.SPEED_OBSTACLE_REDUCTION;
         }
-        else if (col.gameObject.CompareTag("Boat")){
+        else if (col.gameObject.CompareTag("Boat"))
+        {
             stateControllerScript.currentState = StateController.State.Dead;
             birdrigidbody2D.bodyType = RigidbodyType2D.Static;
             SoundManager.PlaySound(SoundManager.Sound.Lose);

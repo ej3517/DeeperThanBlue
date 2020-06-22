@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/IntroScene.unity
+    guid: 716541dae3884ad45a2b610eabfe285a
+  - enabled: 1
     path: Assets/Scenes/LoginScene.unity
     guid: 627d78cb9a58b46eeb04048e6e0fcf72
   - enabled: 1
@@ -32,4 +35,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: Assets/Watson/Examples/ExampleTextToSpeechV1.unity
+    guid: 56551a67705f8446a856c0702292b46a
   m_configObjects: {}
