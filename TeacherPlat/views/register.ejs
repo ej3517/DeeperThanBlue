@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappy Fish</title>
+    <meta name="author" content="David Grzyb">
+    <meta name="description" content="">
+
+    <!-- Tailwind -->
+    <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Karla:400,700&display=swap');
+
+        .font-family-karla {
+            font-family: karla;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"> </script>
+
+    <!-- Script for on change of selector school-->
+    <script type="text/javascript">
+        function CheckSchool(val){
+        
+        $("#moduleContainer").empty();
+        var appendString = "";
+        appendString = '<label class="text-lg" for="classTag">Class 1</label><div id="classTagSelect1"><select  name="classTag" onchange="CheckClassTag(this.value,1);" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" > <option disabled selected value> -- select an option -- </option>';
+            <%
+              var keys = [];
+              for(var i = 0; i < formData.length; i++){
+                for(var k in formData[i]) keys.push(k);
+                }
+              console.log(formData);
+              console.log(keys);
+              var list = {};
+              for(var i = 0; i < keys.length; i++){
+                list[keys[i]] = "";
+              }
+              for(j = 0; j < keys.length; j++){
+                for(i = 0; i < formData[j][keys[j]].length ; i++){
+                        list[keys[j]] += '<option>' +  formData[j][keys[j]][i] + '</option>';
+                    }
+                }
+                console.log(list);
+                console.log(list.ICL);
+                parsedList = JSON.stringify(list);
+                %>
+                schoolList = <%- parsedList%>;
+                console.log(schoolList["ICL"]);
+                console.log(<%- parsedList%>);
+                var currentSchool = $("#schoolId option:selected").text();
+                console.log(currentSchool);
+                appendString += schoolList[currentSchool];
+                appendString += "<option> Other </option>";
+                appendString += '</select></div>';
+                $("#moduleContainer").append(appendString);
+            
+            if(val=='Other'){
+                $('#schoolInput').append('<input type="text" name="school" id="school" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" >')
+                $('#schoolId').removeAttr("name");
+            }
+            else {
+                $('#schoolInput').empty();
+                $('#schoolId').attr("name", "school");
+                }
+        }
+    </script> 
+    
+    <script type="text/javascript">
+        
+    </script>
+
+    <!-- Script for class choice-->
+    <script type="text/javascript">
+        function CheckClassTag(val, index){
+        var currentIndex = $("#moduleContainer div").length;
+        console.log(currentIndex);
+        selector = "#classTagSelect" + index;
+            if(val=='Other'){
+                $(selector).children().removeAttr("name");
+                $(selector).append('<input type="text" name="classTag" class=" classTagInput shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" >')
+            }
+            else  {
+                $(selector).children().remove(".classTagInput");
+                $(selector).children().attr("name", "classTag");
+                console.log(selector);
+            }
+            if(index == currentIndex){
+                appendString = '<label class="text-lg" for="classTag">Class ' + (index+1) + '</label><div id="classTagSelect' + (index+1) +'"><select  name="classTag" onchange="CheckClassTag(this.value,'+ (index+1) + ');" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" > <option disabled selected value> -- select an option -- </option>';
+              <%
+              var keys = [];
+              for(var i = 0; i < formData.length; i++){
+                for(var k in formData[i]) keys.push(k);
+                }
+              console.log(formData);
+              console.log(keys);
+              var list = {};
+              for(var i = 0; i < keys.length; i++){
+                list[keys[i]] = "";
+              }
+              for(j = 0; j < keys.length; j++){
+                for(i = 0; i < formData[j][keys[j]].length ; i++){
+                        list[keys[j]] += '<option>' +  formData[j][keys[j]][i] + '</option>';
+                    }
+                }
+                console.log(list);
+                console.log(list.ICL);
+                parsedList = JSON.stringify(list);
+                %>
+                schoolList = <%- parsedList%>;
+                console.log(schoolList["ICL"]);
+                console.log(<%- parsedList%>);
+                var currentSchool = $("#schoolId option:selected").text();
+                console.log(currentSchool);
+                appendString += schoolList[currentSchool];
+                appendString += "<option> Other </option>";
+                appendString += '</select></div>';
+                $("#moduleContainer").append(appendString);
+            }
+        }
+    </script>
+    
+    
+    <script type="text/javascript">
+        function CheckClassTag2(val){
+        var inputElement=document.getElementById('classTag2');
+        var selectElement=document.getElementById('classTagSelect2');
+        if(val=='Other'){
+        inputElement.style.display='block';
+        inputElement.name = "classTag";
+        selectElement.name = "";
+        }
+        else  {
+        inputElement.style.display='none';
+        inputElement.name = "";
+        selectElement.name = "classTag";
+        }
+        }
+    </script>
+    
+    <script type="text/javascript">
+        function CheckClassTag3(val){
+        var inputElement=document.getElementById('classTag3');
+        var selectElement=document.getElementById('classTagSelect3');
+        if(val=='Other'){
+        inputElement.style.display='block';
+        inputElement.name = "classTag";
+        selectElement.name = "";
+        }
+        else  {
+        inputElement.style.display='none';
+        inputElement.name = "";
+        selectElement.name = "classTag";
+        }
+        }
+    </script>
+    
+    <script type="text/javascript">
+        function showClass2(){
+        var element=document.getElementById('show2');
+        element.style.display='block';
+        }
+      </script>
+      <script type="text/javascript">
+        function showClass3(){
+        var element=document.getElementById('show3');
+        element.style.display='block';
+        }
+      </script>
+</head>
+<body class="bg-white font-family-karla h-screen">
+
+    <div class="w-full flex flex-wrap">
+
+        <!-- Register Section -->
+        <div class="w-full md:w-1/2 flex flex-col">
+
+            <div class="flex justify-center md:justify-start pt-12 md:pl-12 md:-mb-12">
+                <!--<a href="#" class="bg-black text-white font-bold text-xl p-4">Logo</a>-->
+            </div>
+
+            <div class="flex flex-col justify-center md:justify-start my-auto pt-8 md:pt-0 px-8 md:px-24 lg:px-32">
+                <p class="text-center text-3xl">Join Us.</p>
+                <form class="flex flex-col pt-3 md:pt-8" action="/registerUser" method="POST">
+                    <div class="flex flex-col pt-4">
+                        <label for="username" class="text-lg">Name</label>
+                        <input type="text" id="username" name="username" placeholder="John Smith" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" required>
+                    </div>
+
+                    <div class="flex flex-col pt-4">
+                        <label for="email" class="text-lg">Email</label>
+                        <input type="email" name="email" id="email" placeholder="your@email.com" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" required>
+                    </div>
+    
+                    <div class="flex flex-col pt-4">
+                        <label for="password" class="text-lg">Password</label>
+                        <input type="password" name="password" id="password" placeholder="Password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" required>
+                    </div>
+
+                    <div class="flex flex-col pt-4">
+                        <label for="password" class="text-lg">Confirm Password</label>
+                        <input type="password" name="repeatPassword" id="password" placeholder="Password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-1 leading-tight focus:outline-none focus:shadow-outline" required>
+                    </div>
+                    
+                    <div class="flex flex-col pt-4">
+                        <label class="text-lg" for="school">
+                            Acount Type
+                        </label>
+                        
+                        <select name="accountType" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" required >
+                        <option disabled selected value> -- select an account type -- </option>
+                        <option>Teacher</option>
+                        <option>Student</option>
+                        </select>
+
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col pt-4">
+                        <label class="text-lg" for="school">
+                            School
+                        </label>
+                        
+                        <select id="schoolId" name="school"  onchange='CheckSchool(this.value);' class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" required >
+                        <option disabled selected value> -- select an School -- </option>
+                        <%
+                                        var list = '';
+                                        for (i = 0; i < uniqueSchools.length; i++) {
+                                            list += '<option>' + uniqueSchools[i] + '</option>';
+                                        }
+                                        list += '<option>Other</option></select>';
+                                        %>
+                        <%- list %>
+                        <div id="schoolInput">
+                        </div>
+                        
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col pt-4">
+                        <div id="moduleContainer">
+                        
+                        </div>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                        </div>
+                    </div>
+    
+                    <input type="submit" value="Register" class="bg-black text-white font-bold text-lg hover:bg-gray-700 p-2 mt-8">
+                </form>
+                <div class="text-center pt-12 pb-12">
+                    <p>Already have an account? <a href="/" class="underline font-semibold">Log in here.</a></p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Image Section -->
+        <div class="w-1/2 shadow-2xl">
+            <img style="height=100%!important;object-fit: cover;"class="object-cover w-full h-screen hidden md:block" src="https://source.unsplash.com/IXUM4cJynP0">
+        </div>
+    </div>
+
+</body>
+</html>
