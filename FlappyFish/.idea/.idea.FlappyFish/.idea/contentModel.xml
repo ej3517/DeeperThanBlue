@@ -138,6 +138,7 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="AnimatedLoad.cs" t="Include" />
           <e p="AnswerButton.cs" t="Include" />
           <e p="AnswersList.cs" t="Include" />
           <e p="BackgroundScroll.cs" t="Include" />
@@ -164,6 +165,8 @@
             </e>
             <e p="Drag.cs" t="Include" />
             <e p="Drop.cs" t="Include" />
+            <e p="EndingMenu.cs" t="Include" />
+            <e p="FishAnimationCG.cs" t="Include" />
             <e p="GameAreaGrid.cs" t="Include" />
             <e p="Globals.cs" t="Include" />
             <e p="GridBackground.cs" t="Include" />
@@ -172,9 +175,12 @@
               <e p="BlockSub.cs" t="Include" />
               <e p="BlockVariable.cs" t="Include" />
             </e>
+            <e p="Maps.cs" t="Include" />
             <e p="Menu.cs" t="Include" />
             <e p="MoveBlock.cs" t="Include" />
+            <e p="ReturnMenu.cs" t="Include" />
             <e p="StartButton.cs" t="Include" />
+            <e p="UpdateSpeed.cs" t="Include" />
           </e>
           <e p="DataController.cs" t="Include" />
           <e p="DifficultyData.cs" t="Include" />
@@ -187,6 +193,7 @@
           <e p="HandleReef.cs" t="Include" />
           <e p="HandleSpeedRing.cs" t="Include" />
           <e p="HighScoreTable.cs" t="Include" />
+          <e p="IntroScene.cs" t="Include" />
           <e p="Leaderboard.cs" t="Include" />
           <e p="LeaderboardStructure.cs" t="Include" />
           <e p="Level.cs" t="Include" />

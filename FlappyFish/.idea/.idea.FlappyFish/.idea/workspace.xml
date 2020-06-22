@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="60884b82-83d6-468b-a134-8eabc3e9fcf8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/LoginScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/LoginScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ButtonHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ButtonHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/SocketIO/WebsocketSharp/websocket-sharp.csproj.meta" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,8 +57,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scripts/SoundManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Score.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ReefManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Reef.cs" />
@@ -88,30 +82,32 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/DifficultyData.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HandleSpeedRing.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HandleQuestionBlob.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/QuestionWindow.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Boat.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MyGlobals.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/WinningWindow.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Level.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/StateController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/QuestionData.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Bird.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ModuleButtonObjectPool.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ModuleController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Level.cs" />
         <option value="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" />
         <option value="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" />
         <option value="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ModuleButton.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/AnswerButton.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/QuizGameController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/RoundData.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/loginButtonHandler.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/LoaderUpdate.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Loader.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/DataController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameOverWindow.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Level.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Level.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ButtonHandler.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameHandler.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Bird.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/QuestionWindow.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/SoundManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameOverWindow.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/QuizGameController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/WinningWindow.cs" />
       </list>
     </option>
   </component>
@@ -185,6 +181,7 @@
       <workItem from="1591005561944" duration="70000" />
       <workItem from="1592291639589" duration="305000" />
       <workItem from="1592320133823" duration="536000" />
+      <workItem from="1592667800569" duration="5352000" />
     </task>
     <servers />
   </component>

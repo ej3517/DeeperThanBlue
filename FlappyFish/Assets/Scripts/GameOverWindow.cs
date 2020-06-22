@@ -46,7 +46,6 @@ public class GameOverWindow : MonoBehaviour
                     // get saved values
                     string strWon = PlayerPrefs.GetString("timesWon");
                     string strLost = PlayerPrefs.GetString("timesLost");
-                    Debug.LogWarning(strWon + " " + strLost);
                     int tmpWon = Int32.Parse(strWon);
                     int tmpLost = Int32.Parse(strLost);
 
@@ -78,6 +77,7 @@ public class GameOverWindow : MonoBehaviour
     }
     public void Show()
     {
+        SoundManager.PlaySound(SoundManager.Sound.Lose);
         gameObject.transform.localScale = new Vector3(1,1,1);
     }
 
