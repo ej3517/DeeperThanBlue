@@ -138,6 +138,7 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="AnimatedLoad.cs" t="Include" />
           <e p="AnswerButton.cs" t="Include" />
           <e p="AnswersList.cs" t="Include" />
           <e p="BackgroundScroll.cs" t="Include" />
@@ -192,6 +193,7 @@
           <e p="HandleReef.cs" t="Include" />
           <e p="HandleSpeedRing.cs" t="Include" />
           <e p="HighScoreTable.cs" t="Include" />
+          <e p="IntroScene.cs" t="Include" />
           <e p="Leaderboard.cs" t="Include" />
           <e p="LeaderboardStructure.cs" t="Include" />
           <e p="Level.cs" t="Include" />
