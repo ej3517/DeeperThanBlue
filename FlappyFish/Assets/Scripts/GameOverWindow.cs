@@ -40,13 +40,13 @@ public class GameOverWindow : MonoBehaviour
                 if(wasAlive){
 
                     // PERSONAL HIGHSCORES
-                    myHighScoreTable.Add_highscore(newscore); 
+                    myHighScoreTable.Add_highscore(newscore);
 
                     // STATISTICS - TIMES WON/LOST
                     // get saved values
                     string strWon = PlayerPrefs.GetString("timesWon");
                     string strLost = PlayerPrefs.GetString("timesLost");
-
+                    Debug.LogWarning(strWon + " " + strLost);
                     int tmpWon = Int32.Parse(strWon);
                     int tmpLost = Int32.Parse(strLost);
 

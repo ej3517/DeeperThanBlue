@@ -6,7 +6,7 @@ public class LoaderUpdate : MonoBehaviour
 {
     private DataController dataController;
 
-    void Start()
+    void Awake()
     {
         dataController = FindObjectOfType<DataController>();
     }
@@ -18,4 +18,6 @@ public class LoaderUpdate : MonoBehaviour
             Loader.LoadTargetScene();
         }
     }
+
+    //TODO: Add progress bar (maybe slight animation to the text so that it doens't look like it has frozen)
 }

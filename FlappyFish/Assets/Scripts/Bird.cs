@@ -36,6 +36,8 @@ public class Bird : MonoBehaviour
 
     private void Update()
     {
+        
+        
         switch (stateControllerScript.currentState)
         {
             case StateController.State.WaitingToStart:
@@ -78,7 +80,7 @@ public class Bird : MonoBehaviour
     {
         SoundManager.PlaySound(SoundManager.Sound.FishSwim);
         birdrigidbody2D.velocity = Vector2.up * JUMP_AMOUNT;
-        Debug.Log(birdrigidbody2D.velocity.ToString());
+        //Debug.Log(birdrigidbody2D.velocity.ToString());
     }
     
     private void OnTriggerEnter2D(Collider2D col)

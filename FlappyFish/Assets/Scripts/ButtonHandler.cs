@@ -33,4 +33,16 @@ public class ButtonHandler : MonoBehaviour
         SoundManager.PlaySound(SoundManager.Sound.ButtonClick);
         Loader.Load(Loader.Scene.LeaderboardScene);
     }
+
+    public void CloseGameButton()
+    {
+        SoundManager.PlaySound(SoundManager.Sound.ButtonClick);
+        Debug.Log("Application Closed - This only works in Release mode");
+        Application.Quit();
+    }
+
+    public void ToTheWebsite()
+    {
+        Application.OpenURL("http://flappyfish.eu-gb.cf.appdomain.cloud");
+    }
 }
