@@ -1,0 +1,5 @@
+---
+applications:
+ - name: FlappyFish
+   random-route: true
+   memory: 256M

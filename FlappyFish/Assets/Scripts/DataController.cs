@@ -177,10 +177,10 @@ public class DataController : MonoBehaviour
                 // Assign each module its socres and users corresponding 
                 for (int k = 0; k < leaderboardList[i].docs[j].classTag.Count; k++)
                 {
-
                     if (leaderboardList[i].docs[j].classTag[k] == leaderboardList[i].module)
                     {
                         //Debug.Log(leaderboardList[i].docs[j].score[k]);
+                        Debug.Log(k);
                         leaderboardArray[i].score.Add(leaderboardList[i].docs[j].score[k]);
                         leaderboardArray[i].user.Add(leaderboardList[i].docs[j]._id);
                     }
