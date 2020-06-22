@@ -362,6 +362,15 @@ app.post("/registerUser", urlencodedParser, function (req, res, done) {
   var accountType = req.body.accountType;
   var classList = req.body.classTag;
 
+  
+  if (typeof(classList) == "string")
+  {
+    classList = [classList]; 
+  } else if (classList == undefined)
+  {
+    classList = []; 
+  }
+
 
   // Register the number of modules in classTag list 
   console.log(req.body.classTag);
@@ -381,15 +390,15 @@ app.post("/registerUser", urlencodedParser, function (req, res, done) {
   var scoreList = []; 
   var otherIndex = classList.indexOf("Other");
   if(otherIndex > -1) classList.splice(otherIndex, 1);
-if(typeof(classList) == "object"){
-    for (var i = 0; i < classList.length; i++) {
-        scoreList.push(0); 
-    }
-}
-else{
-    scoreList.push(0);
-}
-console.log("ScoreList: " + scoreList);
+  if(typeof(classList) == "object"){
+      for (var i = 0; i < classList.length; i++) {
+          scoreList.push(0); 
+      }
+  }
+  else{
+      scoreList.push(0);
+  }
+  console.log("ScoreList: " + scoreList);
   var type = "user"; 
 
   // pass checks 

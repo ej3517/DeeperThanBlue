@@ -10,7 +10,7 @@ public class AnimatedLoad : MonoBehaviour
     Text t;
     void Awake()
     {
-        Debug.LogError("Awake");
+      
         t = transform.GetComponent<Text>();
         StartCoroutine(CallScene(0));
     }

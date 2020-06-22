@@ -41,10 +41,11 @@ public class DataController : MonoBehaviour
         // Fetch class in which participates 
         // Blocked async function
         interfaceLink = new Interface();
-        var classesJson = await interfaceLink.GetSignUpClasses(gameUser);
+        var classesJson = await interfaceLink.GetSignUpClasses(gameUser); 
+        Debug.Log(classesJson);
         UserSpecs specs = JsonConvert.DeserializeObject<UserSpecs>(classesJson);
 
-        Debug.Log(classesJson);
+   
 
 
         // Fetch leaderboard from each corresponding classTag 
@@ -174,13 +175,13 @@ public class DataController : MonoBehaviour
             for (int j = 0; j < leaderboardList[i].docs.Count; j++)
             {
                 // Iterate through users found 
-                // Assign each module its socres and users corresponding 
+                // Assign each module its scores and users corresponding 
                 for (int k = 0; k < leaderboardList[i].docs[j].classTag.Count; k++)
                 {
                     if (leaderboardList[i].docs[j].classTag[k] == leaderboardList[i].module)
                     {
-                        //Debug.Log(leaderboardList[i].docs[j].score[k]);
-                        Debug.Log(k);
+
+
                         leaderboardArray[i].score.Add(leaderboardList[i].docs[j].score[k]);
                         leaderboardArray[i].user.Add(leaderboardList[i].docs[j]._id);
                     }
