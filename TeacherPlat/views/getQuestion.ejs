@@ -250,7 +250,7 @@ font-family: Carla;}
 
         document.body.questionDeleteId = elem.id; 
 
-        var xhr = new XMLHttpRequ   est();
+        var xhr = new XMLHttpRequest();
         xhr.open("POST", '/deleteEntry', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify({
