@@ -8,9 +8,9 @@ While the game is not fully released for school usage, classes signed up might n
 
 If you wish to play the game right away, we encourage you sign up as a student with ICL at modules such as Mathematics, French and Science which have already a great number of questions! 
 
-1. You can make your account at our [webApp](http://flappyfish.eu-gb.cf.appdomain.cloud/)
+1. You can make your account at our [WebApp](http://flappyfish.eu-gb.cf.appdomain.cloud/)
 
-2. After creating your account, you can download the game at [here](https://github.com/ej3517/DeeperThanBlue/releases/)
+2. After creating your account, you can download the game [here](https://github.com/ej3517/DeeperThanBlue/releases/)
 
 3. Login and wait for your data to load into your device! 
 
