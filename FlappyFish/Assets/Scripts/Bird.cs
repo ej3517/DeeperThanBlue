@@ -82,7 +82,6 @@ public class Bird : MonoBehaviour
     private void Jump()
     {
         birdrigidbody2D.velocity = Vector2.up * JUMP_AMOUNT;
-        //Debug.Log(birdrigidbody2D.velocity.ToString());
     }
 
     private void OnTriggerEnter2D(Collider2D col)
