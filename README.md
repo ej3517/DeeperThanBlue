@@ -1,6 +1,8 @@
 # DeeperThanBlue
 Year 3 MEng Electrical Engineering Group Project 2019-2020
 
+A **demo video** show casing this project can be found in [Youtube](https://www.youtube.com/watch?v=Wbic4DHvuKo)
+
 ### [Releases](https://github.com/ej3517/DeeperThanBlue/releases/)
 
 ### How to play 
