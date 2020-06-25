@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="60884b82-83d6-468b-a134-8eabc3e9fcf8" name="Default Changelist" comment="" />
+    <list default="true" id="60884b82-83d6-468b-a134-8eabc3e9fcf8" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -182,7 +184,7 @@
       <workItem from="1592667800569" duration="5352000" />
       <workItem from="1592846536839" duration="291000" />
       <workItem from="1592941343998" duration="1604000" />
-      <workItem from="1592983894738" duration="2981000" />
+      <workItem from="1592983894738" duration="5282000" />
     </task>
     <servers />
   </component>
