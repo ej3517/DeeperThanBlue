@@ -124,7 +124,6 @@ public class CodingArea : MonoBehaviour
     {
         if (variables.ContainsKey(var))
         {
-            // TODO: Check if value is larger than 99?
             if (val > 99)
             {
                 Debug.Log($"Limiting {val} to 99");

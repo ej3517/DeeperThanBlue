@@ -20,11 +20,11 @@ public class ClampCodingArea : MonoBehaviour
             transform.position = new Vector3(transform.position.x, -0, transform.position.z);
             scroll.inertia = true;
         }
-        else if (transform.position.y > 1200)
+        else if (transform.position.y > 3120)
         {
             scroll.inertia = false;
             scroll.StopMovement();
-            transform.position = new Vector3(transform.position.x, 1200, transform.position.z);
+            transform.position = new Vector3(transform.position.x, 3120, transform.position.z);
             scroll.inertia = true;
         }
     }
