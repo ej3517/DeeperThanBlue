@@ -27,7 +27,7 @@ public class DataController : MonoBehaviour
     // Start is called before the first frame update
     async void Awake()
     {
-        //PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();          // RUN THIS ONCE TO CLEAR PLAYERPREFS
         SetupPlayerPrefs();
 
         Debug.Log("Start");
@@ -404,6 +404,7 @@ public class DataController : MonoBehaviour
             PlayerPrefs.SetString("timesLost", "0");
             PlayerPrefs.SetString("timesRight", "0");
             PlayerPrefs.SetString("timesWrong", "0");
+            PlayerPrefs.SetInt("codeChallengeShowInstruciton", 1);
             PlayerPrefs.Save();
             myHighScoreTable.InstantiateHighscores();
 

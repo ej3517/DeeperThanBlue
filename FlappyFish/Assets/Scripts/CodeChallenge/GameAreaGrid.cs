@@ -37,6 +37,12 @@ public class GameAreaGrid : MonoBehaviour
 
     public Transform[] pfReefArray;
 
+    public AudioClip audioWin;
+    public AudioClip audioLose;
+
+    AudioSource audioSource;
+
+
     Vector2Int fishPosition;
     Vector2Int startPosition;
 
@@ -106,6 +112,7 @@ public class GameAreaGrid : MonoBehaviour
     float ratio;
     void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         rectTransform = GetComponent<RectTransform>();
         //Load Map --- Ratio 16:9
 
@@ -237,11 +244,13 @@ public class GameAreaGrid : MonoBehaviour
                 if(blockInFront.x < 0 || blockInFront.x >= map_width || blockInFront.y < 0 || blockInFront.y >= map_height)
                 {
                     Debug.LogError("Invalid movement");
+                    PlayInvalidMove();
                     validMove = false;
                 }
                 else if (map[blockInFront.x, blockInFront.y].type == Type.Block)
                 {
                     Debug.LogError("Invalid movement");
+                    PlayInvalidMove();
                     validMove = false;
                 }
                 else if (map[blockInFront.x, blockInFront.y].type == Type.End)
@@ -266,6 +275,7 @@ public class GameAreaGrid : MonoBehaviour
                 {
                     Debug.Log("Reached target");
                     goalWindow.localPosition = new Vector3(0, 0, -100);
+                    PlayEnd();
                     validMove = false;
                 }
                 
@@ -303,4 +313,37 @@ public class GameAreaGrid : MonoBehaviour
 
 
     }
+
+    private void PlayEnd()
+    {
+        audioSource.PlayOneShot(audioWin, 0.7F);
+        StartCoroutine(FlashColour(new Color(0, 1, 0), 1));
+    }
+    private void PlayInvalidMove()
+    {
+        audioSource.PlayOneShot(audioLose, 0.7F);
+        StartCoroutine(FlashColour(new Color(1, 0, 0), 1));
+    }
+
+    private IEnumerator FlashColour(Color c, float duration)
+    {
+        for (int h = 0; h < map_height; h++)
+        {
+            for (int w = 0; w < map_width; w++)
+            {
+                map[w, h].grid.GetComponent<GridBackground>().SetPause(true);
+                map[w, h].grid.GetComponent<SpriteRenderer>().color = c;
+            }
+        }
+        yield return new WaitForSeconds(duration);
+        for (int h = 0; h < map_height; h++)
+        {
+            for (int w = 0; w < map_width; w++)
+            {
+                map[w, h].grid.GetComponent<GridBackground>().SetPause(false);
+                map[w, h].grid.GetComponent<SpriteRenderer>().color = new Color(0.142f, 0.5182321f, 1); ;
+            }
+        }
+    }
+
 }

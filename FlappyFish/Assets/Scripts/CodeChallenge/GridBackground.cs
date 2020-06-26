@@ -17,9 +17,18 @@ public class GridBackground : MonoBehaviour
     float maxRange = 0.85f;
     float minRange = 0.32f;
     bool up = true;
+    bool pause = false;
+    public void SetPause(bool state)
+    {
+        pause = state;
+    }
     // Update is called once per frame
     void Update()
     {
+        if(pause)
+        {
+            return;
+        }
         Color.RGBToHSV(img.color, out float H, out float S, out float V);
         if (S > maxRange)
         {
