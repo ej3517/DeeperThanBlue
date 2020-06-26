@@ -27,7 +27,7 @@ public class GameOverWindow : MonoBehaviour
         {
             case StateController.State.Dead:
                 int newscore = quizGameControllerScript.playerScore;
-                scoreText.text = newscore.ToString();
+                scoreText.text = newscore.ToString()+"/100";
                 /*if (Score.TrySetNewHighScore(Level.GetInstance().GetPipesPassedCount()))
                 {
                     // New highscore
