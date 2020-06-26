@@ -172,7 +172,7 @@ public class QuizGameController : MonoBehaviour
             stateControllerScript.currentState = StateController.State.Won;
         }
         
-        scoreDisplayText.text = playerScore.ToString();
+        scoreDisplayText.text = playerScore.ToString()+"/100";
         
         if (stateControllerScript.currentState == StateController.State.WaitingAnswer)
         {

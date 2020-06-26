@@ -1,32 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="60884b82-83d6-468b-a134-8eabc3e9fcf8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Textures/HARD_EASY.psd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Textures/HARD_EASY.psd.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Textures/pearl.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Textures/pearl.png.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pearl.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.FlappyFish/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/boat_idle.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/boat_idle.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/skull_idle.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/skull_idle.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/speedring_idle.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/speedring_idle.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AnswerButton.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AnswerButton.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/pfQuestionBlob.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/pfQuestionBlob.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/pfSpeedRing.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/pfSpeedRing.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MyGlobals.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MyGlobals.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/QuizGameController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/QuizGameController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Boat.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Boat.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Garbage/cup.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Garbage/cup.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Garbage/environment.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Garbage/environment.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Garbage/food.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Garbage/food.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Garbage/healthy.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Garbage/healthy.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/fishing_net.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/fishing_net.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/skull.png" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/skull.png" afterDir="false" />
-    </list>
+    <list default="true" id="60884b82-83d6-468b-a134-8eabc3e9fcf8" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -208,7 +183,7 @@
       <workItem from="1592846536839" duration="291000" />
       <workItem from="1592941343998" duration="1604000" />
       <workItem from="1592983894738" duration="5282000" />
-      <workItem from="1593120998933" duration="3441000" />
+      <workItem from="1593120998933" duration="3650000" />
     </task>
     <servers />
   </component>
