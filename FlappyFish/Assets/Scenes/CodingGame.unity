@@ -3516,7 +3516,7 @@ MonoBehaviour:
   gridTransform: {fileID: 2941538109326383327, guid: 0eda474777019e64b8207e7c71a6214f,
     type: 3}
   fish: {fileID: 1865075252531730486, guid: a7f1d12a591a46048bf0f2fd68068d5d, type: 3}
-  goal: {fileID: 1991628693252781635, guid: e9508b36317c24809b9d6ae88d67bad4, type: 3}
+  goal: {fileID: 1991628693252781635, guid: 2d0e338a4bb5cad4ab5a78df5572331b, type: 3}
   goalWindow: {fileID: 513938821}
   codingAreaReferenceTransform: {fileID: 931184202}
   pfReefArray:
