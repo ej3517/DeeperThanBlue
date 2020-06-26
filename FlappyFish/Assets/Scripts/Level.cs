@@ -104,13 +104,13 @@ public class Level : MonoBehaviour
         switch (difficulty)
         {
             case Difficulty.Easy:
-                spawnFloatingTimerMax = 0.6f; break;
+                spawnFloatingTimerMax = 0.8f; break;
             case Difficulty.Medium:
-                spawnFloatingTimerMax = 0.5f; break;
+                spawnFloatingTimerMax = 0.7f; break;
             case Difficulty.Hard:
-                spawnFloatingTimerMax = 0.45f;break;
+                spawnFloatingTimerMax = 0.6f;break;
             case Difficulty.Impossible:
-                spawnFloatingTimerMax = 0.4f;break;
+                spawnFloatingTimerMax = 0.5f;break;
         }
     }
 
@@ -136,11 +136,11 @@ public class Level : MonoBehaviour
                 HandleSpeedRing.CreateSpeedRing(MyGlobals.SPAWN_X_POSITION + birdScript.transform.position.x, speedRingList); // first object must be a speed ring
                 hasJustStarted = false;
             }
-            else if (0f <= randomSelector && randomSelector < 0.80f) // Trash
+            else if (0f <= randomSelector && randomSelector < 0.65f) // Trash
             {
                 HandleObstacles.CreateGarbage(garbageList);
             }
-            else if (0.80f <= randomSelector && randomSelector < 0.90f) // Speed Ring
+            else if (0.65f <= randomSelector && randomSelector < 0.90f) // Speed Ring
             {
                 HandleSpeedRing.CreateSpeedRing(MyGlobals.SPAWN_X_POSITION + birdScript.transform.position.x, speedRingList);
             }

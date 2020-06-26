@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
+using UnityEngine.SocialPlatforms;
+//using Random = System.Random;
 
 public class QuizGameController : MonoBehaviour
 {
@@ -21,8 +23,9 @@ public class QuizGameController : MonoBehaviour
     private QuestionsList[] questionPoolHard;
     private StateController stateControllerScript;
     
-    private int questionIndexEasy;
-    private int questionIndexHard;
+    //private int questionIndexEasy;
+    //private int questionIndexHard;
+    private int randomQuestionIndex;
     public int playerScore;
     public bool currentlyHard;
     private List<GameObject> answerButtonGameObjects = new List<GameObject>();
@@ -35,8 +38,9 @@ public class QuizGameController : MonoBehaviour
         currentRoundData = dataController.GetCurrentRoundData();
         questionPoolEasy = currentRoundData.GetEasyQuestion().questions;
         questionPoolHard = currentRoundData.GetHardQuestion().questions;
-        questionIndexEasy = 0;
-        questionIndexHard = 0;
+        //questionIndexEasy = 0;
+        //questionIndexHard = 0;
+        randomQuestionIndex = 0;
 
         stateControllerScript = GameObject.Find("StateController").GetComponent<StateController>();
 
@@ -55,10 +59,12 @@ public class QuizGameController : MonoBehaviour
         QuestionsList questionData;
         if (currentlyHard)
         {
-            questionData = questionPoolHard[questionIndexHard]; // select the hard questions 
+            randomQuestionIndex = UnityEngine.Random.Range(0, questionPoolHard.Length);
+            questionData = questionPoolHard[randomQuestionIndex]; // select the hard questions 
         }
         else {
-            questionData = questionPoolEasy[questionIndexEasy]; // select the easy questions
+            randomQuestionIndex = UnityEngine.Random.Range(0, questionPoolEasy.Length);
+            questionData = questionPoolEasy[randomQuestionIndex]; // select the hard questions 
         }
         questionDisplayText.text = questionData.question;
 
@@ -100,31 +106,22 @@ public class QuizGameController : MonoBehaviour
                     tmpRight++;
                     PlayerPrefs.SetString("timesRight", tmpRight.ToString());
                     PlayerPrefs.Save();
-
-                    if (questionPoolHard.Length > questionIndexHard + 1)
-                    {
-                        questionIndexHard++;
-                        ShowQuestion();
-                        stateControllerScript.currentState = StateController.State.Playing;
-                        questionWindow.Hide();
-                    }
-                    else
-                    {
-                        stateControllerScript.currentState = StateController.State.Playing;
-                        questionWindow.Hide();
-                        questionIndexHard = 0; // start to first question
-                    }
                 }
                 else
                 {
+                    playerScore -= MyGlobals.POINTS_EASY_QUESTION;
+                    levelScript.birdSpeed -= MyGlobals.SPEED_RING_BOOST;
+                    
                     string strWrong = PlayerPrefs.GetString("timesWrong");
                     int tmpWrong = Int32.Parse(strWrong);
                     tmpWrong++;
                     PlayerPrefs.SetString("timesWrong", tmpWrong.ToString());
                     PlayerPrefs.Save();
-
-                    stateControllerScript.currentState = StateController.State.Dead;
                 }
+                
+                ShowQuestion();
+                stateControllerScript.currentState = StateController.State.Playing;
+                questionWindow.Hide();
             }
             else
             {
@@ -147,19 +144,10 @@ public class QuizGameController : MonoBehaviour
                     PlayerPrefs.SetString("timesWrong", tmpWrong.ToString());
                     PlayerPrefs.Save();
                 }
-                if (questionPoolEasy.Length > questionIndexEasy + 1)
-                {
-                    questionIndexEasy++;
-                    ShowQuestion();
-                    stateControllerScript.currentState = StateController.State.Playing;
-                    questionWindow.Hide();
-                }
-                else
-                {
-                    stateControllerScript.currentState = StateController.State.Playing;
-                    questionWindow.Hide();
-                    questionIndexEasy = 0; //start to last question
-                }
+                
+                ShowQuestion();
+                stateControllerScript.currentState = StateController.State.Playing;
+                questionWindow.Hide();
             }
         }
     }
