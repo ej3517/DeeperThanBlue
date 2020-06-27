@@ -9,6 +9,8 @@ using System.Threading;
 
 public class DataController : MonoBehaviour
 {
+    static string versionNumber = "v0.4";
+
     public Interface interfaceLink;
 
 
@@ -396,10 +398,11 @@ public class DataController : MonoBehaviour
 
     private void SetupPlayerPrefs()
     {
-        if (PlayerPrefs.GetInt("firstTime", 0) != 1)
+        if (PlayerPrefs.GetString("version", "null") != versionNumber)
         {
+
             Debug.LogWarning("First time user...");
-            PlayerPrefs.SetInt("firstTime", 1);
+            PlayerPrefs.SetString("version", versionNumber);
             PlayerPrefs.SetString("timesWon", "0");
             PlayerPrefs.SetString("timesLost", "0");
             PlayerPrefs.SetString("timesRight", "0");

@@ -22,6 +22,7 @@ public class InstructionWindow : MonoBehaviour
         {
             Debug.Log("Not going to show instruction window next time...");
             PlayerPrefs.SetInt("codeChallengeShowInstruciton", 0);
+            PlayerPrefs.Save();
         }
         transform.localPosition = new Vector3(0, 2000, -100);
     }
